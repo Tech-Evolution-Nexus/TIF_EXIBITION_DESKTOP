@@ -957,7 +957,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIcon6ActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="buttonIcon6.setIcon(&quot;Assets/svg/deleteIcon.svg&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="buttonIcon6.setIcon(&quot;Assets/svg/detailIcon.svg&quot;);"/>
           </AuxValues>
         </Component>
       </SubComponents>

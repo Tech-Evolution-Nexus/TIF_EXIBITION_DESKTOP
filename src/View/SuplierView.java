@@ -4,8 +4,8 @@
  */
 package View;
 
-import Kategori.*;
-import com.formdev.flatlaf.extras.FlatSVGIcon;
+
+
 import table.TableCustom;
 
 /**

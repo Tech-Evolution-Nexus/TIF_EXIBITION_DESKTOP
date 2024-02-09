@@ -19,7 +19,7 @@ public class DB {
     public static Statement stm;
     static String dbname = "apotek_1";
     static String user = "root";
-    static String pass = "";
+    static String pass = "101010";
     static String url = "jdbc:mysql://localhost:3306/" + dbname;
 
     public static void DBSetup() {

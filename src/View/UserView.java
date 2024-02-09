@@ -4,8 +4,7 @@
  */
 package View;
 
-import Kategori.*;
-import com.formdev.flatlaf.extras.FlatSVGIcon;
+
 import com.formdev.flatlaf.ui.FlatButtonBorder;
 import table.TableCustom;
 
