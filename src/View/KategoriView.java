@@ -21,7 +21,7 @@ public class KategoriView extends javax.swing.JPanel {
     public KategoriView() {
         initComponents();
         controller = new Controllers.KategoriController(table, jDialog1);
-        controller.tampilData(table);
+        controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
         searchObat.setIcon("Assets/svg/searchIcon.svg");
     }

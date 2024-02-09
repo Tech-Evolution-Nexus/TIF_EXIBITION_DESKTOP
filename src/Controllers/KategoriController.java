@@ -24,7 +24,7 @@ public class KategoriController {
         this.form = form;
     }
 
-    public void tampilData(javax.swing.JTable table) {
+    public void tampilData() {
         try {
             // mengambil data dari table kategori       
             ResultSet data = DB.query("SELECT * FROM kategori ORDER BY id DESC");
