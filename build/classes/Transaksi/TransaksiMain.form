@@ -60,7 +60,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Transaksi.PenjualanView" name="penjualanView1">
+            <Component class="View.PenjualanView" name="penjualanView1">
             </Component>
           </SubComponents>
         </Container>

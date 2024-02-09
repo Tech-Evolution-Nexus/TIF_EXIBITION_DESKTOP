@@ -182,7 +182,7 @@ public class TransaksiPembelianController implements Controller {
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(Transaksi.PenjualanView.class
+            Logger.getLogger(View.PenjualanView.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -234,12 +234,14 @@ public class TransaksiPembelianController implements Controller {
             int index = 0;
             for (Object[] data : dataTable) {
                 if (namaOb.equalsIgnoreCase(data[1].toString())) {
+                    System.out.println(data[1].toString());
                     table.setValueAt(Currency.deformat(harga), index, 3);
                     table.setValueAt(qty, index, 4);
                     Object[] rowData = {dataTable.get(index)[0], dataTable.get(index)[1], dataTable.get(index)[2], Currency.deformat(harga), qty};
                     dataTable.add(rowData);
                     return;
                 }
+                index++;
             }
             ResultSet dataSp = DB.query("SELECT * from data_obat where nama_obat  = '" + namaOb + "'");
             DefaultTableModel model = (DefaultTableModel) table.getModel();

@@ -273,6 +273,7 @@ public class LaporanPembelianController implements Controller {
             value_tgl_pem.setText(tgltrpem);
             ResultSet dbs = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_pembelian join obat on detail_pembelian.kode_obat = obat.kode_obat where kode_transaksi='" + Kodetrx1 + "'");
             DefaultTableModel table2 = (DefaultTableModel) TBLdetail_2.getModel();
+            table2.setRowCount(0);
             while (dbs.next()) {
                 Object[] data = {
                     no,

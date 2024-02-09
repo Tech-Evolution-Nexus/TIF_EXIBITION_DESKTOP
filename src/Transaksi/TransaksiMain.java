@@ -28,7 +28,7 @@ public class TransaksiMain extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        penjualanView1 = new Transaksi.PenjualanView();
+        penjualanView1 = new View.PenjualanView();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,6 +65,6 @@ public class TransaksiMain extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private Transaksi.PenjualanView penjualanView1;
+    private View.PenjualanView penjualanView1;
     // End of variables declaration//GEN-END:variables
 }

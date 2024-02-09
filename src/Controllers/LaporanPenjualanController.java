@@ -416,7 +416,7 @@ public class LaporanPenjualanController implements Controller {
             viewer.setVisible(true);
             
         } catch (JRException ex) {
-            Logger.getLogger(Transaksi.PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(View.PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
