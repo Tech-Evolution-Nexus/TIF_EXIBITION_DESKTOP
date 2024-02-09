@@ -33,8 +33,21 @@ public class SaldoKasAwal extends javax.swing.JFrame {
 
     public SaldoKasAwal() {
         initComponents();
-        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
-        id = userPreferences.getInt("id_user", 0);
+       Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+       
+
+        try {
+            String datalogin = userPreferences.get("localLogin", null);
+
+            if (datalogin != null) {
+
+                JSONArray retrievedArray = new JSONArray(datalogin);
+                id = Integer.parseInt(retrievedArray.getString(0));         
+            } else {
+                new login().setVisible(true);
+            }
+        } catch (Exception e) {
+        }
 
     }
 
@@ -127,66 +140,13 @@ public class SaldoKasAwal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
-
-        if (inputkas.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Saldo Awal tidak boleh Kosong!");
-        } else if (!inputkas.getText().matches("[0-9]+")) {
-            JOptionPane.showMessageDialog(null, "Karakter harus bersifat Numerik!");
-            inputkas.setText("");
-        } else {
-            try {
-                dispose();
-                new Main.Main().setVisible(true);
-                String inputkastxt = inputkas.getText();
-
-                int jumlah = DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
-                ResultSet p = DB.query("select id from shift order by id desc limit 1");
-                if (p.next()) {
-                    String[] dataArray = {p.getString("id"), inputkastxt};
-                    JSONArray jsonArray = new JSONArray(dataArray);
-                    userPreferences.put("datashift", jsonArray.toString());
-                    System.out.println("Saldo berhasil ditambahkan.");
-                }
-
-            } catch (JSONException ex) {
-                Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       addsaoldo();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputkasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputkasKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
-
-            if (inputkas.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Saldo Awal tidak boleh Kosong!");
-            } else if (!inputkas.getText().matches("[0-9]+")) {
-                JOptionPane.showMessageDialog(null, "Karakter harus bersifat Numerik!");
-                inputkas.setText("");
-            } else {
-                try {
-                    dispose();
-                    new Main.Main().setVisible(true);
-                    String inputkastxt = inputkas.getText();
-
-                    int jumlah = DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
-                    ResultSet p = DB.query("select id from shift order by id desc limit 1");
-                    if (p.next()) {
-                        String[] dataArray = {p.getString("id"), inputkastxt};
-                        JSONArray jsonArray = new JSONArray(dataArray);
-                        userPreferences.put("datashift", jsonArray.toString());
-                        System.out.println("Saldo berhasil ditambahkan.");
-                    }
-
-                } catch (JSONException ex) {
-                    Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            
+            addsaoldo();
         }
     }//GEN-LAST:event_inputkasKeyPressed
 
@@ -252,6 +212,39 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         });
     }
 
+    private void addsaoldo(){
+         Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+
+        if (inputkas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Saldo Awal tidak boleh Kosong!");
+        } else if (!inputkas.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Karakter harus bersifat Numerik!");
+            inputkas.setText("");
+        } else {
+            try {
+                dispose();
+                new Main.Main().setVisible(true);
+                String inputkastxt = inputkas.getText();
+
+                int jumlah = DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
+                ResultSet p = DB.query("select id,tanggal_dibuat from shift order by id desc limit 1");
+              
+                if (p.next()) {
+                     System.out.println(p.getString("tanggal_dibuat"));
+                    String[] dataArray = {p.getString("id"), inputkastxt, p.getString("tanggal_dibuat")};
+                   
+                    JSONArray jsonArray = new JSONArray(dataArray);
+                    userPreferences.put("datashift", jsonArray.toString());
+                    System.out.println("Saldo berhasil ditambahkan.");
+                }
+
+            } catch (JSONException ex) {
+                Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(SaldoKasAwal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField inputkas;
     private javax.swing.JButton jButton1;

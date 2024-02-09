@@ -26,7 +26,7 @@ public class PenjualanView extends javax.swing.JPanel {
         controller = new LaporanPenjualanController(jTable1, form, com);
 
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-
+        TableCustom.apply(jScrollPane3, TableCustom.TableType.MULTI_LINE);
         controller.tampilData();
     }
 
@@ -77,7 +77,7 @@ public class PenjualanView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "no", "Nama Obat", "Harga", "Jumlah Obat", "Subtotal"
+                "No", "Nama Obat", "Harga", "Jumlah Obat", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -92,6 +92,20 @@ public class PenjualanView extends javax.swing.JPanel {
         TBLdetail_1.setShowVerticalLines(true);
         TBLdetail_1.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(TBLdetail_1);
+        if (TBLdetail_1.getColumnModel().getColumnCount() > 0) {
+            TBLdetail_1.getColumnModel().getColumn(0).setMinWidth(30);
+            TBLdetail_1.getColumnModel().getColumn(0).setPreferredWidth(30);
+            TBLdetail_1.getColumnModel().getColumn(0).setMaxWidth(30);
+            TBLdetail_1.getColumnModel().getColumn(2).setMinWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(2).setMaxWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(3).setMinWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(3).setPreferredWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(3).setMaxWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(4).setMinWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(4).setPreferredWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(4).setMaxWidth(100);
+        }
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -209,11 +223,10 @@ public class PenjualanView extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tgltrx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(txtkodetransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(txtkodetransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(tgltrx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(311, 311, 311)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

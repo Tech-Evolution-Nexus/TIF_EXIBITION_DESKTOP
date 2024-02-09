@@ -571,7 +571,7 @@ public class ObatView extends javax.swing.JPanel {
 
         buttonIcon6.setBackground(new java.awt.Color(102, 184, 207));
         buttonIcon6.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon6.setIcon("Assets/svg/deleteIcon.svg");
+        buttonIcon6.setIcon("Assets/svg/detailIcon.svg");
         buttonIcon6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonIcon6ActionPerformed(evt);

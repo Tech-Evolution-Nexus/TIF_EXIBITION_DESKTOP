@@ -44,7 +44,6 @@ public class login extends javax.swing.JFrame {
     }
 
     private ImageIcon images(String path, int WIDTH, int HEIGHT) {
-        System.out.println(path);
         ImageIcon img = new ImageIcon(getClass().getResource(path));
         Image image = (img).getImage().getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
         img = new ImageIcon(image);

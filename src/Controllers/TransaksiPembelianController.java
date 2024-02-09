@@ -22,6 +22,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,7 +96,7 @@ public class TransaksiPembelianController implements Controller {
             String issuppbaru = "";
             ResultSet dataS = DB.query("select kode_suplier from supplier where nama_suplier = '" + datasupp + "'");
             dataS.next();
-            System.out.println(dataS.getString("kode_suplier"));
+
             issupp = dataS.getString("kode_suplier");
 //            if (datasupp.equalsIgnoreCase("Pilih Supplier")) {
 //                issupp = "";
@@ -123,10 +125,12 @@ public class TransaksiPembelianController implements Controller {
 
                     String kodeObat = table.getValueAt(i, 0) != null ? table.getValueAt(i, 0).toString() : "";
                     String hargasatuan = table.getValueAt(i, 3) != null ? table.getValueAt(i, 3).toString() : "";
+
                     String tambahStok = table.getValueAt(i, 4) != null ? table.getValueAt(i, 4).toString() : "";
                     String tglKadaluarsa = table.getValueAt(i, 5) != null ? table.getValueAt(i, 5).toString() : "";
                     System.out.println("kode obat " + kodeObat + "\n hargaSatuan " + hargasatuan + "\ntambahStok " + tambahStok + "\ntglkadaluarsa " + tglKadaluarsa);
                     if (!tambahStok.isEmpty() && !hargasatuan.isEmpty() && !tglKadaluarsa.isEmpty()) {
+
                         DateFormat formatAwal = new SimpleDateFormat("dd-MM-yyyy");
                         Date tglKadaluarsadate = formatAwal.parse(tglKadaluarsa);
 
@@ -230,7 +234,12 @@ public class TransaksiPembelianController implements Controller {
             };
             String qty = this.qty.getText();
             String harga = this.harga.getText();
+            Pattern pattern = Pattern.compile("Rp\\.\\d+", Pattern.CASE_INSENSITIVE);  // Pola regex untuk mencocokkan "Rp." dan nilai numerik
+            Matcher matcher = pattern.matcher(harga);
 
+            if (matcher.find()) {
+                harga = matcher.group(0).substring(3);
+            }
             int index = 0;
             for (Object[] data : dataTable) {
                 if (namaOb.equalsIgnoreCase(data[1].toString())) {
@@ -251,6 +260,10 @@ public class TransaksiPembelianController implements Controller {
                 dataTable.add(rowData);
 
             }
+            this.qty.setText("0");
+            this.harga.setText("Rp.0");
+            obatCom.setSelectedIndex(0);
+            
         } catch (Exception e) {
         }
 
@@ -258,13 +271,17 @@ public class TransaksiPembelianController implements Controller {
 
     public void resetAll() {
         table.removeAll();
-
+        qty.setText("0");
+        harga.setText("Rp.0");
+        obatCom.setSelectedIndex(0);
+        suplierCom.setSelectedIndex(0);
         ((DefaultTableModel) table.getModel()).setRowCount(0);
 
     }
 
     public void resetTable() {
         try {
+
             int index = table.getSelectedRow();
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.removeRow(index);

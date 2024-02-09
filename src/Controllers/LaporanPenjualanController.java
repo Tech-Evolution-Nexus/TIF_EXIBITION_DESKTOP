@@ -264,8 +264,8 @@ public class LaporanPenjualanController implements Controller {
             value_bayar.setText(Currency.format(Integer.parseInt(pembayaran.trim())));
             value_kem.setText(Currency.format(Integer.parseInt(kembali.trim())));
 
-            System.out.println("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
-            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
+//            System.out.println("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
+            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
 //            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
 
             DefaultTableModel table1 = (DefaultTableModel) TBLdetail_1.getModel();

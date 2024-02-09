@@ -4,6 +4,7 @@
  */
 package Main;
 
+import Auth.SaldoKasAwal;
 import Auth.login;
 import Config.DB;
 import Helper.FormatTanggal;
@@ -36,12 +37,18 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import org.json.JSONArray;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.json.JSONException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -121,7 +128,6 @@ public class Main extends javax.swing.JFrame {
         main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         menu_bar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         pageName = new javax.swing.JLabel();
@@ -158,18 +164,6 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 51, Short.MAX_VALUE)
         );
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new FlatSVGIcon("Assets/svg/closeIcon.svg"));
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-
         username.setIcon(new FlatSVGIcon("Assets/svg/personIcon.svg"));
         username.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,9 +188,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(menu_bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(49, 49, 49))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,10 +196,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(menu_bar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addComponent(menu_bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -283,11 +274,6 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        System.exit(0);
-
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void usernameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseEntered
         showLogout();
     }//GEN-LAST:event_usernameMouseEntered
@@ -354,7 +340,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog dialog;
     private javax.swing.JPopupMenu dialog2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -559,12 +544,16 @@ public class Main extends javax.swing.JFrame {
 //                    panel2.setSize(200, 100);
         panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
         javax.swing.JLabel label2 = new javax.swing.JLabel("Logout");
+        javax.swing.JLabel labelicon = new javax.swing.JLabel();
+
         javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+        labelicon.setIcon(new FlatSVGIcon("Assets/svg/logout.svg"));
         label2.setHorizontalAlignment(SwingConstants.LEFT);
         label2.setForeground(Color.white);
         label2.setFont(new Font("Poppins", Font.PLAIN, 13));
         panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
         panel3.setBackground(new Color(51, 85, 188));
+        panel3.add(labelicon);
         panel3.add(label2);
         panel2.add(panel3);
 
@@ -573,12 +562,52 @@ public class Main extends javax.swing.JFrame {
         panel3.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                dispose();
-                new login().setVisible(true);
+                editshift();
             }
         });
 
         dialog2.show(username, username.getWidth(), username.getHeight() + 5);
+    }
+
+    private void editshift() {
+        try {
+            int idshift = 0;
+            int saldowal = 0;
+            String tanggal_dibuat = "";
+            Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+
+            String datalogin = userPreferences.get("datashift", null);
+
+            if (datalogin != null) {
+                JSONArray retrievedArray = new JSONArray(datalogin);
+                idshift = retrievedArray.getInt(0);
+                saldowal = retrievedArray.getInt(1);
+                tanggal_dibuat = retrievedArray.getString(2);
+                int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda ingin keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    // Aksi yang ingin dilakukan sebelum keluar
+                    System.out.println("Menutup aplikasi...");
+                    ResultSet p = DB.query("SELECT COUNT(*) AS total_penjualan, COALESCE(SUM(total_harga), 0) AS total_harga FROM transaksi_penjualan WHERE tanggal_transaksi BETWEEN '" + tanggal_dibuat + "' AND now(); ");
+                   
+
+                    if (p.next()) {
+                        int hasil = saldowal + p.getInt("total_harga");
+                        DB.query2("UPDATE shift SET saldo_akhir_kas = '" + hasil + "',waktu_tutup = curtime(),total_penjualan = '" + p.getString("total_penjualan") + "',total_pembayaran = '" + p.getString("total_harga") + "' WHERE  id = '" + idshift + "';");
+                        dispose();
+                        new login().setVisible(true);
+                    }
+
+                } else {
+                    System.out.println("t");
+                    dispose();
+                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                }
+            }
+
+        } catch (JSONException | SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void resetStyle() {

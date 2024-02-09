@@ -3,18 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PenjualanView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/Main.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/Controller.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/ObatController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/TransaksiPenjualanController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PengeluaranView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/DashboardView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Transaksi/TransaksiMain.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/KategoriView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/KategoriController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PembelianView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/ObatView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Suplier/SuplierView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Obat/ObatView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Config/DB.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Transaksi/PenjualanView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/iReportdata/printpenjualan.jrxml</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Obat/Form.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Obat/SatuanView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPendapatanController.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPembelianController.java</file>
+            <file>file:/D:/New%20folder/TIF_EXIBITION_DESKTOP/src/Auth/SaldoKasAwal.java</file>
         </group>
     </open-files>
 </project-private>
