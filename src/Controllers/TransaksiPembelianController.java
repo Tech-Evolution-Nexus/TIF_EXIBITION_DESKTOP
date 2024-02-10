@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Muhammad Nor Kholit
  */
-public class TransaksiPembelianController implements Controller {
+public class TransaksiPembelianController {
 
     public static boolean spIsClick;
 
@@ -52,7 +52,7 @@ public class TransaksiPembelianController implements Controller {
         this.harga = (JTextField) com[4];
     }
 
-    @Override
+    
     public void tampilData() {
         resetTable();
         resetAll();
@@ -74,12 +74,12 @@ public class TransaksiPembelianController implements Controller {
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
         try {
             if (dataTable.size() == 0) {
@@ -191,16 +191,16 @@ public class TransaksiPembelianController implements Controller {
         }
     }
 
-    @Override
+    
     public void editData(Object[] id) {
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

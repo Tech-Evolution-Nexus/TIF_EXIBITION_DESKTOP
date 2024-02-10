@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Muhammad Nor Kholit
  */
-public class SupplierController implements Controller {
+public class SupplierController  {
 
     private String idEdit;
     //status 1 untuk tambah 2 untuk edit
@@ -57,7 +57,7 @@ public class SupplierController implements Controller {
         this.titleForm = titleForm;
     }
 
-    @Override
+   
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -84,7 +84,7 @@ public class SupplierController implements Controller {
         }
     }
 
-    @Override
+   
     public void tambahData(Object[] object) {
         namaPemasok.setEnabled(true);
         alamat.setEnabled(true);
@@ -97,7 +97,7 @@ public class SupplierController implements Controller {
         form.setVisible(true);
     }
 
-    @Override
+   
     public void hapusData(Object[] object) {
         try {
             int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
@@ -151,7 +151,7 @@ public class SupplierController implements Controller {
         }
     }
 
-    @Override
+   
     public void simpanData(Object[] object) {
         String namaSuplier = namaPemasok.getText();
         String alamat = this.alamat.getText();
@@ -283,7 +283,7 @@ public class SupplierController implements Controller {
         }
     }
 
-    @Override
+   
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -324,7 +324,7 @@ public class SupplierController implements Controller {
         barangListCom.repaint();
         barangListCom.revalidate();
         button.addMouseListener(new MouseAdapter() {
-            @Override
+           
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (barangList.size() == 1) {

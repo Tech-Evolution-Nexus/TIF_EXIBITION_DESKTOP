@@ -46,7 +46,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LaporanPenjualanController implements Controller {
+public class LaporanPenjualanController{
 
     ArrayList<String> datat = new ArrayList<>();
     private int idEdit;
@@ -82,7 +82,7 @@ public class LaporanPenjualanController implements Controller {
 
     }
 
-    @Override
+   
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -129,14 +129,14 @@ public class LaporanPenjualanController implements Controller {
         }
     }
 
-    @Override
+   
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    @Override
+   
     public void hapusData(Object[] object) {
         try {
             int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
@@ -193,7 +193,7 @@ public class LaporanPenjualanController implements Controller {
         }
     }
 
-    @Override
+   
     public void simpanData(Object[] object) {
         JTextField namaKategoriField = (JTextField) object[0];
         String namaKategori = namaKategoriField.getText();
@@ -238,7 +238,7 @@ public class LaporanPenjualanController implements Controller {
         form.setVisible(true);
     }
 
-    @Override
+   
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

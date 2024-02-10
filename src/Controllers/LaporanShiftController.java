@@ -33,7 +33,7 @@ import java.sql.PreparedStatement;
  *
  * @author admin
  */
-public class LaporanShiftController implements Controller{
+public class LaporanShiftController {
 
     JTable table;
     JDialog form;
@@ -47,7 +47,7 @@ public class LaporanShiftController implements Controller{
         this.jdata3 = jdata3;
         this.jdata4 = jdata4;
     }
-    @Override
+    
     public void tampilData() {
          try {
             // mengambil data dari table kategori       
@@ -87,27 +87,27 @@ public class LaporanShiftController implements Controller{
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void editData(Object[] id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

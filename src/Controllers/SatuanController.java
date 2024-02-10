@@ -16,7 +16,7 @@ import java.sql.SQLException;
  *
  * @author Muhammad Nor Kholit
  */
-public class SatuanController implements Controller {
+public class SatuanController  {
 
     private JTable table;
     private ArrayList<Object[]> satuanList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class SatuanController implements Controller {
         this.form = form;
     }
 
-    @Override
+   
     public void tampilData() {
         try {
             ResultSet dataSatuan = DB.query("SELECT * FROM `bentuk_sediaan_obat` ORDER BY `bentuk_sediaan_obat`.`id` DESC");
@@ -49,14 +49,14 @@ public class SatuanController implements Controller {
         }
     }
 
-    @Override
+   
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    @Override
+   
     public void simpanData(Object[] object) {
         JTextField namaSatuanField = (JTextField) object[0];
         JTextField keteranganField = (JTextField) object[1];
@@ -95,7 +95,7 @@ public class SatuanController implements Controller {
         }
     }
 
-    @Override
+   
     public void editData(Object[] rowTable) {
         int row = (int) rowTable[0];
         if (row < 0) {
@@ -116,12 +116,12 @@ public class SatuanController implements Controller {
         form.setVisible(true);
     }
 
-    @Override
+   
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
+   
     public void hapusData(Object[] object) {
         try {
             int row = (int) object[0];
