@@ -4,7 +4,7 @@
  */
 package Controllers;
 
-import Auth.login;
+import View.Auth.login;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;

@@ -4,7 +4,7 @@
  */
 package View;
 
-import Auth.login;
+import View.Auth.login;
 import Config.DB;
 
 import table.TableCustom;
