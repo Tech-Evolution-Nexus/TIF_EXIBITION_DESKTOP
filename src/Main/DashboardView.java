@@ -4,7 +4,6 @@
  */
 package Main;
 
-import Auth.login;
 import Helper.Currency;
 import Helper.konversiintbln;
 import chart.ModelChart;
@@ -12,6 +11,7 @@ import java.util.prefs.Preferences;
 import javax.swing.JLabel;
 import Config.DB;
 import Helper.FormatTanggal;
+import View.Auth.login;
 import java.sql.ResultSet;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;

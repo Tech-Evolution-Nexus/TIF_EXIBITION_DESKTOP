@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class KategoriController implements Controller {
+public class KategoriController {
 
     private ArrayList<Integer> id = new ArrayList<>();
     private int idEdit;
@@ -76,7 +76,7 @@ public class KategoriController implements Controller {
             }
             DB.query2("DELETE FROM kategori WHERE id='" + id + "'");
             Notification.showSuccess(Notification.DATA_DELETED_SUCCESS,table);
-            tampilData();
+//            tampilData();
 
         } catch (Exception e) {
             Notification.showError(Notification.SERVER_ERROR + e.getMessage(),table);

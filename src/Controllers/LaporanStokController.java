@@ -29,7 +29,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LaporanStokController implements Controller {
+public class LaporanStokController  {
 
     private JTable table;
     private JDialog form;
@@ -40,7 +40,7 @@ public class LaporanStokController implements Controller {
         this.form = form;
     }
 
-    @Override
+    
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -76,14 +76,14 @@ public class LaporanStokController implements Controller {
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
 
     }
@@ -124,7 +124,7 @@ public class LaporanStokController implements Controller {
         }
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
 
     }
@@ -133,7 +133,7 @@ public class LaporanStokController implements Controller {
 
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
     }
 

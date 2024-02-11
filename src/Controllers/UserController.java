@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Muhammad Nor Kholit
  */
-public class UserController implements Controller {
+public class UserController  {
 
     private ArrayList<Integer> id = new ArrayList<>();
     private int idEdit;
@@ -60,14 +60,14 @@ public class UserController implements Controller {
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
         try {
             int row = (int) object[0];
@@ -123,7 +123,7 @@ public class UserController implements Controller {
         }
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
         JTextField ktpField = (JTextField) object[0];
         JTextField namaUserField = (JTextField) object[1];
@@ -189,7 +189,7 @@ public class UserController implements Controller {
         form.setVisible(true);
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

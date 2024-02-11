@@ -11,7 +11,6 @@ import Helper.Currency;
 import Helper.FormatTanggal;
 import Helper.KodeGenerator;
 import Helper.Notification;
-import Obat.Form;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -41,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Muhammad Nor Kholit
  */
-public class ObatController implements Controller {
+public class ObatController  {
 
     private ArrayList<Integer> idKategori = new ArrayList<Integer>();
     private ArrayList<Object[]> obatList = new ArrayList<Object[]>();
@@ -83,7 +82,7 @@ public class ObatController implements Controller {
         this.tableSatuan = (JTable) component[11];
     }
 
-    @Override
+    
     public void tampilData() {
         try {
             ResultSet data = DB.query("SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,aturan_pakai,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan  order by tanggal_dibuat desc");
@@ -103,7 +102,7 @@ public class ObatController implements Controller {
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         try {
             titleForm.setText("Tambah Data Obat");
@@ -122,7 +121,7 @@ public class ObatController implements Controller {
 
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
         try {
 
@@ -171,7 +170,7 @@ public class ObatController implements Controller {
         }
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
         String namaObat = this.namaObat.getText();
         String kategori = this.kategori.getSelectedItem().toString();
@@ -237,7 +236,7 @@ public class ObatController implements Controller {
 
     }
 
-    @Override
+    
     public void editData(Object[] id) {
         try {
             if (table.getSelectedRow() < 0) {
@@ -311,7 +310,7 @@ public class ObatController implements Controller {
         }
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -382,7 +381,7 @@ public class ObatController implements Controller {
             combo.setPreferredSize(new Dimension(310, 42));
             field.setPreferredSize(new Dimension(70, 42));
             satuanList.get(0).addItemListener(new ItemListener() {
-                @Override
+                
                 public void itemStateChanged(ItemEvent e) {
                     label.setText("/ " + satuanList.get(0).getSelectedItem().toString());
                 }
@@ -417,7 +416,7 @@ public class ObatController implements Controller {
 
         generateHarga(combo, harga, button);
         button.addMouseListener(new MouseAdapter() {
-            @Override
+            
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (satuanList.size() == 1) {
@@ -448,14 +447,14 @@ public class ObatController implements Controller {
         panel.setMaximumSize(new Dimension(w, 42));
         panel.setBorder(new EmptyBorder(5, 0, 5, 0));
         combos.addItemListener(new ItemListener() {
-            @Override
+            
             public void itemStateChanged(ItemEvent e) {
                 label2.setText("/ " + combos.getSelectedItem().toString());
             }
         });
 
         button.addMouseListener(new MouseAdapter() {
-            @Override
+            
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (satuanList.size() == 1) {

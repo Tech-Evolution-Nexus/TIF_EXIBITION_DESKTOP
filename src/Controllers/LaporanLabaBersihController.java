@@ -28,7 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author rexy
  */
-public class LaporanLabaBersihController implements Controller{
+public class LaporanLabaBersihController {
 
     private JTable table;
     private JDialog form;
@@ -39,7 +39,7 @@ public class LaporanLabaBersihController implements Controller{
         this.form = form;
     }
 
-     @Override
+     
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -72,14 +72,14 @@ public class LaporanLabaBersihController implements Controller{
         }
     }
 
-    @Override
+    
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    @Override
+    
     public void hapusData(Object[] object) {
 
     }
@@ -120,7 +120,7 @@ public class LaporanLabaBersihController implements Controller{
         }
     }
 
-    @Override
+    
     public void simpanData(Object[] object) {
 
     }
@@ -129,7 +129,7 @@ public class LaporanLabaBersihController implements Controller{
 
     }
 
-    @Override
+    
     public void updateData(Object[] object) {
     }
 
