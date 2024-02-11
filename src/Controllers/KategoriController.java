@@ -18,7 +18,7 @@ public class KategoriController {
     private JTable table;
     private JDialog form;
     private ArrayList<Object[]> kategoriList = new ArrayList<>();
-
+//s
     public KategoriController(JTable table, JDialog form) {
         this.table = table;
         this.form = form;
