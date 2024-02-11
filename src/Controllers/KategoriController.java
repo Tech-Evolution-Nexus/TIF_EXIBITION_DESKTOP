@@ -17,7 +17,7 @@ public class KategoriController {
     private int status = 1;
     
     private ArrayList<Object[]> kategoriList = new ArrayList<>();
-
+//s
     public void tampilData(JTable table) {
         try {
             // mengambil data dari table kategori       
