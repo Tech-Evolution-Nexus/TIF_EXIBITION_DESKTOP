@@ -27,9 +27,7 @@ public class Bentuk_Sediaan_Obat {
     public static void drop(){
         String sql = "DROP TABLE IF EXISTS`bentuk_sediaan_obat` CASCADE";
         //run sql
-        DB.query2("SET FOREIGN_KEY_CHECKS = 0");
         DB.query2(sql);
-        DB.query2("SET FOREIGN_KEY_CHECKS = 1");
 
     }
 }

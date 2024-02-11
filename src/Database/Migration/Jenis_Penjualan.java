@@ -31,8 +31,6 @@ public class Jenis_Penjualan {
     public static void drop(){
         String sql = "DROP TABLE IF EXISTS `jenis_penjualan` CASCADE";
         //run sql
-        DB.query2("SET FOREIGN_KEY_CHECKS = 0");
         DB.query2(sql);
-        DB.query2("SET FOREIGN_KEY_CHECKS = 1");
     }
 }

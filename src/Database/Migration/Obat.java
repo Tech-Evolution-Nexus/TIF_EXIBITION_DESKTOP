@@ -22,6 +22,7 @@ public class Obat {
                     "  `jumlah_obat` int NOT NULL DEFAULT '0',\n" +
                     "  `aturan_pakai` varchar(50) DEFAULT NULL,\n" +
                     "  `tanggal_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n" +
+                    "`status` enum('0','1') NOT NULL default '1',\n" +
                     "FOREIGN KEY (id_kategori) REFERENCES kategori(id),"+
                     "FOREIGN KEY (id_bentuk_sediaan) REFERENCES bentuk_sediaan_obat(id)"+
                     ")";
@@ -33,8 +34,6 @@ public class Obat {
     public static void drop(){
         String sql = "DROP TABLE IF EXISTS `obat` CASCADE";
         //run sql
-        DB.query2("SET FOREIGN_KEY_CHECKS = 0");
         DB.query2(sql);
-        DB.query2("SET FOREIGN_KEY_CHECKS = 1");
     }
 }
