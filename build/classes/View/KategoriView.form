@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="jDialog1">
+    <Container class="javax.swing.JDialog" name="form">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new Components.CustomDialog();&#xa;"/>
       </AuxValues>
@@ -93,6 +93,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customButton1ActionPerformed"/>
               </Events>
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Components.CustomButton()"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="customButton1.setIcon(&quot;Assets/svg/saveIcon.svg&quot;);"/>
               </AuxValues>
             </Component>
