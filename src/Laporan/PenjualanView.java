@@ -4,7 +4,7 @@
  */
 package Laporan;
 
-import Controllers.LaporanPenjualanController;
+import App.Controllers.LaporanPenjualanController;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import table.TableCustom;
 

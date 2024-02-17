@@ -6,7 +6,7 @@ package View;
 
 import java.sql.ResultSet;
 import Components.DeleteButtonRenderer;
-import Controllers.TransaksiPembelianController;
+import App.Controllers.TransaksiPembelianController;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class PembelianView extends javax.swing.JPanel {
     public PembelianView() {
         initComponents();
         Object[] component = {table, dataSuplier, dataObat, qty, harga};
-        controller = new Controllers.TransaksiPembelianController(component);
+        controller = new App.Controllers.TransaksiPembelianController(component);
         controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 
@@ -392,7 +392,7 @@ public class PembelianView extends javax.swing.JPanel {
         Object[] component = {table, dataSuplier, dataObat, qty, harga};
         qty.setText("0");
         harga.setText("Rp.0");
-        controller = new Controllers.TransaksiPembelianController(component);
+        controller = new App.Controllers.TransaksiPembelianController(component);
         controller.spIsClick = false;
         controller.tampilData();
     }//GEN-LAST:event_formAncestorAdded

@@ -3,47 +3,76 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PenjualanView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanPendapatanController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/Main.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/Auth/login.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/ObatController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Users.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/SupplierController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/SupplierController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/DashboardView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Migrate.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Helper/Currency.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Obat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Laporan_Stok.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/TransaksiPembelianController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanLabaBersihController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Config/DB.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Kategori.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Laporan_Penjualan.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PengeluaranView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/Auth/regis.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/SatuanView.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Routine/Routine.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/UserController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Jenis_Penjualan.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Transaksi_Pembelian.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/Auth/SaldoKasAwal.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Supplier.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/KategoriController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/ObatViewEdit.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Detail_Pembelian.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PembelianView.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/SuplierView.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Penjualan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Data_Jenis_Penjualan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Stok_Obat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/View.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Laporan_Pengeluaran.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Detail_Penjualan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Data_Obat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PenjualanView.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanShiftController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/ObatController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Routine/SimpanDataObat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Pengeluaran.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Migrate.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Obat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Routine/SimpanUser.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Laporan_Pendapatan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/PrinterView.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Routine/SimpanJenisPenjualan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/Auth/regis.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Laporan_Pembelian.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Transaksi_Pembelian.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Laporan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Components/CustomButton.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/SatuanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Components/ButtonIcon.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Shift.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Core/Classes.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/PengeluaranController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/table/TableCustom.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanStokController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Bentuk_Sediaan_Obat.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanShiftController.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Transaksi_Penjualan.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Transaksi/TransaksiMain.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/KategoriView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanPembelianController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/KategoriController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanLabaBersihController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Detail_Pembelian.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PembelianView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/LaporanStokController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/SuplierView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/UserController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanPendapatanController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Helper/Notification.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Components/CustomPanel.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/UserView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/SatuanController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/PengeluaranController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Migration/Detail_Penjualan.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Helper/DataFormat.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/LaporanPembelianController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/Routine/SimpanKategori.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Controllers/ObatControllerEdit.java</file>
             <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/ObatView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/TransaksiPembelianController.java</file>
+            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Database/View/Data_Stok_Obat.java</file>
         </group>
     </open-files>
 </project-private>

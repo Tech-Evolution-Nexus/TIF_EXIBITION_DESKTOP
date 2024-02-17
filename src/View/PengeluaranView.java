@@ -31,7 +31,7 @@ import org.json.JSONException;
  */
 public class PengeluaranView extends javax.swing.JPanel {
 
-    Controllers.PengeluaranController controller;
+    App.Controllers.PengeluaranController controller;
     int totalHargaPenjualan = 0;
     Preferences userPreferences = Preferences.userNodeForPackage(login.class);
 
@@ -41,7 +41,7 @@ public class PengeluaranView extends javax.swing.JPanel {
     public PengeluaranView() {
         initComponents();
         Object[] com = {tbl_pengeluaran, totharga, txt_harga, txt_ket, datechoser, btn_edit, btn_hapus};
-        controller = new Controllers.PengeluaranController(table, jDialog1, com);
+        controller = new App.Controllers.PengeluaranController(table, jDialog1, com);
         controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 
@@ -482,7 +482,7 @@ controller.txt_hargaKeyTyped(evt);
 
     public void reset() {
         Object[] com = {tbl_pengeluaran, totharga, txt_harga, txt_ket, datechoser, btn_edit, btn_hapus};
-        controller = new Controllers.PengeluaranController(table, jDialog1, com);
+        controller = new App.Controllers.PengeluaranController(table, jDialog1, com);
         controller.tampilData();
     }
 

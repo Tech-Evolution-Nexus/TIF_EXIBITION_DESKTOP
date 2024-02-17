@@ -4,8 +4,8 @@
  */
 package Laporan;
 
-import Controllers.LaporanPenjualanController;
-import Controllers.LaporanStokController;
+import App.Controllers.LaporanPenjualanController;
+import App.Controllers.LaporanStokController;
 import table.TableCustom;
 
 /**

@@ -358,8 +358,7 @@ public class login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loginCheck() {
-        DB.query("SELECT * FROM users;");
-        try {
+       try {
             if (username.getText().isEmpty()) {
                 //else if #1
                 JOptionPane.showMessageDialog(null, "Username tidak boleh kosong!");

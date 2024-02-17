@@ -108,6 +108,7 @@ public class DashboardView extends javax.swing.JPanel {
         notif_exp = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         item_panel = new Components.CustomPanel();
         item_panel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         total_items = new javax.swing.JLabel();
@@ -126,11 +127,11 @@ public class DashboardView extends javax.swing.JPanel {
         notif_stok = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         iconn = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1221, 406));
         addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -152,11 +153,15 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel1.setToolTipText("Notifikasi Obat Kadaluarsa");
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(58, 98, 215));
-        jLabel1.setText("Daftar obat kadaluarsa / akan kadaluarsa  ");
-        jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 102, 102)));
+        jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Pemberitahuan Status Obat");
         jPanel1.add(jLabel1);
+
+        jLabel7.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("Daftar obat kadaluarsa / akan kadaluarsa  ");
+        jPanel1.add(jLabel7);
 
         notif_exp.setViewportView(jPanel1);
 
@@ -171,7 +176,7 @@ public class DashboardView extends javax.swing.JPanel {
         notif_panelLayout.setVerticalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notif_panelLayout.createSequentialGroup()
-                .addComponent(notif_exp, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(notif_exp)
                 .addGap(0, 0, 0))
         );
 
@@ -181,7 +186,7 @@ public class DashboardView extends javax.swing.JPanel {
         total_items.setFont(new java.awt.Font("Poppins SemiBold", 0, 24)); // NOI18N
         total_items.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Total Obat");
 
@@ -238,7 +243,7 @@ public class DashboardView extends javax.swing.JPanel {
                     .addComponent(chartTitle)
                     .addComponent(tahunn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
         );
 
         pendapatanperhari.putClientProperty(FlatClientProperties.STYLE, "arc:20");
@@ -248,7 +253,7 @@ public class DashboardView extends javax.swing.JPanel {
         pendapatan_harini.setFont(new java.awt.Font("Poppins SemiBold", 0, 24)); // NOI18N
         pendapatan_harini.setForeground(new java.awt.Color(255, 255, 255));
 
-        pendapatanLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pendapatanLabel.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         pendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         pendapatanLabel.setText("Pendapatan Hari Ini");
 
@@ -279,7 +284,7 @@ public class DashboardView extends javax.swing.JPanel {
         pengeluaran_harini.setFont(new java.awt.Font("Poppins SemiBold", 0, 24)); // NOI18N
         pengeluaran_harini.setForeground(new java.awt.Color(255, 255, 255));
 
-        pengeluaran.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pengeluaran.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         pengeluaran.setForeground(new java.awt.Color(255, 255, 255));
         pengeluaran.setText("Pengeluaran Hari ini");
 
@@ -310,11 +315,15 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel3.setToolTipText("Notifiksai Stok Obat");
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel2.setFont(new java.awt.Font("Poppins SemiBold", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(58, 98, 215));
-        jLabel2.setText("Daftar stok habis / akan habis");
-        jLabel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(102, 102, 102)));
+        jLabel2.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setText("Pemberitahuan Stok");
         jPanel3.add(jLabel2);
+
+        jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("Daftar stok habis / akan habis");
+        jPanel3.add(jLabel8);
 
         notif_stok.setViewportView(jPanel3);
 
@@ -334,45 +343,39 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel5.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         jPanel5.setBackground(new java.awt.Color(0, 102, 204));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("<html>Selamat Datang Di</html>");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("<html>Selamat datang di SISKA</html>");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>Sistem Informasi Kasir Apotek</html>");
 
         iconn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconnc.png"))); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("<html>SISKA</html>");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(iconn)
                 .addGap(43, 43, 43))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(iconn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(iconn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -399,7 +402,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(notif_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -495,6 +498,7 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void ntf_stok() {
+                try {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
         ResultSet data = DB.query("SELECT obat.nama_obat, obat.jumlah_obat AS jumlah_obat\n"
                 + "FROM obat\n"
@@ -511,11 +515,16 @@ public class DashboardView extends javax.swing.JPanel {
                 + "GROUP BY obat.kode_obat, obat.nama_obat\n"
                 + "ORDER BY transaksi_penjualan.tanggal_transaksi DESC;");
         String pesan = "";
-        try {
+            if (!data.next()) {
+                JLabel LABEL = new JLabel("Tidak ada data");
+                LABEL.setMaximumSize(new Dimension(300, 40));
+                LABEL.setFont(new Font("Poppins medium", Font.PLAIN, 14));
+                LABEL.setBorder(new EmptyBorder(20, 5, 20, 5));
+                jPanel3.add(LABEL);
+            }
             while (data.next()) {
                 String namaObat = data.getString("nama_obat");
                 int jumlahObat = data.getInt("jumlah_obat");
-                System.out.println(jumlahObat);
                 if (jumlahObat == 0) {
                     pesan = "<html>Stok Obat " + namaObat + " Telah Habis</html>";
                 } else {
@@ -523,7 +532,7 @@ public class DashboardView extends javax.swing.JPanel {
                 }
                 JLabel LABEL = new JLabel(pesan);
                 LABEL.setMaximumSize(new Dimension(300, 40));
-                LABEL.setFont(new Font("Poppins medium", Font.PLAIN, 14));
+                LABEL.setFont(new Font("Poppins", Font.PLAIN, 12));
                 LABEL.setBorder(new EmptyBorder(20, 5, 20, 5));
                 jPanel3.add(LABEL);
             }
@@ -533,13 +542,13 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void ntf_exp() {
+                try {
         notif_exp.getVerticalScrollBar().setUnitIncrement(16);
 //        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         int yPos = 20;
         LocalDate date = LocalDate.now();
         ResultSet data = DB.query("SELECT nama_obat, stok_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM stok_obat JOIN data_obat ON data_obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
         String pesan = "";
-        try {
             while (data.next()) {
                 String namaObat = data.getString("nama_obat");
                 String jumlahObat = data.getString("jumlah_obat");
@@ -587,10 +596,11 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void items() {
+                try {
+
         //Total Item
         ResultSet data = DB.query("SELECT COUNT(*) as total FROM obat WHERE jumlah_obat != 0");
         String pesan = "";
-        try {
             if (data.next()) {
                 // Memeriksa apakah ada hasil dari query
                 int total = data.getInt("total");
@@ -606,11 +616,12 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void pendapatan1hari() {
+                try {
+
         //Pendapatan Per Hari
         LocalDate date = LocalDate.now();
         ResultSet data = DB.query("SELECT SUM(total_harga) as total FROM transaksi_penjualan WHERE DATE(tanggal_transaksi) = '" + date + "'");
         String pesan = "";
-        try {
             if (data.next()) {
                 // Memeriksa apakah ada hasil dari query
                 int total = data.getInt("total");
@@ -635,6 +646,7 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void pengeluaran1hari() {
+                try {
         //Pendapatan Per Hari
         LocalDate date = LocalDate.now();
         int monthNow = date.getMonthValue();
@@ -647,7 +659,6 @@ public class DashboardView extends javax.swing.JPanel {
 
         Calendar cal = Calendar.getInstance();
         String month = monthName[cal.get(Calendar.MONTH)];
-        try {
             if (data.next()) {
                 // Memeriksa apakah ada hasil dari query
                 int total = data.getInt("total");
@@ -671,8 +682,9 @@ public class DashboardView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

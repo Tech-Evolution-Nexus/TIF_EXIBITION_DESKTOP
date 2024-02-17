@@ -5,6 +5,7 @@
 package Database.Migration;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
@@ -12,7 +13,7 @@ import Config.DB;
  */
 public class Supplier {
     
-    public static void migration(){
+    public static void migration() throws SQLException{
         String sql = "CREATE TABLE `supplier` (\n" +
                     "  `kode_suplier` char(16) NOT NULL  PRIMARY KEY,\n" +
                     "  `nama_suplier` varchar(50)  NOT NULL,\n" +
@@ -20,11 +21,11 @@ public class Supplier {
                     "  `nomor_telepon` char(13)  NOT NULL\n" +
                     ") ";
         //run sql
-        drop();
+//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
+    public static void drop() throws SQLException{
         String sql = "DROP TABLE IF EXISTS `supplier` CASCADE";
         //run sql
         DB.query2(sql);

@@ -4,7 +4,7 @@
  */
 package Laporan;
 
-import Controllers.LaporanShiftController;
+import App.Controllers.LaporanShiftController;
 
 /**
  *

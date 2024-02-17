@@ -6,6 +6,7 @@ package Database.Migration;
 
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,7 +14,7 @@ import Config.DB;
  */
 public class Transaksi_Pembelian {
     
-    public static void migration(){
+    public static void migration() throws SQLException{
         String sql = "CREATE TABLE `transaksi_pembelian` (\n" +
                     "  `kode_transaksi` char(17)  NOT NULL PRIMARY KEY,\n" +
                     "  `kode_suplier` char(16)  NOT NULL,\n" +
@@ -22,11 +23,11 @@ public class Transaksi_Pembelian {
                     "FOREIGN KEY (kode_suplier) REFERENCES supplier(kode_suplier)"+
                     ")";
         //run sql
-        drop();
+//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
+    public static void drop() throws SQLException{
         String sql = "DROP TABLE IF EXISTS`transaksi_pembelian` CASCADE";
         //run sql
         DB.query2(sql);

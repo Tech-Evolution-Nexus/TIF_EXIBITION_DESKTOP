@@ -4,7 +4,7 @@
  */
 package Laporan;
 
-import Controllers.LaporanPendapatanController;
+import App.Controllers.LaporanPendapatanController;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;

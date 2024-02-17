@@ -6,6 +6,7 @@ package Database.Migration;
 
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,22 +14,22 @@ import Config.DB;
  */
 public class Transaksi_Penjualan {
     
-    public static void migration(){
+    public static void migration() throws SQLException{
         String sql = "CREATE TABLE `transaksi_penjualan` (\n" +
                     "  `kode_transaksi` char(17)  NOT NULL PRIMARY KEY,\n" +
                     "  `id_user` int NOT NULL,\n" +
                     "  `total_harga` int NOT NULL DEFAULT '0',\n" +
                     "  `pembayaran` int NOT NULL DEFAULT '0',\n" +
                     "  `kembalian` int NOT NULL DEFAULT '0',\n" +
-                    "  `tanggal_transaksi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,\n" +
+                    "  `tanggal_transaksi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n" +
                     "FOREIGN KEY (id_user) REFERENCES users(id)"+
                     ")";
         //run sql        
-        drop();
+//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
+    public static void drop() throws SQLException{
         String sql = "DROP TABLE IF EXISTS`transaksi_penjualan` CASCADE";
         //run sql
         DB.query2(sql);

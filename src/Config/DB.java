@@ -7,13 +7,13 @@ package Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  *
  * @author Pixel
- */
-public class DB {
+ */public class DB {
 
     public static Connection con;
     public static Statement stm;
@@ -48,25 +48,17 @@ public class DB {
         return null;
     }
 
-    public static ResultSet query(String queString) {
+    public static ResultSet query(String queString) throws SQLException {
         DBSetup();
-        try {
             ResultSet resultSet = stm.executeQuery(queString);
             return resultSet;
-        } catch (Exception e) {
-            System.err.println("query error: " + e.getMessage());
-            return null;
-        }
+       
     }
 
-    public static int query2(String queString) {
+    public static int query2(String queString) throws SQLException  {
         DBSetup();
-        try {
             int res = stm.executeUpdate(queString);
             return res;
-        } catch (Exception e) {
-            System.err.print("query error: " + e.getMessage());
-            return 0;
-        }
+      
     }
 }

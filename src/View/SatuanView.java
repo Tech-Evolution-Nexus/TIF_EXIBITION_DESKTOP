@@ -4,8 +4,11 @@
  */
 package View;
 
-import Controllers.SatuanController;
+import App.Controllers.SatuanController;
+import Helper.DataFormat;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import table.TableCustom;
 
 /**
@@ -21,9 +24,9 @@ public class SatuanView extends javax.swing.JPanel {
      */
     public SatuanView() {
         initComponents();
-        this.controller = new SatuanController(table, form);
+        this.controller = new SatuanController();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-        controller.tampilData();
+        controller.tampilData(table);
     }
 
     /**
@@ -276,11 +279,11 @@ public class SatuanView extends javax.swing.JPanel {
         titleForm.setText("Tambah Satuan Obat");
         namaSatuan.setText("");
         keterangan.setText("");
-        controller.tambahData(null);
+        showForm();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchObatKeyReleased
-        controller.cariData(searchObat.getText());
+        controller.cariData(searchObat.getText(),table);
     }//GEN-LAST:event_searchObatKeyReleased
 
     private void searchObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchObatActionPerformed
@@ -288,27 +291,46 @@ public class SatuanView extends javax.swing.JPanel {
     }//GEN-LAST:event_searchObatActionPerformed
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
-        controller.simpanData(new Object[]{namaSatuan, keterangan});
+        DataFormat data = new DataFormat();
+        data.put("nama_satuan",namaSatuan.getText());
+        data.put("keterangan",keterangan.getText());
+        controller.simpanData(data,form,table);
     }//GEN-LAST:event_tambahActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int row = table.getSelectedRow();
-        controller.hapusData(new Object[]{row});
+        controller.hapusData(row,table);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         titleForm.setText("Ubah Satuan Obat");
         int row = table.getSelectedRow();
-        controller.editData(new Object[]{row, namaSatuan, keterangan});
+         if (row < 0) {
+            JOptionPane.showMessageDialog(table, "Tidak ada baris yang dipilih");
+            return;
+        }
+        controller.editData(row);
+
+        String namaFromTable = table.getValueAt(row, 1).toString();
+        String keteranganFromTable = table.getValueAt(row, 2).toString();
+        //set value ke text field
+        namaSatuan.setText(namaFromTable);
+        keterangan.setText(keteranganFromTable);
+        showForm();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
       reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
+    public void showForm(){
+        form.pack();
+        form.setLocationRelativeTo(null);
+        form.setVisible(true);
+    }
     public void reset() {
-        this.controller = new SatuanController(table, form);
-        controller.tampilData();
+        this.controller = new SatuanController();
+        controller.tampilData(table);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

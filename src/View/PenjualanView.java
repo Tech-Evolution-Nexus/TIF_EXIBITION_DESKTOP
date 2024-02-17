@@ -6,13 +6,10 @@ package View;
 
 import java.sql.ResultSet;
 import Components.DeleteButtonRenderer;
-import Controllers.TransaksiPenjualanController;
+import App.Controllers.TransaksiPenjualanController;
 import com.formdev.flatlaf.ui.FlatTextBorder;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.prefs.Preferences;
-import javax.swing.table.TableCellEditor;
 import table.TableCustom;
 
 /**

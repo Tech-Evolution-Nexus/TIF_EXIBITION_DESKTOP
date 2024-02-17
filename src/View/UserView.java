@@ -5,6 +5,7 @@
 package View;
 
 
+import Helper.DataFormat;
 import com.formdev.flatlaf.ui.FlatButtonBorder;
 import table.TableCustom;
 
@@ -14,17 +15,17 @@ import table.TableCustom;
  */
 public class UserView extends javax.swing.JPanel {
 
-    Controllers.UserController controller;
+    App.Controllers.UserController controller;
 
     /**
      * Creates new form ObatView
      */
     public UserView() {
         initComponents();
-        controller = new Controllers.UserController(table, jDialog1);
-        controller.tampilData();
+        controller = new App.Controllers.UserController();
+        controller.tampilData(table);
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-customButton1.setBorder(new FlatButtonBorder());
+        customButton1.setBorder(new FlatButtonBorder());
         searchObat.setIcon("Assets/svg/searchIcon.svg");
     }
 
@@ -41,11 +42,11 @@ customButton1.setBorder(new FlatButtonBorder());
         ;
         jPanel2 = new javax.swing.JPanel();
         formName = new javax.swing.JLabel();
-        ktp = new Components.CustomField();
+        namaUser = new Components.CustomField();
         jLabel2 = new javax.swing.JLabel();
         customButton1 = new Components.CustomButton();
         jLabel3 = new javax.swing.JLabel();
-        namaUser = new Components.CustomField();
+        no_telepon = new Components.CustomField();
         password = new Components.CustomField();
         username = new Components.CustomField();
         jLabel4 = new javax.swing.JLabel();
@@ -54,6 +55,7 @@ customButton1.setBorder(new FlatButtonBorder());
         jLabel7 = new javax.swing.JLabel();
         alamat = new Components.CustomField();
         role = new javax.swing.JComboBox<>();
+        formName1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         searchObat = new Components.CustomField();
         buttonIcon1 = new Components.ButtonIcon();
@@ -63,18 +65,30 @@ customButton1.setBorder(new FlatButtonBorder());
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
+        jDialog1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDialog1KeyPressed(evt);
+            }
+        });
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         formName.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         formName.setForeground(new java.awt.Color(0, 0, 0));
         formName.setText("Tambah User Baru");
 
-        ktp.setPlaceholder("Masukkan Nomor KTP");
+        namaUser.setPlaceholder("Masukkan Nama User");
+        namaUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaUserActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Nomor KTP*");
+        jLabel2.setText("Nama User");
 
         customButton1.setIcon("Assets/svg/saveIcon.svg");
-        customButton1.setText("Simpan");
+        customButton1.setText("Simpan ");
         customButton1.setBorderPainted(false);
         customButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,9 +96,9 @@ customButton1.setBorder(new FlatButtonBorder());
             }
         });
 
-        jLabel3.setText("Nama User");
+        jLabel3.setText("No Telepon");
 
-        namaUser.setPlaceholder("Masukkan Nomor KTP");
+        no_telepon.setPlaceholder("Masukkan Nomor Telepon");
 
         password.setPlaceholder("Masukkan Password");
 
@@ -102,61 +116,72 @@ customButton1.setBorder(new FlatButtonBorder());
 
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "owner", "kasir" }));
 
+        formName1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        formName1.setForeground(new java.awt.Color(51, 51, 51));
+        formName1.setText("Isi form untuk menambahkan user baru");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(313, 313, 313)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(301, 301, 301))))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formName1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 758, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(no_telepon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(formName1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(no_telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -169,8 +194,8 @@ customButton1.setBorder(new FlatButtonBorder());
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,7 +241,6 @@ customButton1.setBorder(new FlatButtonBorder());
 
         buttonIcon1.setBackground(new java.awt.Color(109, 207, 102));
         buttonIcon1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon1.setText("edit");
         buttonIcon1.setIcon("Assets/svg/editIcon.svg");
         buttonIcon1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +250,6 @@ customButton1.setBorder(new FlatButtonBorder());
 
         buttonIcon2.setBackground(new java.awt.Color(215, 9, 83));
         buttonIcon2.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon2.setText("hapus");
         buttonIcon2.setIcon("Assets/svg/deleteIcon.svg");
         buttonIcon2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +260,6 @@ customButton1.setBorder(new FlatButtonBorder());
         buttonIcon3.setIcon("Assets/svg/addIcon.svg");
         buttonIcon3.setBackground(new java.awt.Color(58, 98, 215));
         buttonIcon3.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon3.setText("Tambah");
         buttonIcon3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonIcon3ActionPerformed(evt);
@@ -256,7 +278,7 @@ customButton1.setBorder(new FlatButtonBorder());
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "No KTP", "Nama ", "Alamat", "Username", "Role"
+                "No", "Nama ", "No Telepon", "Alamat", "Username", "Role"
             }
         ) {
             Class[] types = new Class [] {
@@ -314,11 +336,11 @@ customButton1.setBorder(new FlatButtonBorder());
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -330,9 +352,9 @@ customButton1.setBorder(new FlatButtonBorder());
                     .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(buttonIcon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonIcon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -351,44 +373,78 @@ customButton1.setBorder(new FlatButtonBorder());
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchObatKeyReleased
-        controller.cariData(searchObat.getText());
+        controller.cariData(searchObat.getText(),table);
+        
     }//GEN-LAST:event_searchObatKeyReleased
 
     private void customButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton1ActionPerformed
-        controller.simpanData(new Object[]{ktp, namaUser, username, password, alamat, role});
+        DataFormat format = new DataFormat();
+        format.put("nama_user", namaUser.getText());
+        format.put("no_telepon", no_telepon.getText());
+        format.put("username", username.getText());
+        format.put("password", password.getText());
+        format.put("alamat", alamat.getText());
+        format.put("role", role.getSelectedItem().toString());
+        int status = controller.simpanData(format,table,jDialog1);
+        if (status==1) {
+            namaUser.setText("");
+            no_telepon.setText("");
+            username.setText("");
+            password.setText("");
+            alamat.setText("");
+            role.setSelectedIndex(0);
+        }
+        controller.tampilData(table);
+
     }//GEN-LAST:event_customButton1ActionPerformed
 
     private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
         int row = table.getSelectedRow();
         formName.setText("Ubah User ");
-
-        controller.editData(new Object[]{row, ktp, namaUser, username, password, alamat, role});
+        DataFormat format = new DataFormat();
+        format.put("nama_user", namaUser);
+        format.put("no_telepon", no_telepon);
+        format.put("username", username);
+        format.put("password", password);
+        format.put("alamat", alamat);
+        format.put("role", role);
+        controller.editData(row,format,table,jDialog1);
     }//GEN-LAST:event_buttonIcon1ActionPerformed
 
     private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
         int row = table.getSelectedRow();
-        controller.hapusData(new Object[]{row});        // TODO add your handling code here:
+        controller.hapusData(row,table);   
+        controller.tampilData(table);
     }//GEN-LAST:event_buttonIcon2ActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
         formName.setText("Tambah User Baru");
-        ktp.setText("");
         namaUser.setText("");
+        no_telepon.setText("");
         username.setText("");
         password.setText("");
         alamat.setText("");
         role.setSelectedIndex(0);
-
-        controller.tambahData(null);
+        controller.tambahData(jDialog1);
     }//GEN-LAST:event_buttonIcon3ActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
         reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
+    private void namaUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaUserActionPerformed
+
+    private void jDialog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDialog1KeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+             customButton1.doClick();
+         }
+    }//GEN-LAST:event_jDialog1KeyPressed
+
     public void reset() {
-        controller = new Controllers.UserController(table, jDialog1);
-        controller.tampilData();
+        controller = new App.Controllers.UserController();
+        controller.tampilData(table);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,6 +454,7 @@ customButton1.setBorder(new FlatButtonBorder());
     private Components.ButtonIcon buttonIcon3;
     private Components.CustomButton customButton1;
     private javax.swing.JLabel formName;
+    private javax.swing.JLabel formName1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -409,8 +466,8 @@ customButton1.setBorder(new FlatButtonBorder());
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private Components.CustomField ktp;
     private Components.CustomField namaUser;
+    private Components.CustomField no_telepon;
     private Components.CustomField password;
     private javax.swing.JComboBox<String> role;
     private Components.CustomField searchObat;

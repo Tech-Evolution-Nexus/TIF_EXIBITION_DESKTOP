@@ -4,7 +4,7 @@
  */
 package Laporan;
 
-import Controllers.LaporanLabaBersihController;
+import App.Controllers.LaporanLabaBersihController;
 import table.TableCustom;
 
 /**

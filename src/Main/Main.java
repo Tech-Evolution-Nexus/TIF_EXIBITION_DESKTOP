@@ -11,7 +11,7 @@ import Helper.FormatTanggal;
 import View.KategoriView;
 import Laporan.LaporanMain;
 import Laporan.PembelianView;
-import View.ObatView;
+import View.ObatViewEdit;
 import View.SatuanView;
 import View.PengeluaranView;
 import View.SuplierView;
@@ -74,7 +74,7 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
 //        main.add(new ObatView(), "Medicine");
-        main.add(new ObatView(), "obat");
+        main.add(new ObatViewEdit(), "obat");
         main.add(new SatuanView(), "satuan");
         main.add(new KategoriView(), "Category");
         main.add(new UserView(), "User");
@@ -144,6 +144,7 @@ public class Main extends javax.swing.JFrame {
         dialog2.setBorderPainted(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel4.setForeground(new java.awt.Color(245, 246, 250));
 

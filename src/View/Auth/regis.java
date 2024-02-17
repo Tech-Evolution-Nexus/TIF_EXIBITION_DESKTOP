@@ -26,33 +26,19 @@ public class regis extends javax.swing.JFrame {
      * Creates new form regis
      */
     public regis() {
-        try {
-             ResultSet dara = DB.query("select count(*) from users where role='owner'");
-            if (dara.next()){
-               
-                    if(dara.getInt(1)>0){
-                        new login().setVisible(true);
-                        dispose();
-                        return;
-                    }
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(regis.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            initComponents();
-            ImageIcon img = images("/Asset_login/login-anyaran.png", 280, 280);
-            login_image.setIcon(img);
-            
-            ImageIcon keluar = images("/Asset_login/closep.png", 36, 36);
-            exit.setIcon(keluar);
-            
-            ImageIcon MINI = images("/Asset_login/minimizep.png", 32, 32);
-            minimize.setIcon(MINI);
-            ImageIcon logo = images("/Assets/logof/logoapp.png", 200, 200);
-            logoappss.setIcon(logo);
-           
+
+        initComponents();
+        ImageIcon img = images("/Asset_login/login-anyaran.png", 380, 380);
+        login_image.setIcon(img);
+
+        ImageIcon keluar = images("/Asset_login/logout_exit.png", 36, 36);
+        exit.setIcon(keluar);
+
+        ImageIcon MINI = images("/Asset_login/minimize (2).png", 32, 32);
+        minimize.setIcon(MINI);
+        ImageIcon logo = images("/Assets/logof/logoapp.png", 200, 200);
+        logoappss.setIcon(logo);
+
     }
 
     /**
@@ -358,23 +344,23 @@ public class regis extends javax.swing.JFrame {
             String fullnameTxt = nama_lengkap.getText();
             String alamatTxt = alamat.getText();
             String passTxt = password.getText();
-            
-            ResultSet data = DB.query("SELECT * from users where username =  '"+usernameTxt+"'");
-            if (!data.next()){
+
+            ResultSet data = DB.query("SELECT * from users where username =  '" + usernameTxt + "'");
+            if (!data.next()) {
 //                DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password) values ('"+notktpTxt+"')");
-                int hasil = DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password,role) values ('"+notktpTxt+"', '"+fullnameTxt+"', '"+alamatTxt+"', '"+usernameTxt+"', '"+passTxt+"','owner')");
-                if (hasil > 0){
+                int hasil = DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password,role) values ('" + notktpTxt + "', '" + fullnameTxt + "', '" + alamatTxt + "', '" + usernameTxt + "', '" + passTxt + "','owner')");
+                if (hasil > 0) {
                     JOptionPane.showMessageDialog(rootPane, "Data Berhasil Ditambahkan");
                     this.dispose();
                     new login().setVisible(true);
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Data Gagal Ditambahkan");
                 }
             } else {
-               JOptionPane.showMessageDialog(rootPane, "Username sudah terdaftar!");
+                JOptionPane.showMessageDialog(rootPane, "Username sudah terdaftar!");
             }
         } catch (Exception e) {
-            System.out.println("error"+e.getMessage());
+            System.out.println("error" + e.getMessage());
         }
     }//GEN-LAST:event_btn_regisActionPerformed
 
@@ -411,7 +397,7 @@ public class regis extends javax.swing.JFrame {
     }//GEN-LAST:event_noktpActionPerformed
 
     private void noktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noktpKeyTyped
-       char character = evt.getKeyChar();
+        char character = evt.getKeyChar();
         if (!Character.isDigit(character) || noktp.getText().length() >= 16 || Character.isWhitespace(character)) {
             evt.consume();
         }
@@ -461,7 +447,23 @@ public class regis extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new regis().setVisible(true);
+                try {
+                    ResultSet dara = DB.query("select count(*) from users where role='owner'");
+                    if (dara.next()) {
+
+                        if (dara.getInt(1) > 0) {
+                            new login().setVisible(true);
+                           
+                            return;
+                        }else{
+                            new regis().setVisible(true);
+                        }
+
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(regis.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         });
     }

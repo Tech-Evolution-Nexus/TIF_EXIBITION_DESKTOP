@@ -6,23 +6,24 @@ package View;
 
 
 
+import Helper.DataFormat;
+import Helper.Notification;
 import table.TableCustom;
 
 /**
  *
  * @author Muhammad Nor Kholit
- */
-public class SuplierView extends javax.swing.JPanel {
+ */public class SuplierView extends javax.swing.JPanel {
 
-    Controllers.SupplierController controller;
+    App.Controllers.SupplierController controller;
 
     /**
      * Creates new form ObatView
      */
     public SuplierView() {
         initComponents();
-        controller = new Controllers.SupplierController(table, jDialog1, barangList, namaPemasok, alamat, no_telepon, titleForm);
-        controller.tampilData();
+        controller = new App.Controllers.SupplierController();
+        controller.tampilData(table);
 
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 
@@ -55,6 +56,8 @@ public class SuplierView extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         barangList = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         searchObat = new Components.CustomField();
         buttonIcon1 = new Components.ButtonIcon();
@@ -90,11 +93,11 @@ public class SuplierView extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("#Barang Di Pasok");
+        jLabel5.setText("Obat Di Pasok");
 
-        jLabel6.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("#Informasi Pemasok");
+        jLabel6.setText("Informasi  terkait data pemasok obat");
 
         buttonIcon4.setIcon("Assets/svg/addIcon.svg");
         buttonIcon4.setBackground(new java.awt.Color(58, 192, 214));
@@ -123,39 +126,38 @@ public class SuplierView extends javax.swing.JPanel {
         barangList.setLayout(new javax.swing.BoxLayout(barangList, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2.setViewportView(barangList);
 
+        jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Informasi Pemasok");
+
+        jLabel9.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setText("Informasi  obat apa saja yang dipasok");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namaPemasok, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(no_telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namaPemasok, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(no_telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buttonIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,23 +173,27 @@ public class SuplierView extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(titleForm, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(titleForm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
                     .addComponent(buttonIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaPemasok, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
@@ -196,21 +202,22 @@ public class SuplierView extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(no_telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(no_telepon, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addComponent(buttonIcon7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(85, 85, 85))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 250));
@@ -225,7 +232,7 @@ public class SuplierView extends javax.swing.JPanel {
             }
         });
 
-        searchObat.setPlaceholder("Cari User");
+        searchObat.setPlaceholder("Cari Suplier ");
         searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchObatKeyReleased(evt);
@@ -382,7 +389,7 @@ public class SuplierView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchObatKeyReleased
-        controller.cariData(searchObat.getText());
+        controller.cariData(searchObat.getText(),table);
     }//GEN-LAST:event_searchObatKeyReleased
 
     private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
@@ -390,12 +397,32 @@ public class SuplierView extends javax.swing.JPanel {
         buttonIcon7.setText("Simpan");
         buttonIcon7.setBackground(new java.awt.Color(58, 98, 215));
         buttonIcon7.setIcon("Assets/svg/saveIcon.svg");
-        controller.editData(new Object[]{});
+         namaPemasok.setEnabled(true);
+        alamat.setEnabled(true);
+        no_telepon.setEnabled(true);
+        titleForm.setText("Edit Data Suplier ");
+
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, table);
+            return;
+        }
+        String kodeSp = table.getValueAt(row, 1).toString();
+        String nama = table.getValueAt(row, 2).toString();
+        String alamatVal = table.getValueAt(row, 3).toString();
+        String notlp = table.getValueAt(row, 4).toString();
+        namaPemasok.setText(nama);
+        alamat.setText(alamatVal);
+        no_telepon.setText(notlp);
+        int status=controller.editData(kodeSp,table,barangList);
+        if (status==1) {
+            showForm();
+        }
     }//GEN-LAST:event_buttonIcon1ActionPerformed
 
     private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
         int row = table.getSelectedRow();
-        controller.hapusData(new Object[]{row});        // TODO add your handling code here:
+        controller.hapusData(row,table);        // TODO add your handling code here:
     }//GEN-LAST:event_buttonIcon2ActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
@@ -406,7 +433,13 @@ public class SuplierView extends javax.swing.JPanel {
         buttonIcon7.setText("Simpan");
         buttonIcon7.setBackground(new java.awt.Color(58, 98, 215));
         buttonIcon7.setIcon("Assets/svg/saveIcon.svg");
-        controller.tambahData(null);
+        titleForm.setText("Tambah Suplier Baru");
+        namaPemasok.setEnabled(true);
+        alamat.setEnabled(true);
+        no_telepon.setEnabled(true);   
+        controller.tambahData();
+        controller.addBarangPasok(null,barangList);
+        showForm();
     }//GEN-LAST:event_buttonIcon3ActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
@@ -415,7 +448,11 @@ public class SuplierView extends javax.swing.JPanel {
 
     private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon7ActionPerformed
         if (namaPemasok.isEnabled()) {
-            controller.simpanData(new Object[]{});
+            DataFormat data = new DataFormat();
+            data.put("nama_suplier", namaPemasok.getText());
+            data.put("alamat", alamat.getText());
+            data.put("no_telepon", no_telepon.getText());
+            controller.simpanData(data,jDialog1,table);
         } else {
             jDialog1.setVisible(false);
 
@@ -423,7 +460,7 @@ public class SuplierView extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonIcon7ActionPerformed
 
     private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon4ActionPerformed
-        controller.addBarangPasok(null);
+        controller.addBarangPasok(null,barangList);
     }//GEN-LAST:event_buttonIcon4ActionPerformed
 
     private void buttonIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon5ActionPerformed
@@ -431,13 +468,38 @@ public class SuplierView extends javax.swing.JPanel {
         buttonIcon7.setText("Tutup");
         buttonIcon7.setBackground(new java.awt.Color(215, 9, 83));
         buttonIcon7.setIcon("Assets/svg/closeIcon.svg");
+        namaPemasok.setEnabled(false);
+        alamat.setEnabled(false);
+        no_telepon.setEnabled(false);
 
-        controller.detail(new Object[]{});
+        titleForm.setText("Detail Data Pemasok");
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, table);
+            return;
+        }
+        String kodeSp = table.getValueAt(row, 1).toString();
+        String nama = table.getValueAt(row, 2).toString();
+        String alamatVal = table.getValueAt(row, 3).toString();
+        String notlp = table.getValueAt(row, 4).toString();
+        namaPemasok.setText(nama);
+        alamat.setText(alamatVal);
+        no_telepon.setText(notlp);
+        int status = controller.detail(kodeSp,barangList,table);
+            if (status==1) {
+                showForm();
+            }
     }//GEN-LAST:event_buttonIcon5ActionPerformed
 
     public void reset() {
-        controller = new Controllers.SupplierController(table, jDialog1, barangList, namaPemasok, alamat, no_telepon, titleForm);
-        controller.tampilData();
+        controller = new App.Controllers.SupplierController();
+        controller.tampilData(table);
+    }
+    
+    public void showForm(){
+        jDialog1.pack();
+        jDialog1.setLocationRelativeTo(null);
+        jDialog1.setVisible(true); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,6 +518,8 @@ public class SuplierView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

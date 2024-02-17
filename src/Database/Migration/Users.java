@@ -5,6 +5,7 @@
 package Database.Migration;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
@@ -12,22 +13,22 @@ import Config.DB;
  */
 public class Users {
     
-    public static void migration(){
+    public static void migration() throws SQLException{
         String sql = "CREATE TABLE `users` (\n" +
                     "  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
-                    "  `no_ktp` char(16)  NOT NULL,\n" +
+                    "  `no_telepon` char(16) UNIQUE  NOT NULL,\n" +
                     "  `nama` varchar(40)  NOT NULL,\n" +
                     "  `alamat` varchar(70) NOT NULL,\n" +
-                    "  `username` varchar(50)  NOT NULL,\n" +
+                    "  `username` varchar(50) UNIQUE  NOT NULL,\n" +
                     "  `password` varchar(255)  NOT NULL,\n" +
                     "  `role` enum('owner','kasir')  NOT NULL\n" +
                     ") ";
         //run sql
-        drop();
+//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
+    public static void drop() throws SQLException{
         String sql = "DROP TABLE IF EXISTS`users` CASCADE";
         //run sql
         DB.query2(sql);

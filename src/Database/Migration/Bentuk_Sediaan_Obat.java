@@ -6,6 +6,7 @@ package Database.Migration;
 
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,18 +14,18 @@ import Config.DB;
  */
 public class Bentuk_Sediaan_Obat {
     
-    public static void migration(){
+    public static void migration() throws SQLException {
         String sql = "CREATE TABLE `bentuk_sediaan_obat` (\n" +
                     "  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                     "  `nama_bentuk_sediaan` varchar(30) NOT NULL,\n" +
                     "  `deskripsi` varchar(255)  NOT NULL\n" +
                     ")";
         //run sql
-        drop();
+//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
+    public static void drop() throws SQLException{
         String sql = "DROP TABLE IF EXISTS`bentuk_sediaan_obat` CASCADE";
         //run sql
         DB.query2(sql);

@@ -13,7 +13,7 @@ import table.TableCustom;
  */
 public class ObatView extends javax.swing.JPanel {
 
-    Controllers.ObatController controller;
+    App.Controllers.ObatController controller;
 
     /**
      * Creates new form ObatView
@@ -22,7 +22,7 @@ public class ObatView extends javax.swing.JPanel {
 
         initComponents();
         Object[] componentSent = {namaObat,kategori,aturanPakai,satuanList,hargaList,titleForm,detail,namaObat1,kategori1,aturanPakai1,stokTable,satuanTable};
-        controller = new Controllers.ObatController(table, form,componentSent);
+        controller = new App.Controllers.ObatController(table, form,componentSent);
         controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
         searchObat.setIcon("Assets/svg/searchIcon.svg");
@@ -633,7 +633,7 @@ public class ObatView extends javax.swing.JPanel {
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
           Object[] componentSent = {namaObat,kategori,aturanPakai,satuanList,hargaList,titleForm,detail,namaObat1,kategori1,aturanPakai1,stokTable,satuanTable};
-        controller = new Controllers.ObatController(table, form,componentSent);
+        controller = new App.Controllers.ObatController(table, form,componentSent);
         controller.tampilData();
         
     }//GEN-LAST:event_formAncestorAdded
@@ -661,7 +661,12 @@ public class ObatView extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonIcon1ActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
-              controller.tambahData(new Object[]{});
+             try {
+
+             controller.tambahData(new Object[]{});
+        } catch (Exception e) {
+                 System.out.println("e"+e.getMessage());
+        }
 
     }//GEN-LAST:event_buttonIcon3ActionPerformed
 
