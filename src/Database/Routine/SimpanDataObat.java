@@ -5,13 +5,15 @@
 package Database.Routine;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
+
 public class SimpanDataObat {
-    public void create(){
+    public void create() throws SQLException{
           String sql =
                     "CREATE PROCEDURE `simpanDataObat` (\n" +
                     "    IN `p_kode_obat` VARCHAR(14),\n" +

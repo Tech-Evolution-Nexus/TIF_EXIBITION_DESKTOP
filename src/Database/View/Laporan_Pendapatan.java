@@ -5,24 +5,19 @@
 package Database.View;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
 public class Laporan_Pendapatan {
-      public static void create(){
+      public static void create() throws SQLException{
         String sql = "CREATE  VIEW `laporan_pendapatan`  AS SELECT sum(`transaksi_penjualan`.`total_harga`) AS `pendapatan`"
                 + ", date_format(`transaksi_penjualan`.`tanggal_transaksi`,'%Y-%m') AS `bulan_tahun` "
                 + "FROM `transaksi_penjualan` GROUP BY date_format(`transaksi_penjualan`.`tanggal_transaksi`,'%Y-%m')";
         //run sql
-//        drop();
         DB.query2(sql);
     } 
-    
-    public static void drop(){
-        String sql = "DROP TABLE IF EXISTS`users` CASCADE";
-        //run sql
-        DB.query2(sql);
-    }
+
 }

@@ -18,7 +18,6 @@ public class DeleteButtonRenderer extends Components.ButtonIcon implements Table
         setFocusPainted(false);
         setBorderPainted(false);
         setIcon("Assets/svg/deleteIcon.svg");
-        
     }
 
     @Override

@@ -5,13 +5,14 @@
 package Database.Routine;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
 public class SimpanKategori {
-    public void create(){
+    public void create() throws SQLException{
           String sql = 
                         "CREATE  PROCEDURE `simpanKategori`(IN `namakategori` VARCHAR(50), IN `idkategori` INT)\n" +
                         "IF(idkategori!=0)THEN\n" +

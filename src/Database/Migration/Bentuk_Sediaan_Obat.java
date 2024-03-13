@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class Bentuk_Sediaan_Obat {
     
     public static void migration() throws SQLException {
-        String sql = "CREATE TABLE `bentuk_sediaan_obat` (\n" +
+        String sql = "CREATE TABLE `bentuk_sediaan` (\n" +
                     "  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,\n" +
                     "  `nama_bentuk_sediaan` varchar(30) NOT NULL,\n" +
                     "  `deskripsi` varchar(255)  NOT NULL\n" +
@@ -26,7 +26,7 @@ public class Bentuk_Sediaan_Obat {
     } 
     
     public static void drop() throws SQLException{
-        String sql = "DROP TABLE IF EXISTS`bentuk_sediaan_obat` CASCADE";
+        String sql = "DROP TABLE IF EXISTS`bentuk_sediaan` CASCADE";
         //run sql
         DB.query2(sql);
 

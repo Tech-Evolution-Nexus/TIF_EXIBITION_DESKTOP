@@ -107,7 +107,7 @@ public class KategoriController {
         try {
             boolean dataExist = kategoriList.stream().anyMatch(satuan -> satuan[1].toString().trim().equalsIgnoreCase(namaKategori.trim()) && ((int) satuan[0]) != idEdit);
             if (dataExist) {
-                Notification.showError(Notification.DUPLICATE_DATA, form);
+                Notification.showError("Nama kategori sudah ada", form);
             } else if (namaKategori.equals("")) {
                 Notification.showError(Notification.EMPTY_VALUE, form);
             } else {

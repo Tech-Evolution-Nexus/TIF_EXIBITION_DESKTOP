@@ -5,13 +5,14 @@
 package Database.Routine;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
 public class SimpanUser {
-    public void create(){
+    public void create() throws SQLException{
           String sql =
                         "CREATE PROCEDURE simpanUser(\n" +
                         "    IN p_ktp VARCHAR(255),\n" +

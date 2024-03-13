@@ -21,7 +21,7 @@ public class Jenis_Penjualan {
                     "  `total` int NOT NULL DEFAULT '0',\n" +
                     "  `harga` int NOT NULL DEFAULT '0',\n" +
                     "  `id_bentuk_sediaan` int NOT NULL,\n" +
-                    "FOREIGN KEY (id_bentuk_sediaan) REFERENCES bentuk_sediaan_obat(id),"+
+                    "FOREIGN KEY (id_bentuk_sediaan) REFERENCES bentuk_sediaan(id),"+
                     "FOREIGN KEY (kode_obat) REFERENCES obat(kode_obat)"+
                     ")";
         //run sql

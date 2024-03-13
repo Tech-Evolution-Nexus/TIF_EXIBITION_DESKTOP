@@ -5,13 +5,14 @@
 package Database.View;
 
 import Config.DB;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
 public class Laporan_Penjualan {
-      public static void create(){
+      public static void create() throws SQLException{
         String sql = "CREATE  VIEW `laporan_penjualan`  AS SELECT `users`.`nama` AS `nama_pengguna`"
                 + ", `transaksi_penjualan`.`kode_transaksi` AS `kode_transaksi`, sum(`detail_penjualan`.`qty`) AS `total_obat`"
                 + ", `transaksi_penjualan`.`total_harga` AS `total_harga`, `transaksi_penjualan`.`pembayaran` AS `pembayaran`"
@@ -19,13 +20,8 @@ public class Laporan_Penjualan {
                 + " FROM ((`transaksi_penjualan` join `users` on((`transaksi_penjualan`.`id_user` = `users`.`id`))) join `detail_penjualan`"
                 + " on((`transaksi_penjualan`.`kode_transaksi` = `detail_penjualan`.`kode_transaksi`))) GROUP BY `detail_penjualan`.`kode_transaksi`";
         //run sql
-//        drop();
         DB.query2(sql);
     } 
     
-    public static void drop(){
-        String sql = "DROP TABLE IF EXISTS`users` CASCADE";
-        //run sql
-        DB.query2(sql);
-    }
+ 
 }

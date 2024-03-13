@@ -25,7 +25,7 @@ public class Obat {
                     "  `tanggal_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n" +
                     "`status` enum('0','1') NOT NULL default '1',\n" +
                     "FOREIGN KEY (id_kategori) REFERENCES kategori(id),"+
-                    "FOREIGN KEY (id_bentuk_sediaan) REFERENCES bentuk_sediaan_obat(id)"+
+                    "FOREIGN KEY (id_bentuk_sediaan) REFERENCES bentuk_sediaan(id)"+
                     ")";
         //run sql     
 //        drop();

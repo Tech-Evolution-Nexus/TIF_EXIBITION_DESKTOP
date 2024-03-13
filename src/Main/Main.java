@@ -14,6 +14,7 @@ import Laporan.PembelianView;
 import View.ObatViewEdit;
 import View.SatuanView;
 import View.PengeluaranView;
+import View.PenjualanEditView;
 import View.SuplierView;
 import View.PenjualanView;
 import View.UserView;
@@ -80,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new UserView(), "User");
         main.add(new SuplierView(), "Supplier");
         main.add(new LaporanMain(), "Report");
-        main.add(new PenjualanView(), "penjualan");
+        main.add(new PenjualanEditView(), "penjualan");
         main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "pengeluaran");
 //        main.add(new PembelianView(), "pembelian");
@@ -330,6 +331,7 @@ public class Main extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
