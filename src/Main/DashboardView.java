@@ -502,7 +502,7 @@ public class DashboardView extends javax.swing.JPanel {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
         ResultSet data = DB.query("SELECT obat.nama_obat, obat.jumlah_obat AS jumlah_obat\n"
                 + "FROM obat\n"
-                + "JOIN stok_obat ON obat.kode_obat = stok_obat.kode_obat\n"
+                + "JOIN batch_obat ON obat.kode_obat = batch_obat.kode_obat\n"
                 + "JOIN (\n"
                 + "    SELECT kode_obat, MAX(id) AS max_id\n"
                 + "    FROM detail_penjualan\n"
@@ -547,7 +547,7 @@ public class DashboardView extends javax.swing.JPanel {
 //        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         int yPos = 20;
         LocalDate date = LocalDate.now();
-        ResultSet data = DB.query("SELECT nama_obat, stok_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM stok_obat JOIN data_obat ON data_obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
+        ResultSet data = DB.query("SELECT nama_obat, batch_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM batch_obat JOIN data_obat ON data_obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
         String pesan = "";
             while (data.next()) {
                 String namaObat = data.getString("nama_obat");

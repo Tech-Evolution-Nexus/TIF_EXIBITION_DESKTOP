@@ -232,7 +232,7 @@ public class UserView extends javax.swing.JPanel {
             }
         });
 
-        searchObat.setPlaceholder("Cari User");
+        searchObat.setPlaceholder("Cari User Berdasarkan Nama");
         searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchObatKeyReleased(evt);
@@ -380,7 +380,7 @@ public class UserView extends javax.swing.JPanel {
     private void customButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton1ActionPerformed
         DataFormat format = new DataFormat();
         format.put("nama_user", namaUser.getText());
-        format.put("no_telepon", no_telepon.getText());
+        format.put("no_hp", no_telepon.getText());
         format.put("username", username.getText());
         format.put("password", password.getText());
         format.put("alamat", alamat.getText());
@@ -403,7 +403,7 @@ public class UserView extends javax.swing.JPanel {
         formName.setText("Ubah User ");
         DataFormat format = new DataFormat();
         format.put("nama_user", namaUser);
-        format.put("no_telepon", no_telepon);
+        format.put("no_hp", no_telepon);
         format.put("username", username);
         format.put("password", password);
         format.put("alamat", alamat);

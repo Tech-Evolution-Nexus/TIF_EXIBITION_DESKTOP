@@ -116,22 +116,20 @@ public class TransaksiPembelianController {
                 String insertDetailQuery = "INSERT INTO detail_pembelian(kode_transaksi, kode_obat, harga, qty, subtotal) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement insertDetailStatement = connection.prepareStatement(insertDetailQuery);
 
-                String insertStokQuery = "INSERT INTO stok_obat(kode_obat, kode_suplier, jumlah_obat, harga_beli, tanggal_kadaluarsa,tanggal_masuk) VALUES (?, ?, ?, ?, ?,curdate())";
+                String insertStokQuery = "INSERT INTO batch_obat(kode_obat, kode_suplier, jumlah_obat, harga_beli, tanggal_kadaluarsa,tanggal_masuk) VALUES (?, ?, ?, ?, ?,curdate())";
                 PreparedStatement insertStokStatement = connection.prepareStatement(insertStokQuery);
 
                 String updateObatQuery = "UPDATE obat SET jumlah_obat = jumlah_obat + ? WHERE kode_obat = ?";
                 PreparedStatement updateObatStatement = connection.prepareStatement(updateObatQuery);
 
                 for (int i = 0; i < totalDataObat; i++) {
-
                     String kodeObat = table.getValueAt(i, 0) != null ? table.getValueAt(i, 0).toString() : "";
-                    String hargasatuan = table.getValueAt(i, 3) != null ? table.getValueAt(i, 3).toString() : "";
-
+                    String hargaSatuanFormat = table.getValueAt(i, 3) != null ? table.getValueAt(i, 3).toString() : "";
                     String tambahStok = table.getValueAt(i, 4) != null ? table.getValueAt(i, 4).toString() : "";
                     String tglKadaluarsa = table.getValueAt(i, 5) != null ? table.getValueAt(i, 5).toString() : "";
-                    System.out.println("kode obat " + kodeObat + "\n hargaSatuan " + hargasatuan + "\ntambahStok " + tambahStok + "\ntglkadaluarsa " + tglKadaluarsa);
-                    if (!tambahStok.isEmpty() && !hargasatuan.isEmpty() && !tglKadaluarsa.isEmpty()) {
-
+                    System.out.println("kode obat " + kodeObat + "\n hargaSatuan " + hargaSatuanFormat + "\ntambahStok " + tambahStok + "\ntglkadaluarsa " + tglKadaluarsa);
+                    if (!tambahStok.isEmpty() && !hargaSatuanFormat.isEmpty() && !tglKadaluarsa.isEmpty()) {
+                        long hargaSatuan  =  Currency.deformat(hargaSatuanFormat);
                         DateFormat formatAwal = new SimpleDateFormat("dd-MM-yyyy");
                         Date tglKadaluarsadate = formatAwal.parse(tglKadaluarsa);
 
@@ -145,11 +143,11 @@ public class TransaksiPembelianController {
                             return;
                         }
 //                       
-                        int hargatotal = Integer.parseInt(tambahStok) * Integer.parseInt(hargasatuan);
+                        int hargatotal = Integer.parseInt(tambahStok) * Integer.parseInt(hargaSatuan+"");
 
                         insertDetailStatement.setString(1, codeTRX);
                         insertDetailStatement.setString(2, kodeObat);
-                        insertDetailStatement.setString(3, hargasatuan);
+                        insertDetailStatement.setString(3, hargaSatuan+"");
                         insertDetailStatement.setString(4, tambahStok);
                         insertDetailStatement.setInt(5, hargatotal);
                         insertDetailStatement.addBatch(); // Add the query to the batch
@@ -157,7 +155,7 @@ public class TransaksiPembelianController {
                         insertStokStatement.setString(1, kodeObat);
                         insertStokStatement.setString(2, issupp);
                         insertStokStatement.setString(3, tambahStok);
-                        insertStokStatement.setString(4, hargasatuan);
+                        insertStokStatement.setString(4, hargaSatuan+"");
                         insertStokStatement.setString(5, tanggalTujuanLocalDate.toString());
                         insertStokStatement.addBatch(); // Add the query to the batch
 

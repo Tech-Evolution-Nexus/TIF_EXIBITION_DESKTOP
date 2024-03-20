@@ -11,23 +11,20 @@ import Helper.KodeGenerator;
 import Helper.Notification;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -92,7 +89,7 @@ public class SupplierController  {
             String id = suplierList.get(row)[0].toString();
             ResultSet transaksiData = DB.query("SELECT count(*) as count from transaksi_pembelian where kode_suplier = '" + id + "'");
             transaksiData.next();
-            DB.query2("DELETE FROM penjualan where kode_suplier='" + id + "'");
+//            DB.query2("DELETE FROM penjualan where kode_suplier='" + id + "'");
             DB.query2("DELETE FROM supplier where kode_suplier='" + id + "'");
             tampilData(table);
             Notification.showInfo(Notification.DATA_DELETED_SUCCESS, table);
@@ -158,10 +155,13 @@ public class SupplierController  {
         }
         try {
             if (suplierList.stream().anyMatch(satuan -> satuan[1].toString().trim().equalsIgnoreCase(namaSuplier.trim()) && !satuan[0].equals(idEdit))) {
-                Notification.showInfo(Notification.DUPLICATE_DATA, form);
+                Notification.showError(Notification.DUPLICATE_DATA, form);
             } else if (namaSuplier.equals("") || alamat.equals("") || notlp.equals("")) {
-                Notification.showInfo(Notification.EMPTY_VALUE, form);
-
+                Notification.showError(Notification.EMPTY_VALUE, form);
+            }else if(!isValidPhoneNumber(notlp)){
+                Notification.showError("No telepon tidak valid", form);
+            } else if(notlp.length() < 12 || notlp.length() > 13){
+                Notification.showError("No telepon minimal 12 digit dan maksimal 13 karakter", form);
             } else {
                 String kodeSp = codeTRX;
                 System.out.println("kesimpan");
@@ -172,16 +172,16 @@ public class SupplierController  {
                     status = 1;
                     kodeSp = idEdit;
                     idEdit = "";
-                    DB.query2("DELETE FROM penjualan where  kode_suplier = '" + kodeSp + "'");
+//                    DB.query2("DELETE FROM penjualan where  kode_suplier = '" + kodeSp + "'");
                 }
-                for (JComboBox combo : barangList) {
-                    String value = combo.getSelectedItem().toString();
-                    System.out.println("value "+value);
-                    ResultSet kodeObat = DB.query("SELECT kode_obat from data_obat where nama_obat = '" + value + "'");
-                    kodeObat.next();
-                    DB.query2("INSERT INTO penjualan (`kode_obat`, `kode_suplier`) values('" + kodeObat.getString("kode_obat") + "','" + kodeSp + "')");
-
-                }
+//                for (JComboBox combo : barangList) {
+//                    String value = combo.getSelectedItem().toString();
+//                    System.out.println("value "+value);
+//                    ResultSet kodeObat = DB.query("SELECT kode_obat from data_obat where nama_obat = '" + value + "'");
+//                    kodeObat.next();
+////                    DB.query2("INSERT INTO penjualan (`kode_obat`, `kode_suplier`) values('" + kodeObat.getString("kode_obat") + "','" + kodeSp + "')");
+//
+//                }
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, form);
                 tampilData(table);
                 form.dispose();
@@ -193,16 +193,11 @@ public class SupplierController  {
         }
     }
 
-    public int   editData(String kodeSp ,JTable table,JPanel barangListCom) {
+    public int   editData(String kodeSp ,JTable table) {
         try {
            
             status = 2;
             idEdit = kodeSp;
-            barangList.clear();
-            ResultSet dataOb = DB.query("select nama_obat,penjualan.kode_obat from penjualan join obat on penjualan.kode_obat = obat.kode_obat  where kode_suplier = '" + kodeSp + "'");
-            while (dataOb.next()) {
-                addBarangPasok(dataOb.getString("kode_obat"),barangListCom);
-            }
             return 1;
            
         } catch (Exception e) {
@@ -212,19 +207,12 @@ public class SupplierController  {
         }
     }
 
-    public int  detail(String kodeSp,JPanel barangListCom,JTable table) {
+    public int  detail(String kodeSp ,JTable table) {
         try {
            
             status = 2;
             idEdit = kodeSp;
             barangList.clear();
-            ResultSet dataOb = DB.query("select nama_obat,penjualan.kode_obat from penjualan join obat on penjualan.kode_obat = obat.kode_obat  where kode_suplier = '" + kodeSp + "'");
-            while (dataOb.next()) {
-                addBarangPasok(dataOb.getString("kode_obat"),barangListCom);
-            }
-            for (JComboBox combo : barangList) {
-                combo.setEnabled(false);
-            }
             return 1;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -302,5 +290,21 @@ public class SupplierController  {
         barangListCom.revalidate();
         System.out.println(barangList.size());
         System.out.println("dihapus");
+    }
+    
+    
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        // Define the pattern for a valid phone number
+        // This example regex matches a phone number that starts with an optional "+" followed by 10 or more digits
+        String regex = "^\\+?[0-9]{12,}$";
+        
+        // Compile the regex to a pattern
+        Pattern pattern = Pattern.compile(regex);
+        
+        // Create a matcher for the input string
+        Matcher matcher = pattern.matcher(phoneNumber);
+        
+        // Check if the phone number matches the pattern
+        return matcher.matches();
     }
 }

@@ -28,15 +28,15 @@ public class SatuanController  {
    
     public void tampilData(JTable table) {
         try {
-            ResultSet dataSatuan = DB.query("SELECT * FROM `bentuk_sediaan_obat` ORDER BY `bentuk_sediaan_obat`.`id` DESC");
+            ResultSet dataSatuan = DB.query("SELECT * FROM `satuan` ORDER BY `satuan`.`id` DESC");
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
             int no = 1;
             tables.setRowCount(0);
             satuanList.clear();
             while (dataSatuan.next()) {
-                Object[] rowData = {no, dataSatuan.getString("nama_bentuk_sediaan"), dataSatuan.getString("deskripsi")};
+                Object[] rowData = {no, dataSatuan.getString("nama_satuan"), dataSatuan.getString("deskripsi")};
                 tables.addRow(rowData);
-                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_bentuk_sediaan")});
+                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_satuan")});
                 no++;
             }
         } catch (Exception e) {
@@ -62,10 +62,10 @@ public class SatuanController  {
                     keterangan = "-";
                 }
                 if (status == 1) {
-                    DB.query2("INSERT INTO bentuk_sediaan_obat (nama_bentuk_sediaan,deskripsi)VALUES ('" + namaSatuan + "','" + keterangan + "')");
+                    DB.query2("INSERT INTO satuan (nama_satuan,deskripsi)VALUES ('" + namaSatuan + "','" + keterangan + "')");
                 } else {
 
-                    DB.query2("UPDATE bentuk_sediaan_obat SET nama_bentuk_sediaan = '" + namaSatuan + "' , deskripsi='" + keterangan + "' WHERE id ='" + idEdit + "'");
+                    DB.query2("UPDATE satuan SET nama_satuan = '" + namaSatuan + "' , deskripsi='" + keterangan + "' WHERE id ='" + idEdit + "'");
                     status = 1;
                     idEdit = -1;
                 }
@@ -110,13 +110,13 @@ public class SatuanController  {
 
             }
             int id = (int) satuanList.get(row)[0];
-            ResultSet data = DB.query("SELECT count(*)as count from obat where id_bentuk_sediaan = '"+id+"'" );
+            ResultSet data = DB.query("SELECT count(*)as count from obat where id_satuan = '"+id+"'" );
             data.next();
             if(data.getInt("count") > 0){
                 Notification.showInfo(Notification.DATA_IN_USE_ERROR, table);
                 return;
             }
-            DB.query2("delete from bentuk_sediaan_obat where id = '"+id+"'");
+            DB.query2("delete from satuan where id = '"+id+"'");
             tampilData(table);
             JOptionPane.showMessageDialog(table, "Data Berhasil Di Hapus");
 
@@ -127,15 +127,15 @@ public class SatuanController  {
 
     public void cariData(String kunci,JTable table) {
         try {
-            ResultSet dataSatuan = DB.query("SELECT * FROM `bentuk_sediaan_obat` WHERE nama_bentuk_sediaan like '%" + kunci + "%' ORDER BY `bentuk_sediaan_obat`.`id` DESC");
+            ResultSet dataSatuan = DB.query("SELECT * FROM `satuan` WHERE nama_satuan like '%" + kunci + "%' ORDER BY `satuan`.`id` DESC");
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
             int no = 1;
             tables.setRowCount(0);
             satuanList.clear();
             while (dataSatuan.next()) {
-                Object[] rowData = {no, dataSatuan.getString("nama_bentuk_sediaan"), dataSatuan.getString("deskripsi")};
+                Object[] rowData = {no, dataSatuan.getString("nama_satuan"), dataSatuan.getString("deskripsi")};
                 tables.addRow(rowData);
-                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_bentuk_sediaan")});
+                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_satuan")});
                 no++;
             }
         } catch (Exception e) {

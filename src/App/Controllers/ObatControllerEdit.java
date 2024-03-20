@@ -53,13 +53,13 @@ public class ObatControllerEdit  {
     
     public void tampilData(JTable table) {
         try {
-            ResultSet data = DB.query("SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,aturan_pakai,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan  order by tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,kandungan,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan  order by tanggal_dibuat desc");
             DefaultTableModel tabelData = (DefaultTableModel) table.getModel();
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"), Currency.format(data.getLong("harga"))};
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("kandungan"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
@@ -113,14 +113,14 @@ public class ObatControllerEdit  {
 
     public void cariData(String kunci,JTable table) {
         try {
-            String sql = "SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,aturan_pakai,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc";
+            String sql = "SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,kandungan,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc";
             ResultSet data = DB.query(sql);
             DefaultTableModel tabelData = (DefaultTableModel) table.getModel();
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"), Currency.format(data.getLong("harga"))};
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("kandungan"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
@@ -135,7 +135,7 @@ public class ObatControllerEdit  {
     public int  simpanData(DataFormat data,JDialog form) {
         String namaObat = data.getString("nama_obat");
         String kategori = data.getString("kategori");
-        String aturanPakai = data.getString("aturan_pakai");
+        String kandungan = data.getString("kandungan");
 
         String kodeObat = idEdit.equals("") ? KodeGenerator.generateKodeObat() : idEdit;
 
@@ -144,7 +144,7 @@ public class ObatControllerEdit  {
         try {
             if (obatList.stream().anyMatch(satuan -> satuan[2].toString().trim().equalsIgnoreCase(namaObat.trim()) && !satuan[1].equals(idEdit))) {
                 Notification.showInfo(Notification.DUPLICATE_DATA, form);
-            } else if (namaObat.equals("") || aturanPakai.equals("") || kategori.equals("")) {
+            } else if (namaObat.equals("") || kandungan.equals("") || kategori.equals("")) {
                 Notification.showInfo(Notification.EMPTY_VALUE, form);
 
             } else {
@@ -166,17 +166,17 @@ public class ObatControllerEdit  {
                     }
                 }
                 ResultSet dataKategori = DB.query("SELECT id from kategori where nama_kategori= '" + kategori + "'");
-                ResultSet dataSatuan = DB.query("SELECT id from bentuk_sediaan_obat where nama_bentuk_sediaan= '" + satuanList.get(0).getSelectedItem().toString() + "'");
+                ResultSet dataSatuan = DB.query("SELECT id from satuan where nama_satuan= '" + satuanList.get(0).getSelectedItem().toString() + "'");
                 dataKategori.next();
                 dataSatuan.next();
                 DB.query2("DELETE FROM jenis_penjualan where kode_obat = '" + kodeObat + "'");
-                System.out.println("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + dataSatuan.getString("id") + "','" + dataKategori.getString("id") + "','" + aturanPakai + "')");
-                DB.query2("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + dataSatuan.getString("id") + "','" + dataKategori.getString("id") + "','" + aturanPakai + "')");
+                System.out.println("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + dataSatuan.getString("id") + "','" + dataKategori.getString("id") + "','" + kandungan + "')");
+                DB.query2("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + dataSatuan.getString("id") + "','" + dataKategori.getString("id") + "','" + kandungan + "')");
                 for (int i = 0; i < satuanList.size(); i++) {
                     String namaSatuan = satuanList.get(i).getSelectedItem().toString();
                     String total = satuanTotalList.get(i).getText();
                     String harga = hargaList.get(i).getText();
-                    ResultSet dataS = DB.query("SELECT id from bentuk_sediaan_obat where nama_bentuk_sediaan  = '" + namaSatuan + "' ");
+                    ResultSet dataS = DB.query("SELECT id from satuan where nama_satuan  = '" + namaSatuan + "' ");
                     dataS.next();
                     System.out.println("call simpanJenisPenjualan('" + kodeObat + "','" + total + "','" + harga + "','" + dataS.getInt("id") + "') ");
 
@@ -209,7 +209,7 @@ public class ObatControllerEdit  {
            
             ResultSet satuanData = DB.query("SELECT * from jenis_penjualan where kode_obat='" + idObat + "'");
             while (satuanData.next()) {
-                addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"),satuanListCom,hargaListCOm);
+                addSatuan(satuanData.getString("id_satuan"), satuanData.getInt("harga"), satuanData.getInt("total"),satuanListCom,hargaListCOm);
             }
             return DB.query("SELECT * from kategori");
 
@@ -226,7 +226,7 @@ public class ObatControllerEdit  {
          
 
             ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
-            ResultSet stokData = DB.query("SELECT * from stok_obat join supplier on stok_obat.kode_suplier = supplier.kode_suplier where kode_obat='" + idObat + "' order by tanggal_masuk desc");
+            ResultSet stokData = DB.query("SELECT * from batch_obat join supplier on batch_obat.kode_suplier = supplier.kode_suplier where kode_obat='" + idObat + "' order by tanggal_masuk desc");
             ResultSet[] result = {satuanData, stokData};
             return result;
 
@@ -260,7 +260,7 @@ public class ObatControllerEdit  {
 //            ResultSet dataSatuan = getSatuan();
 //            satuan.removeAllItems();
 //            while (dataSatuan.next()) {
-//                satuan.addItem(dataSatuan.getString("nama_bentuk_sediaan"));
+//                satuan.addItem(dataSatuan.getString("nama_satuan"));
 //            }
 //        } catch (Exception e) {
 //            e.printStackTrace();
@@ -271,7 +271,7 @@ public class ObatControllerEdit  {
     public ResultSet getSatuan() {
         try {
             String sql;
-            sql = "SELECT * FROM bentuk_sediaan_obat ";
+            sql = "SELECT * FROM satuan ";
             return DB.query(sql);
 
         } catch (Exception e) {
@@ -290,7 +290,10 @@ public class ObatControllerEdit  {
 
     public void addSatuan(String idSelect, int harga, int total,JPanel satuanListCom,JPanel hargaListCOm) {
         ResultSet dataObat = getSatuan();
-
+        if (satuanTotalList.size()==4) {
+             JOptionPane.showMessageDialog(hargaListCOm, "Satuan Penjualan maksimal 4");
+             return;
+        }
         int w = satuanListCom.getBounds().width;
         JPanel panel = new JPanel();
         JTextField field = new JTextField("" + total);
@@ -329,9 +332,9 @@ public class ObatControllerEdit  {
 
         try {
             while (dataObat.next()) {
-                combo.addItem(dataObat.getString("nama_bentuk_sediaan"));
+                combo.addItem(dataObat.getString("nama_satuan"));
                 if (idSelect != null && idSelect.equals(dataObat.getString("id").toString())) {
-                    combo.setSelectedItem(dataObat.getString("nama_bentuk_sediaan"));
+                    combo.setSelectedItem(dataObat.getString("nama_satuan"));
                 }
 
             }
@@ -362,14 +365,14 @@ public class ObatControllerEdit  {
         int w = satuanListCom.getBounds().width;
         JPanel panel = new JPanel(new GridLayout());
         JTextField field = new JTextField("" + harga);
-        JLabel label2 = new JLabel();
-        JLabel label = new JLabel("Def. Harga Satuan #" + (hargaList.size() + 1));
+        JTextField label2 = new JTextField();
+        JLabel label = new JLabel("Margin Persen " + (hargaList.size() + 1));
 
         panel.add(label);
         panel.add(field);
         panel.add(label2);
         if(satuanList.get(0).getSelectedItem() !=null){
-                label2.setText("/" + satuanList.get(0).getSelectedItem().toString());
+                label2.setText("/" + satuanList.get(hargaList.size()).getSelectedItem().toString());
         }
         label2.setPreferredSize(new Dimension(70, 42));
         field.setPreferredSize(new Dimension(70, 42));

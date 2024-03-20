@@ -15,7 +15,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel4" pref="550" max="32767" attributes="0"/>
+              <Component id="jPanel4" min="-2" pref="473" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -39,29 +39,21 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel10" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel6" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                                      <Component id="namaObat" pref="454" max="32767" attributes="0"/>
-                                      <Component id="aturanPakai" pref="454" max="32767" attributes="0"/>
-                                      <Component id="kategori" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel7" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="titleForm" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                                  <Component id="jLabel18" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
-                              <Component id="jTabbedPane1" min="-2" pref="534" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel10" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel6" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="namaObat" pref="454" max="32767" attributes="0"/>
+                              <Component id="kandungan" pref="454" max="32767" attributes="0"/>
+                              <Component id="kategori" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel7" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="buttonIcon7" min="-2" pref="139" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="titleForm" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" min="-2" pref="534" max="-2" attributes="0"/>
                       <EmptySpace pref="44" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -88,13 +80,11 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="aturanPakai" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="kandungan" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jTabbedPane1" min="-2" pref="420" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buttonIcon7" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -140,12 +130,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Aturan Pakai"/>
+                <Property name="text" type="java.lang.String" value="Kandungan Obat"/>
               </Properties>
             </Component>
-            <Component class="Components.CustomField" name="aturanPakai">
+            <Component class="Components.CustomField" name="kandungan">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="aturanPakai.setPlaceholder(&quot;Masukkan Aturan Pakai&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="kandungan.setPlaceholder(&quot;Masukkan Aturan Pakai&quot;);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -158,24 +148,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Informasi Obat"/>
               </Properties>
-            </Component>
-            <Component class="Components.ButtonIcon" name="buttonIcon7">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d7" green="62" red="3a" type="rgb"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Simpan"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIcon7ActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="buttonIcon7.setHorizontal(true);"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="buttonIcon7.setIcon(&quot;Assets/svg/saveIcon.svg&quot;);"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="kategori">
               <Properties>
@@ -225,7 +197,10 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="534" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane3" alignment="1" min="-2" pref="534" max="-2" attributes="0"/>
+                                  <Component id="buttonIcon7" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -243,7 +218,9 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="307" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="222" max="-2" attributes="0"/>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <Component id="buttonIcon7" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -298,6 +275,24 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Pilih bentuk satuan penjualan obat"/>
                       </Properties>
+                    </Component>
+                    <Component class="Components.ButtonIcon" name="buttonIcon7">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="d7" green="62" red="3a" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Simpan"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonIcon7ActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="buttonIcon7.setHorizontal(true);"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="buttonIcon7.setIcon(&quot;Assets/svg/saveIcon.svg&quot;);"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -438,32 +433,34 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="titleForm1" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel14" max="32767" attributes="0"/>
-                                          <Component id="jLabel15" alignment="0" pref="105" max="32767" attributes="0"/>
-                                          <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane7" min="-2" pref="1040" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="jLabel14" max="32767" attributes="0"/>
+                                              <Component id="jLabel15" alignment="0" pref="105" max="32767" attributes="0"/>
+                                              <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="namaObat1" min="-2" pref="421" max="-2" attributes="0"/>
+                                              <Component id="kategori1" min="-2" pref="421" max="-2" attributes="0"/>
+                                              <Component id="aturanPakai1" min="-2" pref="422" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="namaObat1" min="-2" pref="421" max="-2" attributes="0"/>
-                                          <Component id="kategori1" min="-2" pref="421" max="-2" attributes="0"/>
-                                          <Component id="aturanPakai1" min="-2" pref="422" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel17" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" pref="228" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel17" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
-                                  <Component id="jLabel19" min="-2" pref="228" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel20" min="-2" pref="228" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" min="-2" pref="228" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel20" min="-2" pref="228" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" min="-2" pref="228" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane7" alignment="0" min="-2" pref="1040" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                   </Group>
@@ -504,9 +501,9 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane7" min="-2" pref="234" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -552,7 +549,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Aturan Pakai"/>
+                <Property name="text" type="java.lang.String" value="Kandungan"/>
               </Properties>
             </Component>
             <Component class="Components.CustomField" name="aturanPakai1">
@@ -560,7 +557,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="aturanPakai.setPlaceholder(&quot;Masukkan Aturan Pakai&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="kandungan.setPlaceholder(&quot;Masukkan Aturan Pakai&quot;);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
@@ -639,11 +636,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="stokTable">
                   <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder roundedCorners="true"/>
-                      </Border>
-                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
                         <Column editable="false" title="Sisa Stok" type="java.lang.String"/>
@@ -908,7 +900,7 @@
                         <Column editable="false" title="Satuan Obat" type="java.lang.String"/>
                         <Column editable="false" title="Kategori Obat" type="java.lang.String"/>
                         <Column editable="false" title="aturan Pakai" type="java.lang.String"/>
-                        <Column editable="false" title="Harga" type="java.lang.String"/>
+                        <Column editable="false" title="Harga Beli" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="alignmentX" type="float" value="20.0"/>

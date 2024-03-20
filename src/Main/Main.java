@@ -74,20 +74,20 @@ public class Main extends javax.swing.JFrame {
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
-//        main.add(new ObatView(), "Medicine");
-        main.add(new ObatViewEdit(), "obat");
-        main.add(new SatuanView(), "satuan");
-        main.add(new KategoriView(), "Category");
-        main.add(new UserView(), "User");
+//        main.add(new ObatView(), "Obat");
+        main.add(new ObatViewEdit(), "Obat");
+        main.add(new SatuanView(), "Satuan");
+        main.add(new KategoriView(), "Kategori");
+        main.add(new UserView(), "Pengguna");
         main.add(new SuplierView(), "Supplier");
-        main.add(new LaporanMain(), "Report");
+        main.add(new LaporanMain(), "Laporan");
         main.add(new PenjualanEditView(), "penjualan");
         main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "pengeluaran");
 //        main.add(new PembelianView(), "pembelian");
-        main.add(new DashboardView(), "Home");
+        main.add(new DashboardView(), "Dashboard");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "Home");
+        cardLayout.show(main, "Dashboard");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
@@ -353,25 +353,27 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 
-    private Object[][] childObat = {{"obat", "Data Obat"}, {"satuan", "Data Satuan Obat"}};
+    private Object[][] childObat = {{"Obat", "Data Obat"}, {"Satuan", "Data Satuan Obat"}};
     private Object[][] childTransaksi = {{"penjualan", "Transaksi Penjualan"}, {"pembelian", "Transaksi Pembelian"}};
     private Object[][] childTransaksi2 = {{"penjualan", "Transaksi Penjualan"}};
     private Object[][] kosong = {};
 //    private 
     private Object[][] menu_list_data_owner = {
-        {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},
-        {"icf_obat.svg", "icn_obat.svg", "<html> Medicine <b>&#8595;</b> </html>", "Data Obat", childObat},
+        {"icf_home.svg", "icn_home.svg", "Dashboard", "Dashboard", kosong},
+        {"icf_obat.svg", "icn_obat.svg", "<html> Obat <b>&#8595;</b> </html>", "Data Obat", childObat},
         {"icf_supplier.svg", "icn_supplier.svg", "Supplier", "Data Suplier", kosong},
-        {"icf_kategori.svg", "icn_kategori.svg", "Category", "Data Categori", kosong},
-        {"icf_trx.svg", "icn_trx.svg", "<html>Transaction <b>&#8595;</b></html>", "Transaksi", childTransaksi},
-        {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
-        {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
-        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong}};
+        {"icf_kategori.svg", "icn_kategori.svg", "Kategori", "Data Kategori", kosong},
+        {"icf_trx.svg", "icn_trx.svg", "<html>Transaksi <b>&#8595;</b></html>", "Transaksi", childTransaksi},
+        {"icf_report.svg", "icn_report.svg", "Laporan", "Laporan", kosong},
+        {"icf_user.svg", "icn_user.svg", "Pengguna", "Data Pengguna", kosong},
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong},
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "Stok Opname", "Stok Opname", kosong},
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "Stok Opname", "Kartu Stok", kosong}};
 
     private Object[][] menu_list_data_kasir = {
-        {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},
-        {"icf_obat.svg", "icn_obat.svg", "Medicine", "Data Obat", childObat},
-        {"icf_trx.svg", "icn_trx.svg", "Transaction", "Transaksi", childTransaksi2},};
+        {"icf_home.svg", "icn_home.svg", "Dashboard", "Dashboard", kosong},
+        {"icf_obat.svg", "icn_obat.svg", "Obat", "Data Obat", childObat},
+        {"icf_trx.svg", "icn_trx.svg", "Transaksi", "Transaksi", childTransaksi2},};
     private ArrayList<JPanel> addedLabels = new ArrayList<>();
 
     public void sidebar() {
@@ -408,78 +410,7 @@ public class Main extends javax.swing.JFrame {
                     pageName.setText(objects[3].toString());
                 }
 
-//                @Override
-//                public void mouseEntered(MouseEvent e) {
-//                    super.mouseEntered(e);
-//                    Point position = panel.getLocationOnScreen();
-//                    dialog.setVisible(false);
-//                    for (JPanel panel : addedLabels) {
-//                        dialog.remove(panel);
-//                    }
-//                    addedLabels.clear();
-//                    dialog.setVisible(false);
-//                    addedLabels.clear();
-//
-//                    Object[] childRows = (Object[]) objects[4];
-//                    javax.swing.JPanel panel2 = new javax.swing.JPanel();
-//                    panel2.setBackground(new Color(51, 85, 188));
-//                    panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
-////                    panel2.setSize(200, 100);
-//                    panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
-//                    for (Object object : childRows) {
-//                        Object[] innerRow = (Object[]) object;
-//                        javax.swing.JLabel label2 = new javax.swing.JLabel(innerRow[0].toString());
-//                        javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
-//                        label2.setHorizontalAlignment(SwingConstants.LEFT);
-//                        label2.setForeground(Color.white);
-//                        label2.setFont(new Font("Poppins", Font.PLAIN, 13));
-//                        panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
-//                        panel3.setBackground(new Color(51, 85, 188));
-//                        panel3.add(label2);
-//                        panel2.add(panel3);
-//
-//                        dialog.add(panel2);
-//                        addedLabels.add(panel2);
-//                        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
-//                            @Override
-//                            public void mouseClicked(MouseEvent e) {
-//                                resetStyle();
-//                                setBoldFont(label);
-//                                setBottomBorder(panel);
-//                                cardLayout.show(main, innerRow[0].toString());
-//                                pageName.setText(innerRow[1].toString());
-//                            }
-//                        });
-//
-//                    }
-//                    if (childRows.length > 0) {
-//                        dialog.setBounds(position.x, position.y + 73, 200, childRows.length * 43);
-//                        dialog.setVisible(true);
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void mouseExited(MouseEvent e) {
-//                    super.mouseExited(e);
-//
-//                    dialog.addMouseMotionListener(new java.awt.event.MouseAdapter() {
-//                        @Override
-//                        public void mouseMoved(MouseEvent e) {
-////                            // Check if the cursor is over the text area
-//                            Point point = e.getPoint();
-//                            if (panel.getBounds().contains(point) || dialog.getBounds().contains(point) || jPanel2.getBounds().contains(point)) {
-//                                System.out.println("Cursor over the text area");
-//                            } else {
-//                                System.out.println("Cursor outside the text area");
-//                                // Close the dialog when the cursor is outside the text area or the dialog
-//                                dialog.dispose();
-//                            }
-//                        }
-//                    });
-////               
-//
-//                }
+        
                 @Override
                 public void mouseEntered(MouseEvent e) {
                     showPopUp(objects, panel, label);

@@ -36,11 +36,11 @@ public class UserController  {
             userList.clear();
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no,  data.getString("nama"),data.getString("no_telepon"), data.getString("alamat"), data.getString("username"), data.getString("role")};
+                Object[] dataTable = {no,  data.getString("nama"),data.getString("no_hp"), data.getString("alamat"), data.getString("username"), data.getString("role")};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
                 id.add(data.getInt("id"));
-                userList.add(new Object[]{data.getInt("id"), data.getString("no_telepon"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
+                userList.add(new Object[]{data.getInt("id"), data.getString("no_hp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
                 no++;
             }
 
@@ -97,11 +97,11 @@ public class UserController  {
             userList.clear();
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no, data.getString("no_telepon"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
+                Object[] dataTable = {no, data.getString("no_hp"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
                 id.add(data.getInt("id"));
-                userList.add(new Object[]{data.getInt("id"), data.getString("no_telepon"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
+                userList.add(new Object[]{data.getInt("id"), data.getString("no_hp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
                 no++;
             }
 
@@ -112,14 +112,14 @@ public class UserController  {
 
     
     public int simpanData(DataFormat data,JTable table,JDialog form) {
-        String notlp = data.get("no_telepon").toString();
+        String notlp = data.get("no_hp").toString();
         String nama = data.get("nama_user").toString();
         String username = data.get("username").toString();
         String password = data.get("password").toString();
         String alamat = data.get("alamat").toString();
         String role = data.get("role").toString();
         try {
-           ResultSet checkNoTlp =  DB.query("SELECT * FROM users where no_telepon = '"+notlp+"' AND id <> '"+idEdit+"'");
+           ResultSet checkNoTlp =  DB.query("SELECT * FROM users where no_hp = '"+notlp+"' AND id <> '"+idEdit+"'");
            ResultSet checkNoUsername =  DB.query("SELECT * FROM users where username = '"+username+"' AND id <> '"+idEdit+"'");
              if (checkNoTlp.next()) {
                 JOptionPane.showMessageDialog(form, "Nomor Telepon Sudah Ada");
@@ -133,9 +133,9 @@ public class UserController  {
             }  else {
                 
                 if (status == 1) {
-                    DB.query2("INSERT INTO users (no_telepon,nama,alamat,username,password,role)Values ('" + notlp + "','" + nama + "','" + alamat + "','" + username + "','" + password + "','" + role + "')");
+                    DB.query2("INSERT INTO users (no_hp,nama,alamat,username,password,role)Values ('" + notlp + "','" + nama + "','" + alamat + "','" + username + "','" + password + "','" + role + "')");
                 } else {
-                    DB.query2("UPDATE users SET no_telepon = '" + notlp + "', nama = '" + nama + "', alamat = '" + alamat + "', username = '" + username + "', password = '" + password + "', role = '" + role + "' WHERE id = '" + idEdit + "'");
+                    DB.query2("UPDATE users SET no_hp = '" + notlp + "', nama = '" + nama + "', alamat = '" + alamat + "', username = '" + username + "', password = '" + password + "', role = '" + role + "' WHERE id = '" + idEdit + "'");
                     status = 1;
                     idEdit = -1;
                 }
@@ -166,7 +166,7 @@ public class UserController  {
         }
         idEdit = (int) userList.get(row)[0];
         ((JTextField) data.get("nama_user")).setText(userList.get(row)[2].toString());
-        ((JTextField) data.get("no_telepon")).setText(userList.get(row)[1].toString());
+        ((JTextField) data.get("no_hp")).setText(userList.get(row)[1].toString());
         ((JTextField) data.get("username")).setText(userList.get(row)[3].toString());
         ((JTextField) data.get("password")).setText(userList.get(row)[4].toString());
         ((JTextField) data.get("alamat")).setText(userList.get(row)[5].toString());

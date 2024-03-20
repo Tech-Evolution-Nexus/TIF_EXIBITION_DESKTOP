@@ -31,8 +31,8 @@ public class PenjualanEditView extends javax.swing.JPanel {
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
         setSize(width, height);
-//        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
-//        controller.tampilData();
+        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
+        controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 
     }
@@ -531,20 +531,20 @@ public class PenjualanEditView extends javax.swing.JPanel {
     }//GEN-LAST:event_tableKeyReleased
 
     private void dataObatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataObatItemStateChanged
-//        if (controller.obatIsClicked) {
-//            controller.setJenis();
-//        }
+        if (controller.obatIsClicked) {
+            controller.setJenis();
+        }
     }//GEN-LAST:event_dataObatItemStateChanged
 
     private void dataJenisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataJenisItemStateChanged
-//        if (controller.jenisIsClicked) {
-//            controller.setHargaStok();
-//            qty.setText("1");
-//        }
+        if (controller.jenisIsClicked) {
+            controller.setHargaStok();
+            qty.setText("1");
+        }
     }//GEN-LAST:event_dataJenisItemStateChanged
 
     private void dataObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataObatMouseClicked
-//        controller.obatIsClicked = true;
+        controller.obatIsClicked = true;
     }//GEN-LAST:event_dataObatMouseClicked
 
     private void dataJenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataJenisMouseClicked
@@ -559,21 +559,21 @@ public class PenjualanEditView extends javax.swing.JPanel {
     }//GEN-LAST:event_dataObatMouseReleased
 
     private void dataJenisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataJenisFocusGained
-//        controller.jenisIsClicked = true;
+        controller.jenisIsClicked = true;
 
     }//GEN-LAST:event_dataJenisFocusGained
 
     private void bayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarKeyReleased
-//        controller.pembayaran();
+        controller.pembayaran();
 
     }//GEN-LAST:event_bayarKeyReleased
 
     private void addListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListActionPerformed
-//        controller.tambahKeList();
+        controller.tambahKeList();
     }//GEN-LAST:event_addListActionPerformed
 
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
-//        controller.resetForm();
+        controller.resetForm();
     }//GEN-LAST:event_batalActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -581,18 +581,18 @@ public class PenjualanEditView extends javax.swing.JPanel {
 
         // Kolom ke-6 adalah kolom dengan index 5
         if (columnClicked == 6) {
-//            controller.resetTable();
-//        } else {
-//            controller.editData(new Object[]{});
+            controller.resetTable();
+        } else {
+            controller.editData(new Object[]{});
         }
     }//GEN-LAST:event_tableMouseClicked
 
     private void qtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyReleased
-//        controller.setQty();
+        controller.setQty();
     }//GEN-LAST:event_qtyKeyReleased
 
     private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
-//        controller.simpanData(new Object[]{this});
+        controller.simpanData(new Object[]{this});
     }//GEN-LAST:event_btnBayarActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
@@ -638,9 +638,9 @@ public class PenjualanEditView extends javax.swing.JPanel {
     public void reset() {
 //        removeAll();
 //        initComponents();
-//        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
-//        controller.tampilData();
-//        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
+        controller.tampilData();
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
