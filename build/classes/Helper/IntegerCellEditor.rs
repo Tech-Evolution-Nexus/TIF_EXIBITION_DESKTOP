@@ -1,0 +1,2 @@
+Helper.IntegerDocument
+Helper.IntegerCellEditor
