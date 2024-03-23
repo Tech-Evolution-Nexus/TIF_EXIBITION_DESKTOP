@@ -9,6 +9,7 @@ import View.Auth.login;
 import Config.DB;
 import Helper.FormatTanggal;
 import View.KategoriView;
+import View.KategoriViewEdit;
 import Laporan.LaporanMain;
 import Laporan.PembelianView;
 import View.ObatViewEdit;
@@ -20,6 +21,9 @@ import View.PenjualanView;
 import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+
+import App.Controllers.KategoriController;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -74,14 +78,15 @@ public class Main extends javax.swing.JFrame {
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
+        
 //        main.add(new ObatView(), "Obat");
         main.add(new ObatViewEdit(), "Obat");
         main.add(new SatuanView(), "Satuan");
-        main.add(new KategoriView(), "Kategori");
+        main.add(new KategoriController().getView(), "Kategori");
         main.add(new UserView(), "Pengguna");
         main.add(new SuplierView(), "Supplier");
         main.add(new LaporanMain(), "Laporan");
-        main.add(new PenjualanEditView(), "penjualan");
+        // main.add(new PenjualanEditView(), "penjualan");
         main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "pengeluaran");
 //        main.add(new PembelianView(), "pembelian");
