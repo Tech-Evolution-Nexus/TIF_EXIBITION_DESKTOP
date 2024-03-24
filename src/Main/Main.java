@@ -7,6 +7,7 @@ package Main;
 import View.Auth.SaldoKasAwal;
 import View.Auth.login;
 import Config.DB;
+import Controllers.ObatController;
 import Controllers.SatuanController;
 import Helper.FormatTanggal;
 import View.KategoriView;
@@ -77,7 +78,7 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
 //        main.add(new ObatView(), "Medicine");
-        // main.add(new ObatView(), "obat");
+        main.add(new ObatController().getView(), "obat");
         main.add(new SatuanController().getView(), "satuan");
         main.add(new Controllers.KategoriController().getView(), "Category");
         main.add(new Controllers.UserController().getView(), "User");

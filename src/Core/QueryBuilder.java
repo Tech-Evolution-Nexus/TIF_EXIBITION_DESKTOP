@@ -72,9 +72,10 @@ public class QueryBuilder implements Queryable {
 
     @Override
     public QueryBuilder select(String... fields) {
+        query.setLength(0);
         query.append("SELECT ");
         if (fields.length == 0) {
-            query.append("*");
+            query.append("* ");
         } else {
             for (int i = 0; i < fields.length; i++) {
                 query.append(fields[i]);
@@ -83,6 +84,7 @@ public class QueryBuilder implements Queryable {
                 }
             }
         }
+        query.append(tableName);
         return this;
     }
 
@@ -155,6 +157,12 @@ public class QueryBuilder implements Queryable {
         initQuery();
 
         return rowsAffected;
+    }
+
+    @Override
+    public int insert(String[] fields, Object[] values, String condition) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
     
 }
