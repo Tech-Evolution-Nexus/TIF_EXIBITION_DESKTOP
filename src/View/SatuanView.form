@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="tambah" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="btnSimpan" min="-2" pref="122" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" pref="73" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="104" max="-2" attributes="0"/>
@@ -60,7 +60,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="keterangan" min="-2" pref="48" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="tambah" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="btnSimpan" min="-2" pref="42" max="-2" attributes="0"/>
                       <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -104,7 +104,7 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="keterangan.setPlaceholder(&quot;Masukkan Keterangan Satuan&quot;);"/>
               </AuxValues>
             </Component>
-            <Component class="Components.ButtonIcon" name="tambah">
+            <Component class="Components.ButtonIcon" name="btnSimpan">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d7" green="62" red="3a" type="rgb"/>
@@ -115,10 +115,10 @@
                 <Property name="text" type="java.lang.String" value="Simpan"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tambahActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tambah.setIcon(&quot;Assets/svg/saveIcon.svg&quot;);&#xa;tambah.setHorizontal(true);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnSimpan.setIcon(&quot;Assets/svg/saveIcon.svg&quot;);&#xa;btnSimpan.setHorizontal(true);"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -141,35 +141,35 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="baseLayer" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="baseLayer" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="baseLayer">
       <Events>
-        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jPanel1AncestorAdded"/>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="baseLayerAncestorAdded"/>
       </Events>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="searchObat" min="-2" pref="378" max="-2" attributes="0"/>
+                  <Component id="search" min="-2" pref="378" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnHapus" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnUbah" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnTambah" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel2" max="32767" attributes="0"/>
           </Group>
@@ -179,10 +179,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="searchObat" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btnTambah" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="btnUbah" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="btnHapus" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="search" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
@@ -192,7 +192,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnTambah">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d7" green="62" red="3a" type="rgb"/>
@@ -203,13 +203,13 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Components.ButtonIcon()"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnUbah">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="cf" red="6d" type="rgb"/>
@@ -219,10 +219,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUbahActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnHapus">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="53" green="9" red="d7" type="rgb"/>
@@ -232,16 +232,16 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Components.CustomField" name="searchObat">
+        <Component class="Components.CustomField" name="search">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchObatActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchObatKeyReleased"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchKeyReleased"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="searchObat.setPlaceholder(&quot;Cari Satuan obat  &quot;);&#xa;searchObat.setIcon(&quot;Assets/svg/searchIcon.svg&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="search.setPlaceholder(&quot;Cari Satuan obat  &quot;);&#xa;search.setIcon(&quot;Assets/svg/searchIcon.svg&quot;);"/>
           </AuxValues>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">

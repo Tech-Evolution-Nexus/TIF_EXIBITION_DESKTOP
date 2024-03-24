@@ -24,10 +24,12 @@ public class CustomDialog extends JDialog {
         setLocationRelativeTo(null);
         add(new javax.swing.JLabel("Das"));
        
+          requestFocusInWindow();
+        
+        // Menambahkan event listener untuk tombol keyboard
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("press");
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                     dispose();
                 }

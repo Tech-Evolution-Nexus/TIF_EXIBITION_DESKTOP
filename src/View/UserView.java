@@ -6,6 +6,7 @@ package View;
 
 
 import com.formdev.flatlaf.ui.FlatButtonBorder;
+import javax.swing.JPanel;
 import table.TableCustom;
 
 /**
@@ -14,6 +15,8 @@ import table.TableCustom;
  */
 public class UserView extends javax.swing.JPanel {
 
+    
+
     Controllers.UserController controller;
 
     /**
@@ -21,11 +24,8 @@ public class UserView extends javax.swing.JPanel {
      */
     public UserView() {
         initComponents();
-        controller = new Controllers.UserController(table, jDialog1);
-        controller.tampilData();
-        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-customButton1.setBorder(new FlatButtonBorder());
-        searchObat.setIcon("Assets/svg/searchIcon.svg");
+     
+        search.setIcon("Assets/svg/searchIcon.svg");
     }
 
     /**
@@ -37,13 +37,13 @@ customButton1.setBorder(new FlatButtonBorder());
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 =  new Components.CustomDialog();
+        form =  new Components.CustomDialog();
         ;
         jPanel2 = new javax.swing.JPanel();
-        formName = new javax.swing.JLabel();
-        ktp = new Components.CustomField();
+        formTitle = new javax.swing.JLabel();
+        no_hp = new Components.CustomField();
         jLabel2 = new javax.swing.JLabel();
-        customButton1 = new Components.CustomButton();
+        btnSimpan = new Components.CustomButton();
         jLabel3 = new javax.swing.JLabel();
         namaUser = new Components.CustomField();
         password = new Components.CustomField();
@@ -54,37 +54,37 @@ customButton1.setBorder(new FlatButtonBorder());
         jLabel7 = new javax.swing.JLabel();
         alamat = new Components.CustomField();
         role = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
-        searchObat = new Components.CustomField();
-        buttonIcon1 = new Components.ButtonIcon();
-        buttonIcon2 = new Components.ButtonIcon();
-        buttonIcon3 = new Components.ButtonIcon();
+        baseLayer = new javax.swing.JPanel();
+        search = new Components.CustomField();
+        btnUbah = new Components.ButtonIcon();
+        btnHapus = new Components.ButtonIcon();
+        btnTambah = new Components.ButtonIcon();
         jPanel3 = new Components.CustomPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        formName.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        formName.setForeground(new java.awt.Color(0, 0, 0));
-        formName.setText("Tambah User Baru");
+        formTitle.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        formTitle.setForeground(new java.awt.Color(0, 0, 0));
+        formTitle.setText("Tambah User Baru");
 
-        ktp.setPlaceholder("Masukkan Nomor KTP");
+        no_hp.setPlaceholder("Masukkan Nomor Telepon");
 
-        jLabel2.setText("Nomor KTP*");
+        jLabel2.setText("Nomor Telepon*");
 
-        customButton1.setIcon("Assets/svg/saveIcon.svg");
-        customButton1.setText("Simpan");
-        customButton1.setBorderPainted(false);
-        customButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSimpan.setIcon("Assets/svg/saveIcon.svg");
+        btnSimpan.setText("Simpan");
+        btnSimpan.setBorderPainted(false);
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customButton1ActionPerformed(evt);
+                btnSimpanActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Nama User");
 
-        namaUser.setPlaceholder("Masukkan Nomor KTP");
+        namaUser.setPlaceholder("Masukkan Nama Pengguna");
 
         password.setPlaceholder("Masukkan Password");
 
@@ -124,17 +124,17 @@ customButton1.setBorder(new FlatButtonBorder());
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(no_hp, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(313, 313, 313)
@@ -146,13 +146,13 @@ customButton1.setBorder(new FlatButtonBorder());
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(formName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ktp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(no_hp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,30 +176,30 @@ customButton1.setBorder(new FlatButtonBorder());
                     .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form.getContentPane());
+        form.getContentPane().setLayout(formLayout);
+        formLayout.setHorizontalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        formLayout.setVerticalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(245, 245, 250));
-        jPanel1.setOpaque(false);
-        jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+        baseLayer.setBackground(new java.awt.Color(245, 245, 250));
+        baseLayer.setOpaque(false);
+        baseLayer.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jPanel1AncestorAdded(evt);
+                baseLayerAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -207,40 +207,37 @@ customButton1.setBorder(new FlatButtonBorder());
             }
         });
 
-        searchObat.setPlaceholder("Cari User");
-        searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
+        search.setPlaceholder("Cari User");
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchObatKeyReleased(evt);
+                searchKeyReleased(evt);
             }
         });
 
-        buttonIcon1.setBackground(new java.awt.Color(109, 207, 102));
-        buttonIcon1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon1.setText("edit");
-        buttonIcon1.setIcon("Assets/svg/editIcon.svg");
-        buttonIcon1.addActionListener(new java.awt.event.ActionListener() {
+        btnUbah.setBackground(new java.awt.Color(109, 207, 102));
+        btnUbah.setForeground(new java.awt.Color(255, 255, 255));
+        btnUbah.setIcon("Assets/svg/editIcon.svg");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon1ActionPerformed(evt);
+                btnUbahActionPerformed(evt);
             }
         });
 
-        buttonIcon2.setBackground(new java.awt.Color(215, 9, 83));
-        buttonIcon2.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon2.setText("hapus");
-        buttonIcon2.setIcon("Assets/svg/deleteIcon.svg");
-        buttonIcon2.addActionListener(new java.awt.event.ActionListener() {
+        btnHapus.setBackground(new java.awt.Color(215, 9, 83));
+        btnHapus.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapus.setIcon("Assets/svg/deleteIcon.svg");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon2ActionPerformed(evt);
+                btnHapusActionPerformed(evt);
             }
         });
 
-        buttonIcon3.setIcon("Assets/svg/addIcon.svg");
-        buttonIcon3.setBackground(new java.awt.Color(58, 98, 215));
-        buttonIcon3.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon3.setText("Tambah");
-        buttonIcon3.addActionListener(new java.awt.event.ActionListener() {
+        btnTambah.setIcon("Assets/svg/addIcon.svg");
+        btnTambah.setBackground(new java.awt.Color(58, 98, 215));
+        btnTambah.setForeground(new java.awt.Color(255, 255, 255));
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon3ActionPerformed(evt);
+                btnTambahActionPerformed(evt);
             }
         });
 
@@ -307,32 +304,32 @@ customButton1.setBorder(new FlatButtonBorder());
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout baseLayerLayout = new javax.swing.GroupLayout(baseLayer);
+        baseLayer.setLayout(baseLayerLayout);
+        baseLayerLayout.setHorizontalGroup(
+            baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayerLayout.createSequentialGroup()
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        baseLayerLayout.setVerticalGroup(
+            baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(baseLayerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(buttonIcon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnTambah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -342,79 +339,141 @@ customButton1.setBorder(new FlatButtonBorder());
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(baseLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(baseLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchObatKeyReleased
-        controller.cariData(searchObat.getText());
-    }//GEN-LAST:event_searchObatKeyReleased
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+    }//GEN-LAST:event_searchKeyReleased
 
-    private void customButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton1ActionPerformed
-        controller.simpanData(new Object[]{ktp, namaUser, username, password, alamat, role});
-    }//GEN-LAST:event_customButton1ActionPerformed
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
-    private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
-        int row = table.getSelectedRow();
-        formName.setText("Ubah User ");
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+      
+    }//GEN-LAST:event_btnUbahActionPerformed
 
-        controller.editData(new Object[]{row, ktp, namaUser, username, password, alamat, role});
-    }//GEN-LAST:event_buttonIcon1ActionPerformed
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+    }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
-        int row = table.getSelectedRow();
-        controller.hapusData(new Object[]{row});        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonIcon2ActionPerformed
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+    }//GEN-LAST:event_btnTambahActionPerformed
 
-    private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
-        formName.setText("Tambah User Baru");
-        ktp.setText("");
-        namaUser.setText("");
-        username.setText("");
-        password.setText("");
-        alamat.setText("");
-        role.setSelectedIndex(0);
-
-        controller.tambahData(null);
-    }//GEN-LAST:event_buttonIcon3ActionPerformed
-
-    private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
-        reset();
-    }//GEN-LAST:event_jPanel1AncestorAdded
+    private void baseLayerAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_baseLayerAncestorAdded
+    }//GEN-LAST:event_baseLayerAncestorAdded
 
     public void reset() {
-        controller = new Controllers.UserController(table, jDialog1);
-        controller.tampilData();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.CustomField alamat;
-    private Components.ButtonIcon buttonIcon1;
-    private Components.ButtonIcon buttonIcon2;
-    private Components.ButtonIcon buttonIcon3;
-    private Components.CustomButton customButton1;
-    private javax.swing.JLabel formName;
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JPanel baseLayer;
+    private Components.ButtonIcon btnHapus;
+    private Components.CustomButton btnSimpan;
+    private Components.ButtonIcon btnTambah;
+    private Components.ButtonIcon btnUbah;
+    private javax.swing.JDialog form;
+    private javax.swing.JLabel formTitle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private Components.CustomField ktp;
     private Components.CustomField namaUser;
+    private Components.CustomField no_hp;
     private Components.CustomField password;
     private javax.swing.JComboBox<String> role;
-    private Components.CustomField searchObat;
+    private Components.CustomField search;
     private javax.swing.JTable table;
     private Components.CustomField username;
     // End of variables declaration//GEN-END:variables
+
+    public Components.CustomField getAlamat() {
+        return alamat;
+    }
+
+    public Components.ButtonIcon getBtnHapus() {
+        return btnHapus;
+    }
+
+    
+
+    public Components.CustomButton getBtnSimpan() {
+        return btnSimpan;
+    }
+
+   
+    public Components.ButtonIcon getBtnTambah() {
+        return btnTambah;
+    }
+
+    
+
+    public Components.ButtonIcon getBtnUbah() {
+        return btnUbah;
+    }
+
+    
+
+    public javax.swing.JDialog getForm() {
+        return form;
+    }
+
+   
+
+    public javax.swing.JLabel getFormTitle() {
+        return formTitle;
+    }
+
+    
+
+    public Components.CustomField getNo_hp() {
+        return no_hp;
+    }
+
+    
+
+    public Components.CustomField getPassword() {
+        return password;
+    }
+
+   
+
+    public javax.swing.JComboBox<String> getRole() {
+        return role;
+    }
+
+    public Components.CustomField getSearch() {
+        return search;
+    }
+
+    
+
+    public javax.swing.JTable getTable() {
+        return table;
+    }
+
+    
+
+    public Components.CustomField getUsername() {
+        return username;
+    }
+
+
+    public Components.CustomField getNamaUser() {
+        return namaUser;
+    }
+
+
+    public javax.swing.JPanel getBaseLayer() {
+        return baseLayer;
+    }
 }
