@@ -5,53 +5,74 @@
 package Controllers;
 
 import Config.DB;
+import Core.Controller;
+import Helper.Notification;
+import View.UserView;
+
+import java.awt.Component;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import App.Model.UserModel;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
-public class UserController  {
+public class UserController  extends Controller {
 
-    private ArrayList<Integer> id = new ArrayList<>();
     private int idEdit;
     //status 1 untuk tambah 2 untuk edit
     private int status = 1;
-    private JTable table;
-    private JDialog form;
+ 
     private ArrayList<Object[]> userList = new ArrayList<>();
-
-    public UserController(JTable table, JDialog form) {
-        this.table = table;
-        this.form = form;
+    private UserView view = new UserView();
+    private UserModel model = new UserModel();
+    public UserController() {
+        view.getSearch().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+               tampilData(true);
+            }
+        });
+        tampilData(false);
+        view.getBtnUbah().addActionListener(e->editData());
+        view.getBtnHapus().addActionListener(e->hapusData());
+        view.getBtnTambah().addActionListener(e->tambahData());
+        view.getBtnSimpan().addActionListener(e -> simpanData());
+        view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
+        public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            tampilData(false);        }
+        public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+        }
+        public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+        }
+    });
     }
 
-    public void tampilData() {
+    public void tampilData(boolean cari) {
         try {
+            String kunci = view.getSearch().getText();
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM users order by id desc");
+            ResultSet data = model.orderBy("id", "desc").get();
+            if (cari) {
+                data = model.where("nama", "like", "%" + kunci + "%").orWhere("alamat","like", "%" + kunci + "%").orderBy("id", "desc").get();
+            }
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
-            tables.fireTableDataChanged();
+            DefaultTableModel tables = (DefaultTableModel) view.getTable().getModel();
             tables.setRowCount(0);
-            int[] arrayId = new int[10];
-            id.clear();
             userList.clear();
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no, data.getString("no_ktp"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
+                Object[] dataTable = {no, data.getString("no_hp"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
-                id.add(data.getInt("id"));
-                userList.add(new Object[]{data.getInt("id"), data.getString("no_ktp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
+                userList.add(new Object[]{data.getInt("id"), data.getString("no_hp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
                 no++;
             }
 
@@ -61,107 +82,86 @@ public class UserController  {
     }
 
     
-    public void tambahData(Object[] object) {
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
+    public void tambahData() {
+      showForm();
     }
 
     
-    public void hapusData(Object[] object) {
+    public void hapusData() {
         try {
-            int row = (int) object[0];
+            int row = view.getTable().getSelectedRow();
             if (row < 0) {
-                JOptionPane.showMessageDialog(table, "Tidak ada baris yang dipilih");
+                JOptionPane.showMessageDialog(view.getTable(), "Tidak ada baris yang dipilih");
                 return;
 
             }
-            int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
-            if (confirm != 0) {
-                return;
-            }
+            int confirm = JOptionPane.showConfirmDialog(view.getTable(), "Yakin menghapus data?");
+            if (confirm != 0)return;
 
             int id = (int) userList.get(row)[0];
             ResultSet dataUserTrx = DB.query("SELECT count(*) as count from transaksi_penjualan where id_user='" + id + "'");
             dataUserTrx.next();
             if (dataUserTrx.getInt("count") > 0) {
-                JOptionPane.showMessageDialog(table, "Data user gagal dihapus, Data sedang digunakan");
+                JOptionPane.showMessageDialog(view.getTable(), "Data user gagal dihapus, Data sedang digunakan");
                 return;
             }
-            DB.query2("DELETE FROM users where id='" + id + "'");
-            JOptionPane.showMessageDialog(table, "Data Berhasil Di Hapus");
+            model.delete("id='" + id + "'");
+            JOptionPane.showMessageDialog(view.getTable(), "Data Berhasil Di Hapus");
 
-            tampilData();
+            tampilData(false);
 
-        } catch (Exception e) {
-        }
-    }
-
-    public void cariData(String kunci) {
-        try {
-            ResultSet data = DB.query("SELECT * FROM users where nama like '%" + kunci + "%' OR  alamat like '%" + kunci + "%' order by id desc");
-            int no = 1;
-            // menggunakan DefaultTableModel supaya bisa menambahkan data
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
-            tables.fireTableDataChanged();
-            tables.setRowCount(0);
-            int[] arrayId = new int[10];
-            id.clear();
-            userList.clear();
-            while (data.next()) {
-                //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no, data.getString("no_ktp"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
-                //  memasukkan data kepada tabel
-                tables.addRow(dataTable);
-                id.add(data.getInt("id"));
-                userList.add(new Object[]{data.getInt("id"), data.getString("no_ktp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});
-                no++;
-            }
-
-        } catch (Exception e) {
-            System.out.println("error dari method tampil data " + e.getMessage());
+        } catch (SQLException e) {
+             if ( e.getErrorCode() == 1451) {
+                 Notification.showError(Notification.DATA_IN_USE_ERROR , view.getTable());
+                 return;
+             }
+            Notification.showError(Notification.SERVER_ERROR + e.getMessage(), view.getTable());
         }
     }
 
     
-    public void simpanData(Object[] object) {
-        JTextField ktpField = (JTextField) object[0];
-        JTextField namaUserField = (JTextField) object[1];
-        JTextField usernameField = (JTextField) object[2];
-        JTextField passwordField = (JTextField) object[3];
-        JTextField alamatField = (JTextField) object[4];
-        JComboBox roleField = (JComboBox) object[5];
 
-        String ktp = ktpField.getText();
-        String nama = namaUserField.getText();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String alamat = alamatField.getText();
-        String role = roleField.getSelectedItem().toString();
+    
+    public void simpanData() {
+       
+
+        String notlp = view.getNo_hp().getText();
+        String nama = view.getNamaUser().getText();
+        String username = view.getUsername().getText();
+        String password = view.getPassword().getText();
+        String alamat = view.getAlamat().getText();
+        String role = view.getRole().getSelectedItem().toString();
         try {
-            if (userList.stream().anyMatch(satuan -> satuan[0].toString().trim().equalsIgnoreCase(ktp.trim()) && satuan[3].toString().trim().equalsIgnoreCase(username.trim()) && ((int) satuan[0]) != idEdit)) {
-                JOptionPane.showMessageDialog(form, "Nama Kategori Sudah Ada");
-            } else if (ktp.equals("") || nama.equals("") || username.equals("") || password.equals("") || alamat.equals("") || role.equals("")) {
-                JOptionPane.showMessageDialog(form, "Field Tidak Boleh Kosong");
+           ResultSet checkNoTlp =  DB.query("SELECT * FROM users where no_hp = '"+notlp+"' AND id <> '"+idEdit+"'");
+           ResultSet checkNoUsername =  DB.query("SELECT * FROM users where username = '"+username+"' AND id <> '"+idEdit+"'");
+             if (checkNoTlp.next()) {
+                JOptionPane.showMessageDialog(view.getForm(), "Nomor Telepon Sudah Ada");
+            }else if (checkNoUsername.next()) {
+                JOptionPane.showMessageDialog(view.getForm(), "Username Sudah Ada");
+            }else if (notlp.equals("") || nama.equals("") || username.equals("") || password.equals("") || alamat.equals("") || role.equals("")) {
+                JOptionPane.showMessageDialog(view.getForm(), "Field Tidak Boleh Kosong");
 
-            } else {
+            }else if (!notlp.matches("(^\\+62|0)(\\d{8,15})$")) {
+                JOptionPane.showMessageDialog(view.getForm(), "Nomor telepon tidak valid ");
+            }  else {
+                
                 if (status == 1) {
-                    DB.query2("INSERT INTO users (no_ktp,nama,alamat,username,password,role)Values ('" + ktp + "','" + nama + "','" + alamat + "','" + username + "','" + password + "','" + role + "')");
+                    DB.query2("INSERT INTO users (no_hp,nama,alamat,username,password,role)Values ('" + notlp + "','" + nama + "','" + alamat + "','" + username + "','" + password + "','" + role + "')");
                 } else {
-                    DB.query2("UPDATE users SET no_ktp = '" + ktp + "', nama = '" + nama + "', alamat = '" + alamat + "', username = '" + username + "', password = '" + password + "', role = '" + role + "' WHERE id = '" + idEdit + "'");
+                    DB.query2("UPDATE users SET no_hp = '" + notlp + "', nama = '" + nama + "', alamat = '" + alamat + "', username = '" + username + "', password = '" + password + "', role = '" + role + "' WHERE id = '" + idEdit + "'");
                     status = 1;
                     idEdit = -1;
                 }
-                JOptionPane.showMessageDialog(table, "Data Berhasil Di Simpan");
+                JOptionPane.showMessageDialog(view.getForm(), "Data Berhasil Di Simpan");
 
-                tampilData();
-                form.dispose();
-                ktpField.setText("");
-                namaUserField.setText("");
-                usernameField.setText("");
-                passwordField.setText("");
-                alamatField.setText("");
-                roleField.setSelectedIndex(0);
+               view.getForm().dispose();
+               view.getNo_hp().setText("");
+               view.getNamaUser().setText("");
+               view.getUsername().setText("");
+               view.getPassword().setText("");
+               view.getAlamat().setText("");
+                tampilData(false);
+               view.getRole().setSelectedIndex(0);
             }
 
         } catch (Exception e) {
@@ -169,29 +169,36 @@ public class UserController  {
         }
     }
 
-    public void editData(Object[] rowTable) {
-        int row = (int) rowTable[0];
+    public void editData() {
+        int row = view.getTable().getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(table, "Tidak ada baris yang dipilih");
+            JOptionPane.showMessageDialog(view.getTable(), "Tidak ada baris yang dipilih");
             return;
         }
         idEdit = (int) userList.get(row)[0];
-        ((JTextField) rowTable[1]).setText(userList.get(row)[1].toString());
-        ((JTextField) rowTable[2]).setText(userList.get(row)[2].toString());
-        ((JTextField) rowTable[3]).setText(userList.get(row)[3].toString());
-        ((JTextField) rowTable[4]).setText(userList.get(row)[4].toString());
-        ((JTextField) rowTable[5]).setText(userList.get(row)[5].toString());
-        ((JComboBox) rowTable[6]).setSelectedItem(userList.get(row)[6].toString());
+        view.getNo_hp().setText(userList.get(row)[1].toString());
+        view.getNamaUser().setText(userList.get(row)[2].toString());
+        view.getUsername().setText(userList.get(row)[3].toString());
+        view.getPassword().setText(userList.get(row)[4].toString());
+        view.getAlamat().setText(userList.get(row)[5].toString());
+        view.getRole().setSelectedItem(userList.get(row)[6].toString());
         status = 2;
 
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
+      showForm();
     }
 
+
+
     
-    public void updateData(Object[] object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void showForm(){
+        view.getForm().pack();
+        view.getForm().setLocationRelativeTo(null);
+        view.getForm().setVisible(true);
+    }
+
+    @Override
+    public Component getView() {
+        return view;
     }
 
 }

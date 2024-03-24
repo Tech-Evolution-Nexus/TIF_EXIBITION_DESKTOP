@@ -2,92 +2,109 @@
 package Controllers;
 
 import Config.DB;
+import Core.Controller;
 import Helper.Notification;
+import View.SatuanView;
+
+import java.awt.Component;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import java.sql.SQLException;
+import App.Model.SatuanModel;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
-public class SatuanController  {
+public class SatuanController  extends Controller{
 
-    private JTable table;
     private ArrayList<Object[]> satuanList = new ArrayList<>();
     private int idEdit;
     //status 1 untuk tambah 2 untuk edit
-    private int status = 1;
-    private JDialog form;
+    private SatuanView view = new SatuanView();
+    private SatuanModel model = new SatuanModel();
 
-    public SatuanController(JTable table, JDialog form) {
-        this.table = table;
-        this.form = form;
+    public SatuanController() {
+         view.getSearch().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+               tampilData(true);
+            }
+        });
+        tampilData(false);
+        view.getBtnUbah().addActionListener(e->editData());
+        view.getBtnHapus().addActionListener(e->hapusData());
+        view.getBtnTambah().addActionListener(e->tambahData());
+        view.getBtnSimpan().addActionListener(e -> simpanData());
+        view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
+        public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            tampilData(false);        }
+        public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+        }
+        public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+        }
+    });
     }
 
    
-    public void tampilData() {
+    public void tampilData(boolean cari) {
         try {
-            ResultSet dataSatuan = DB.query("SELECT * FROM `bentuk_sediaan_obat` ORDER BY `bentuk_sediaan_obat`.`id` DESC");
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
+             String kunci = view.getSearch().getText();
+            // mengambil data dari table kategori
+            ResultSet data = model.orderBy("id", "desc").get();
+            if (cari) {
+                data = model.where("nama_satuan","like","%"+kunci+"%").orderBy("id", "desc").get();
+            }
+            DefaultTableModel tables = (DefaultTableModel) view.getTable().getModel();
             int no = 1;
             tables.setRowCount(0);
             satuanList.clear();
-            while (dataSatuan.next()) {
-                Object[] rowData = {no, dataSatuan.getString("nama_bentuk_sediaan"), dataSatuan.getString("deskripsi")};
+            while (data.next()) {
+                Object[] rowData = {no, data.getString("nama_satuan"), data.getString("deskripsi")};
                 tables.addRow(rowData);
-                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_bentuk_sediaan")});
+                satuanList.add(new Object[]{data.getInt("id"), data.getString("nama_satuan")});
                 no++;
             }
         } catch (Exception e) {
             System.out.println("error dari tampil data satuan" + e.getMessage());
         }
     }
-
    
-    public void tambahData(Object[] object) {
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
+    public void tambahData() {
+        view.getNamaSatuan().setText("");
+        view.getKeterangan().setText("");
+        showForm();
     }
 
-   
-    public void simpanData(Object[] object) {
-        JTextField namaSatuanField = (JTextField) object[0];
-        JTextField keteranganField = (JTextField) object[1];
-        String namaSatuan = namaSatuanField.getText();
-        String keterangan = keteranganField.getText();
+    public void simpanData() {
+        String namaSatuan = view.getNamaSatuan().getText();
+        String keterangan = view.getKeterangan().getText();
         try {
-            if (satuanList.stream().anyMatch(satuan -> satuan[1].toString().trim().equalsIgnoreCase(namaSatuan.trim()) && ((int) satuan[0]) != idEdit)) {
-                JOptionPane.showMessageDialog(form, "Nama Satuan Sudah Ada");
+              ResultSet cekNamaSatuan = model.where("nama_satuan", "=", namaSatuan).andWhere("id", "<>", idEdit).get();
+            if (cekNamaSatuan.next()) {
+                Notification.showError( "Nama Satuan Sudah Ada",view.getForm());
             } else if (namaSatuan.equals("")) {
-                JOptionPane.showMessageDialog(form, "Nama Kategori Tidak Boleh Kosong");
-
+                Notification.showError( "Nama Kategori Tidak Boleh Kosong",view.getForm());
             } else {
                 if (keterangan.equals("")) {
                     keterangan = "-";
                 }
-                if (status == 1) {
-                    DB.query2("INSERT INTO bentuk_sediaan_obat (nama_bentuk_sediaan,deskripsi)VALUES ('" + namaSatuan + "','" + keterangan + "')");
+                 String[] fields= {"nama_satuan","deskripsi"};
+                String[] values= {namaSatuan,keterangan};
+                if (idEdit == 0) {
+                    model.insert(fields, values);
+                    Notification.showSuccess( "Satuan Berhasil Ditambah",view.getForm());
                 } else {
-
-                    DB.query2("UPDATE bentuk_sediaan_obat SET nama_bentuk_sediaan = '" + namaSatuan + "' , deskripsi='" + keterangan + "' WHERE id ='" + idEdit + "'");
-                    status = 1;
-                    idEdit = -1;
+                    model.update(fields, values, "id ='" + idEdit + "'");
+                    idEdit = 0;
+                    Notification.showSuccess( "Satuan Berhasil Diubah",view.getForm());
                 }
-
-                JOptionPane.showMessageDialog(table, "Data Berhasil Di Simpan");
-
-                tampilData();
-                form.dispose();
-                namaSatuanField.setText("");
-                keteranganField.setText("");
-
+                tampilData(false);
+                view.getForm().dispose();
+                view.getNamaSatuan().setText("");
+                view.getKeterangan().setText("");
             }
 
         } catch (Exception e) {
@@ -96,76 +113,59 @@ public class SatuanController  {
     }
 
    
-    public void editData(Object[] rowTable) {
-        int row = (int) rowTable[0];
+    public void editData() {
+        int row = view.getTable().getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(table, "Tidak ada baris yang dipilih");
+            Notification.showInfo( "Tidak ada baris yang dipilih",view.getTable());
             return;
         }
-        JTextField namaSatuan = (JTextField) rowTable[1];
-        String namaFromTable = table.getValueAt(row, 1).toString();
-        JTextField keterangan = (JTextField) rowTable[2];
-        String keteranganFromTable = table.getValueAt(row, 2).toString();
+        String namaFromTable = view.getTable().getValueAt(row, 1).toString();
+        String keteranganFromTable = view.getTable().getValueAt(row, 2).toString();
         //set value ke text field
-        namaSatuan.setText(namaFromTable);
-        keterangan.setText(keteranganFromTable);
-        status = 2;
+        view.getNamaSatuan().setText(namaFromTable);
+        view.getKeterangan().setText(keteranganFromTable);
         idEdit = (int) satuanList.get(row)[0];
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
+        showForm();
     }
-
    
-    public void updateData(Object[] object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   
-    public void hapusData(Object[] object) {
+    public void hapusData() {
         try {
-            int row = (int) object[0];
-            int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
-            if (confirm != 0) {
+            int row = view.getTable().getSelectedRow();
+            boolean confirm = Notification.showConfirmDelete(view.getTable());
+            if (confirm) {
                 return;
             }
             if (row < 0) {
-                JOptionPane.showMessageDialog(table, "Tidak ada baris yang dipilih");
+                Notification.showInfo( "Tidak ada baris yang dipilih",view.getTable());
                 return;
-
             }
             int id = (int) satuanList.get(row)[0];
-            ResultSet data = DB.query("SELECT count(*)as count from obat where id_bentuk_sediaan = '"+id+"'" );
+            ResultSet data = DB.query("SELECT count(*)as count from obat where id_satuan = '"+id+"'" );
             data.next();
-            if(data.getInt("count") > 0){
-                Notification.showInfo(Notification.DATA_IN_USE_ERROR, table);
+            if (data.getInt("count") > 0) {
+                Notification.showInfo(Notification.DATA_IN_USE_ERROR, view.getTable());
                 return;
             }
-            DB.query2("delete from bentuk_sediaan_obat where id = '"+id+"'");
-            tampilData();
-            JOptionPane.showMessageDialog(table, "Data Berhasil Di Hapus");
+            model.delete(" id = '" + id + "' ");
+            tampilData(false);
+            JOptionPane.showMessageDialog(view.getTable(), "Data Berhasil Di Hapus");
 
         } catch (Exception e) {
             System.out.println("error dari hapus data satuan " + e.getMessage());
         }
     }
 
-    public void cariData(String kunci) {
-        try {
-            ResultSet dataSatuan = DB.query("SELECT * FROM `bentuk_sediaan_obat` WHERE nama_bentuk_sediaan like '%" + kunci + "%' ORDER BY `bentuk_sediaan_obat`.`id` DESC");
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
-            int no = 1;
-            tables.setRowCount(0);
-            satuanList.clear();
-            while (dataSatuan.next()) {
-                Object[] rowData = {no, dataSatuan.getString("nama_bentuk_sediaan"), dataSatuan.getString("deskripsi")};
-                tables.addRow(rowData);
-                satuanList.add(new Object[]{dataSatuan.getInt("id"), dataSatuan.getString("nama_bentuk_sediaan")});
-                no++;
-            }
-        } catch (Exception e) {
-            System.out.println("error dari tampil data satuan" + e.getMessage());
-        }
+    
+
+    @Override
+    public Component getView() {
+        return view;
+    }
+
+    private void showForm() {
+         view.getForm().pack();
+        view.getForm().setLocationRelativeTo(null);
+        view.getForm().setVisible(true);
     }
 
 }

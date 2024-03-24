@@ -7,6 +7,7 @@ package Main;
 import View.Auth.SaldoKasAwal;
 import View.Auth.login;
 import Config.DB;
+import Controllers.SatuanController;
 import Helper.FormatTanggal;
 import View.KategoriView;
 import Laporan.LaporanMain;
@@ -19,6 +20,8 @@ import View.PenjualanView;
 import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -74,19 +77,19 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
 //        main.add(new ObatView(), "Medicine");
-        main.add(new ObatView(), "obat");
-        main.add(new SatuanView(), "satuan");
-        main.add(new KategoriView(), "Category");
-        main.add(new UserView(), "User");
-        main.add(new SuplierView(), "Supplier");
-        main.add(new LaporanMain(), "Report");
-        main.add(new PenjualanView(), "penjualan");
-        main.add(new View.PembelianView(), "pembelian");
-        main.add(new PengeluaranView(), "pengeluaran");
-//        main.add(new PembelianView(), "pembelian");
-        main.add(new DashboardView(), "Home");
+        // main.add(new ObatView(), "obat");
+        main.add(new SatuanController().getView(), "satuan");
+        main.add(new Controllers.KategoriController().getView(), "Category");
+        main.add(new Controllers.UserController().getView(), "User");
+        main.add(new Controllers.SupplierController().getView(), "Supplier");
+//         main.add(new LaporanMain(), "Report");
+//         main.add(new PenjualanView(), "penjualan");
+//         main.add(new View.PembelianView(), "pembelian");
+//         main.add(new PengeluaranView(), "pengeluaran");
+// //        main.add(new PembelianView(), "pembelian");
+//         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "Home");
+        cardLayout.show(main, "satuan");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
@@ -216,9 +219,9 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(338, 338, 338)
-                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addGap(268, 268, 268)
+                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
