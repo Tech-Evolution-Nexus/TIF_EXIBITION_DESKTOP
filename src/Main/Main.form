@@ -200,13 +200,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Component id="pageName" pref="717" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="433" max="-2" attributes="0"/>
+                      <Component id="pageName" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="338" max="-2" attributes="0"/>
                       <Component id="tanggal" min="-2" pref="143" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="pageName" pref="416" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
-                      <Component id="tanggal" min="-2" pref="213" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
               </Group>

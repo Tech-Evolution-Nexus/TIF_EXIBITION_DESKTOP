@@ -936,7 +936,7 @@ public class DashboardView extends javax.swing.JPanel {
                 }
                 JPanel jp = new JPanel();
                 jp.setBackground(Color.white);
-                jp.setMaximumSize(new Dimension(374, 40));
+                jp.setMaximumSize(new Dimension(300, 40));
                 jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
                 jp.setBorder(new EmptyBorder(2, 2, 2, 2));
                 JLabel label = new JLabel(pesan);
@@ -982,6 +982,7 @@ public class DashboardView extends javax.swing.JPanel {
 
                 // Membuat objek GridBagConstraints
                 jPanel7.add(LABEL);
+                jPanel7.add(Box.createVerticalStrut(10));
             }
             chart2.start();
 

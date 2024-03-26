@@ -4,15 +4,48 @@
  */
 package Laporan;
 
-import Controllers.LaporanPenjualanController;
+import Components.MonthChooserPanel;
+import Components.YearChooserPanel;
+import Config.DB;
 import Controllers.LaporanStokController;
+import Helper.convertbulantoangka;
+import View.StokOpnameView;
+import com.formdev.flatlaf.FlatClientProperties;
+import de.wannawork.jcalendar.JCalendarComboBox;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import table.TableCustom;
+import java.awt.Component;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
 public class StokView extends javax.swing.JPanel {
+
+    MonthChooserPanel monthChooserPanel;
+    MonthChooserPanel monthChooserPanel2;
+    YearChooserPanel yeaChooserPanel;
+    JCalendarComboBox dateChooser;
+    JCalendarComboBox dateChooser2;
+
+    private String kode_obatt;
+    private String bulan1;
+    private String bulan2;
 
     private LaporanStokController controller;
 
@@ -21,9 +54,17 @@ public class StokView extends javax.swing.JPanel {
      */
     public StokView() {
         initComponents();
-        controller = new LaporanStokController(jTable1, form);
-        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-        controller.tampilData();
+//        controller = new LaporanStokController(jTable1, form);
+//        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+//        controller.tampilData();
+//        dateChooserPanel1.getMonthComboBox().addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                // Memanggil metode getSelectedMonth() dari DateChooserPanel
+//                String selectedMonth = dateChooserPanel1.getSelectedMonth();
+//                System.out.println("Selected Month: " + selectedMonth);
+//            }
+//        });
+
     }
 
     /**
@@ -36,12 +77,31 @@ public class StokView extends javax.swing.JPanel {
     private void initComponents() {
 
         form = new javax.swing.JDialog();
+        modal_cari = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        periode = new javax.swing.JComboBox<>();
+        filter = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cariobat = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nama_obat = new javax.swing.JLabel();
+        satuan = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        filtertext = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form.getContentPane());
         form.getContentPane().setLayout(formLayout);
@@ -52,6 +112,46 @@ public class StokView extends javax.swing.JPanel {
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "No", "Kode Obat", "Nama Obat", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modal_cariLayout = new javax.swing.GroupLayout(modal_cari.getContentPane());
+        modal_cari.getContentPane().setLayout(modal_cariLayout);
+        modal_cariLayout.setHorizontalGroup(
+            modal_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modal_cariLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+        modal_cariLayout.setVerticalGroup(
+            modal_cariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modal_cariLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -67,20 +167,17 @@ public class StokView extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "No", "Kode Transaksi", "Nama Kasir", "Total Barang Terjual", "Tanggal Transaksi"
+                "Tanggal", "Kode Kartu Stok", "Supplier", "Qty Awal", "Qty Masuk", "Qty Keluar", "Qty Akhir"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -91,24 +188,27 @@ public class StokView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setShowGrid(true);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(50);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(70);
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        periode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Hari", "Bulan", "Tahun" }));
-        periode.addItemListener(new java.awt.event.ItemListener() {
+        filter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Tanggal", "Bulan", "Tahun" }));
+        filter.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                periodeItemStateChanged(evt);
+                filterItemStateChanged(evt);
             }
         });
 
-        jLabel1.setText("Pilih Periode ");
+        jLabel1.setText("Filter");
 
         jButton1.setText("Export");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,31 +217,150 @@ public class StokView extends javax.swing.JPanel {
             }
         });
 
+        cariobat.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"No Batch,Kode Obat,Nama Obat");
+
+        jButton2.setText("jButton1");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Cari");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setText("Nama Obat");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setText("Satuan");
+
+        nama_obat.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+
+        satuan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel7.setText(":");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setText(":");
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setEnabled(false);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.X_AXIS));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setText("Tanggal, Bulan, Tahun");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setText(":");
+
+        filtertext.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+
+        jButton5.setText("Export");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(periode, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cariobat, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nama_obat, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                                    .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(filtertext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(233, 233, 233)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cariobat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(periode, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
+                        .addComponent(nama_obat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(3, 3, 3)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel9))
+                    .addComponent(filtertext, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -161,9 +380,24 @@ public class StokView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void periodeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_periodeItemStateChanged
-        controller.filterPeriode(new Object[]{periode});
-    }//GEN-LAST:event_periodeItemStateChanged
+    private void filterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filterItemStateChanged
+//        controller.filterPeriode(new Object[]{periode});
+        String data = filter.getSelectedItem().toString();
+        jPanel2.removeAll();
+
+        if (data.equalsIgnoreCase("tanggal")) {
+            setupDatePanel();
+        } else if (data.equalsIgnoreCase("bulan")) {
+            setupMonthPanel();
+        } else if (data.equalsIgnoreCase("tahun")) {
+            setupYearPanel();
+        } else {
+            setupDefaultPanel();
+        }
+
+        jPanel2.revalidate();
+        jPanel2.repaint();
+    }//GEN-LAST:event_filterItemStateChanged
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
         reset();
@@ -172,20 +406,207 @@ public class StokView extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         controller.export();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            modal_cari.pack();
+            modal_cari.setLocationRelativeTo(null);
+            modal_cari.setVisible(true);
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.setRowCount(0);
+            String cari = cariobat.getText();
+            ResultSet data = DB.query("SELECT kode_obat,nama_obat from obat where nama_obat LIKE '%" + cari + "%'or kode_obat LIKE '%" + cari + "%'");
+            int no = 1;
+            while (data.next()) {
+                Object[] rowData = {no++, data.getString("kode_obat"), data.getString("nama_obat")};
+                model.addRow(rowData);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StokOpnameView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        int rows = jTable2.getSelectedRow();
+        int column = jTable2.getSelectedColumn();
+        if (rows != -1 && column != -1) {
+
+//            try {
+//
+            String dataselect = jTable2.getValueAt(rows, 1).toString();
+//                ResultSet data = DB.query("SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + dataselect + "'");
+//                ResultSet datal = DB.query("SELECT obat.nama_obat,satuan.nama_satuan FROM obat JOIN satuan ON obat.id_satuan = satuan.id where kode_obat = '" + dataselect + "'");
+//                if (datal.next()) {
+//                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//                    model.setRowCount(0);
+//
+//                    nama_obat.setText(datal.getString("nama_obat"));
+//                    satuan.setText(datal.getString("nama_satuan"));
+//                    while (data.next()) {
+//                        Object[] rowData = {data.getString("tanggal"), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
+//                        model.addRow(rowData);
+//                    }
+//
+//                }
+            kode_obatt = dataselect;
+            modal_cari.dispose();
+            cariobat.setText(dataselect);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(StokView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+        } else {
+            JOptionPane.showMessageDialog(this, "belum ada daat yg di pilih");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (kode_obatt != null && !kode_obatt.isEmpty()) {
+    try {
+        String datafilter = filter.getSelectedItem().toString();
+        String tampilan2 = "dd-MM-yyyy";
+        SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        ResultSet datal = DB.query("SELECT obat.nama_obat,satuan.nama_satuan FROM obat JOIN satuan ON obat.id_satuan = satuan.id where kode_obat = '" + kode_obatt + "'");
+        if (datal.next()) {
+            nama_obat.setText(datal.getString("nama_obat"));
+            satuan.setText(datal.getString("nama_satuan"));
+        }
+
+        ResultSet data;
+        String query = "";
+
+        if (datafilter.equalsIgnoreCase("tanggal")) {
+            String tampilan1 = "yyyy-MM-dd";
+            SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+            Date date1 = dateChooser.getDate();
+            Date date2 = dateChooser2.getDate();
+            String tanggalawal = tgl1.format(date1);
+            String tanggalakhir = tgl1.format(date2);
+
+            filtertext.setText(tgl2.format(date1) + " s.d " + tgl2.format(date2));
+            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND kartu_stok.tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+        } else if (datafilter.equalsIgnoreCase("bulan")) {
+            String bulan1 = monthChooserPanel.getSelectedMonth();
+            String bulan2 = monthChooserPanel2.getSelectedMonth();
+            int tahun = yeaChooserPanel.getSelectedYear();
+            int cbulan1 = convertbulantoangka.convertToMonthNumber(bulan1);
+            int cbulan2 = convertbulantoangka.convertToMonthNumber(bulan2);
+
+            filtertext.setText(bulan1 + " " + tahun + " s.d " + bulan2 + " " + tahun);
+            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + " AND MONTH(kartu_stok.tanggal) BETWEEN " + cbulan1 + " AND " + cbulan2 + ";";
+        } else if (datafilter.equalsIgnoreCase("tahun")) {
+            int tahun = yeaChooserPanel.getSelectedYear();
+            filtertext.setText(String.valueOf(tahun));
+            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + ";";
+        } else {
+            filtertext.setText("Semua");
+            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "'";
+        }
+
+        data = DB.query(query);
+        while (data.next()) {
+            Object[] rowData = {tgl2.format(data.getDate("tanggal")), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
+            model.addRow(rowData);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(StokView.class.getName()).log(Level.SEVERE, null, ex);
+    }
+} else {
+    JOptionPane.showMessageDialog(this, "Kolom pencarian Harus Di Isi");
+}
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public void reset() {
 //                removeAll();
 //        initComponents();
-        controller = new LaporanStokController(jTable1, form);
-        controller.tampilData();
+//        controller = new LaporanStokController(jTable1, form);
+//        controller.tampilData();
+    }
+
+    private void setupDatePanel() {
+        jLabel5.setText("Tanggal, Bulan, Tahun");
+
+        dateChooser = new JCalendarComboBox();
+        dateChooser2 = new JCalendarComboBox();
+
+        addComponentsWithLabels(dateChooser, "Tanggal 1");
+        addComponentsWithLabels(dateChooser2, "Tanggal 2");
+    }
+
+// Method to setup panel for month selection
+    private void setupMonthPanel() {
+        jLabel5.setText("Bulan Tahun");
+
+        monthChooserPanel = new MonthChooserPanel();
+        monthChooserPanel2 = new MonthChooserPanel();
+        yeaChooserPanel = new YearChooserPanel();
+
+        addComponentsWithLabels(monthChooserPanel, "Bulan 1");
+        addComponentsWithLabels(monthChooserPanel2, "Bulan 2");
+        addComponentsWithLabels(yeaChooserPanel, "Tahun");
+    }
+
+// Method to setup panel for year selection
+    private void setupYearPanel() {
+        jLabel5.setText("Tahun");
+
+        yeaChooserPanel = new YearChooserPanel();
+
+        addComponentsWithLabels(yeaChooserPanel, "Tahun");
+    }
+
+// Method to setup default panel
+    private void setupDefaultPanel() {
+        jLabel5.setText("Tanggal, Bulan, Tahun");
+    }
+
+// Method to add components with labels to the panel
+    private void addComponentsWithLabels(Component component, String labelText) {
+        JPanel cell = new JPanel(new BorderLayout());
+        JLabel title = new JLabel(labelText);
+        title.setBorder(BorderFactory.createEmptyBorder(5, 5, 4, 5));
+        cell.setBackground(Color.WHITE);
+        cell.add(title, BorderLayout.NORTH);
+        cell.add(component, BorderLayout.CENTER);
+        jPanel2.add(cell);
+        jPanel2.add(Box.createHorizontalStrut(10));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cariobat;
+    private javax.swing.JComboBox<String> filter;
+    private javax.swing.JLabel filtertext;
     private javax.swing.JDialog form;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox<String> periode;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JDialog modal_cari;
+    private javax.swing.JLabel nama_obat;
+    private javax.swing.JLabel satuan;
     // End of variables declaration//GEN-END:variables
 }

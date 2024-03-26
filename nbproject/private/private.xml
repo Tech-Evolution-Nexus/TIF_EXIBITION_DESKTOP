@@ -5,11 +5,12 @@
         <group>
             <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
             <file>file:/D:/TIF_EXIBITION_DESKTOP/src/View/StokOpnameView.java</file>
-            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/View/PenjualanView.java</file>
             <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Laporan/StokView.java</file>
-            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPembelianController.java</file>
+            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Components/MonthChooserPanel.java</file>
+            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
+            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Laporan/PendapatanView.java</file>
             <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Laporan/LaporanMain.java</file>
-            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/D:/TIF_EXIBITION_DESKTOP/src/Components/YearChooserPanel.java</file>
         </group>
     </open-files>
 </project-private>
