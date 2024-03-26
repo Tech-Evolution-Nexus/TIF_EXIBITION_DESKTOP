@@ -17,6 +17,7 @@ import View.SatuanView;
 import View.PengeluaranView;
 import View.SuplierView;
 import View.PenjualanView;
+import View.StokOpnameView;
 import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -141,6 +142,7 @@ public class Main extends javax.swing.JFrame {
         dialog.setBounds(new java.awt.Rectangle(100, 82, 300, 300));
         dialog.setUndecorated(true);
         dialog.setType(java.awt.Window.Type.POPUP);
+        dialog.getContentPane().setLayout(new java.awt.BorderLayout());
 
         dialog2.setBackground(new java.awt.Color(58, 98, 215));
         dialog2.setBorder(null);
@@ -189,9 +191,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(menu_bar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +245,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
+                .addGap(18, 18, 18))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +367,9 @@ public class Main extends javax.swing.JFrame {
         {"icf_trx.svg", "icn_trx.svg", "<html>Transaction <b>&#8595;</b></html>", "Transaksi", childTransaksi},
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
         {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
-        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong}};
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong}, 
+        {"icf_user.svg", "icn_user.svg", "Stok Opname", "Stok Opname", kosong},
+};
 
     private Object[][] menu_list_data_kasir = {
         {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},

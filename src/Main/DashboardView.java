@@ -166,6 +166,7 @@ public class DashboardView extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
 
         modalobat.setBackground(new java.awt.Color(255, 255, 255));
+        modalobat.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -226,6 +227,8 @@ public class DashboardView extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        modalkadaluarsa.setModal(true);
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("List Obat Akan Kadaluarsa Dan Kadaluarsa");
@@ -284,6 +287,8 @@ public class DashboardView extends javax.swing.JPanel {
             modalkadaluarsaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        modalstok.setModal(true);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -379,7 +384,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -402,10 +407,10 @@ public class DashboardView extends javax.swing.JPanel {
         notif_panelLayout.setHorizontalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notif_panelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(notif_exp, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(notif_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         notif_panelLayout.setVerticalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,7 +477,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -495,8 +500,8 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(notif_stok)
+            .addComponent(notif_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,9 +723,9 @@ public class DashboardView extends javax.swing.JPanel {
                     .addComponent(chart_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -751,6 +756,7 @@ public class DashboardView extends javax.swing.JPanel {
             modalobat.setLocationRelativeTo(null);
             modalobat.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tableobat.getModel();
+            tabelData.setRowCount(0);
             ResultSet data = DB.query("SELECT obatterlaris.kode_obat,obat.nama_obat,total_penjualan FROM `obatterlaris` JOIN obat ON obat.kode_obat= obatterlaris.kode_obat limit 15");
             int no = 1;
 
@@ -773,14 +779,16 @@ public class DashboardView extends javax.swing.JPanel {
             modalkadaluarsa.setLocationRelativeTo(null);
             modalkadaluarsa.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tablekadaluarsa.getModel();
-            ResultSet data = DB.query("SELECT nama_obat, stok_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM stok_obat JOIN data_obat ON data_obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
+            tabelData.setRowCount(0);
+
+            ResultSet data = DB.query("SELECT nama_obat, batch_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM batch_obat JOIN data_obat ON data_obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
             int no = 1;
-            
+
             while (data.next()) {
                 String keteranagan = "Sudah Kadaluarsa";
-            if (data.getInt("status") == 2) {
-                keteranagan = "Akan Kadaluarsa";
-            }
+                if (data.getInt("status") == 2) {
+                    keteranagan = "Akan Kadaluarsa";
+                }
                 Object[] dataArray = {no, data.getString("nama_obat"), data.getInt("jumlah_obat"), keteranagan};
                 tabelData.addRow(dataArray);
                 no++;
@@ -798,7 +806,9 @@ public class DashboardView extends javax.swing.JPanel {
             modalstok.setLocationRelativeTo(null);
             modalstok.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tabelstok.getModel();
-            ResultSet data = DB.query("SELECT obat.nama_obat,stok_obat.jumlah_obat FROM `stok_obat` JOIN obat ON obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat <= 10; ");
+                        tabelData.setRowCount(0);
+
+            ResultSet data = DB.query("SELECT obat.nama_obat,batch_obat.jumlah_obat FROM `batch_obat` JOIN obat ON obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat <= 10; ");
             int no = 1;
 
             while (data.next()) {
@@ -881,7 +891,7 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void ntf_stok() {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
-        ResultSet data = DB.query("SELECT obat.nama_obat,stok_obat.jumlah_obat FROM `stok_obat` JOIN obat ON obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat <= 10; ");
+        ResultSet data = DB.query("SELECT obat.nama_obat,batch_obat.jumlah_obat FROM `batch_obat` JOIN obat ON obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat <= 10; ");
         String pesan = "";
         try {
             while (data.next()) {
@@ -909,7 +919,7 @@ public class DashboardView extends javax.swing.JPanel {
 //        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         int yPos = 20;
         LocalDate date = LocalDate.now();
-        ResultSet data = DB.query("SELECT nama_obat, stok_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM stok_obat JOIN data_obat ON data_obat.kode_obat = stok_obat.kode_obat WHERE stok_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
+        ResultSet data = DB.query("SELECT nama_obat, batch_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM batch_obat JOIN data_obat ON data_obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
         String pesan = "";
         try {
             while (data.next()) {
