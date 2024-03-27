@@ -118,7 +118,7 @@ public class ObatController  extends Controller{
     public void tampilData(boolean cari) {
         try {
             String kunci = view.getSearch().getText();
-            ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0 AND  tanggal_dibuat > NOW() order by tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0  order by tanggal_dibuat desc");
             if (cari) {
                 data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc");
                 
@@ -428,3 +428,6 @@ public class ObatController  extends Controller{
         return view;
     }
 }
+
+
+

@@ -9,13 +9,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.table.TableCellRenderer;
 
-import Components.HoverIndex;
-import Components.TableCustomCellRender;
-import Components.TableHeaderCustomCellRender;
-import Components.TextAreaCellRenderer;
 import scroll.ScrollBarCustomUI;
 
 public class TableCustom {
