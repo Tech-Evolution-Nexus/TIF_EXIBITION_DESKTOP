@@ -271,7 +271,9 @@ public class ObatController  extends Controller{
         try {
             resetSatuanForm();
             clearDialog();
-            if (view.getTable().getSelectedRow() < 0) return;
+            if (view.getTable().getSelectedRow() < 0){
+            Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
+            return;}
             int row = view.getTable().getSelectedRow();
             String idObat = view.getTable().getValueAt(row, 1).toString();
             String namaObat = view.getTable().getValueAt(row, 2).toString();
