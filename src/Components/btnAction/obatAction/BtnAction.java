@@ -1,5 +1,6 @@
 package Components.btnAction.obatAction;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JTable;
@@ -12,9 +13,14 @@ public class BtnAction  extends DefaultTableCellRenderer{
             int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         ActionPanel satuanActionPanel = new ActionPanel();
-       if (isSelected) {
+        if (isSelected) {
             satuanActionPanel.setBackground(com.getBackground());
-       }
+        }      
+        else if (row % 2 == 0) {
+            satuanActionPanel.setBackground(Color.WHITE);
+        } else {
+            satuanActionPanel.setBackground(new Color(248, 248, 251));
+        }
         return satuanActionPanel;
     }
 }

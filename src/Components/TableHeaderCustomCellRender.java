@@ -1,8 +1,11 @@
 package table;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseListener;
+
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -19,8 +22,13 @@ public class TableHeaderCustomCellRender extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         setBorder(new EmptyBorder(8, 10, 8, 10));
+        // com.setFont(table.getTableHeader().getFont());
+        // com.setBackground(table.getTableHeader().getBackground());
         com.setFont(table.getTableHeader().getFont());
-        com.setBackground(table.getTableHeader().getBackground());
+        // com.setBackground(table.getTableHeader().getBackground());
+        com.setForeground(Color.WHITE);
+        com.setBackground(new Color(55, 98, 216));
+
         return com;
     }
 

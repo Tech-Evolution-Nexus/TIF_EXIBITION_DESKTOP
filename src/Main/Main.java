@@ -84,8 +84,8 @@ public class Main extends javax.swing.JFrame {
         main.add(new Controllers.UserController().getView(), "User");
         main.add(new Controllers.SupplierController().getView(), "Supplier");
 //         main.add(new LaporanMain(), "Report");
-        main.add(new PenjualanView(), "penjualan");
-//         main.add(new View.PembelianView(), "pembelian");
+        main.add(new Controllers.TransaksiPenjualanController().getView(), "penjualan");
+        main.add(new View.PembelianView(), "pembelian");
 //         main.add(new PengeluaranView(), "pengeluaran");
 // //        main.add(new PembelianView(), "pembelian");
 //         main.add(new DashboardView(), "Home");

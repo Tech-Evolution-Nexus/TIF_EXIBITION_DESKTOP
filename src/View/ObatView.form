@@ -46,7 +46,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="titleForm" min="-2" pref="244" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="1094" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -60,16 +60,22 @@
                                   </Group>
                                   <Component id="jLabel10" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jScrollPane5" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel18" min="-2" pref="228" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="430" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="satuan" max="32767" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="satuan" pref="216" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="total" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="marginPersen" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="marginHarga" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="btnSatuan" min="-2" pref="46" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -82,10 +88,10 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="titleForm" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="titleForm" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel10" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="jLabel18" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
@@ -96,7 +102,7 @@
                               <Component id="namaObat" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="kategori" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -104,10 +110,15 @@
                               <Component id="kandungan" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btnSatuan" pref="0" max="32767" attributes="0"/>
-                                  <Component id="satuan" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="satuan" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="total" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="marginPersen" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Component id="marginHarga" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="259" max="-2" attributes="0"/>
@@ -115,7 +126,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnSimpan" min="-2" pref="43" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -233,10 +244,10 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="Nama Satuan" type="java.lang.Object"/>
-                        <Column editable="true" title="Total" type="java.lang.Object"/>
+                        <Column editable="false" title="Total" type="java.lang.Object"/>
                         <Column editable="false" title="Satuan Terkecil" type="java.lang.Object"/>
-                        <Column editable="true" title="Margin Persen" type="java.lang.Object"/>
-                        <Column editable="true" title="Margin Harga" type="java.lang.Object"/>
+                        <Column editable="false" title="Margin Persen" type="java.lang.Object"/>
+                        <Column editable="false" title="Margin Harga" type="java.lang.Object"/>
                         <Column editable="true" title="Aksi" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -318,6 +329,24 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="Components.CustomField" name="total">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="total.setPlaceholder(&quot;Total&quot;);"/>
+              </AuxValues>
+            </Component>
+            <Component class="Components.CustomField" name="marginPersen">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marginPersenActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="marginPersen.setPlaceholder(&quot;Margin Persen&quot;);"/>
+              </AuxValues>
+            </Component>
+            <Component class="Components.CustomField" name="marginHarga">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="marginHarga.setPlaceholder(&quot;Margin harga&quot;);"/>
               </AuxValues>
             </Component>
           </SubComponents>

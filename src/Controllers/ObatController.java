@@ -43,18 +43,16 @@ import Components.btnAction.obatAction.BtnEditor;
 public class ObatController  extends Controller{
 
     int status = 1;
+    private int satuanIndexEdit = -1;
     private String idEdit = "";
     private ArrayList<Object[]> obatList = new ArrayList<Object[]>();
-    private ArrayList<JComboBox> satuanList = new ArrayList<JComboBox>();
-    private ArrayList<JTextField> satuanTotalList = new ArrayList<JTextField>();
-    private ArrayList<JTextField> hargaList = new ArrayList<JTextField>();
     private ObatView view = new ObatView();
     private ObatModel model = new ObatModel();
     private JenisPenjualanModel jenisPenjualanModel = new JenisPenjualanModel();
     private KategoriModel kategoriModel = new KategoriModel();
     private SatuanModel satuanModel = new SatuanModel();
     public ObatController() {
-          view.getSearch().addKeyListener(new KeyAdapter() {
+        view.getSearch().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                tampilData(true);
             }
@@ -79,7 +77,15 @@ public class ObatController  extends Controller{
 
             @Override
             public void onEdit(int row) {
-              System.out.println("dari edit");
+                satuanIndexEdit = row;
+                String satuan = view.getListSatuan().getValueAt(row, 0).toString();
+                String total = view.getListSatuan().getValueAt(row, 1).toString();
+                String marginHarga = view.getListSatuan().getValueAt(row, 4).toString();
+                String marginPersen = view.getListSatuan().getValueAt(row, 3).toString();
+                view.getSatuan().setSelectedItem(satuan);
+                view.getTotal().setText(total);
+                view.getMarginHarga().setText(marginHarga);
+                view.getMarginPersen().setText(marginPersen);
             }
 
             @Override
@@ -112,7 +118,7 @@ public class ObatController  extends Controller{
     public void tampilData(boolean cari) {
         try {
             String kunci = view.getSearch().getText();
-            ResultSet data = DB.query("SELECT * FROM data_obat order by tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0 AND  tanggal_dibuat > NOW() order by tanggal_dibuat desc");
             if (cari) {
                 data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc");
                 
@@ -143,6 +149,7 @@ public class ObatController  extends Controller{
 
     public void tambahData() {
         try {
+            resetSatuanForm();
             clearDialog();
             view.getTitleForm().setText("Tambah  Obat");
             ResultSet kategoriData = DB.query("SELECT * from kategori");
@@ -262,6 +269,7 @@ public class ObatController  extends Controller{
     
     public void editData() {
         try {
+            resetSatuanForm();
             clearDialog();
             if (view.getTable().getSelectedRow() < 0) return;
             int row = view.getTable().getSelectedRow();
@@ -354,7 +362,7 @@ public class ObatController  extends Controller{
     }
 
     private void listSatuan() {
-        DefaultTableModel model = (DefaultTableModel)view.getListSatuan().getModel();
+        DefaultTableModel model = (DefaultTableModel) view.getListSatuan().getModel();
         if (model.getRowCount() == 4) {
             Notification.showInfo("Satuan Obat maksimal 4", view.getForm());
             return;
@@ -362,177 +370,43 @@ public class ObatController  extends Controller{
         String namaSatuan = view.getSatuan().getSelectedItem().toString();
         String satuanTerkecil = model.getRowCount() == 0 ? namaSatuan
                 : view.getListSatuan().getValueAt(0, 0).toString();
-        model.addRow(new Object[] {namaSatuan,0,satuanTerkecil,0,0});
+        String total = view.getTotal().getText();
+        String marginHarga = view.getMarginHarga().getText();
+        String marginPersen = view.getMarginPersen().getText();
+        if (total.equals("")) {
+            Notification.showInfo("Total wajib diisi ", view.getForm());
+            return;
+        }
+        if (marginHarga.equals("") && marginPersen.equals("")) {
+            Notification.showInfo("Margin pendapatan harus diisi minimal 1", view.getForm());
+            return;
+        }
+        Object[] data = { namaSatuan, total, satuanTerkecil, marginPersen, marginHarga };
+        if (satuanIndexEdit == -1) {
+            model.addRow(data);
+        } else {
+            for (int i = 0; i < data.length; i++) {
+                model.setValueAt(data[i].toString(), satuanIndexEdit, i);
+            }
+            satuanIndexEdit = -1;
+        }
+        resetSatuanForm();
+
     }
     
+   
+    
   
-
-//     public void addList(Object[] component) {
-//         try {
-
-//             JComboBox satuan = (JComboBox) component[0];
-//             String satuanText = satuan.getSelectedItem().toString();
-//             DefaultTableModel model = (DefaultTableModel) view.getlist.getModel();
-// //            if (satuanList.size() == 5) {
-// //                JOptionPane.showMessageDialog(form, "Multi Satuan Maksimal 5");
-// //                return;
-// //            }
-// //            satuanList.add(satuanText);
-
-//             model.addRow(new Object[]{satuanText, "test"});
-
-//             ResultSet dataSatuan = getSatuan();
-//             satuan.removeAllItems();
-//             while (dataSatuan.next()) {
-//                 satuan.addItem(dataSatuan.getString("nama_bentuk_sediaan"));
-//             }
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         }
-
-//     }
-
-//     public ResultSet getSatuan() {
-//         try {
-//             String sql;
-//             sql = "SELECT * FROM bentuk_sediaan_obat ";
-//             return DB.query(sql);
-
-//         } catch (Exception e) {
-//             return null;
-//         }
-//     }
-
-  
-
-    // public void addSatuan(String idSelect, int harga, int total) {
-    //     ResultSet dataObat = getSatuan();
-
-    //     int w = satuanListCom.getBounds().width;
-    //     JPanel panel = new JPanel();
-    //     JTextField field = new JTextField("" + total);
-    //     JLabel label = new JLabel();
-    //     JComboBox combo = new JComboBox();
-    //     ButtonIcon button = new ButtonIcon();
-    //     button.setHorizontal(true);
-    //     button.setIcon("Assets/svg/deleteIcon.svg");
-
-    //     panel.add(combo);
-    //     if (satuanList.size() > 0) {
-    //         panel.add(field);
-    //         panel.add(label);
-    //         label.setText("/" + satuanList.get(0).getSelectedItem().toString());
-    //         label.setPreferredSize(new Dimension(70, 42));
-    //         combo.setPreferredSize(new Dimension(310, 42));
-    //         field.setPreferredSize(new Dimension(70, 42));
-    //         satuanList.get(0).addItemListener(new ItemListener() {
-                
-    //             public void itemStateChanged(ItemEvent e) {
-    //                 label.setText("/ " + satuanList.get(0).getSelectedItem().toString());
-    //             }
-    //         });
-    //         panel.add(button);
-    //     } else {
-    //         combo.setPreferredSize(new Dimension(450, 42));
-
-    //     }
-
-    //     panel.setBackground(Color.white);
-    //     button.setBackground(new Color(215, 9, 83));
-    //     panel.setMaximumSize(new Dimension(w, 50));
-    //     button.setPreferredSize(new Dimension(42, 42));
-
-    //     try {
-    //         while (dataObat.next()) {
-    //             combo.addItem(dataObat.getString("nama_bentuk_sediaan"));
-    //             if (idSelect != null && idSelect.equals(dataObat.getString("id").toString())) {
-    //                 combo.setSelectedItem(dataObat.getString("nama_bentuk_sediaan"));
-    //             }
-
-    //         }
-    //     } catch (Exception e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     satuanTotalList.add(field);
-    //     satuanListCom.add(panel);
-    //     satuanList.add(combo);
-    //     satuanListCom.repaint();
-    //     satuanListCom.revalidate();
-
-    //     generateHarga(combo, harga, button);
-    //     button.addMouseListener(new MouseAdapter() {
-            
-    //         public void mouseClicked(MouseEvent e) {
-    //             super.mouseClicked(e);
-    //             if (satuanList.size() == 1) {
-    //                 return;
-    //             }
-    //             deleteSatuanList(panel, combo, field);
-    //         }
-
-    //     });
-    // }
-
-    // public void generateHarga(JComboBox combos, int harga, javax.swing.JButton button) {
-    //     int w = satuanListCom.getBounds().width;
-    //     JPanel panel = new JPanel(new GridLayout());
-    //     JTextField field = new JTextField("" + harga);
-    //     JLabel label2 = new JLabel();
-    //     JLabel label = new JLabel("Def. Harga Satuan #" + (hargaList.size() + 1));
-
-    //     panel.add(label);
-    //     panel.add(field);
-    //     panel.add(label2);
-    //     label2.setText("/" + satuanList.get(0).getSelectedItem().toString());
-    //     label2.setPreferredSize(new Dimension(70, 42));
-    //     field.setPreferredSize(new Dimension(70, 42));
-    //     label.setBorder(new EmptyBorder(0, 0, 0, 20));
-    //     label2.setBorder(new EmptyBorder(0, 20, 0, 0));
-    //     panel.setBackground(Color.white);
-    //     panel.setMaximumSize(new Dimension(w, 42));
-    //     panel.setBorder(new EmptyBorder(5, 0, 5, 0));
-    //     combos.addItemListener(new ItemListener() {
-            
-    //         public void itemStateChanged(ItemEvent e) {
-    //             label2.setText("/ " + combos.getSelectedItem().toString());
-    //         }
-    //     });
-
-    //     button.addMouseListener(new MouseAdapter() {
-            
-    //         public void mouseClicked(MouseEvent e) {
-    //             super.mouseClicked(e);
-    //             if (satuanList.size() == 1) {
-    //                 return;
-    //             }
-    //             hargaList.remove(field);
-    //             hargaListCom.remove(panel);
-    //             satuanListCom.repaint();
-    //             satuanListCom.revalidate();
-    //         }
-
-    //     });
-    //     hargaList.add(field);
-    //     hargaListCom.add(panel);
-    //     hargaListCom.repaint();
-    //     hargaListCom.revalidate();
-
-    // }
-
-    // public void deleteSatuanList(JPanel panel, JComboBox combo, JTextField total) {
-    //     satuanList.remove(combo);
-    //     satuanTotalList.remove(total);
-    //     satuanListCom.remove(panel);
-    //     satuanListCom.repaint();
-    //     satuanListCom.revalidate();
-
-    //     System.out.println("dihapus");
-    // }
+    private void resetSatuanForm() {
+        view.getSatuan().setSelectedIndex(0);
+        view.getSatuan().setSelectedItem("");
+        view.getTotal().setText("");
+        view.getMarginHarga().setText("");
+        view.getMarginPersen().setText("");
+    }
 
     public void clearDialog() {
-        satuanList.clear();
-        hargaList.clear();
-        satuanTotalList.clear();
+        
         view.getKandungan().setText("");
         view.getNamaObat().setText("");
         DefaultTableModel listSatuan = (DefaultTableModel) view.getListSatuan().getModel();
