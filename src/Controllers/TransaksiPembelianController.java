@@ -176,7 +176,7 @@ public class TransaksiPembelianController {
                 insertTransaksiStatement.setString(1, codeTRX);
                 insertTransaksiStatement.setString(2, issupp);
                 insertTransaksiStatement.setString(3, String.valueOf(totalHargaPembelian));
-                insertTransaksiStatement.addBatch(); // Add the query to the batch
+                insertTransaksiStatement.addBatch();
                 insertTransaksiStatement.executeBatch();
                 insertDetailStatement.executeBatch();
                 insertStokStatement.executeBatch();

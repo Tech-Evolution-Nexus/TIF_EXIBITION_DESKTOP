@@ -85,13 +85,13 @@ public class ObatController  {
     
     public void tampilData() {
         try {
-            ResultSet data = DB.query("SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,aturan_pakai,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan  order by tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,kandungan,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan  order by tanggal_dibuat desc");
             DefaultTableModel tabelData = (DefaultTableModel) table.getModel();
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"), Currency.format(data.getLong("harga"))};
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("kandungan"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
@@ -152,14 +152,14 @@ public class ObatController  {
 
     public void cariData(String kunci) {
         try {
-            String sql = "SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,aturan_pakai,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc";
+            String sql = "SELECT data_obat.kode_obat,data_obat.nama_obat,jumlah_obat,data_obat.satuan,nama_kategori,kandungan,harga FROM `data_obat`  join data_jenis_penjualan on data_obat.kode_obat =data_jenis_penjualan.kode_obat AND data_obat.satuan =data_jenis_penjualan.satuan where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc";
             ResultSet data = DB.query(sql);
             DefaultTableModel tabelData = (DefaultTableModel) table.getModel();
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"), Currency.format(data.getLong("harga"))};
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("kandungan"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
