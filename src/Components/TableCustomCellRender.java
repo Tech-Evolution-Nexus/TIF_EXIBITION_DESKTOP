@@ -6,6 +6,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import Helper.Notification;
+
 public class TableCustomCellRender extends DefaultTableCellRenderer {
 
     private final HoverIndex hoverRow;
@@ -18,8 +20,13 @@ public class TableCustomCellRender extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         setBorder(new EmptyBorder(10, 10, 10, 10));
-        if (isSelected) {
+
+        if (!hasFocus) {
             com.setBackground(table.getSelectionBackground());
+        }
+        if (isSelected) {
+            // com.setBackground(table.getSelectionBackground());
+                    com.setBackground(new Color(242, 242, 242));
         } else {
             if (row == hoverRow.getIndex()) {
                 com.setBackground(new Color(230, 230, 230));

@@ -10,6 +10,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
 
+import Helper.Notification;
+
 public class TextAreaCellRenderer extends JTextArea implements TableCellRenderer {
 
     private final List<List<Integer>> rowAndCellHeights = new ArrayList<>();
@@ -29,6 +31,7 @@ public class TextAreaCellRenderer extends JTextArea implements TableCellRenderer
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         setText(Objects.toString(value, ""));
         adjustRowHeight(table, row, column);
+        boolean cellHasFocus = table.isCellSelected(row, column);
         if (isSelected) {
             setForeground(Color.WHITE);
             setBackground(table.getSelectionBackground());
@@ -42,7 +45,7 @@ public class TextAreaCellRenderer extends JTextArea implements TableCellRenderer
                     setBackground(new Color(248, 248, 251));
                 }
             }
-                        setForeground(Color.BLACK);
+            setForeground(Color.BLACK);
 
         }
         setFont(table.getFont());
