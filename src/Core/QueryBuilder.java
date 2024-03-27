@@ -84,10 +84,11 @@ public class QueryBuilder implements Queryable {
                 }
             }
         }
+        query.append(" FROM ");
         query.append(tableName);
         return this;
     }
-
+ 
     public int insert( String[] fields, Object[] values) throws SQLException {
         if (fields.length != values.length) {
             throw new IllegalArgumentException("Jumlah kolom dan nilai harus sama");
@@ -155,14 +156,9 @@ public class QueryBuilder implements Queryable {
         PreparedStatement pstmt = connection.prepareStatement(query.toString());
         int rowsAffected = pstmt.executeUpdate();
         initQuery();
-
         return rowsAffected;
     }
 
-    @Override
-    public int insert(String[] fields, Object[] values, String condition) throws SQLException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
-    }
+   
     
 }

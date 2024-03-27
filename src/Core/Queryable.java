@@ -13,6 +13,6 @@ public interface Queryable {
     Queryable groupBy(String field);
     ResultSet get() throws SQLException;
     int update( String[] fields, Object[] values, String condition) throws SQLException ;
-    int insert( String[] fields, Object[] values, String condition) throws SQLException ;
+    int insert( String[] fields, Object[] values) throws SQLException ;
     int delete( String condition) throws SQLException ;
 }

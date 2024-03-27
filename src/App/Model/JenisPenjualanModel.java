@@ -10,9 +10,9 @@ import Core.Model;
  *
  * @author Muhammad Nor Kholit
  */
-public class KategoriModel extends Model {
+public class JenisPenjualanModel extends Model {
     
-    public KategoriModel() {
-        super("kategori");
+    public JenisPenjualanModel() {
+        super("jenis_penjualan");
     }
     }

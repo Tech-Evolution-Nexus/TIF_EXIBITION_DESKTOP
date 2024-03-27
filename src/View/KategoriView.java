@@ -176,6 +176,7 @@ public class KategoriView extends javax.swing.JPanel {
         });
         table.setMinimumSize(new java.awt.Dimension(0, 0));
         table.setRowHeight(40);
+        table.setSelectionBackground(new java.awt.Color(55, 98, 216));
         table.setSelectionForeground(new java.awt.Color(255, 255, 255));
         table.getTableHeader().setReorderingAllowed(false);
         table.setUpdateSelectionOnSort(false);

@@ -84,13 +84,13 @@ public class Main extends javax.swing.JFrame {
         main.add(new Controllers.UserController().getView(), "User");
         main.add(new Controllers.SupplierController().getView(), "Supplier");
 //         main.add(new LaporanMain(), "Report");
-//         main.add(new PenjualanView(), "penjualan");
+        main.add(new PenjualanView(), "penjualan");
 //         main.add(new View.PembelianView(), "pembelian");
 //         main.add(new PengeluaranView(), "pengeluaran");
 // //        main.add(new PembelianView(), "pembelian");
 //         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "satuan");
+        cardLayout.show(main, "obat");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
@@ -313,7 +313,7 @@ public class Main extends javax.swing.JFrame {
 //        //</editor-fold>
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+            // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 13)); // Adjust the value to your desired height

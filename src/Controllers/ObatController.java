@@ -20,14 +20,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import App.Model.JenisPenjualanModel;
 import App.Model.KategoriModel;
 import App.Model.ObatModel;
 import App.Model.SatuanModel;
+import Components.btnAction.obatAction.ActionEvent;
+import Components.btnAction.obatAction.BtnAction;
+import Components.btnAction.obatAction.BtnEditor;
 
 /**
  *
@@ -35,15 +42,15 @@ import App.Model.SatuanModel;
  */
 public class ObatController  extends Controller{
 
-    private ArrayList<Integer> idKategori = new ArrayList<Integer>();
-    private ArrayList<Object[]> obatList = new ArrayList<Object[]>();
-    private String idEdit = "";
     int status = 1;
+    private String idEdit = "";
+    private ArrayList<Object[]> obatList = new ArrayList<Object[]>();
     private ArrayList<JComboBox> satuanList = new ArrayList<JComboBox>();
     private ArrayList<JTextField> satuanTotalList = new ArrayList<JTextField>();
     private ArrayList<JTextField> hargaList = new ArrayList<JTextField>();
     private ObatView view = new ObatView();
     private ObatModel model = new ObatModel();
+    private JenisPenjualanModel jenisPenjualanModel = new JenisPenjualanModel();
     private KategoriModel kategoriModel = new KategoriModel();
     private SatuanModel satuanModel = new SatuanModel();
     public ObatController() {
@@ -57,6 +64,8 @@ public class ObatController  extends Controller{
         view.getBtnHapus().addActionListener(e->hapusData());
         view.getBtnTambah().addActionListener(e->tambahData());
         view.getBtnSimpan().addActionListener(e -> simpanData());
+        view.getBtnSatuan().addActionListener(e -> listSatuan());
+        view.getBtnDetail().addActionListener(e -> detail());
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
         public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             tampilData(false);        }
@@ -64,7 +73,39 @@ public class ObatController  extends Controller{
         }
         public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
         }
-    });
+        });
+
+        ActionEvent event = new ActionEvent() {
+
+            @Override
+            public void onEdit(int row) {
+              System.out.println("dari edit");
+            }
+
+            @Override
+            public void onDelete(int row) {
+                ((DefaultTableModel)view.getListSatuan().getModel()).removeRow(row);
+            }
+            
+        };
+
+        view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction());
+        view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
+        view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            int[] selectedRows = view.getListSatuan().getSelectedRows();
+            int[] selectedColumns = view.getListSatuan().getSelectedColumns();
+            for (int row : selectedRows) {
+                for (int col : selectedColumns) {
+                    view.getListSatuan().changeSelection(row, col, false, false);
+                }
+            }
+        }
+    }
+});
+
     }
 
     
@@ -77,14 +118,23 @@ public class ObatController  extends Controller{
                 
             }
             DefaultTableModel tabelData = (DefaultTableModel) view.getTable().getModel();
+            
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("kandungan"), Currency.format(data.getLong("harga"))};
+                Object[] dataArray = { no, data.getString("kode_obat"), data.getString("nama_obat"),
+                        data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"),
+                        data.getString("kandungan"), Currency.format(data.getLong("harga")) };
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
+            }
+            
+            ResultSet satuan = satuanModel.all();
+            view.getSatuan().removeAllItems();
+           while (satuan.next()) {
+                view.getSatuan().addItem(satuan.getString("nama_satuan"));
             }
         } catch (Exception e) {
             System.out.println("error dari method tampil data " + e.getMessage());
@@ -139,6 +189,7 @@ public class ObatController  extends Controller{
 
     
     public void simpanData() {
+        
         String namaObat = view.getNamaObat().getText();
         String kategori = view.getKategori().getSelectedItem().toString();
         String kandungan = view.getKandungan().getText();
@@ -152,12 +203,15 @@ public class ObatController  extends Controller{
                 Notification.showInfo(Notification.DUPLICATE_DATA, view.getForm());
             } else if (namaObat.equals("") || kandungan.equals("") || kategori.equals("")) {
                 Notification.showInfo(Notification.EMPTY_VALUE, view.getForm());
-
             } else {
-                for (int i = 0; i < satuanList.size(); i++) {
-                    String value = satuanList.get(i).getSelectedItem().toString();
-                    String value2 = satuanTotalList.get(i).getText();
-                    String harga = hargaList.get(i).getText();
+                  DefaultTableModel listSatuanModel = (DefaultTableModel)view.getListSatuan().getModel();
+                if (listSatuanModel.getRowCount() == 0) {
+                    Notification.showInfo("Silahkan pilih satuan obat terlebih dahulu", view.getForm());
+                    return;
+                }
+                for (int i = 0; i <  view.getListSatuan().getRowCount(); i++) {
+                    String value =view.getListSatuan().getValueAt(i, 0).toString();
+                    String value2 = view.getListSatuan().getValueAt(i, 1).toString();
                     if (!uniqueBarangList.add(value)) {
                         Notification.showInfo("Nilai duplikat dalam satuan: " + value, view.getForm());
                         return;
@@ -166,29 +220,33 @@ public class ObatController  extends Controller{
                         Notification.showInfo("Total Satuan Harap Diisi: " + value, view.getForm());
                         return;
                     }
-                    if (!harga.matches("[0-9]+")) {
-                        Notification.showInfo("Total Satuan harus berupa angka: ", view.getForm());
-                        return;
-                    }
+                    
 
                 }
-                String namaSatuan = satuanList.get(0).getSelectedItem().toString();
+                String namaSatuan = view.getListSatuan().getValueAt(0, 0).toString();
+                System.out.println("dakerror");
                 ResultSet dataKategori =kategoriModel.select("id").where("nama_kategori","=", kategori).get();
+
                 ResultSet dataSatuan = satuanModel.select("id").where("nama_satuan", "=", namaSatuan).get();
                 dataKategori.next();
                 dataSatuan.next();
                 DB.query2("DELETE FROM jenis_penjualan where kode_obat = '" + kodeObat + "'");
                 DB.query2("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + dataSatuan.getString("id") + "','" + dataKategori.getString("id") + "','" + kandungan + "')");
-                for (int i = 0; i < satuanList.size(); i++) {
-                    namaSatuan = satuanList.get(i).getSelectedItem().toString();
-                    String total = satuanTotalList.get(i).getText();
-                    String harga = hargaList.get(i).getText();
+                for (int i = 0; i < view.getListSatuan().getRowCount(); i++) {
+                    namaSatuan = view.getListSatuan().getValueAt(i, 0).toString();
+                    String total = view.getListSatuan().getValueAt(i, 1).toString();
+                    String marginPersen = view.getListSatuan().getValueAt(i, 3).toString();
+                    String marginHarga = view.getListSatuan().getValueAt(i, 4).toString();
                     dataSatuan = satuanModel.select("id").where("nama_satuan", "=", namaSatuan).get();
                     dataSatuan.next();
-                    DB.query2("call simpanJenisPenjualan('" + kodeObat + "','" + total + "','" + harga + "','"
-                            + dataSatuan.getInt("id") + "') ");
+                    System.out.println("idSatuan");
+                    String idSatuan = String.valueOf(dataSatuan.getInt("id"));
+                    String[] column = {"kode_obat","total","margin_harga","margin_persen","id_satuan"};
+                    String[] values = {kodeObat,total,marginHarga,marginPersen,idSatuan};
+                    jenisPenjualanModel.insert(column,values);
+                    // DB.query2("call simpanJenisPenjualan('" + kodeObat + "','" + total + "','" + harga + "','"
+                    //         + dataSatuan.getInt("id") + "') ");
                 }
-
                
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
                 tampilData(false);
@@ -226,8 +284,16 @@ public class ObatController  extends Controller{
                     view.getKategori().setSelectedItem(namaKategori);
                 }
             }
-            ResultSet satuanData = DB.query("SELECT * from jenis_penjualan where kode_obat='" + idObat + "'");
+            ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
+            DefaultTableModel model = (DefaultTableModel)view.getListSatuan().getModel();
+            model.setRowCount(0);
+            String namaSatuanPertama = "";
             while (satuanData.next()) {
+                if (namaSatuanPertama.equals("")) {
+                    namaSatuanPertama = satuanData.getString("satuan");
+                }
+                Object[] data = {satuanData.getString("satuan"),satuanData.getString("total"),namaSatuanPertama,satuanData.getString("margin_harga"),satuanData.getString("margin_persen")};
+                model.addRow(data);
                 // addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"));
             }
 
@@ -238,7 +304,7 @@ public class ObatController  extends Controller{
         }
     }
     
-    public void detail(){
+    public void detail() {
         try {
             if (view.getTable().getSelectedRow() < 0) {
                 return;
@@ -248,22 +314,33 @@ public class ObatController  extends Controller{
             String idObat = view.getTable().getValueAt(row, 1).toString();
             String namaObat = view.getTable().getValueAt(row, 2).toString();
             String kandungan = view.getTable().getValueAt(row, 6).toString();
+            String kategori = view.getTable().getValueAt(row, 5).toString();
+            String satuan = view.getTable().getValueAt(row, 4).toString();
+
             view.getDetailNama().setText(namaObat);
             view.getDetailKandungan().setText(kandungan);
+            view.getDetailKategori().setText(kategori);
+            view.getDetailSatuan().setText(satuan);
+            view.getDetailKodeObat().setText(idObat);
 
-            DefaultTableModel model  = (DefaultTableModel) view.getSatuanTable().getModel();
+            DefaultTableModel model = (DefaultTableModel) view.getSatuanTable().getModel();
             ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
             model.setRowCount(0);
             while (satuanData.next()) {
-                Object[] objectRow = {satuanData.getString("satuan"), satuanData.getInt("total"), satuanData.getInt("harga")};
+                Object[] objectRow = { satuanData.getString("satuan"), satuanData.getInt("total"),
+                        satuanData.getInt("harga") };
                 model.addRow(objectRow);
             }
 
-             model  = (DefaultTableModel) view.getStokTable().getModel();
-            ResultSet stokData = DB.query("SELECT * from stok_obat join supplier on stok_obat.kode_suplier = supplier.kode_suplier where kode_obat='" + idObat + "' order by tanggal_masuk desc");
+            model = (DefaultTableModel) view.getStokTable().getModel();
+            ResultSet stokData = DB.query(
+                    "SELECT * from batch_obat join supplier on batch_obat.kode_suplier = supplier.kode_suplier where kode_obat='"
+                            + idObat + "' order by tanggal_masuk desc");
             model.setRowCount(0);
             while (stokData.next()) {
-                Object[] objectRow = {stokData.getString("jumlah_obat"), stokData.getString("nama_suplier"),FormatTanggal.formatDate(stokData.getDate("tanggal_kadaluarsa")), FormatTanggal.formatDate(stokData.getDate("tanggal_masuk"))};
+                Object[] objectRow = { stokData.getString("jumlah_obat"), stokData.getString("nama_suplier"),
+                        FormatTanggal.formatDate(stokData.getDate("tanggal_kadaluarsa")),
+                        FormatTanggal.formatDate(stokData.getDate("tanggal_masuk")) };
                 model.addRow(objectRow);
             }
 
@@ -276,6 +353,17 @@ public class ObatController  extends Controller{
         }
     }
 
+    private void listSatuan() {
+        DefaultTableModel model = (DefaultTableModel)view.getListSatuan().getModel();
+        if (model.getRowCount() == 4) {
+            Notification.showInfo("Satuan Obat maksimal 4", view.getForm());
+            return;
+        }
+        String namaSatuan = view.getSatuan().getSelectedItem().toString();
+        String satuanTerkecil = model.getRowCount() == 0 ? namaSatuan
+                : view.getListSatuan().getValueAt(0, 0).toString();
+        model.addRow(new Object[] {namaSatuan,0,satuanTerkecil,0,0});
+    }
     
   
 
@@ -442,13 +530,14 @@ public class ObatController  extends Controller{
     // }
 
     public void clearDialog() {
-        view.getSatuanList().removeAll();
-        view.getHargaList().removeAll();
         satuanList.clear();
         hargaList.clear();
         satuanTotalList.clear();
         view.getKandungan().setText("");
         view.getNamaObat().setText("");
+        DefaultTableModel listSatuan = (DefaultTableModel) view.getListSatuan().getModel();
+        listSatuan.setRowCount(0);
+
     }
 
     private void showForm() {
