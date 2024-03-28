@@ -92,25 +92,24 @@ public class ObatController  extends Controller{
             public void onDelete(int row) {
                 ((DefaultTableModel)view.getListSatuan().getModel()).removeRow(row);
             }
-            
         };
 
         view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction());
         view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
         view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-            int[] selectedRows = view.getListSatuan().getSelectedRows();
-            int[] selectedColumns = view.getListSatuan().getSelectedColumns();
-            for (int row : selectedRows) {
-                for (int col : selectedColumns) {
-                    view.getListSatuan().changeSelection(row, col, false, false);
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting()) {
+                int[] selectedRows = view.getListSatuan().getSelectedRows();
+                int[] selectedColumns = view.getListSatuan().getSelectedColumns();
+                for (int row : selectedRows) {
+                    for (int col : selectedColumns) {
+                        view.getListSatuan().changeSelection(row, col, false, false);
+                    }
                 }
             }
         }
-    }
-});
+        });
 
     }
 

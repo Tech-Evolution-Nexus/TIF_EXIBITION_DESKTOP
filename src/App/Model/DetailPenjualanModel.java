@@ -10,9 +10,9 @@ import Core.Model;
  *
  * @author Muhammad Nor Kholit
  */
-public class ObatModel extends Model {
+public class DetailPenjualanModel extends Model {
     
-    public ObatModel() {
-        super("obat");
+    public DetailPenjualanModel() {
+        super("detail_penjualan");
     }
     }
