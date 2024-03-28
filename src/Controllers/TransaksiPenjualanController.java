@@ -119,7 +119,6 @@ public class TransaksiPenjualanController  extends Controller{
 
             @Override
              public void onDelete(int row) {
-           fix 
             }
         };
                 view.getTable().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
