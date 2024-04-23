@@ -26,21 +26,21 @@ public class LaporanMain extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        penjualan2 = new Laporan.PenjualanView();
+        penjualan2 = new Laporan.LPenjualanView();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        penjualan3 = new Laporan.PenjualanView();
+        penjualan3 = new Laporan.LPenjualanView();
         jPanel2 = new javax.swing.JPanel();
-        pembelianView1 = new Laporan.PembelianView();
+        pembelianView1 = new Laporan.LPembelianView();
         jPanel3 = new javax.swing.JPanel();
-        pendapatanView1 = new Laporan.PendapatanView();
+        pendapatanView1 = new Laporan.LPendapatanView();
         jPanel4 = new javax.swing.JPanel();
-        stokView1 = new Laporan.StokView();
+        stokView1 = new Laporan.LStokView();
         jPanel5 = new javax.swing.JPanel();
-        lababersihView1 = new Laporan.lababersihView();
-        lababersihView2 = new Laporan.lababersihView();
+        lababersihView1 = new Laporan.LlababersihView();
+        lababersihView2 = new Laporan.LlababersihView();
         jPanel6 = new javax.swing.JPanel();
-        shiftView1 = new Laporan.ShiftView();
+        shiftView1 = new Laporan.LShiftView();
 
         jTabbedPane1.setBackground(new java.awt.Color(222, 226, 232));
 
@@ -165,13 +165,13 @@ public class LaporanMain extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private Laporan.lababersihView lababersihView1;
-    private Laporan.lababersihView lababersihView2;
-    private Laporan.PembelianView pembelianView1;
-    private Laporan.PendapatanView pendapatanView1;
-    private Laporan.PenjualanView penjualan2;
-    private Laporan.PenjualanView penjualan3;
-    private Laporan.ShiftView shiftView1;
-    private Laporan.StokView stokView1;
+    private Laporan.LlababersihView lababersihView1;
+    private Laporan.LlababersihView lababersihView2;
+    private Laporan.LPembelianView pembelianView1;
+    private Laporan.LPendapatanView pendapatanView1;
+    private Laporan.LPenjualanView penjualan2;
+    private Laporan.LPenjualanView penjualan3;
+    private Laporan.LShiftView shiftView1;
+    private Laporan.LStokView stokView1;
     // End of variables declaration//GEN-END:variables
 }

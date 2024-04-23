@@ -14,14 +14,14 @@ import table.TableCustom;
  *
  * @author rexy
  */
-public class PendapatanView extends javax.swing.JPanel {
+public class LPendapatanView extends javax.swing.JPanel {
 
     private LaporanPendapatanController controller;
 
     /**
      * Creates new form PendapatanView
      */
-    public PendapatanView() {
+    public LPendapatanView() {
         initComponents();
         controller = new LaporanPendapatanController(jTable1, form);
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
