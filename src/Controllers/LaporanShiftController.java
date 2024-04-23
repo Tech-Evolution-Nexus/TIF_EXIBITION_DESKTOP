@@ -7,7 +7,7 @@ package Controllers;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
-import Laporan.ShiftView;
+import Laporan.LShiftView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -148,7 +148,7 @@ public class LaporanShiftController {
                 no++;
             }
         } catch (Exception e) {
-            Logger.getLogger(ShiftView.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(LShiftView.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     public void export() {

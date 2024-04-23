@@ -10,12 +10,12 @@ import Controllers.LaporanShiftController;
  *
  * @author admin
  */
-public class ShiftView extends javax.swing.JPanel {
+public class LShiftView extends javax.swing.JPanel {
     private LaporanShiftController controller;
     /**
      * Creates new form ShiftView
      */
-    public ShiftView() {
+    public LShiftView() {
         initComponents();
 //          Object[] com = { };
         controller = new LaporanShiftController(jTable1, form, jdata3, jdata4);

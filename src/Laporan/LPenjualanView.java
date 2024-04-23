@@ -12,14 +12,14 @@ import table.TableCustom;
  *
  * @author Muhammad Nor Kholit
  */
-public class PenjualanView extends javax.swing.JPanel {
+public class LPenjualanView extends javax.swing.JPanel {
 
     private LaporanPenjualanController controller;
 
     /**
      * Creates new form Penjualan
      */
-    public PenjualanView() {
+    public LPenjualanView() {
         initComponents();
 
         Object[] com = {txtkodetransaksi, txttotalh, tgltrx, value_tot_obat, value_users, value_bayar, value_kem, TBLdetail_1, jdata1, jdata2};

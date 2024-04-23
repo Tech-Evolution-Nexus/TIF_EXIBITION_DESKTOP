@@ -11,7 +11,7 @@ package Controllers;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
-import Laporan.PenjualanView;
+import Laporan.LPenjualanView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
@@ -288,7 +288,7 @@ public class LaporanPenjualanController{
             form.setVisible(true);
 
         } catch (Exception e) {
-            Logger.getLogger(Laporan.PenjualanView.class
+            Logger.getLogger(Laporan.LPenjualanView.class
                     .getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -332,7 +332,7 @@ public class LaporanPenjualanController{
 
             }
         } catch (Exception e) {
-            Logger.getLogger(PenjualanView.class
+            Logger.getLogger(LPenjualanView.class
                     .getName()).log(Level.SEVERE, null, e);
         }
     }
