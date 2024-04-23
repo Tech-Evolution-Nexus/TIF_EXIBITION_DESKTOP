@@ -4,12 +4,14 @@
  */
 package Main;
 
+import View.PengeluaranView;
+import View.StokOpnameView;
 import View.Auth.SaldoKasAwal;
 import View.Auth.login;
 import Config.DB;
+import Controllers.ObatController;
 import Controllers.SatuanController;
 import Helper.FormatTanggal;
-import View.KategoriView;
 import Laporan.LaporanMain;
 import Laporan.LPembelianView;
 import View.ObatView;
@@ -24,7 +26,6 @@ import View.StokOpnameView;
 import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -79,7 +80,9 @@ public class Main extends javax.swing.JFrame {
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
+
         main.add(new ObatView(), "obat");
+
         main.add(new SatuanController().getView(), "satuan");
         main.add(new Controllers.KategoriController().getView(), "Category");
         main.add(new Controllers.UserController().getView(), "User");
@@ -91,9 +94,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new PembelianView(), "Pembelian");
         main.add(new ReturPembelianView(), "Retur Pembelian");
         main.add(new ReturPenjualanView(), "Retur Penjualan");
-
         main.add(new StokOpnameView(), "Stok Opname");
-
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
         cardLayout.show(main, "Home");
@@ -296,31 +297,11 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, kosong, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, kosong, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, kosong, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, kosong, ex);
-//        }
-//        //</editor-fold>
+        
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+            // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+            UIManager.put("TableHeader.height", 30);
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 13)); // Adjust the value to your desired height

@@ -9,8 +9,8 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
 import javax.swing.table.TableCellRenderer;
+
 import scroll.ScrollBarCustomUI;
 
 public class TableCustom {
@@ -20,8 +20,7 @@ public class TableCustom {
 
 //        table.setSelectionBackground(new Color(123, 207, 255));
         table.getTableHeader().setReorderingAllowed(false);
-        
-        table.getTableHeader().setDefaultRenderer(new TableHeaderCustomCellRender(table));
+        // table.getTableHeader().setDefaultRenderer(new TableHeaderCustomCellRender(table));
         table.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
         table.setFont(new Font("Poppins", Font.PLAIN, 12));
         table.setRowHeight(30);

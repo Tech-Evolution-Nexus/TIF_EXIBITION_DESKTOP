@@ -72,9 +72,10 @@ public class QueryBuilder implements Queryable {
 
     @Override
     public QueryBuilder select(String... fields) {
+        query.setLength(0);
         query.append("SELECT ");
         if (fields.length == 0) {
-            query.append("*");
+            query.append("* ");
         } else {
             for (int i = 0; i < fields.length; i++) {
                 query.append(fields[i]);
@@ -83,9 +84,11 @@ public class QueryBuilder implements Queryable {
                 }
             }
         }
+        query.append(" FROM ");
+        query.append(tableName);
         return this;
     }
-
+ 
     public int insert( String[] fields, Object[] values) throws SQLException {
         if (fields.length != values.length) {
             throw new IllegalArgumentException("Jumlah kolom dan nilai harus sama");
@@ -153,8 +156,9 @@ public class QueryBuilder implements Queryable {
         PreparedStatement pstmt = connection.prepareStatement(query.toString());
         int rowsAffected = pstmt.executeUpdate();
         initQuery();
-
         return rowsAffected;
     }
+
+   
     
 }
