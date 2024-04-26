@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JComboBox;
+
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -74,7 +74,6 @@ public class ObatController  extends Controller{
         });
 
         ActionEvent event = new ActionEvent() {
-
             @Override
             public void onEdit(int row) {
                 satuanIndexEdit = row;
@@ -87,30 +86,28 @@ public class ObatController  extends Controller{
                 view.getMarginHarga().setText(marginHarga);
                 view.getMarginPersen().setText(marginPersen);
             }
-
             @Override
             public void onDelete(int row) {
                 ((DefaultTableModel)view.getListSatuan().getModel()).removeRow(row);
             }
-            
         };
 
         view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction());
         view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
         view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-            int[] selectedRows = view.getListSatuan().getSelectedRows();
-            int[] selectedColumns = view.getListSatuan().getSelectedColumns();
-            for (int row : selectedRows) {
-                for (int col : selectedColumns) {
-                    view.getListSatuan().changeSelection(row, col, false, false);
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting()) {
+                int[] selectedRows = view.getListSatuan().getSelectedRows();
+                int[] selectedColumns = view.getListSatuan().getSelectedColumns();
+                for (int row : selectedRows) {
+                    for (int col : selectedColumns) {
+                        view.getListSatuan().changeSelection(row, col, false, false);
+                    }
                 }
             }
         }
-    }
-});
+        });
 
     }
 
@@ -251,8 +248,7 @@ public class ObatController  extends Controller{
                     String[] column = {"kode_obat","total","margin_harga","margin_persen","id_satuan"};
                     String[] values = {kodeObat,total,marginHarga,marginPersen,idSatuan};
                     jenisPenjualanModel.insert(column,values);
-                    // DB.query2("call simpanJenisPenjualan('" + kodeObat + "','" + total + "','" + harga + "','"
-                    //         + dataSatuan.getInt("id") + "') ");
+                   
                 }
                
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
