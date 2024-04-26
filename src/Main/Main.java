@@ -90,7 +90,7 @@ public class Main extends javax.swing.JFrame {
 
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "Home");
+        cardLayout.show(main, "penjualan");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));

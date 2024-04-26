@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.swing.JComboBox;
+
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -74,7 +74,6 @@ public class ObatController  extends Controller{
         });
 
         ActionEvent event = new ActionEvent() {
-
             @Override
             public void onEdit(int row) {
                 satuanIndexEdit = row;
@@ -87,7 +86,6 @@ public class ObatController  extends Controller{
                 view.getMarginHarga().setText(marginHarga);
                 view.getMarginPersen().setText(marginPersen);
             }
-
             @Override
             public void onDelete(int row) {
                 ((DefaultTableModel)view.getListSatuan().getModel()).removeRow(row);
@@ -250,8 +248,7 @@ public class ObatController  extends Controller{
                     String[] column = {"kode_obat","total","margin_harga","margin_persen","id_satuan"};
                     String[] values = {kodeObat,total,marginHarga,marginPersen,idSatuan};
                     jenisPenjualanModel.insert(column,values);
-                    // DB.query2("call simpanJenisPenjualan('" + kodeObat + "','" + total + "','" + harga + "','"
-                    //         + dataSatuan.getInt("id") + "') ");
+                   
                 }
                
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
