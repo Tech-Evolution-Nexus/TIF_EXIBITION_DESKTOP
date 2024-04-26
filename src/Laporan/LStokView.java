@@ -35,7 +35,7 @@ import java.util.Date;
  *
  * @author Muhammad Nor Kholit
  */
-public class StokView extends javax.swing.JPanel {
+public class LStokView extends javax.swing.JPanel {
 
     MonthChooserPanel monthChooserPanel;
     MonthChooserPanel monthChooserPanel2;
@@ -52,7 +52,7 @@ public class StokView extends javax.swing.JPanel {
     /**
      * Creates new form Penjualan
      */
-    public StokView() {
+    public LStokView() {
         initComponents();
 //        controller = new LaporanStokController(jTable1, form);
 //        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
@@ -328,10 +328,11 @@ public class StokView extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cariobat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(filter, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cariobat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -513,7 +514,7 @@ public class StokView extends javax.swing.JPanel {
             model.addRow(rowData);
         }
     } catch (SQLException ex) {
-        Logger.getLogger(StokView.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(LStokView.class.getName()).log(Level.SEVERE, null, ex);
     }
 } else {
     JOptionPane.showMessageDialog(this, "Kolom pencarian Harus Di Isi");

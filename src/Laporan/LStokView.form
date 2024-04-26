@@ -214,10 +214,12 @@
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cariobat" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="filter" alignment="0" pref="34" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="cariobat" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Component id="jPanel2" max="32767" attributes="0"/>

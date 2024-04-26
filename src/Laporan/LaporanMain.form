@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="Laporan.PenjualanView" name="penjualan2">
+    <Component class="Laporan.LPenjualanView" name="penjualan2">
     </Component>
   </NonVisualComponents>
   <AuxValues>
@@ -65,7 +65,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Laporan.PenjualanView" name="penjualan3">
+            <Component class="Laporan.LPenjualanView" name="penjualan3">
             </Component>
           </SubComponents>
         </Container>
@@ -99,7 +99,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Laporan.PembelianView" name="pembelianView1">
+            <Component class="Laporan.LPembelianView" name="pembelianView1">
             </Component>
           </SubComponents>
         </Container>
@@ -125,7 +125,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Laporan.PendapatanView" name="pendapatanView1">
+            <Component class="Laporan.LPendapatanView" name="pendapatanView1">
             </Component>
           </SubComponents>
         </Container>
@@ -151,7 +151,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Laporan.StokView" name="stokView1">
+            <Component class="Laporan.LStokView" name="stokView1">
             </Component>
           </SubComponents>
         </Container>
@@ -177,7 +177,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="Laporan.lababersihView" name="lababersihView1">
+            <Container class="Laporan.LlababersihView" name="lababersihView1">
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -192,7 +192,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="Laporan.lababersihView" name="lababersihView2">
+                <Component class="Laporan.LlababersihView" name="lababersihView2">
                 </Component>
               </SubComponents>
             </Container>
@@ -223,7 +223,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="Laporan.ShiftView" name="shiftView1">
+            <Component class="Laporan.LShiftView" name="shiftView1">
             </Component>
           </SubComponents>
         </Container>

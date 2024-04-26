@@ -11,12 +11,12 @@ import table.TableCustom;
  *
  * @author admin
  */
-public class lababersihView extends javax.swing.JPanel {
+public class LlababersihView extends javax.swing.JPanel {
     private LaporanLabaBersihController controller;
     /**
      * Creates new form lababersihView
      */
-    public lababersihView() {
+    public LlababersihView() {
         initComponents();
          controller = new LaporanLabaBersihController(jTable1, form);
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);

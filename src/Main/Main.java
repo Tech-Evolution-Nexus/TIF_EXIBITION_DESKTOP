@@ -13,10 +13,19 @@ import Controllers.ObatController;
 import Controllers.SatuanController;
 import Helper.FormatTanggal;
 import Laporan.LaporanMain;
-
+import Laporan.LPembelianView;
+import View.ObatView;
+import View.PembelianView;
+import View.SatuanView;
+import View.PengeluaranView;
+import View.SuplierView;
+import View.PenjualanView;
+import View.ReturPembelianView;
+import View.ReturPenjualanView;
+import View.StokOpnameView;
+import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -71,23 +80,21 @@ public class Main extends javax.swing.JFrame {
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
-//        main.add(new ObatView(), "Medicine");
-        main.add(new ObatController().getView(), "obat");
+
+        main.add(new ObatView(), "obat");
+
         main.add(new SatuanController().getView(), "satuan");
         main.add(new Controllers.KategoriController().getView(), "Category");
         main.add(new Controllers.UserController().getView(), "User");
         main.add(new Controllers.SupplierController().getView(), "Supplier");
-//         main.add(new LaporanMain(), "Report");
-        main.add(new Controllers.TransaksiPenjualanController().getView(), "penjualan");
-        main.add(new View.PembelianView(), "pembelian");
-//         main.add(new PengeluaranView(), "pengeluaran");
-// //        main.add(new PembelianView(), "pembelian");
-//         main.add(new DashboardView(), "Home");
         main.add(new LaporanMain(), "Report");
-        main.add(new PengeluaranView(), "pengeluaran");
-//        main.add(new PembelianView(), "pembelian");
+        main.add(new PenjualanView(), "Penjualan");
+//        main.add(new View.PembelianView(), "pembelian");
+        main.add(new PengeluaranView(), "Pengeluaran");
+        main.add(new PembelianView(), "Pembelian");
+        main.add(new ReturPembelianView(), "Retur Pembelian");
+        main.add(new ReturPenjualanView(), "Retur Penjualan");
         main.add(new StokOpnameView(), "Stok Opname");
-
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
         cardLayout.show(main, "penjualan");
@@ -316,6 +323,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                System.setProperty("sun.java2d.uiScale", "1");
                 new Main().setVisible(true);
             }
         });
@@ -335,8 +343,8 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Object[][] childObat = {{"obat", "Data Obat"}, {"satuan", "Data Satuan Obat"}};
-    private Object[][] childTransaksi = {{"penjualan", "Transaksi Penjualan"}, {"pembelian", "Transaksi Pembelian"}};
-    private Object[][] childTransaksi2 = {{"penjualan", "Transaksi Penjualan"}};
+    private Object[][] childTransaksi = {{"Pembelian", "Transaksi Pembelian"}, {"Retur Pembelian","Retur Pembelian"},{"Penjualan", "Transaksi Penjualan"},{"Retur Penjualan","Retur Penjualan"}};
+    private Object[][] childTransaksi2 = {{"Penjualan", "Transaksi Penjualan"}};
     private Object[][] kosong = {};
 //    private 
     private Object[][] menu_list_data_owner = {
@@ -347,7 +355,7 @@ public class Main extends javax.swing.JFrame {
         {"icf_trx.svg", "icn_trx.svg", "<html>Transaction <b>&#8595;</b></html>", "Transaksi", childTransaksi},
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
         {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
-        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong},
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "Pengeluaran", "Data Pengeluaran", kosong},
         {"icf_user.svg", "icn_user.svg", "Stok Opname", "Stok Opname", kosong},};
 
     private Object[][] menu_list_data_kasir = {

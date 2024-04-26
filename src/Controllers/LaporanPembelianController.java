@@ -11,7 +11,7 @@ package Controllers;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
-import Laporan.PembelianView;
+import Laporan.LPembelianView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
@@ -254,7 +254,7 @@ public class LaporanPembelianController {
                 no++;
             }
         } catch (Exception e) {
-            Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(LPembelianView.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -291,7 +291,7 @@ public class LaporanPembelianController {
             form.setLocationRelativeTo(null);
             form.setVisible(true);
         } catch (Exception e) {
-            Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(LPembelianView.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     public void export() {
