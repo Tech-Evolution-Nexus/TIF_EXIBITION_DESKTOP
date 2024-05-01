@@ -24,8 +24,9 @@ public class UserView extends javax.swing.JPanel {
      */
     public UserView() {
         initComponents();
-     
         search.setIcon("Assets/svg/searchIcon.svg");
+                TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+
     }
 
     /**
@@ -273,6 +274,7 @@ public class UserView extends javax.swing.JPanel {
         });
         table.setMinimumSize(new java.awt.Dimension(0, 0));
         table.setRowHeight(40);
+        table.setSelectionBackground(new java.awt.Color(55, 98, 216));
         table.getTableHeader().setReorderingAllowed(false);
         table.setUpdateSelectionOnSort(false);
         table.setVerifyInputWhenFocusTarget(false);

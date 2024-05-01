@@ -43,6 +43,14 @@ public class SupplierController  extends Controller{
         view.getBtnHapus().addActionListener(e->hapusData());
         view.getBtnTambah().addActionListener(e->tambahData());
         view.getBtnSimpan().addActionListener(e -> simpanData());
+        view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
+        public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            tampilData(false);        }
+        public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+        }
+        public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+        }
+    });
     }
 
    

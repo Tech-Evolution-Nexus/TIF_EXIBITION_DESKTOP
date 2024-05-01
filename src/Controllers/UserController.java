@@ -83,6 +83,7 @@ public class UserController  extends Controller {
 
     
     public void tambahData() {
+        view.getFormTitle().setText("Tambah User");
       showForm();
     }
 
@@ -170,6 +171,7 @@ public class UserController  extends Controller {
     }
 
     public void editData() {
+        view.getFormTitle().setText("Ubah User");
         int row = view.getTable().getSelectedRow();
         if (row < 0) {
             JOptionPane.showMessageDialog(view.getTable(), "Tidak ada baris yang dipilih");

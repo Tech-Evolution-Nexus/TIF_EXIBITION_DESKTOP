@@ -19,7 +19,6 @@ public class KategoriController  extends Controller{
 
     private int idEdit;
     //status 1 untuk tambah 2 untuk edit
-    private int status = 1;
     private KategoriView view= new KategoriView();
     private KategoriModel model= new KategoriModel();
 
@@ -134,7 +133,6 @@ public class KategoriController  extends Controller{
     }
 
     public void editData() {
-        status = 2;
         int row = view.getTable().getSelectedRow();
         if (row < 0) {
             Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
@@ -148,7 +146,6 @@ public class KategoriController  extends Controller{
 
     }
     public void tambahData() {
-        status = 1;
         view.getFormTitle().setText("Tambah Kategori");
         view.getNamaKategori().setText("");
         showForm();

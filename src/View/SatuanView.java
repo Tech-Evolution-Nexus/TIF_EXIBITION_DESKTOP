@@ -20,6 +20,8 @@ public class SatuanView extends javax.swing.JPanel {
      */
     public SatuanView() {
         initComponents();
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+
     }
 
     /**
@@ -200,6 +202,7 @@ public class SatuanView extends javax.swing.JPanel {
         });
         table.setMinimumSize(new java.awt.Dimension(0, 0));
         table.setRowHeight(40);
+        table.setSelectionBackground(new java.awt.Color(55, 98, 216));
         table.getTableHeader().setReorderingAllowed(false);
         table.setUpdateSelectionOnSort(false);
         table.setVerifyInputWhenFocusTarget(false);

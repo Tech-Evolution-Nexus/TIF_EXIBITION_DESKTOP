@@ -1,1 +1,365 @@
-/* * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template */package Controllers;import View.Auth.login;import Config.DB;import Helper.Currency;import Helper.KodeGenerator;import Helper.Validasi;import View.PenjualanView;import java.sql.ResultSet;import java.text.SimpleDateFormat;import java.util.ArrayList;import java.util.Date;import java.util.HashMap;import java.util.List;import java.util.Map;import java.util.logging.Level;import java.util.logging.Logger;import java.util.prefs.Preferences;import javax.swing.JButton;import javax.swing.JComboBox;import javax.swing.JDialog;import javax.swing.JLabel;import javax.swing.JOptionPane;import javax.swing.JTable;import javax.swing.JTextField;import javax.swing.table.DefaultTableModel;import net.sf.jasperreports.engine.JRException;import net.sf.jasperreports.engine.JasperCompileManager;import net.sf.jasperreports.engine.JasperFillManager;import net.sf.jasperreports.engine.JasperPrint;import net.sf.jasperreports.engine.JasperReport;import net.sf.jasperreports.engine.design.JRDesignQuery;import net.sf.jasperreports.engine.design.JasperDesign;import net.sf.jasperreports.engine.xml.JRXmlLoader;import net.sf.jasperreports.view.JasperViewer;import org.json.JSONArray;/** * * @author Muhammad Nor Kholit */public class TransaksiPenjualanController {    private JTable table;    private ArrayList<Object[]> obatList = new ArrayList<>();    private ArrayList<Object[]> satuanList = new ArrayList<>();    private ArrayList<Object[]> obatTableList = new ArrayList<>();    private int idEdit;    //status 1 untuk tambah 2 untuk edit    private int status = 1;    private JDialog form;    private JComboBox dataObat;    private JComboBox dataSatuan;    private JTextField qty;    private JTextField stok;    private JTextField harga;    private JTextField bayar;    private JTextField kembalian;    private JButton addList;    private JButton batal;    private JButton btnBayar;    private JLabel totalHarga;    public static boolean jenisIsClicked;    public static boolean obatIsClicked;    private long totalHargaObat = 0;    private long totalKembalian = 0;    private long totalBayar = 0;    private String idusrr;    private JLabel nobat;    private JLabel kobat;    private JLabel aturpakai;    public TransaksiPenjualanController(JTable table, JComboBox dataObat, JComboBox dataSatuan, JTextField qty, JTextField stok, JTextField harga, JTextField bayar, JButton addList, JButton batal, JLabel totalHarga, JTextField kembalian, JButton btnBayar, JLabel nobat, JLabel kobat, JLabel aturpakai) {        this.table = table;        this.dataObat = dataObat;        this.dataSatuan = dataSatuan;        this.qty = qty;        this.stok = stok;        this.harga = harga;        this.bayar = bayar;        this.addList = addList;        this.batal = batal;        this.totalHarga = totalHarga;        this.kembalian = kembalian;        this.btnBayar = btnBayar;        this.nobat = nobat;        this.kobat = kobat;        this.aturpakai = aturpakai;        Preferences userPreferences = Preferences.userNodeForPackage(login.class);        try {            String datalogin = userPreferences.get("localLogin", null);            if (datalogin != null) {                JSONArray retrievedArray = new JSONArray(datalogin);                idusrr = retrievedArray.getString(0);            } else {                new login().setVisible(true);            }        } catch (Exception e) {        }    }    public void tampilData() {        try {            reset();            resetForm();            ResultSet data = DB.query("SELECT * FROM `data_obat` where jumlah_obat > 0");            dataObat.removeAllItems();            obatList.clear();            dataObat.addItem("Pilih Obat");            obatList.add(new Object[]{"-", ""});            while (data.next()) {                dataObat.addItem(data.getString("nama_obat"));                obatList.add(new Object[]{data.getString("kode_obat"), data.getString("jumlah_obat")});            }        } catch (Exception e) {            System.out.println("error dari tampil data satuan" + e.getMessage());        }    }    public void tambahData(Object[] object) {        form.pack();        form.setLocationRelativeTo(null);        form.setVisible(true);    }    public void simpanData(Object[] object) {        PenjualanView view = (PenjualanView) object[0];        try {            if (totalBayar < totalHargaObat) {                JOptionPane.showMessageDialog(table, "Pembayaran kurang , Total Kekurangan " + (Currency.format(totalBayar - totalHargaObat)), "Notification", JOptionPane.INFORMATION_MESSAGE);                return;            }            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyykkmmss");            String date2 = simpleDateFormat.format(new Date());//            String codeTRX = "TRXJ_" + date2;//            codeTRX = codeTRX.replaceAll("-", "");            String codeTRX = KodeGenerator.generateKodeTransaksi();            int totalDataObat = table.getRowCount();            long kembalian = totalKembalian;            long bayar = totalBayar;            long totalHargaAll = this.totalHargaObat;            //memasukkan data ke transaksi            DB.query2("INSERT INTO transaksi_penjualan (kode_transaksi,id_user,total_harga,pembayaran,kembalian) VALUES ('" + codeTRX + "','" + idusrr + "','" + totalHargaAll + "','" + bayar + "','" + kembalian + "')");            for (Object[] data : obatTableList) {                String kodeObat = data[0].toString();                String jenisPenjualan = data[2].toString();                long hargaSatuan = Currency.deformat(data[3].toString());                ResultSet dataJenis = DB.query("SELECT total from data_jenis_penjualan where kode_obat = '" + kodeObat + "' AND satuan = '" + jenisPenjualan + "'");                int qtyTotal = Integer.parseInt(data[4].toString());                long totalHarga = Currency.deformat(data[5].toString());                //melakukan kalkulasi qty sesuai bentuk penjualan                while (dataJenis.next()) {                    //misal 1 box ada 5 satuan  qty adalah total box yang ingin dibeli di kali total satuan yang ada pada box                    qtyTotal = qtyTotal * dataJenis.getInt("total");                }                DB.query2("INSERT INTO detail_penjualan(kode_transaksi,kode_obat,harga,qty,subtotal) VALUES ('" + codeTRX + "','" + kodeObat + "','" + hargaSatuan + "','" + qtyTotal + "','" + totalHarga + "')");                //mengurangi table stok obat                ResultSet dataStok = DB.query("SELECT * from data_stok_obat where kode_obat = '" + kodeObat + "' AND status_kadaluarsa = 0 order by tanggal_masuk asc");                int qtySisa = qtyTotal;                while (dataStok.next()) {                    if (dataStok.getInt("jumlah_obat") >= qtySisa) {                        DB.query2("UPDATE stok_obat set jumlah_obat = jumlah_obat - " + qtySisa + " where id  = '" + dataStok.getInt("id") + "'");                        break;                    } else {                        qtySisa = qtySisa - dataStok.getInt("jumlah_obat");                        DB.query2("UPDATE stok_obat set jumlah_obat = jumlah_obat-jumlah_obat   where id  = '" + dataStok.getInt("id") + "'");                    };                }            }            try {                String sqlQuery = "SELECT * FROM printerview where kode_transaksi = '" + codeTRX + "'";                String path = "src/iReportdata/printpenjualan.jrxml";                JasperDesign jasperDesign = JRXmlLoader.load(path);                // Membuat objek JRDesignQuery                JRDesignQuery newQuery = new JRDesignQuery();                newQuery.setText(sqlQuery);                // Mengaitkan JRDesignQuery dengan JasperDesign                jasperDesign.setQuery(newQuery);                // Langkah 3: Mengisi data ke laporan JasperReports                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);                Map<String, Object> parameters = new HashMap<>();                // Mengisi laporan dengan data dari database                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());                // Menampilkan laporan (opsional)                JasperViewer viewer = new JasperViewer(jasperPrint, false);                viewer.setVisible(true);            } catch (JRException ex) {                Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);            }            resetForm();            view.reset();            JOptionPane.showMessageDialog(table, "Berhasil Menyimpan Data");        } catch (Exception e) {            System.out.println("simpan penjualan " + e.getMessage());        }    }    public void editData(Object[] rowTable) {        try {            status = 2;            dataObat.setEnabled(false);            batal.setEnabled(true);            int indexTable = table.getSelectedRow();            String kodeObat = obatTableList.get(indexTable)[0].toString();            String namaOb = obatTableList.get(indexTable)[1].toString();            String satuanOb = obatTableList.get(indexTable)[2].toString();            String hargaOb = obatTableList.get(indexTable)[3].toString();            String qtyOb = obatTableList.get(indexTable)[4].toString();            this.harga.setText(hargaOb);            this.dataObat.setSelectedItem(namaOb);            this.dataSatuan.setSelectedItem(satuanOb);            this.qty.setText(qtyOb);        } catch (Exception e) {        }    }    public void updateData(Object[] object) {    }    public void hapusData(Object[] object) {        try {        } catch (Exception e) {            System.out.println("error dari hapus data satuan " + e.getMessage());        }    }    public void setJenis() {        try {            int indexObat = dataObat.getSelectedIndex();            qty.setEnabled(true);            if (indexObat < 1) {//                if (obatIsClicked) {//                    System.out.println("dk berubah");                addList.setEnabled(false);                this.stok.setText("0");                this.harga.setText(Currency.format(0));                qty.setEnabled(false);                dataSatuan.removeAllItems();                dataSatuan.setEnabled(false);//                    jenisIsClicked = false;//                    obatIsClicked = false;//                }                return;            }            addList.setEnabled(true);            String kodeObat = obatList.get(indexObat)[0].toString();            qty.setEnabled(true);            dataSatuan.setEnabled(true);            qty.setText("1");            ResultSet data = DB.query("SELECT * FROM `data_jenis_penjualan` where kode_obat = '" + kodeObat + "'");            dataSatuan.removeAllItems();            while (data.next()) {                dataSatuan.addItem(data.getString("satuan"));                satuanList.add(new Object[]{data.getString("kode_obat"), data.getInt("total"), data.getInt("harga")});            }            ResultSet datas = DB.query("SELECT * FROM `obat` join kategori on kategori.id = obat.id_kategori where kode_obat = '" + kodeObat + "'");            if (datas.next()) {                nobat.setText(datas.getString("nama_obat"));                kobat.setText(datas.getString("nama_kategori"));                aturpakai.setText(datas.getString("aturan_pakai"));            }            setHargaStok();        } catch (Exception e) {            System.out.println("error dari tampil setJenis" + e.getMessage());        }    }    public void setHargaStok() {        int indexOB = dataObat.getSelectedIndex();        int indexST = dataSatuan.getSelectedIndex();        if (indexOB <= 0 || indexST < 0) {            stok.setText("0");            this.harga.setText(Currency.format(0));            dataSatuan.removeAllItems();            return;        }        long qty = Long.parseLong(this.qty.getText());        int stokObatData = Integer.parseInt(obatList.get(indexOB)[1].toString());        String kodeOb = obatList.get(indexOB)[0].toString();        int stokSatuanJenis = Integer.parseInt(satuanList.get(indexST)[1].toString());        int hargaObat = Integer.parseInt(satuanList.get(indexST)[2].toString());        int stokObat = (int) (Math.floor(stokObatData / stokSatuanJenis));        for (Object[] data1 : obatTableList) {            String kodeOb1 = data1[0].toString();            int qty2 = (int) data1[4];            if (kodeOb1.equalsIgnoreCase(kodeOb)) {                stokObat = stokObat - qty2;            }        }        System.out.println("stok" + stokObat);        this.stok.setText(String.valueOf(stokObat));        this.harga.setText(Currency.format(hargaObat));    }    public void pembayaran() {        try {            btnBayar.setEnabled(true);            String pembayaranText = bayar.getText();            if (pembayaranText.equals("")) {                bayar.setText("Rp. 0");                return;            }            // Cek apakah pembayaranText hanya berisi angka            boolean isOnlyNumber = Validasi.onlyNumber(pembayaranText);//            System.out.println(isOnlyNumber);            long pembayaran = 0;            if (isOnlyNumber) {                pembayaran = Long.parseLong(pembayaranText);                // Jika hanya berisi angka, langsung format dan tampilkan                bayar.setText(Currency.format(pembayaran));            } else {                // Jika tidak hanya berisi angka, deformat dulu menjadi int dan format ulang                pembayaran = Currency.deformat(pembayaranText);                bayar.setText(Currency.format(pembayaran));            }            totalBayar = pembayaran;            totalKembalian = totalBayar - totalHargaObat;            kembalian.setText(Currency.format(totalKembalian));        } catch (Exception e) {            bayar.setText("Rp. 0");            System.out.println(e.getMessage());        }    }    public void tambahKeList() {        try {            dataObat.setEnabled(true);            batal.setEnabled(false);            String satuan = dataSatuan.getSelectedItem().toString();            String namaObat = dataObat.getSelectedItem().toString();            String kodeObat = obatList.get(dataObat.getSelectedIndex())[0].toString();            int qty = Integer.parseInt(this.qty.getText());            long harga = Currency.deformat(this.harga.getText());            long subTotal;            if (kodeObat == "-") {                JOptionPane.showMessageDialog(table, "Silahkan isi informasi penjualan");                return;            }            int index = 0;            for (Object[] obatTable : obatTableList) {                if (obatTable[0].equals(kodeObat)) {                    int qtySebelumnya = Integer.parseInt(table.getValueAt(index, 4).toString());                    long hargaSebelumnya = Currency.deformat(table.getValueAt(index, 5).toString());                    int qtyTotal = 0;                    if (status == 2) {                        qtyTotal = qty;                        subTotal = qty * harga;                    } else {                        qtyTotal = qtySebelumnya + qty;                        subTotal = (qtySebelumnya + qty) * harga;                    }                    this.totalHargaObat = (this.totalHargaObat - hargaSebelumnya) + subTotal;                    table.setValueAt(qtyTotal, index, 4);                    table.setValueAt(satuan, index, 2);                    table.setValueAt(Currency.format(subTotal), index, 5);                    table.setValueAt(Currency.format(harga), index, 3);                    status = 1;                    resetForm();                    Object[] rowData = {kodeObat, namaObat, satuan, Currency.format(harga), qtyTotal, Currency.format(subTotal)};                    obatTableList.set(index, rowData);                    this.totalHarga.setText(Currency.format(this.totalHargaObat));                    return;                }                index++;            }            subTotal = qty * harga;            this.totalHargaObat += subTotal;            DefaultTableModel model = (DefaultTableModel) table.getModel();            Object[] rowData = {kodeObat, namaObat, satuan, Currency.format(harga), qty, Currency.format(subTotal)};            model.addRow(rowData);            obatTableList.add(rowData);            resetForm();            this.totalHarga.setText(Currency.format(this.totalHargaObat));        } catch (Exception e) {            System.out.println(e.getMessage());        }    }    public void resetTable() {        try {            int index = table.getSelectedRow();            long hargaTotal = Currency.deformat(table.getValueAt(index, 5).toString());            DefaultTableModel model = (DefaultTableModel) table.getModel();            model.removeRow(index);            this.totalHargaObat -= hargaTotal;            this.totalHarga.setText(Currency.format(this.totalHargaObat));            obatTableList.remove(index);            resetForm();        } catch (Exception e) {        }    }    public void resetForm() {        table.clearSelection();        batal.setEnabled(false);        this.status = 1;        this.dataObat.setEnabled(true);        qty.setEnabled(false);        dataSatuan.setEnabled(false);        this.qty.setText("0");        this.harga.setText(Currency.format(0));        this.dataObat.setSelectedIndex(0);        this.dataSatuan.removeAllItems();        this.stok.setText("0");    }    public void setQty() {        long qty = Validasi.getNumeric(this.qty.getText());        long stok = Validasi.getNumeric(this.stok.getText());        if (qty > stok) {            JOptionPane.showMessageDialog(table, "Kuantiti Melebihi Persediaan Stok");            this.qty.setText("1");            return;        }        this.qty.setText(qty + "");        setHargaStok();    }    public void reset() {        obatList.clear();        satuanList.clear();        obatTableList.clear();        bayar.setText(Currency.format(0));        kembalian.setText(Currency.format(0));        totalHarga.setText(Currency.format(0));        ((DefaultTableModel) table.getModel()).setRowCount(0);        //status 1 untuk tambah 2 untuk edit        status = 1;        jenisIsClicked = false;        obatIsClicked = false;        totalHargaObat = 0;        totalKembalian = 0;        totalBayar = 0;    }    public <T> int getIndexObat(ArrayList<Object[]> list, String target) {        for (int i = 0; i < list.size(); i++) {            if (list.get(i).toString().equalsIgnoreCase(target)) {                return i; // Return the index if found            }        }        return -1; // Return -1 if not found    }}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Controllers;
+
+import View.Auth.login;
+import Config.DB;
+import Core.Controller;
+import Helper.Currency;
+import Helper.KodeGenerator;
+import Helper.Notification;
+import Helper.Validasi;
+import View.KategoriView;
+import View.PenjualanView;
+
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import org.w3c.dom.events.MouseEvent;
+
+import App.Model.DetailPenjualanModel;
+import App.Model.KategoriModel;
+import App.Model.ObatModel;
+import App.Model.TransaksiPenjualanModel;
+import Components.btnAction.obatAction.ActionEvent;
+import Components.btnAction.obatAction.BtnAction;
+import Components.btnAction.obatAction.BtnEditor;
+
+/**
+ *
+ * @author Muhammad Nor Kholit
+ */
+public class TransaksiPenjualanController  extends Controller{
+
+   
+    private PenjualanView view = new PenjualanView();
+    private ObatModel obatModel= new ObatModel();
+    private TransaksiPenjualanModel transaksiPenjualanModel= new TransaksiPenjualanModel();
+    private DetailPenjualanModel detailPenjualanModel= new DetailPenjualanModel();
+    private int hargaTotal = 0;
+    private int kembalian = 0;
+    private int pembayaran = 0;
+    private boolean isEdit = false;
+    private ArrayList<Object[]> listData = new ArrayList<>();
+
+    public TransaksiPenjualanController() {
+
+        view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                reset();
+            }
+
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        view.getBtnCari().addActionListener(e -> {
+            String kunci = view.getCariObat().getText();
+            cariData(kunci);
+            showForm();
+        });
+        view.getBtnBayar().addActionListener(e -> simpanPenjualan());
+        view.getCariDialogForm().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                String kunci = view.getCariDialogForm().getText();
+                cariData(kunci);
+            }
+        });
+        view.getQty().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                String value = view.getQty().getText();
+                if (value.equals("")) {
+                    value = "0";
+                }
+
+                if (Integer.parseInt(value) > 0)
+                    view.getAddList().setEnabled(true);
+                else
+                    view.getAddList().setEnabled(true);
+
+            }
+        });
+        view.getBayar().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                String bayar = view.getBayar().getText();
+                if (bayar.equals("")) {
+                    bayar = "0";
+                }
+                kembalian = Integer.parseInt(bayar) - hargaTotal;
+                pembayaran = Integer.parseInt(bayar);
+                view.getKembalian().setText(Helper.Currency.format(kembalian));
+                if (Integer.parseInt(bayar) >= hargaTotal)
+                    view.getBtnBayar().setEnabled(true);
+                else
+                    view.getBtnBayar().setEnabled(false);
+
+            }
+        });
+        view.getTableCari().addMouseListener(new MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    selectObat(row);
+                }
+            }
+        });
+        view.getAddList().addActionListener(e -> addList());
+        ActionEvent event = new ActionEvent() {
+
+            @Override
+            public void onEdit(int row) {
+                editTable(row);
+            }
+
+            @Override
+            public void onDelete(int row) {
+                listData.remove(row);
+                removeData(row);
+            }
+        };
+
+        view.getTable().getColumnModel().getColumn(6).setCellRenderer(new BtnAction());
+        view.getTable().getColumnModel().getColumn(6).setCellEditor(new BtnEditor(event));
+
+    }
+    
+
+    
+    private void cariData(String kunci) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) view.getTableCari().getModel();
+           
+            ResultSet datas = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE nama_obat like '%" + kunci
+                    + "%' OR kode_obat  = '%" + kunci + "%'");
+            model.setRowCount(0);
+            while (datas.next()) {
+                ResultSet obat = obatModel.where("kode_obat", "=", datas.getString("kode_obat")).get();
+                obat.next();
+                int stok = obat.getInt("jumlah_obat") / datas.getInt("total");
+                if (stok > 0) {
+                    Object[] data = { datas.getString("kode_obat"), datas.getString("nama_obat"),
+                            datas.getString("harga"), datas.getString("satuan"), stok };
+                    model.addRow(data);
+                }
+            }
+        } catch (Exception e) {
+            Notification.showError("Terjadi kesalahan dengan sistem", view.getTable());
+        }
+    }
+
+
+    private void removeData(int row) {
+        sumHarga();
+        ((DefaultTableModel) view.getTable().getModel()).removeRow(row);
+    }
+    private void selectObat(int row) {
+         String kodeObat = view.getTableCari().getValueAt(row, 0).toString();
+         String namaObat = view.getTableCari().getValueAt(row, 1).toString();
+         String harga = view.getTableCari().getValueAt(row, 2).toString();
+         String satuan = view.getTableCari().getValueAt(row, 3).toString();
+         String stok = view.getTableCari().getValueAt(row, 4).toString();
+
+         for (int i = 0; i < listData.size(); i++) {
+            if (kodeObat.equals(listData.get(i)[0]) && satuan.equals(listData.get(i)[2])) {
+                int stokTerbaru = Integer.parseInt(stok)  - Integer.parseInt(listData.get(i)[4].toString());
+                stok = String.valueOf(stokTerbaru);
+            }
+        }
+         view.getJenisPenjualan().setText(satuan);
+         view.getQty().setText("1");
+         view.getStok().setText(stok);
+         view.getHarga().setText(harga);
+         view.getKodeObat().setText(kodeObat);
+         view.getNamaObat().setText(namaObat);
+         view.getAddList().setEnabled(true);
+         view.getCariDialog().dispose();
+         view.getBatal().setEnabled(true);
+
+    }
+
+    private void showForm() {
+        view.getCariDialog().pack();
+        view.getCariDialog().setLocationRelativeTo(null);
+        view.getCariDialog().setVisible(true);
+    }
+    
+    private void addList() {
+        DefaultTableModel model = (DefaultTableModel) view.getTable().getModel();
+        String satuan = view.getJenisPenjualan().getText();
+        int qty = Integer.parseInt(view.getQty().getText());
+        int stok = Integer.parseInt(view.getStok().getText());
+        int harga = Integer.parseInt(view.getHarga().getText());
+        String kodeObat = view.getKodeObat().getText();
+        String namaObat = view.getNamaObat().getText();
+        int subTotal = harga * qty;
+        
+        Object[] data = { kodeObat, namaObat, satuan, Helper.Currency.format(harga), qty, Helper.Currency.format(subTotal) };
+        for (Object object : data) {
+            if (object.equals("")) {
+                Notification.showInfo("Semua inputan wajib diisi"+stok, view.getBaseLayer());
+                return;
+            }
+        }
+        boolean isExist = false;
+        int indexExist = -1;
+        for (int i = 0; i < listData.size(); i++) {
+            if (kodeObat.equals(listData.get(i)[0]) && satuan.equals(listData.get(i)[2]) ) {
+                isExist = true;
+                indexExist = i;
+            }
+        }
+
+        if (qty == 0) {
+            Notification.showInfo("Qty tidak tidak boleh 0 ", view.getBaseLayer());
+            return;
+        }
+        if (qty > stok) {
+            Notification.showInfo("Qty tidak boleh melebihi " + stok, view.getBaseLayer());
+            return;
+        }
+        
+        if (isExist) {
+            if (!isEdit) {
+                qty += Integer.parseInt(listData.get(indexExist)[4].toString());
+            }
+            //Menambahkan ke column kode obat
+            model.setValueAt(kodeObat, indexExist, 0);
+            //Menambahkan ke column nama obat
+            model.setValueAt(namaObat, indexExist, 1);
+            //Menambahkan ke column Satuan
+            model.setValueAt(satuan, indexExist, 2);
+            //Menambahkan ke column harga
+            model.setValueAt(Helper.Currency.format(harga), indexExist, 3);
+            int qtyTotal = qty;
+            subTotal = qtyTotal * harga;
+            //Menambahkan ke column qty
+            model.setValueAt(qtyTotal, indexExist, 4);
+            //Menambahkan ke column subtotal
+            model.setValueAt(Helper.Currency.format(subTotal), indexExist, 5);
+            Object[] dataEdit = { kodeObat, namaObat, satuan, harga, qty, subTotal };
+            listData.set(indexExist, dataEdit);
+        } else {
+            model.addRow(data);
+            listData.add(data);
+        }
+        view.getBatal().setEnabled(false);
+        isEdit = false;
+        sumHarga();
+        resetForm();
+    }
+
+    private void sumHarga() {
+        try {
+            int rowTable = view.getTable().getRowCount();
+            int harga = 0;
+            for (int i = 0; i < rowTable; i++) {
+            harga +=(int) Helper.Currency.deformat(view.getTable().getValueAt(i, 5).toString());
+            }
+            hargaTotal = harga;
+            view.getTotalHarga().setText(Helper.Currency.format(hargaTotal));
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    
+    private void resetForm() {
+        view.getJenisPenjualan().setText("");
+        view.getQty().setText("1");
+        view.getStok().setText("");
+        view.getHarga().setText("");
+        view.getKodeObat().setText("");
+        view.getNamaObat().setText("");
+    }
+
+    private void simpanPenjualan() {
+        try {
+            if (pembayaran < hargaTotal) {
+                Notification.showInfo(
+                        "Pembayaran kurang \n Pembayaran : " + pembayaran + "\n Total Harga :" + hargaTotal,
+                        view.getTable());
+                return;
+            }
+            String kodeTrx = Helper.KodeGenerator.generateKodeTransaksi();
+            String[] fieldTrx = { "kode_transaksi", "id_user", "total_harga", "pembayaran", "kembalian" };
+            String[] valueTrx = { kodeTrx, "1", String.valueOf(hargaTotal), String.valueOf(pembayaran),String.valueOf(kembalian) };
+            transaksiPenjualanModel.insert(fieldTrx, valueTrx);
+
+            for (int i = 0; i < view.getTable().getRowCount(); i++) {
+                String kodeObat = view.getTable().getValueAt(i, 0).toString();
+                String harga = view.getTable().getValueAt(i, 3).toString();
+                String qty = view.getTable().getValueAt(i, 4).toString();
+                String subtotal = view.getTable().getValueAt(i, 5).toString();
+                String[] field = { "kode_transaksi", "kode_obat", "harga", "qty", "subtotal" };
+                String[] value = { kodeTrx, kodeObat, harga, qty, subtotal };
+                detailPenjualanModel.insert(field, value);
+            }
+
+            Notification.showInfo("Transaksi Berhasil", view.getBaseLayer());
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void reset() {
+        ((DefaultTableModel) view.getTable().getModel()).setRowCount(0);
+        hargaTotal = 0;
+        pembayaran = 0;
+        kembalian = 0;
+        resetForm();
+        view.getBayar().setText("0");
+        view.getKembalian().setText("0");
+        view.getTotalHarga().setText("Rp. 0");
+        listData.clear();
+        
+    }
+
+    private void editTable(int row) {
+        try {
+        String kodeObat = view.getTable().getValueAt(row, 0).toString();
+        String namaObat = view.getTable().getValueAt(row, 1).toString();
+        String satuan = view.getTable().getValueAt(row, 2).toString();
+        String harga = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(row, 3).toString()));
+        String qty = view.getTable().getValueAt(row, 4).toString();
+        view.getJenisPenjualan().setText(satuan);
+        view.getQty().setText(qty);
+        view.getHarga().setText(harga);
+        view.getKodeObat().setText(kodeObat);
+        view.getNamaObat().setText(namaObat);
+
+        ResultSet datas = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE satuan =  '" + satuan
+                    + "' AND kode_obat  = '" + kodeObat + "'");
+        while (datas.next()) {
+            ResultSet obat = obatModel.where("kode_obat", "=", datas.getString("kode_obat")).get();
+            obat.next();
+            int stok = obat.getInt("jumlah_obat") / datas.getInt("total");
+            if (stok > 0) {
+                view.getStok().setText(String.valueOf(stok));
+            }
+        }
+        isEdit = true;
+        view.getBatal().setEnabled(true);
+        } catch (Exception e) {
+            Notification.showInfo("Terjadi kesalahan dengan sistem", view.getBaseLayer());
+        }
+    }
+    @Override
+    public Component getView() {
+        return view;
+    }
+}
