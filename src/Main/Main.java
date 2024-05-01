@@ -88,7 +88,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new PenjualanView(), "Penjualan");
 //        main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "Pengeluaran");
-        main.add(new PembelianView(), "Pembelian");
+        main.add(new Controllers.TransaksiPembelianController().getView(), "Pembelian");
         main.add(new ReturPembelianView(), "Retur Pembelian");
         main.add(new ReturPenjualanView(), "Retur Penjualan");
 
