@@ -3,20 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-          
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/PenjualanView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/Main.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/table/TableCustom.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/TransaksiPenjualanController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Controllers/ObatController.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Main/DashboardView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Model/DetailPenjualanModel.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/table/HoverIndex.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Laporan/PendapatanView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/App/Model/TransaksiPenjualanModel.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/UserView.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/Laporan/LaporanMain.java</file>
-            <file>file:/C:/Users/Dell%20XPS%20P54G/OneDrive/Documents/NetBeansProjects/TIF_EXIBITION/src/View/ObatView.java</file>
+
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPembelianController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/App/Model/DetailObatModel.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/App/Model/PembelianModel.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Controllers/ObatController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/View/PembelianView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPembelianController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Controllers/SupplierController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/View/ObatView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Helper/Validasi.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Helper/Currency.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/App/Model/SuplierModel.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Core/Model.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Core/QueryBuilder.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Laporan/LPembelianView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/View/PenjualanView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
 
         </group>
     </open-files>

@@ -1,22 +1,15 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
 
-
-
-
-
 public class KategoriView extends javax.swing.JPanel {
 
-  
     public KategoriView() {
         initComponents();
-          }
+    }
 
-   
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,19 +247,19 @@ public class KategoriView extends javax.swing.JPanel {
     }//GEN-LAST:event_searchKeyReleased
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-       
+
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        
+
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-      
+
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void baseLayerAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_baseLayerAncestorAdded
@@ -330,7 +323,6 @@ public class KategoriView extends javax.swing.JPanel {
         this.form = form;
     }
 
-   
     public javax.swing.JLabel getFormTitle() {
         return formTitle;
     }
