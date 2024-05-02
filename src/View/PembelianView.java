@@ -4,8 +4,11 @@
  */
 package View;
 
+import Components.ButtonIcon;
+import Components.CustomField;
 import java.sql.ResultSet;
 import Components.DeleteButtonRenderer;
+import Config.DB;
 import Controllers.TransaksiPembelianController;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -24,7 +27,15 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.TableCellEditor;
 import Helper.JDateChooserEditor;
 import Helper.IntegerCellEditor;
+import de.wannawork.jcalendar.JCalendarComboBox;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import table.TableCustom;
 
 /**
@@ -33,21 +44,27 @@ import table.TableCustom;
  */
 public class PembelianView extends javax.swing.JPanel {
 
-    private TransaksiPembelianController controller;
-    boolean adaQuery = false;
-    Preferences userPreferences = Preferences.userNodeForPackage(PembelianView.class);
-    ArrayList<TableCellEditor> editors = new ArrayList<TableCellEditor>(3);
-    ArrayList<Boolean> cellEdit = new ArrayList<Boolean>();
-
+//    private TransaksiPembelianController controller;
+//    boolean adaQuery = false;
+//    Preferences userPreferences = Preferences.userNodeForPackage(PembelianView.class);
+//    ArrayList<TableCellEditor> editors = new ArrayList<TableCellEditor>(3);
+//    ArrayList<Boolean> cellEdit = new ArrayList<Boolean>();
     /**
      * Creates new form PenjualanView
      */
     public PembelianView() {
+        // Mendapatkan tanggal dalam format java.util.Date
+
         initComponents();
-        Object[] component = {table, dataSuplier, dataObat, qty, harga};
-        controller = new Controllers.TransaksiPembelianController(component);
-        controller.tampilData();
+//        Object[] component = {table, dataSuplier, dataObat, qty, harga};
+//        controller = new Controllers.TransaksiPembelianController(component);
+//        controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane2, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane3, TableCustom.TableType.MULTI_LINE);
+//        btn_batal.setEnabled(false);
+        jPopupMenu1.add(jPanel2);
+        jPopupMenu2.add(jPanel5);
 
     }
 
@@ -60,23 +77,30 @@ public class PembelianView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelsupp = new javax.swing.JTable();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelobat = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new Components.CustomPanel();
         jLabel3 = new javax.swing.JLabel();
-        dataSuplier = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnBayar = new Components.ButtonIcon();
-        dataSuplier1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        dataSuplier2 = new javax.swing.JComboBox<>();
+        carapembayaran = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        btnBayar1 = new Components.ButtonIcon();
+        totalbayar = new javax.swing.JLabel();
+        btnReset = new Components.ButtonIcon();
+        nofak = new javax.swing.JTextField();
+        dataSuplier = new javax.swing.JTextField();
         jPanel4 = new Components.CustomPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        dataObat = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         qty = new Components.CustomField();
@@ -84,9 +108,85 @@ public class PembelianView extends javax.swing.JPanel {
         harga = new Components.CustomField();
         addList = new Components.ButtonIcon();
         jLabel11 = new javax.swing.JLabel();
-        harga1 = new Components.CustomField();
         jLabel12 = new javax.swing.JLabel();
-        harga2 = new Components.CustomField();
+        nobatch = new Components.CustomField();
+        datechose_exp = new de.wannawork.jcalendar.JCalendarComboBox();
+        dataObat = new javax.swing.JTextField();
+        btn_batal = new Components.ButtonIcon();
+
+        jPanel2.setRequestFocusEnabled(false);
+        jPanel2.setVerifyInputWhenFocusTarget(false);
+
+        tabelsupp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kode Supplier", "Nama Supplier", "Alamat", "No Telepon"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelsupp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelsuppMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabelsupp);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+        );
+
+        jPopupMenu2.setRequestFocusEnabled(false);
+
+        tabelobat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Kode Obat", "Nama Obat", "Kategori Obat", "Stok", "Satuan", "Kandungan"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelobat.getTableHeader().setReorderingAllowed(false);
+        tabelobat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelobatMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tabelobat);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+        );
 
         addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -114,88 +214,71 @@ public class PembelianView extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(58, 98, 215));
         jLabel3.setText("Informasi Pembelian");
 
-        dataSuplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
-        dataSuplier.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dataSuplierItemStateChanged(evt);
-            }
-        });
-        dataSuplier.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataSuplierMouseClicked(evt);
-            }
-        });
-        dataSuplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataSuplierActionPerformed(evt);
-            }
-        });
-
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Pilih Suplier");
 
         btnBayar.setIcon("Assets/svg/saveIcon.svg");btnBayar.setHorizontal(true);
         btnBayar.setBackground(new java.awt.Color(58, 98, 215));
         btnBayar.setForeground(new java.awt.Color(255, 255, 255));
         btnBayar.setText("Simpan");
-        btnBayar.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
+        btnBayar.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         btnBayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBayarActionPerformed(evt);
             }
         });
 
-        dataSuplier1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
-        dataSuplier1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dataSuplier1ItemStateChanged(evt);
-            }
-        });
-        dataSuplier1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataSuplier1MouseClicked(evt);
-            }
-        });
-        dataSuplier1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataSuplier1ActionPerformed(evt);
-            }
-        });
-
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("No Faktur");
 
-        dataSuplier2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
-        dataSuplier2.addItemListener(new java.awt.event.ItemListener() {
+        carapembayaran.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tunai", "Kredit" }));
+        carapembayaran.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dataSuplier2ItemStateChanged(evt);
+                carapembayaranItemStateChanged(evt);
             }
         });
-        dataSuplier2.addMouseListener(new java.awt.event.MouseAdapter() {
+        carapembayaran.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataSuplier2MouseClicked(evt);
+                carapembayaranMouseClicked(evt);
             }
         });
-        dataSuplier2.addActionListener(new java.awt.event.ActionListener() {
+        carapembayaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataSuplier2ActionPerformed(evt);
+                carapembayaranActionPerformed(evt);
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Cara Pembayaran");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Total Pembayaran");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel8.setText("Rp.10.000");
+        totalbayar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        totalbayar.setText("s");
 
         btnBayar.setIcon("Assets/svg/saveIcon.svg");btnBayar.setHorizontal(true);
-        btnBayar1.setBackground(new java.awt.Color(58, 98, 215));
-        btnBayar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBayar1.setText("Simpan");
-        btnBayar1.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
-        btnBayar1.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setBackground(new java.awt.Color(232, 224, 224));
+        btnReset.setText("Reset");
+        btnReset.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBayar1ActionPerformed(evt);
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        nofak.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nofakKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nofakKeyTyped(evt);
+            }
+        });
+
+        dataSuplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dataSuplierKeyReleased(evt);
             }
         });
 
@@ -207,33 +290,33 @@ public class PembelianView extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBayar1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 685, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(dataSuplier1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(10, 10, 10)
-                                .addComponent(dataSuplier2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nofak)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(carapembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addGap(288, 288, 288)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(totalbayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(dataSuplier, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(dataSuplier, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -245,23 +328,23 @@ public class PembelianView extends javax.swing.JPanel {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalbayar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dataSuplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dataSuplier2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(carapembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                            .addComponent(nofak))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(3, 3, 3)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dataSuplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBayar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(dataSuplier, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -271,14 +354,14 @@ public class PembelianView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Kode Obat", "Nama Obat", "Satuan", "Harga Beli", "Qty", "Tanggal Kadaluarsa", "Aksi"
+                "No Batch", "Kode Obat", "Nama Obat", "Satuan", "Harga Beli", "Qty", "Tanggal Kadaluarsa", "Aksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -305,43 +388,25 @@ public class PembelianView extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(0).setMinWidth(150);
-            table.getColumnModel().getColumn(0).setMaxWidth(150);
-            table.getColumnModel().getColumn(1).setResizable(false);
-            table.getColumnModel().getColumn(2).setMinWidth(150);
-            table.getColumnModel().getColumn(2).setMaxWidth(150);
+            table.getColumnModel().getColumn(1).setMinWidth(150);
+            table.getColumnModel().getColumn(1).setMaxWidth(150);
+            table.getColumnModel().getColumn(2).setResizable(false);
             table.getColumnModel().getColumn(3).setMinWidth(150);
             table.getColumnModel().getColumn(3).setMaxWidth(150);
             table.getColumnModel().getColumn(4).setMinWidth(150);
             table.getColumnModel().getColumn(4).setMaxWidth(150);
-            table.getColumnModel().getColumn(5).setCellEditor(new JDateChooserEditor(new JCheckBox(),table));
-            table.getColumnModel().getColumn(6).setMinWidth(80);
-            table.getColumnModel().getColumn(6).setMaxWidth(80);
-            table.getColumnModel().getColumn(6).setCellRenderer(new DeleteButtonRenderer());
+            table.getColumnModel().getColumn(5).setMinWidth(150);
+            table.getColumnModel().getColumn(5).setMaxWidth(150);
+            table.getColumnModel().getColumn(6).setCellEditor(new JDateChooserEditor(new JCheckBox(),table));
+            table.getColumnModel().getColumn(7).setMinWidth(80);
+            table.getColumnModel().getColumn(7).setMaxWidth(80);
+            table.getColumnModel().getColumn(7).setCellRenderer(new DeleteButtonRenderer());
         }
 
-        dataObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
-        dataObat.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dataObatItemStateChanged(evt);
-            }
-        });
-        dataObat.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dataObatFocusGained(evt);
-            }
-        });
-        dataObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataObatMouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                dataObatMouseReleased(evt);
-            }
-        });
-
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Pilih Obat");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Qty");
 
         qty.setPlaceholder("Masukkan qty di beli");
@@ -352,6 +417,7 @@ public class PembelianView extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Harga Satuan");
 
         qty.setPlaceholder("Masukkan qty di beli");
@@ -362,21 +428,42 @@ public class PembelianView extends javax.swing.JPanel {
         addList.setHorizontal(true);
         addList.setForeground(new java.awt.Color(255, 255, 255));
         addList.setText("Tambah");
+        addList.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         addList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addListActionPerformed(evt);
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Tanggal Kadaluarsa");
 
-        qty.setPlaceholder("Masukkan qty di beli");
-        harga1.setText("Rp.0");
-
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("No Batch");
 
         qty.setPlaceholder("Masukkan qty di beli");
-        harga2.setText("Rp.0");
+
+        try{
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = sdf.format(date);
+            datechose_exp.setDate(sdf.parse(formattedDate));
+        }catch(ParseException e){
+            System.out.print(e);
+        }
+        datechose_exp.setDateFormat(new SimpleDateFormat("dd-MM-yyyy"));
+
+        dataObat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                dataObatKeyReleased(evt);
+            }
+        });
+
+        addList.setIcon("Assets/svg/addIcon.svg");
+        btn_batal.setBackground(new java.awt.Color(255, 51, 51));
+        btn_batal.setForeground(new java.awt.Color(255, 255, 255));
+        btn_batal.setText("Batal");
+        btn_batal.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -388,28 +475,31 @@ public class PembelianView extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                            .addComponent(datechose_exp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(harga2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                .addGap(86, 86, 86))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(nobatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addComponent(btn_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11))
         );
         jPanel4Layout.setVerticalGroup(
@@ -419,24 +509,24 @@ public class PembelianView extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
                             .addComponent(jLabel12))
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(harga2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nobatch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datechose_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
+                                .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btn_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -450,8 +540,8 @@ public class PembelianView extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -470,118 +560,86 @@ public class PembelianView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tableKeyReleased
 
-    private void dataObatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataObatItemStateChanged
-
-    }//GEN-LAST:event_dataObatItemStateChanged
-
-    private void dataObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataObatMouseClicked
-
-    }//GEN-LAST:event_dataObatMouseClicked
-
-    private void dataObatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataObatMouseReleased
-    }//GEN-LAST:event_dataObatMouseReleased
-
-    private void dataObatFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataObatFocusGained
-
-    }//GEN-LAST:event_dataObatFocusGained
-
     private void addListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListActionPerformed
-        controller.tambahKeTable();
+//        controller.tambahKeTable();
     }//GEN-LAST:event_addListActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        int columnClicked = table.columnAtPoint(evt.getPoint());
 
-        // Kolom ke-6 adalah kolom dengan index 5
-        if (columnClicked == 6) {
-            controller.resetTable();
-        } else {
-            controller.editData(new Object[]{});
-        }
     }//GEN-LAST:event_tableMouseClicked
 
     private void qtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyReleased
     }//GEN-LAST:event_qtyKeyReleased
 
     private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
-        controller.simpanData(new Object[]{});
+//        controller.simpanData(new Object[]{});
     }//GEN-LAST:event_btnBayarActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
     }//GEN-LAST:event_jPanel1AncestorAdded
 
-    private void dataSuplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSuplierActionPerformed
-
-    }//GEN-LAST:event_dataSuplierActionPerformed
-
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
         Object[] component = {table, dataSuplier, dataObat, qty, harga};
         qty.setText("0");
         harga.setText("Rp.0");
-        controller = new Controllers.TransaksiPembelianController(component);
-        controller.spIsClick = false;
-        controller.tampilData();
+//        controller = new Controllers.TransaksiPembelianController(component);
+//        controller.spIsClick = false;
+//        controller.tampilData();
     }//GEN-LAST:event_formAncestorAdded
 
-    private void dataSuplierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataSuplierItemStateChanged
-        if (controller.spIsClick) {
-
-            try {
-                controller.setTable();
-                System.out.println("das"+controller.spIsClick);
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                
-                Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_dataSuplierItemStateChanged
-
-    private void dataSuplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataSuplierMouseClicked
-        controller.spIsClick = true;
-    }//GEN-LAST:event_dataSuplierMouseClicked
-
-    private void dataSuplier1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataSuplier1ItemStateChanged
+    private void carapembayaranItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_carapembayaranItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier1ItemStateChanged
+    }//GEN-LAST:event_carapembayaranItemStateChanged
 
-    private void dataSuplier1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataSuplier1MouseClicked
+    private void carapembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carapembayaranMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier1MouseClicked
+    }//GEN-LAST:event_carapembayaranMouseClicked
 
-    private void dataSuplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSuplier1ActionPerformed
+    private void carapembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carapembayaranActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier1ActionPerformed
+    }//GEN-LAST:event_carapembayaranActionPerformed
 
-    private void dataSuplier2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataSuplier2ItemStateChanged
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier2ItemStateChanged
+    }//GEN-LAST:event_btnResetActionPerformed
 
-    private void dataSuplier2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataSuplier2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier2MouseClicked
+    private void dataSuplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataSuplierKeyReleased
 
-    private void dataSuplier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSuplier2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataSuplier2ActionPerformed
 
-    private void btnBayar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBayar1ActionPerformed
+    }//GEN-LAST:event_dataSuplierKeyReleased
 
-  
+    private void tabelsuppMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelsuppMouseClicked
+
+    }//GEN-LAST:event_tabelsuppMouseClicked
+
+    private void tabelobatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelobatMouseClicked
+
+    }//GEN-LAST:event_tabelobatMouseClicked
+
+    private void nofakKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nofakKeyReleased
+
+    }//GEN-LAST:event_nofakKeyReleased
+
+    private void dataObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataObatKeyReleased
+
+
+    }//GEN-LAST:event_dataObatKeyReleased
+
+    private void nofakKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nofakKeyTyped
+
+    }//GEN-LAST:event_nofakKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.ButtonIcon addList;
     private Components.ButtonIcon btnBayar;
-    private Components.ButtonIcon btnBayar1;
-    private javax.swing.JComboBox<String> dataObat;
-    private javax.swing.JComboBox<String> dataSuplier;
-    private javax.swing.JComboBox<String> dataSuplier1;
-    private javax.swing.JComboBox<String> dataSuplier2;
+    private Components.ButtonIcon btnReset;
+    private Components.ButtonIcon btn_batal;
+    private javax.swing.JComboBox<String> carapembayaran;
+    private javax.swing.JTextField dataObat;
+    private javax.swing.JTextField dataSuplier;
+    private de.wannawork.jcalendar.JCalendarComboBox datechose_exp;
     private Components.CustomField harga;
-    private Components.CustomField harga1;
-    private Components.CustomField harga2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -592,14 +650,98 @@ public class PembelianView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private Components.CustomField nobatch;
+    private javax.swing.JTextField nofak;
     private Components.CustomField qty;
+    private javax.swing.JTable tabelobat;
+    private javax.swing.JTable tabelsupp;
     private javax.swing.JTable table;
+    private javax.swing.JLabel totalbayar;
     // End of variables declaration//GEN-END:variables
+
+    public ButtonIcon getAddList() {
+        return addList;
+    }
+
+    public ButtonIcon getBtnBayar() {
+        return btnBayar;
+    }
+
+    public ButtonIcon getBtnReset() {
+        return btnReset;
+    }
+
+    public JComboBox<String> getCarapembayaran() {
+        return carapembayaran;
+    }
+
+    public JTextField getDataObat() {
+        return dataObat;
+    }
+
+    public JTextField getDataSuplier() {
+        return dataSuplier;
+    }
+
+    public JCalendarComboBox getDatechose_exp() {
+        return datechose_exp;
+    }
+
+    public CustomField getHarga() {
+        return harga;
+    }
+
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+
+    public JPopupMenu getjPopupMenu2() {
+        return jPopupMenu2;
+    }
+
+    public CustomField getNobatch() {
+        return nobatch;
+    }
+
+    public JTextField getNofak() {
+        return nofak;
+    }
+
+    public CustomField getQty() {
+        return qty;
+    }
+
+    public JTable getTabelobat() {
+        return tabelobat;
+    }
+
+    public JTable getTabelsupp() {
+        return tabelsupp;
+    }
+
+    public JTable getTable() {
+        return table;
+    }
+
+    public ButtonIcon getBtn_batal() {
+        return btn_batal;
+    }
+
+    public JLabel getTotalbayar() {
+        return totalbayar;
+    }
+    
+
 }
 
 class AutoComplete {

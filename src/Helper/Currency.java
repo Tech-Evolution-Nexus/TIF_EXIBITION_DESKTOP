@@ -44,7 +44,7 @@ public class Currency {
         return kursIndonesia.format(angka);
     }
 
-    public static long deformat(String formattedString) throws ParseException {
+    public static long deformat(String formattedString){
 //        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
 //        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
 //
@@ -58,6 +58,10 @@ public class Currency {
 //        return number.intValue();
         String cleanNumberString = formattedString.replaceAll("[^\\d]", "");
         long number = Long.parseLong(cleanNumberString);
+        if(String.valueOf(number).isEmpty()){
+            return 0;
+        }
         return number;
+        
     }
 }
