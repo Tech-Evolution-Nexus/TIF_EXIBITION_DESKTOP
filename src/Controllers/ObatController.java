@@ -4,7 +4,6 @@
  */
 package Controllers;
 
-
 import Config.DB;
 import Core.Controller;
 import Helper.Currency;
@@ -21,7 +20,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import javax.swing.JOptionPane;
 
 import javax.swing.event.ListSelectionEvent;
@@ -35,12 +33,32 @@ import App.Model.SatuanModel;
 import Components.btnAction.obatAction.ActionEvent;
 import Components.btnAction.obatAction.BtnAction;
 import Components.btnAction.obatAction.BtnEditor;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
  * @author Muhammad Nor Kholit
  */
-public class ObatController  extends Controller{
+public class ObatController extends Controller {
 
     int status = 1;
     private int satuanIndexEdit = -1;
@@ -51,26 +69,32 @@ public class ObatController  extends Controller{
     private JenisPenjualanModel jenisPenjualanModel = new JenisPenjualanModel();
     private KategoriModel kategoriModel = new KategoriModel();
     private SatuanModel satuanModel = new SatuanModel();
+
     public ObatController() {
         view.getSearch().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-               tampilData(true);
+                tampilData(true);
             }
         });
         tampilData(false);
-        view.getBtnUbah().addActionListener(e->editData());
-        view.getBtnHapus().addActionListener(e->hapusData());
-        view.getBtnTambah().addActionListener(e->tambahData());
+        view.getBtnUbah().addActionListener(e -> editData());
+        view.getBtnHapus().addActionListener(e -> hapusData());
+        view.getBtnTambah().addActionListener(e -> tambahData());
         view.getBtnSimpan().addActionListener(e -> simpanData());
         view.getBtnSatuan().addActionListener(e -> listSatuan());
         view.getBtnDetail().addActionListener(e -> detail());
+        view.getBtnExport().addActionListener(e -> exportbarcode());
+
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
-        public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            tampilData(false);        }
-        public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-        }
-        public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-        }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tampilData(false);
+            }
+
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
         });
 
         ActionEvent event = new ActionEvent() {
@@ -86,57 +110,57 @@ public class ObatController  extends Controller{
                 view.getMarginHarga().setText(marginHarga);
                 view.getMarginPersen().setText(marginPersen);
             }
+
             @Override
             public void onDelete(int row) {
-                ((DefaultTableModel)view.getListSatuan().getModel()).removeRow(row);
+                ((DefaultTableModel) view.getListSatuan().getModel()).removeRow(row);
             }
         };
 
         view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction());
         view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
         view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        @Override
-        public void valueChanged(ListSelectionEvent e) {
-            if (!e.getValueIsAdjusting()) {
-                int[] selectedRows = view.getListSatuan().getSelectedRows();
-                int[] selectedColumns = view.getListSatuan().getSelectedColumns();
-                for (int row : selectedRows) {
-                    for (int col : selectedColumns) {
-                        view.getListSatuan().changeSelection(row, col, false, false);
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int[] selectedRows = view.getListSatuan().getSelectedRows();
+                    int[] selectedColumns = view.getListSatuan().getSelectedColumns();
+                    for (int row : selectedRows) {
+                        for (int col : selectedColumns) {
+                            view.getListSatuan().changeSelection(row, col, false, false);
+                        }
                     }
                 }
             }
-        }
         });
 
     }
 
-    
     public void tampilData(boolean cari) {
         try {
             String kunci = view.getSearch().getText();
             ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0  order by tanggal_dibuat desc");
             if (cari) {
                 data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc");
-                
+
             }
             DefaultTableModel tabelData = (DefaultTableModel) view.getTable().getModel();
-            
+
             tabelData.setRowCount(0);
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = { no, data.getString("kode_obat"), data.getString("nama_obat"),
-                        data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"),
-                        data.getString("kandungan"), Currency.format(data.getLong("harga")) };
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"),
+                    data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"),
+                    data.getString("kandungan"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
             }
-            
+
             ResultSet satuan = satuanModel.all();
             view.getSatuan().removeAllItems();
-           while (satuan.next()) {
+            while (satuan.next()) {
                 view.getSatuan().addItem(satuan.getString("nama_satuan"));
             }
         } catch (Exception e) {
@@ -155,13 +179,12 @@ public class ObatController  extends Controller{
             while (kategoriData.next()) {
                 view.getKategori().addItem(kategoriData.getString("nama_kategori"));
             }
-            
+
             showForm();
         } catch (Exception e) {
         }
     }
 
-    
     public void hapusData() {
         try {
 
@@ -189,11 +212,8 @@ public class ObatController  extends Controller{
         }
     }
 
-   
-
-    
     public void simpanData() {
-        
+
         String namaObat = view.getNamaObat().getText();
         String kategori = view.getKategori().getSelectedItem().toString();
         String kandungan = view.getKandungan().getText();
@@ -208,13 +228,13 @@ public class ObatController  extends Controller{
             } else if (namaObat.equals("") || kandungan.equals("") || kategori.equals("")) {
                 Notification.showInfo(Notification.EMPTY_VALUE, view.getForm());
             } else {
-                  DefaultTableModel listSatuanModel = (DefaultTableModel)view.getListSatuan().getModel();
+                DefaultTableModel listSatuanModel = (DefaultTableModel) view.getListSatuan().getModel();
                 if (listSatuanModel.getRowCount() == 0) {
                     Notification.showInfo("Silahkan pilih satuan obat terlebih dahulu", view.getForm());
                     return;
                 }
-                for (int i = 0; i <  view.getListSatuan().getRowCount(); i++) {
-                    String value =view.getListSatuan().getValueAt(i, 0).toString();
+                for (int i = 0; i < view.getListSatuan().getRowCount(); i++) {
+                    String value = view.getListSatuan().getValueAt(i, 0).toString();
                     String value2 = view.getListSatuan().getValueAt(i, 1).toString();
                     if (!uniqueBarangList.add(value)) {
                         Notification.showInfo("Nilai duplikat dalam satuan: " + value, view.getForm());
@@ -224,12 +244,11 @@ public class ObatController  extends Controller{
                         Notification.showInfo("Total Satuan Harap Diisi: " + value, view.getForm());
                         return;
                     }
-                    
 
                 }
                 String namaSatuan = view.getListSatuan().getValueAt(0, 0).toString();
                 System.out.println("dakerror");
-                ResultSet dataKategori =kategoriModel.select("id").where("nama_kategori","=", kategori).get();
+                ResultSet dataKategori = kategoriModel.select("id").where("nama_kategori", "=", kategori).get();
 
                 ResultSet dataSatuan = satuanModel.select("id").where("nama_satuan", "=", namaSatuan).get();
                 dataKategori.next();
@@ -245,12 +264,12 @@ public class ObatController  extends Controller{
                     dataSatuan.next();
                     System.out.println("idSatuan");
                     String idSatuan = String.valueOf(dataSatuan.getInt("id"));
-                    String[] column = {"kode_obat","total","margin_harga","margin_persen","id_satuan"};
-                    String[] values = {kodeObat,total,marginHarga,marginPersen,idSatuan};
-                    jenisPenjualanModel.insert(column,values);
-                   
+                    String[] column = {"kode_obat", "total", "margin_harga", "margin_persen", "id_satuan"};
+                    String[] values = {kodeObat, total, marginHarga, marginPersen, idSatuan};
+                    jenisPenjualanModel.insert(column, values);
+
                 }
-               
+
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
                 tampilData(false);
                 view.getForm().dispose();
@@ -262,14 +281,15 @@ public class ObatController  extends Controller{
             System.out.println("error simpan data " + e.getMessage());
         }
     }
-    
+
     public void editData() {
         try {
             resetSatuanForm();
             clearDialog();
-            if (view.getTable().getSelectedRow() < 0){
-            Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
-            return;}
+            if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
+                return;
+            }
             int row = view.getTable().getSelectedRow();
             String idObat = view.getTable().getValueAt(row, 1).toString();
             String namaObat = view.getTable().getValueAt(row, 2).toString();
@@ -291,25 +311,25 @@ public class ObatController  extends Controller{
                 }
             }
             ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
-            DefaultTableModel model = (DefaultTableModel)view.getListSatuan().getModel();
+            DefaultTableModel model = (DefaultTableModel) view.getListSatuan().getModel();
             model.setRowCount(0);
             String namaSatuanPertama = "";
             while (satuanData.next()) {
                 if (namaSatuanPertama.equals("")) {
                     namaSatuanPertama = satuanData.getString("satuan");
                 }
-                Object[] data = {satuanData.getString("satuan"),satuanData.getString("total"),namaSatuanPertama,satuanData.getString("margin_harga"),satuanData.getString("margin_persen")};
+                Object[] data = {satuanData.getString("satuan"), satuanData.getString("total"), namaSatuanPertama, satuanData.getString("margin_harga"), satuanData.getString("margin_persen")};
                 model.addRow(data);
                 // addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"));
             }
 
-          showForm();
+            showForm();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view.getTable(), "Sistem error " + e.getMessage());
 
         }
     }
-    
+
     public void detail() {
         try {
             if (view.getTable().getSelectedRow() < 0) {
@@ -333,20 +353,20 @@ public class ObatController  extends Controller{
             ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
             model.setRowCount(0);
             while (satuanData.next()) {
-                Object[] objectRow = { satuanData.getString("satuan"), satuanData.getInt("total"),
-                        satuanData.getInt("harga") };
+                Object[] objectRow = {satuanData.getString("satuan"), satuanData.getInt("total"),
+                    satuanData.getInt("harga")};
                 model.addRow(objectRow);
             }
 
             model = (DefaultTableModel) view.getStokTable().getModel();
             ResultSet stokData = DB.query(
                     "SELECT * from batch_obat join supplier on batch_obat.kode_suplier = supplier.kode_suplier where kode_obat='"
-                            + idObat + "' order by tanggal_masuk desc");
+                    + idObat + "' order by tanggal_masuk desc");
             model.setRowCount(0);
             while (stokData.next()) {
-                Object[] objectRow = { stokData.getString("jumlah_obat"), stokData.getString("nama_suplier"),
-                        FormatTanggal.formatDate(stokData.getDate("tanggal_kadaluarsa")),
-                        FormatTanggal.formatDate(stokData.getDate("tanggal_masuk")) };
+                Object[] objectRow = {stokData.getString("jumlah_obat"), stokData.getString("nama_suplier"),
+                    FormatTanggal.formatDate(stokData.getDate("tanggal_kadaluarsa")),
+                    FormatTanggal.formatDate(stokData.getDate("tanggal_masuk"))};
                 model.addRow(objectRow);
             }
 
@@ -379,7 +399,7 @@ public class ObatController  extends Controller{
             Notification.showInfo("Margin pendapatan harus diisi minimal 1", view.getForm());
             return;
         }
-        Object[] data = { namaSatuan, total, satuanTerkecil, marginPersen, marginHarga };
+        Object[] data = {namaSatuan, total, satuanTerkecil, marginPersen, marginHarga};
         if (satuanIndexEdit == -1) {
             model.addRow(data);
         } else {
@@ -391,10 +411,93 @@ public class ObatController  extends Controller{
         resetSatuanForm();
 
     }
-    
-   
-    
-  
+
+    private void exportbarcode() {
+        int row = view.getTable().getSelectedRow();
+
+        if (row < 0) {
+            try {
+                // Compile JRXML file
+                String sqlQuery = "Select * from obat";
+                String pathi = "src/iReportdata/exportbarcode.jrxml";
+                JasperDesign jasperDesign = JRXmlLoader.load(pathi);
+
+                // Membuat objek JRDesignQuery
+                JRDesignQuery newQuery = new JRDesignQuery();
+                newQuery.setText(sqlQuery);
+
+                // Mengaitkan JRDesignQuery dengan JasperDesign
+                jasperDesign.setQuery(newQuery);
+
+                // Langkah 3: Mengisi data ke laporan JasperReports
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                Map<String, Object> parameters = new HashMap<>();
+                // Mengisi laporan dengan data dari database
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy_HH-mm-ss");
+                String tanggalWaktu = dateFormat.format(new Date());
+
+                // Nama file dengan format br-[tanggal dan waktu].pdf
+                String namaFile = "br-" + tanggalWaktu + ".pdf";
+
+                // Path untuk menyimpan file di document/exportbarcode/
+                String path = System.getProperty("user.home") + "/Documents/exportbarcode/";
+                // Pastikan direktori sudah ada, jika tidak, buat direktori baru
+                File directory = new File(path);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+
+                // Ekspor ke PDF
+                JasperExportManager.exportReportToPdfFile(jasperPrint, path + namaFile);
+                JOptionPane.showMessageDialog(null, "Data berhasil D Simpan Di " + path);
+            } catch (JRException ex) {
+                Logger.getLogger(ObatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                String idObat = view.getTable().getValueAt(row, 1).toString();
+                // Compile JRXML file
+                String sqlQuery = "Select * from obat where kode_obat = '" + idObat + "'";
+                String pathi = "src/iReportdata/exportbarcode.jrxml";
+                JasperDesign jasperDesign = JRXmlLoader.load(pathi);
+
+                // Membuat objek JRDesignQuery
+                JRDesignQuery newQuery = new JRDesignQuery();
+                newQuery.setText(sqlQuery);
+
+                // Mengaitkan JRDesignQuery dengan JasperDesign
+                jasperDesign.setQuery(newQuery);
+
+                // Langkah 3: Mengisi data ke laporan JasperReports
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                Map<String, Object> parameters = new HashMap<>();
+                // Mengisi laporan dengan data dari database
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy_HH-mm-ss");
+                String tanggalWaktu = dateFormat.format(new Date());
+
+                // Nama file dengan format br-[tanggal dan waktu].pdf
+                String namaFile = "satu br-" + tanggalWaktu + ".pdf";
+
+                // Path untuk menyimpan file di document/exportbarcode/
+                String path = System.getProperty("user.home") + "/Documents/exportbarcode/";
+
+                // Pastikan direktori sudah ada, jika tidak, buat direktori baru
+                File directory = new File(path);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+
+                // Ekspor ke PDF
+                JasperExportManager.exportReportToPdfFile(jasperPrint, path + namaFile);
+                JOptionPane.showMessageDialog(null, "Data berhasil D Simpan Di " + path);
+            } catch (JRException ex) {
+                Logger.getLogger(ObatController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     private void resetSatuanForm() {
         view.getSatuan().setSelectedIndex(0);
         view.getSatuan().setSelectedItem("");
@@ -404,7 +507,7 @@ public class ObatController  extends Controller{
     }
 
     public void clearDialog() {
-        
+
         view.getKandungan().setText("");
         view.getNamaObat().setText("");
         DefaultTableModel listSatuan = (DefaultTableModel) view.getListSatuan().getModel();
@@ -413,17 +516,13 @@ public class ObatController  extends Controller{
     }
 
     private void showForm() {
-          view.getForm().pack();
-            view.getForm().setLocationRelativeTo(null);
-            view.getForm().setVisible(true);
+        view.getForm().pack();
+        view.getForm().setLocationRelativeTo(null);
+        view.getForm().setVisible(true);
     }
-
 
     @Override
     public Component getView() {
         return view;
     }
 }
-
-
-
