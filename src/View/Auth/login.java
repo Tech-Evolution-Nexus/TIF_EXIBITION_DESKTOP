@@ -27,8 +27,6 @@ import org.json.JSONException;
  */
 public class login extends javax.swing.JFrame {
 
-
-
     Preferences userPreferences = Preferences.userNodeForPackage(login.class);
 
     public void rememberMe() {
@@ -79,8 +77,8 @@ public class login extends javax.swing.JFrame {
         modalrfid = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtrfid = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -95,50 +93,56 @@ public class login extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        modalrfid.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        modalrfid.setAlwaysOnTop(true);
+        modalrfid.setResizable(false);
 
-        jLabel2.setText("SAD");
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Menunggu Pembacaan RFID");
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset_login/spn.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel2)))
-                .addContainerGap(143, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addGap(161, 161, 161)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, Short.MAX_VALUE))
         );
 
-        modalrfid.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
-
-        jTextField1.requestFocus();
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtrfid.requestFocus();
+        txtrfid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtrfidActionPerformed(evt);
             }
         });
-        modalrfid.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+
+        javax.swing.GroupLayout modalrfidLayout = new javax.swing.GroupLayout(modalrfid.getContentPane());
+        modalrfid.getContentPane().setLayout(modalrfidLayout);
+        modalrfidLayout.setHorizontalGroup(
+            modalrfidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(modalrfidLayout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(txtrfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        modalrfidLayout.setVerticalGroup(
+            modalrfidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(modalrfidLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(txtrfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KASIR KEREN");
@@ -322,9 +326,11 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFocusLost
 
     private void btn_rfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rfidActionPerformed
-        
+
         modalrfid.pack();
+        modalrfid.setLocationRelativeTo(null);
         modalrfid.setVisible(true);
+        txtrfid.setText("");
 
     }//GEN-LAST:event_btn_rfidActionPerformed
 
@@ -362,20 +368,19 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       loginCheck();
+        loginCheck();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1KeyPressed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void txtrfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrfidActionPerformed
         try {
-            ResultSet query = DB.query("SELECT * FROM users WHERE rfid = '" + jTextField1.getText() + "'");
+            if (txtrfid.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Silahkan isi ");
+            }
+            ResultSet query = DB.query("SELECT * FROM users WHERE rfid = '" + txtrfid.getText() + "'");
             if (query.next()) {
                 Preferences userPreferences = Preferences.userNodeForPackage(login.class);
                 String[] dataArray = {query.getString("id"), query.getString("nama"), query.getString("username"), query.getString("role")};
@@ -387,13 +392,13 @@ public class login extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "User Belum Terdaftar");
             }
-            jTextField1.setText("");
+            txtrfid.setText("");
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JSONException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_txtrfidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,20 +448,20 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btn_rfid;
     private javax.swing.JLabel exit;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel login_image;
     private javax.swing.JLabel logoappss;
     private javax.swing.JLabel minimize;
     private javax.swing.JDialog modalrfid;
     private javax.swing.JPasswordField password;
+    private javax.swing.JTextField txtrfid;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 

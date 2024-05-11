@@ -8,6 +8,8 @@ import chart.blankchart.SeriesSize;
 import chartbarmultiple.blankchart.NiceScale;
 import chartsinglebar.ModelChartSingel;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,6 +21,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.border.EmptyBorder;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -110,12 +113,62 @@ public class BlankPlotChart extends JComponent {
         if (niceScale != null) {
             Graphics2D g2 = (Graphics2D) grphcs;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            createSingleBar(g2);
-//            createLine(g2);
-            createValues(g2);
-//            createLabelText(g2);
-//            renderSeries(g2);
+            // Calculate the width and height for each component
+            int width = getWidth();
+            int height = getHeight();
+            int barPanelWidth = width / 2; // Adjust as needed
+            int panjanglegend = String.valueOf(getMaxValue()).length();
+
+            int nilai = 0;
+            if (panjanglegend <= 4) {
+                nilai = 65;
+            } else if (panjanglegend <= 7) {
+                nilai = 90;
+            } else {
+                nilai = 120;
+            }
+            // Draw values
+            drawValues(g2, barPanelWidth, height, nilai);
+
+            // Draw single bar chart
+            drawSingleBarChart(g2, barPanelWidth, height, nilai);
         }
+    }
+
+    private void drawValues(Graphics2D g2, int panelWidth, int panelHeight, int p) {
+        JPanel valuesPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                createValues((Graphics2D) g);
+            }
+        };
+        valuesPanel.setBackground(Color.white);
+        valuesPanel.setBounds(0, 0, p, panelHeight);
+        add(valuesPanel);
+    }
+
+    private void drawSingleBarChart(Graphics2D g2, int panelWidth, int panelHeight, int p) {
+        JPanel barPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+//                   createSingleBar((Graphics2D) g);
+                createSingleBar((Graphics2D) g);
+                createLine((Graphics2D) g);
+            }
+        };
+
+        // Mengatur preferensi dan maksimum ukuran panel
+        barPanel.setPreferredSize(new Dimension(600, panelHeight)); // Mengatur ukuran preferensi
+        barPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panelHeight)); // Mengatur ukuran maksimum agar bisa tumbuh secara horizontal
+
+        // Mengatur layout panel menjadi null untuk mengizinkan penempatan bebas
+        barPanel.setLayout(null);
+        barPanel.setBackground(Color.white);
+        barPanel.setBounds(p - 40, 0, 600, panelHeight);
+
+        add(barPanel);
     }
 
     private void createSingleBar(Graphics2D g2) {
@@ -126,16 +179,16 @@ public class BlankPlotChart extends JComponent {
 
             // Hitung lebar bar
             int barCount = dataPoints.size();
-            int barWidth =0;
+            int barWidth = 0;
             if (barCount < 3) {
-                 barWidth = (int) (0.1 * width / barCount); // Menggunakan 1/10 dari lebar total
+                barWidth = (int) (0.2 * width / barCount); // Menggunakan 1/10 dari lebar total
 
-            }else if(barCount < 5){ 
-                                 barWidth = (int) (0.2 * width / barCount); // Menggunakan 1/10 dari lebar total
+            } else if (barCount < 5) {
+                barWidth = (int) (0.2 * width / barCount); // Menggunakan 1/10 dari lebar total
 
-            }else {
-                    
-                 barWidth = (int) (0.42 * width / barCount); // Menggunakan 1/10 dari lebar total
+            } else {
+
+                barWidth = (int) (0.42 * width / barCount); // Menggunakan 1/10 dari lebar total
 
             }
 
@@ -148,13 +201,29 @@ public class BlankPlotChart extends JComponent {
             for (int i = 0; i < barCount; i++) {
                 ModelChartSingel dataPoint = dataPoints.get(i);
                 int barHeight = (int) (((double) dataPoint.getValues() / maxValue) * (height - 30));
-                barHeight = Math.min(barHeight, height - insets.bottom - insets.top - 15);
+                barHeight = Math.min(barHeight, height - insets.bottom - insets.top - 10);
 
                 int x = 10 + i * (barWidth + 5) + 30;
                 int y = height - 20 - barHeight - 5;
 
                 // Gambar batang
-                g2.setColor(Color.blue);
+                switch (i) {
+                    case 0:
+                        g2.setColor(Color.decode("#008A27"));
+
+                        break;
+                    case 1:
+                        g2.setColor(Color.decode("#BB5A00"));
+
+                        break;
+                    case 2:
+                        g2.setColor(Color.decode("#A10000"));
+
+                        break;
+                    default:
+                        g2.setColor(Color.decode("#00419C"));
+
+                }
                 g2.fillRect(x, y, barWidth, barHeight);
 
                 // Gambar label teks
@@ -164,6 +233,7 @@ public class BlankPlotChart extends JComponent {
                 int textX = x + (barWidth - (int) r2.getWidth()) / 2;
                 int textY = height - insets.bottom + (int) r2.getHeight() - 20;
                 g2.drawString("#" + (i + 1), textX, textY);
+
             }
         }
     }
@@ -187,11 +257,11 @@ public class BlankPlotChart extends JComponent {
         Insets insets = getInsets();
         double textHeight = getLabelTextHeight(g2);
         double height = getHeight() - (insets.top + insets.bottom) - textHeight;
-        double space = height / niceScale.getMaxTicks();
+        double space = height / (niceScale.getMaxTicks() - 1) * 2.35;
         double locationY = insets.bottom + textHeight;
         double textWidth = getMaxValuesTextWidth(g2);
         double spaceText = 5;
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i < 5; i++) {
             int y = (int) (getHeight() - locationY);
             g2.drawLine((int) (insets.left + textWidth + spaceText), y, (int) getWidth() - insets.right, y);
             locationY += space;
@@ -211,15 +281,16 @@ public class BlankPlotChart extends JComponent {
         double locationY = insets.bottom + textHeight + 5; // Menambahkan jarak kecil dari sumbu bawah
         FontMetrics ft = g2.getFontMetrics();
 
+        DecimalFormat decimalFormat = new DecimalFormat("'Rp.' #,##0.##");
         for (int i = 0; i < numValues; i++) {
-            String text = String.valueOf((int) (i * interval)); // Hitung nilai berdasarkan interval
+            String text = decimalFormat.format(i * interval); // Hitung nilai berdasarkan interval
             Rectangle2D r2 = ft.getStringBounds(text, g2);
             double stringY = r2.getCenterY() * -1;
             double y = getHeight() - locationY + stringY;
-                    g2.setColor(new Color(219, 219, 219));
+            g2.setColor(new Color(219, 219, 219));
 
-            g2.drawLine(insets.left + 30, (int) y, getWidth() - insets.right, (int) y);
-                    g2.setColor(getForeground());
+//            g2.drawLine(insets.left + 30, (int) y, getWidth() - insets.right, (int) y);
+            g2.setColor(getForeground());
 
             g2.drawString(text, insets.left, (int) y);
             locationY += height / (numValues - 1); // Hitung jarak antara nilai

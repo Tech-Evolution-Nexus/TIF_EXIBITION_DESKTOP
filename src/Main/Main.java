@@ -97,7 +97,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new StokOpnameView(), "Stok Opname");
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "penjualan");
+        cardLayout.show(main, "Home");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));

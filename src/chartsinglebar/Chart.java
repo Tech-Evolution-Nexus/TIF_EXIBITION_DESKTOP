@@ -47,7 +47,6 @@ public class Chart extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        blankPlotChart2 = new chartsinglebar.blankchart.BlankPlotChart();
         blankPlotChart = new chartsinglebar.blankchart.BlankPlotChart();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -56,9 +55,7 @@ public class Chart extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(blankPlotChart, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(blankPlotChart, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,6 +76,5 @@ public class Chart extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chartsinglebar.blankchart.BlankPlotChart blankPlotChart;
-    private chartsinglebar.blankchart.BlankPlotChart blankPlotChart2;
     // End of variables declaration//GEN-END:variables
 }
