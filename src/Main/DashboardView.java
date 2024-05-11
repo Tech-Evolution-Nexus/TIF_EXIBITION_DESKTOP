@@ -42,7 +42,15 @@ import chartsinglebar.ModelChartSingel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import javax.swing.table.DefaultTableModel;
+import net.miginfocom.swing.MigLayout;
+import raven.chart.ChartLegendRenderer;
+import raven.chart.data.category.DefaultCategoryDataset;
+import raven.chart.line.LineChart;
 
 /**
  *
@@ -55,6 +63,7 @@ public class DashboardView extends javax.swing.JPanel {
      */
     Preferences userPreferences = Preferences.userNodeForPackage(DashboardView.class);
     private Object statement;
+    private LineChart lineChart;
 
     public DashboardView() {
 
@@ -70,13 +79,16 @@ public class DashboardView extends javax.swing.JPanel {
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
         setSize(width, height);
-        chart();
+//        chart();
         ntf_stok();
         ntf_exp();
         items();
         pendapatan1hari();
         pengeluaran1hari();
         panelchartterlaris();
+        createLineChart();
+        lineChart.startAnimation();
+
 //        jLabel2.setText(userPreferences.get("Username", null));
     }
 
@@ -104,6 +116,8 @@ public class DashboardView extends javax.swing.JPanel {
         pendapatan1hari();
         pengeluaran1hari();
         panelchartterlaris();
+        createLineChart();
+        lineChart.startAnimation();
     }
 
     /**
@@ -137,9 +151,6 @@ public class DashboardView extends javax.swing.JPanel {
         notif_exp = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         chart_panel = new javax.swing.JPanel();
-        chartTitle = new javax.swing.JLabel();
-        tahunn = new javax.swing.JLabel();
-        chart1 = new chartbarmultiple.Chart();
         jPanel2 = new Components.CustomPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -423,36 +434,8 @@ public class DashboardView extends javax.swing.JPanel {
 
         chart_panel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         chart_panel.setBackground(new java.awt.Color(255, 255, 255));
-
-        chartTitle.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
-        chartTitle.setText("Laporan Tahun ");
-
-        tahunn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tahunn.setText("2012");
-
-        javax.swing.GroupLayout chart_panelLayout = new javax.swing.GroupLayout(chart_panel);
-        chart_panel.setLayout(chart_panelLayout);
-        chart_panelLayout.setHorizontalGroup(
-            chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(chart_panelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(chartTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tahunn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(chart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        chart_panelLayout.setVerticalGroup(
-            chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chart_panelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chartTitle)
-                    .addComponent(tahunn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chart1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        chart_panel.setOpaque(false);
+        chart_panel.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -509,7 +492,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -683,14 +666,14 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel4)
                         .addGap(467, 467, 467)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -733,7 +716,7 @@ public class DashboardView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -751,9 +734,6 @@ public class DashboardView extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         try {
-            modalobat.pack();
-            modalobat.setLocationRelativeTo(null);
-            modalobat.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tableobat.getModel();
             tabelData.setRowCount(0);
             ResultSet data = DB.query("SELECT obatterlaris.kode_obat,obat.nama_obat,total_penjualan FROM `obatterlaris` JOIN obat ON obat.kode_obat= obatterlaris.kode_obat limit 15");
@@ -766,6 +746,10 @@ public class DashboardView extends javax.swing.JPanel {
                 no++;
 
             }
+            modalobat.pack();
+            modalobat.setLocationRelativeTo(null);
+            modalobat.setVisible(true);
+            
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -774,9 +758,6 @@ public class DashboardView extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         try {
-            modalkadaluarsa.pack();
-            modalkadaluarsa.setLocationRelativeTo(null);
-            modalkadaluarsa.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tablekadaluarsa.getModel();
             tabelData.setRowCount(0);
 
@@ -793,6 +774,10 @@ public class DashboardView extends javax.swing.JPanel {
                 no++;
 
             }
+            modalkadaluarsa.pack();
+            modalkadaluarsa.setLocationRelativeTo(null);
+            modalkadaluarsa.setVisible(true);
+            
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -801,11 +786,8 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            modalstok.pack();
-            modalstok.setLocationRelativeTo(null);
-            modalstok.setVisible(true);
             DefaultTableModel tabelData = (DefaultTableModel) tabelstok.getModel();
-                        tabelData.setRowCount(0);
+            tabelData.setRowCount(0);
 
             ResultSet data = DB.query("SELECT obat.nama_obat,batch_obat.jumlah_obat FROM `batch_obat` JOIN obat ON obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat <= 10; ");
             int no = 1;
@@ -823,6 +805,10 @@ public class DashboardView extends javax.swing.JPanel {
                 no++;
 
             }
+            modalstok.pack();
+            modalstok.setLocationRelativeTo(null);
+            modalstok.setVisible(true);
+
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -834,7 +820,7 @@ public class DashboardView extends javax.swing.JPanel {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             LocalDate now = LocalDate.now();
             int tahunSekarang = now.getYear();
-            tahunn.setText(String.valueOf(tahunSekarang));
+//            tahunn.setText(String.valueOf(tahunSekarang));
 //            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
             ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '" + tahunSekarang + "%'");
 //            ResultSet data = DB.query("SELECT * FROM datachart");
@@ -873,15 +859,15 @@ public class DashboardView extends javax.swing.JPanel {
             }
 
 // Tambahkan data ke dalam lineChart
-            chart1.addLegend("Pendapatan", Color.blue);
-            chart1.addLegend("Pengeluaran", Color.MAGENTA);
-            chart1.addLegend("Laba Bersih", Color.ORANGE);
-
-            for (ModelChart d : dataPengeluaran) {
-                chart1.addData(d);
-            }
-
-            chart1.start();
+//            chart1.addLegend("Pendapatan", Color.blue);
+//            chart1.addLegend("Pengeluaran", Color.MAGENTA);
+//            chart1.addLegend("Laba Bersih", Color.ORANGE);
+//
+//            for (ModelChart d : dataPengeluaran) {
+//                chart1.addData(d);
+//            }
+//
+//            chart1.start();
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -898,9 +884,9 @@ public class DashboardView extends javax.swing.JPanel {
                 int jumlahObat = data.getInt("jumlah_obat");
 //                System.out.println(jumlahObat);
                 if (jumlahObat == 0) {
-                    pesan = "<html>Stok Obat " + namaObat + " Telah Habis</html>";
+                    pesan = "<html>Stok Obat " + namaObat + " <font color='red'>Telah Habis</font> </html>";
                 } else {
-                    pesan = "<html>Stok Obat " + namaObat + " Akan Segera Habis Tersisa " + jumlahObat + "</html>";
+                    pesan = "<html>Stok Obat " + namaObat + " <font color='orange'>Akan Segera Habis Tersisa</font> " + jumlahObat + "</html>";
                 }
                 JLabel LABEL = new JLabel(pesan);
                 LABEL.setMaximumSize(new Dimension(300, 40));
@@ -928,9 +914,9 @@ public class DashboardView extends javax.swing.JPanel {
                 LocalDate tanggalKadaluarsa = data.getDate("tanggal_kadaluarsa").toLocalDate();
                 long selisihHari = ChronoUnit.DAYS.between(tanggalKadaluarsa, LocalDate.now());
 //                pesan = "<html>Obat " + namaObat + " telah kadaluarsa sebanyak " + jumlahObat + "</html>";
-                pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + " telah kadaluarsa  </p> </html>";
+                pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + " <font color='red'>telah kadaluarsa </font> </p> </html>";
                 if (data.getInt("status") == 2) {
-                    pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + "  akan segera kadaluarsa   </p></html>";
+                    pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + "  <font color='orange'>akan segera kadaluarsa </font>  </p></html>";
 
                 }
                 JPanel jp = new JPanel();
@@ -967,7 +953,7 @@ public class DashboardView extends javax.swing.JPanel {
     }
 
     private void panelchartterlaris() {
-        ResultSet data = DB.query("SELECT obatterlaris.kode_obat,obat.nama_obat,total_penjualan FROM `obatterlaris` JOIN obat ON obat.kode_obat= obatterlaris.kode_obat limit 10");
+        ResultSet data = DB.query("SELECT * FROM `obatterlaris` limit 10;");
 //        notif_stok.getVerticalScrollBar().setUnitIncrement(16);
 
         int i = 1;
@@ -1066,10 +1052,97 @@ public class DashboardView extends javax.swing.JPanel {
             System.err.println("query error: " + e.getMessage());
         }
     }
+
+    private void createLineChart() {
+        lineChart = new LineChart();
+        lineChart.setChartType(LineChart.ChartType.LINE);
+        lineChart.putClientProperty(FlatClientProperties.STYLE, ""
+                + "border:5,5,5,5,#FFFFFF,,20");
+//        chart_panel.setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
+        lineChart.setBackground(Color.white);
+        chart_panel.add(lineChart);
+        createLineChartData();
+    }
+
+    private void createLineChartData() {
+        try {
+            DefaultCategoryDataset<String, String> categoryDataset = new DefaultCategoryDataset<>();
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("MMM"); // Mengubah format tanggal menjadi bulan dan tahun saja
+            Random ran = new Random();
+            java.sql.Connection connection = DB.getConnection();
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            LocalDate now = LocalDate.now();
+            int tahunSekarang = now.getYear();
+            int randomMonth = 12; // Menggunakan 12 bulan
+            ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '%2023%'");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
+//            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
+//            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
+//                System.out.println("s" + i);
+//            String date = df.format(cal.getTime());
+//            while (data.next()) {
+//                int bulanData = data.getInt("bulan");
+////                cal.set(Calendar.MONTH, i);
+////                                String date = df.format(cal.getTime());
+////                    if (bulanData == i) {
+////                        System.out.println("ap");
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+////                    }
+//
+////                }
+////                String total_pengeluaran = data.getString("pengeluaran");
+////                String total_Penjualan = data.getString("pendapatan");
+////                String total_lababersih = data.getString("laba_bersih");
+//                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
+//                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
+//            }
+
+            for (int i = 1; i <= 12; i++) {
+                cal.set(Calendar.MONTH, i - 1);
+                String date = df.format(cal.getTime());
+                boolean found = false;
+                while (data.next()) {
+                    int month = data.getInt("bulan");
+                    if (month == i) {
+                        categoryDataset.addValue(Integer.valueOf(data.getString("pendapatan")), "Pendapatan", date);
+                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    categoryDataset.addValue(0, "Pendapatan", date);
+                    categoryDataset.addValue(0, "Pengeluaran", date);
+                    categoryDataset.addValue(0, "Laba Bersih", date);
+                }
+                data.beforeFirst(); // reset result set to beginning
+            }
+            /**
+             * Remove the control of legend spacing
+             */
+            lineChart.setLegendRenderer(new ChartLegendRenderer());
+
+            lineChart.setCategoryDataset(categoryDataset);
+            lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"), Color.decode("#34d399"));
+
+//            tahunn.setText(String.valueOf(tahunSekarang));
+            JLabel header = new JLabel("Laporan Tahun " + String.valueOf(tahunSekarang));
+            header.putClientProperty(FlatClientProperties.STYLE, ""
+                    + "font:+1;"
+                    + "border:0,0,5,0");
+            lineChart.setHeader(header);
+        } catch (SQLException ex) {
+            Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private chartbarmultiple.Chart chart1;
     private chartsinglebar.Chart chart2;
-    private javax.swing.JLabel chartTitle;
     private javax.swing.JPanel chart_panel;
     private javax.swing.JPanel item_panel;
     private javax.swing.JButton jButton1;
@@ -1113,7 +1186,6 @@ public class DashboardView extends javax.swing.JPanel {
     private javax.swing.JTable tabelstok;
     private javax.swing.JTable tablekadaluarsa;
     private javax.swing.JTable tableobat;
-    private javax.swing.JLabel tahunn;
     private javax.swing.JLabel total_items;
     // End of variables declaration//GEN-END:variables
 }
