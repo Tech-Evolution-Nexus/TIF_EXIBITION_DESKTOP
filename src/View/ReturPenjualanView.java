@@ -66,6 +66,7 @@ public class ReturPenjualanView extends javax.swing.JPanel {
         btnCari.setForeground(new java.awt.Color(255, 255, 255));
         btnCari.setText("Cari");
 
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel3.setText("Kode Transaksi");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -142,7 +143,7 @@ public class ReturPenjualanView extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 

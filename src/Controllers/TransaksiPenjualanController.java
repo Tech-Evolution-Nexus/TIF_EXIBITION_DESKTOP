@@ -265,7 +265,7 @@ public class TransaksiPenjualanController  extends Controller{
             } catch (JRException ex) {
                  Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            Notification.showInfo("Transaksi Berhasil", view.getBaseLayer());
+           Notification.showInfo("Transaksi Berhasil", view.getBaseLayer());
             resetForm();
             reset();
         } catch (Exception e) {

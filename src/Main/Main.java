@@ -312,6 +312,8 @@ public class Main extends javax.swing.JFrame {
             UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 16));
             UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 16));
             UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("ComboBox.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("PopupMenu.font", new Font("Poppins", Font.PLAIN, 16));
             UIManager.getDefaults().put("ScrollPane.border", BorderFactory.createEmptyBorder());
             UIManager.getDefaults().put("Table.border", BorderFactory.createEmptyBorder());
             UIManager.put("TabbedPane.selectedBackground", Color.white);
@@ -503,7 +505,7 @@ public class Main extends javax.swing.JFrame {
             javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
             label2.setHorizontalAlignment(SwingConstants.LEFT);
             label2.setForeground(Color.white);
-            label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+            label2.setFont(new Font("Poppins", Font.PLAIN, 16));
             panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
             panel3.setBackground(new Color(51, 85, 188));
             panel3.add(label2);
