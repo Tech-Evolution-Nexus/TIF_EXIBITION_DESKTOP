@@ -4,6 +4,7 @@
  */
 package View;
 
+import Components.ButtonIcon;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import javax.swing.table.TableColumn;
 import table.TableCustom;
@@ -86,13 +87,13 @@ public class ObatView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         btnDetail = new Components.ButtonIcon();
+        btnExport = new Components.ButtonIcon();
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         jPanel4.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
 
         titleForm.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
-        titleForm.setForeground(new java.awt.Color(0, 0, 0));
         titleForm.setText("Tambah Obat Baru");
 
         namaObat.setPlaceholder("Masukkan Nama Obat");
@@ -478,7 +479,6 @@ public class ObatView extends javax.swing.JPanel {
         jTabbedPane1.addTab("Stok obat", jPanel3);
 
         titleForm1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
-        titleForm1.setForeground(new java.awt.Color(0, 0, 0));
         titleForm1.setText("Informasi Obat");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -567,10 +567,7 @@ public class ObatView extends javax.swing.JPanel {
         table.setAutoCreateRowSorter(true);
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "No", "Kode Obat", "Nama Obat", "Stok obat", "Satuan Obat", "Kategori Obat", "Kandungan", "Harga"
@@ -639,13 +636,24 @@ public class ObatView extends javax.swing.JPanel {
             }
         });
 
+        btnExport.setBackground(new java.awt.Color(0, 153, 255));
+        btnExport.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetail.setIcon("Assets/svg/detailIcon.svg");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout baseLayerLayout = new javax.swing.GroupLayout(baseLayer);
         baseLayer.setLayout(baseLayerLayout);
         baseLayerLayout.setHorizontalGroup(
             baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(baseLayerLayout.createSequentialGroup()
                 .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -665,7 +673,8 @@ public class ObatView extends javax.swing.JPanel {
                     .addComponent(btnUbah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnTambah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -724,10 +733,15 @@ public class ObatView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_marginPersenActionPerformed
 
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel baseLayer;
     private Components.ButtonIcon btnDetail;
+    private Components.ButtonIcon btnExport;
     private Components.ButtonIcon btnHapus;
     private Components.ButtonIcon btnSatuan;
     private Components.ButtonIcon btnSimpan;
@@ -895,4 +909,9 @@ public class ObatView extends javax.swing.JPanel {
     public Components.CustomField getTotal() {
         return total;
     }
+
+    public ButtonIcon getBtnExport() {
+        return btnExport;
+    }
+    
 }
