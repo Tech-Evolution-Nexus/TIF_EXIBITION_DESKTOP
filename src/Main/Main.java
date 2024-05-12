@@ -81,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
 
-        main.add(new ObatView(), "obat");
+        main.add(new Controllers.ObatController().getView(), "obat");
 
         main.add(new SatuanController().getView(), "satuan");
         main.add(new Controllers.KategoriController().getView(), "Category");
