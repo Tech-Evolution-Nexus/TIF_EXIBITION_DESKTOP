@@ -4,10 +4,15 @@
  */
 package View;
 
+import table.TableCustom;
+
 public class KategoriView extends javax.swing.JPanel {
 
     public KategoriView() {
         initComponents();
+        search.setIcon("Assets/svg/searchIcon.svg");
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -17,10 +22,11 @@ public class KategoriView extends javax.swing.JPanel {
         form =  new Components.CustomDialog();
         ;
         jPanel2 = new javax.swing.JPanel();
-        formTitle = new javax.swing.JLabel();
         namaKategori = new Components.CustomField();
         jLabel2 = new javax.swing.JLabel();
-        btnSimpan = new Components.CustomButton();
+        btnSimpan = new Components.ButtonIcon();
+        jPanel1 = new javax.swing.JPanel();
+        formTitle = new javax.swing.JLabel();
         baseLayer = new javax.swing.JPanel();
         search = new Components.CustomField();
         btnUbah = new Components.ButtonIcon();
@@ -32,15 +38,13 @@ public class KategoriView extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        formTitle.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        formTitle.setForeground(new java.awt.Color(0, 0, 0));
-        formTitle.setText("Tambah Data Obat Baru");
-
         namaKategori.setPlaceholder("Masukkan Nama Kategori");
 
+        jLabel2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel2.setText("Nama Obat");
 
-        btnSimpan.setIcon("Assets/svg/saveIcon.svg");
+        btnSimpan.setBackground(new java.awt.Color(58, 98, 215));
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,32 +52,50 @@ public class KategoriView extends javax.swing.JPanel {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        formTitle.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        formTitle.setText("Tambah Data Obat Baru");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(31, 31, 31)
                 .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form.getContentPane());
@@ -84,9 +106,7 @@ public class KategoriView extends javax.swing.JPanel {
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         baseLayer.setBackground(new java.awt.Color(245, 245, 250));
@@ -206,7 +226,7 @@ public class KategoriView extends javax.swing.JPanel {
                 .addGroup(baseLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseLayerLayout.createSequentialGroup()
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 268, Short.MAX_VALUE)
                         .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,10 +266,6 @@ public class KategoriView extends javax.swing.JPanel {
     private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
     }//GEN-LAST:event_searchKeyReleased
 
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-
-    }//GEN-LAST:event_btnSimpanActionPerformed
-
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
 
     }//GEN-LAST:event_btnUbahActionPerformed
@@ -265,16 +281,21 @@ public class KategoriView extends javax.swing.JPanel {
     private void baseLayerAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_baseLayerAncestorAdded
     }//GEN-LAST:event_baseLayerAncestorAdded
 
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSimpanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel baseLayer;
     private Components.ButtonIcon btnHapus;
-    private Components.CustomButton btnSimpan;
+    private Components.ButtonIcon btnSimpan;
     private Components.ButtonIcon btnTambah;
     private Components.ButtonIcon btnUbah;
     private javax.swing.JDialog form;
     private javax.swing.JLabel formTitle;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -291,11 +312,11 @@ public class KategoriView extends javax.swing.JPanel {
         this.btnHapus = btnHapus;
     }
 
-    public Components.CustomButton getBtnSimpan() {
+    public Components.ButtonIcon getBtnSimpan() {
         return btnSimpan;
     }
 
-    public void setBtnSimpan(Components.CustomButton btnSimpan) {
+    public void setBtnSimpan(Components.ButtonIcon btnSimpan) {
         this.btnSimpan = btnSimpan;
     }
 

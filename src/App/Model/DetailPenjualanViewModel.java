@@ -8,14 +8,11 @@ import Core.Model;
 
 /**
  *
- * @author admin
+ * @author Muhammad Nor Kholit
  */
-public class DetailObatModel extends Model {
+public class DetailPenjualanViewModel extends Model {
     
-
-    public DetailObatModel() {
-        super("detail_obat");
+    public DetailPenjualanViewModel() {
+        super("detail_penjualan_view");
     }
-}
-
-
+    }

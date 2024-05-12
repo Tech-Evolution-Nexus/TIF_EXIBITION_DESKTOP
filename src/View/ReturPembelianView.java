@@ -46,7 +46,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
                 idusrr = retrievedArray.getString(0);
 
             } else {
-                new login().setVisible(true);
+                // new login().setVisible(true);
 
             }
         } catch (Exception e) {

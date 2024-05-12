@@ -491,8 +491,8 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -516,7 +516,7 @@ public class DashboardView extends javax.swing.JPanel {
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 214, Short.MAX_VALUE))
+                .addGap(0, 211, Short.MAX_VALUE))
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -547,7 +547,7 @@ public class DashboardView extends javax.swing.JPanel {
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatanLabel)
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addGap(0, 150, Short.MAX_VALUE))
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -580,7 +580,7 @@ public class DashboardView extends javax.swing.JPanel {
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran)
-                .addGap(0, 154, Short.MAX_VALUE))
+                .addGap(0, 145, Short.MAX_VALUE))
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -673,7 +673,7 @@ public class DashboardView extends javax.swing.JPanel {
                         .addGap(467, 467, 467)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -700,10 +700,10 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(30, 30, 30)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -715,13 +715,13 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(30, 30, 30)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(30, 30, 30)
                         .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1136,6 +1136,8 @@ public class DashboardView extends javax.swing.JPanel {
             header.putClientProperty(FlatClientProperties.STYLE, ""
                     + "font:+1;"
                     + "border:0,0,5,0");
+            header.setFont(new Font("Poppins", Font.BOLD, 16));
+            
             lineChart.setHeader(header);
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);

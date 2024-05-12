@@ -92,8 +92,8 @@ public class ObatController  extends Controller{
             }
         };
 
-        view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction());
-        view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event));
+        view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction(false));
+        view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event,false));
         view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
         @Override
         public void valueChanged(ListSelectionEvent e) {
@@ -114,6 +114,7 @@ public class ObatController  extends Controller{
     
     public void tampilData(boolean cari) {
         try {
+            System.out.println("test");
             String kunci = view.getSearch().getText();
             ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0  order by tanggal_dibuat desc");
             if (cari) {

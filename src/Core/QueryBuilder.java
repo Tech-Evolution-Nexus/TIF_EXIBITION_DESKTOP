@@ -142,7 +142,7 @@ public class QueryBuilder implements Queryable {
         for (int i = 0; i < values.length; i++) {
             pstmt.setObject(i + 1, values[i]);
         }
-
+System.out.println(query);
         int rowsAffected = pstmt.executeUpdate();
         pstmt.close();
         initQuery();
