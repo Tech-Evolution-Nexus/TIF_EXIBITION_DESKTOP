@@ -141,9 +141,9 @@ public class ObatController extends Controller {
         try {
             System.out.println("test");
             String kunci = view.getSearch().getText();
-            ResultSet data = DB.query("SELECT * FROM data_obat WHERE jumlah_obat > 0  order by tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT * FROM data_obat   order by tanggal_dibuat desc,jumlah_obat desc");
             if (cari) {
-                data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc");
+                data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%'  order by tanggal_dibuat desc,jumlah_obat desc");
 
             }
             DefaultTableModel tabelData = (DefaultTableModel) view.getTable().getModel();
@@ -206,8 +206,8 @@ public class ObatController extends Controller {
             }
             String id = view.getTable().getValueAt(view.getTable().getSelectedRow(), 1).toString();
             ResultSet transaksiData = DB.query("SELECT count(*) as count from detail_pembelian where kode_obat= '" + id + "'");
-            transaksiData.next();
-            if (transaksiData.getInt("count") > 0) {
+            
+            if (transaksiData != null) {
                 Notification.showInfo(Notification.DATA_IN_USE_ERROR, view.getTable());
                 return;
             }
@@ -338,7 +338,21 @@ public class ObatController extends Controller {
                 if (namaSatuanPertama.equals("")) {
                     namaSatuanPertama = satuanData.getString("satuan");
                 }
-                Object[] data = {satuanData.getString("satuan"), satuanData.getString("total"), namaSatuanPertama, satuanData.getString("margin_harga"), satuanData.getString("margin_persen")};
+                String margin = "";
+                String marginType = "";
+                if (satuanData.getString("margin_harga").equals("") ||
+                 satuanData.getString("margin_harga") == null) {
+                    margin = satuanData.getString("margin_persen");
+                    marginType = "Margin Persentase";
+                } else {
+                    margin = satuanData.getString("margin_harga");
+                    marginType = "Margin Harga";
+                }
+                Object[] data = { satuanData.getString("satuan"),
+                        satuanData.getString("total"),
+                        namaSatuanPertama,
+                        marginType,
+                       margin};
                 model.addRow(data);
                 // addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"));
             }
