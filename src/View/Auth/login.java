@@ -378,7 +378,7 @@ public class login extends javax.swing.JFrame {
     private void txtrfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrfidActionPerformed
         try {
             if (txtrfid.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Silahkan isi ");
+                JOptionPane.showMessageDialog(this, "kosong");
             }
             ResultSet query = DB.query("SELECT * FROM users WHERE rfid = '" + txtrfid.getText() + "'");
             if (query.next()) {
