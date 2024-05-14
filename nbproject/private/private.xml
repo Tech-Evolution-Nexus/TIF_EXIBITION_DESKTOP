@@ -5,10 +5,19 @@
         <group>
 
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/Main.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Config/DB.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/Auth/login.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/UserView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPenjualanView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ObatView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/ObatController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Components/textfielddd.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/DashboardView.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/chartsinglebar/blankchart/BlankPlotChart.java</file>
+
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPembelianView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Config/DB.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/StokOpnameView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/Auth/login.java</file>
 
         </group>
     </open-files>

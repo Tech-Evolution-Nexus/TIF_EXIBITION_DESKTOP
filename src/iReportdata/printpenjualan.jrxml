@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
 	<property name="ireport.zoom" value="3.1384283767210186"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="315"/>
+	<property name="ireport.y" value="9"/>
 	<queryString>
 		<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRXJ_081223165828']]>
 	</queryString>

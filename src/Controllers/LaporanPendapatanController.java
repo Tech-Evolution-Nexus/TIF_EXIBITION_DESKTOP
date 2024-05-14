@@ -45,7 +45,7 @@ public class LaporanPendapatanController {
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_pendapatan order by tanggal desc");
+            ResultSet data = DB.query("SELECT * FROM laporan_pendapatan ORDER BY tanggal  DESC ");
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
@@ -141,8 +141,8 @@ public class LaporanPendapatanController {
                 case 1 ->{
                     sql = "SELECT * FROM laporan_pendapatan where tanggal BETWEEN '"+ranges+"' AND '"+rangef+"' order by tanggal desc";
                 }
-                case 2 -> sql = "SELECT sum(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y-%m') AS tanggal FROM laporan_pendapatan GROUP BY month(tanggal),year(tanggal) order by month(tanggal),year(tanggal) desc;";
-                case 3 -> sql = "SELECT sum(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y') AS tanggal FROM laporan_pendapatan GROUP BY year(tanggal) order by year(tanggal) desc;";
+                case 2 -> sql = "SELECT SUM(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y-%m') AS tanggal FROM laporan_pendapatan GROUP BY DATE_FORMAT(tanggal, '%Y-%m'),DATE_FORMAT(tanggal, '%Y') order by DATE_FORMAT(tanggal, '%Y-%m'),DATE_FORMAT(tanggal, '%Y') desc; ";
+                case 3 -> sql = "SELECT SUM(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y') AS tahun FROM laporan_pendapatan GROUP BY DATE_FORMAT(tanggal, '%Y') ORDER BY tahun DESC; ";
                 default -> {
                 }
             }

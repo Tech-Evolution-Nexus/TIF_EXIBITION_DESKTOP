@@ -114,6 +114,7 @@ public class Main extends javax.swing.JFrame {
                 username.setText("<html><div style='text-align: right;'>" + retrievedArray.getString(1) + "<br><small style='font-size:10px'>" + retrievedArray.getString(3) + "</small></div></html>");
 
             } else {
+               
                 new login().setVisible(true);
             }
         } catch (Exception e) {

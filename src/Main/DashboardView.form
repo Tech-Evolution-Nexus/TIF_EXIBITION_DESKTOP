@@ -163,9 +163,10 @@
                 <Component class="javax.swing.JTable" name="tablekadaluarsa">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="0">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="No" type="java.lang.Object"/>
                         <Column editable="false" title="Nama Obat" type="java.lang.Object"/>
+                        <Column editable="false" title="Qty" type="java.lang.Object"/>
                         <Column editable="false" title="Tanggal Kadaluarsa" type="java.lang.Object"/>
                         <Column editable="false" title="Keterangan" type="java.lang.Object"/>
                       </Table>
@@ -178,6 +179,11 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="450" minWidth="450" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
                           <Renderer/>

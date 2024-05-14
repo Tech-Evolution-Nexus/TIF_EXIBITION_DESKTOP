@@ -68,7 +68,7 @@ public class DashboardView extends javax.swing.JPanel {
     public DashboardView() {
 
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
-        System.out.println(userPreferences.get("localLogin", ""));
+//        System.out.println(userPreferences.get("localLogin", ""));
 
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -249,11 +249,11 @@ public class DashboardView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "No", "Nama Obat", "Tanggal Kadaluarsa", "Keterangan"
+                "No", "Nama Obat", "Qty", "Tanggal Kadaluarsa", "Keterangan"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -270,6 +270,7 @@ public class DashboardView extends javax.swing.JPanel {
             tablekadaluarsa.getColumnModel().getColumn(1).setMaxWidth(450);
             tablekadaluarsa.getColumnModel().getColumn(2).setResizable(false);
             tablekadaluarsa.getColumnModel().getColumn(3).setResizable(false);
+            tablekadaluarsa.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -769,7 +770,7 @@ public class DashboardView extends javax.swing.JPanel {
                 if (data.getInt("status") == 2) {
                     keteranagan = "Akan Kadaluarsa";
                 }
-                Object[] dataArray = {no, data.getString("nama_obat"), data.getInt("jumlah_obat"), keteranagan};
+                Object[] dataArray = {no, data.getString("nama_obat"), data.getInt("jumlah_obat"),data.getDate("tanggal_kadaluarsa"), keteranagan};
                 tabelData.addRow(dataArray);
                 no++;
 
