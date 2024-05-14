@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TIF_EXIBITION">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/TIF_EXIBITION.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

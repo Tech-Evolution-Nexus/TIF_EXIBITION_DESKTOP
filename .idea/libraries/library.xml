@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="library">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library/flatlaf-extras-3.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/jsvg-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/miglayout-core-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/flatlaf-3.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/java-json-schema.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/TimingFramework-0.55.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/swing-chart-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/swingx-all-1.6.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/barbecue-1.5-beta1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/miglayout-swing-5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/mysql-connector-j-8.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/jcalendar-0.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/swing-toast-notifications-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/swing-crazy-panel-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

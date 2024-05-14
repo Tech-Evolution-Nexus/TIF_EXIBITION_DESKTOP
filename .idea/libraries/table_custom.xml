@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="table-custom">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library/jtable-custom-swing-main/dist/table-custom.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

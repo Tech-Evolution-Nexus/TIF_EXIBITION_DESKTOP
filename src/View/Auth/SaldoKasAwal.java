@@ -77,6 +77,7 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         inputkas.putClientProperty(FlatClientProperties.STYLE,"arc:550");
         inputkas.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Masukkan Saldo Kas Awal");
         inputkas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        inputkas.setTransferHandler(null);
         inputkas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inputkas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +227,7 @@ public class SaldoKasAwal extends javax.swing.JFrame {
                 new Main.Main().setVisible(true);
                 String inputkastxt = inputkas.getText();
 
-                int jumlah = DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
+                DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
                 ResultSet p = DB.query("select id,tanggal_dibuat from shift order by id desc limit 1");
               
                 if (p.next()) {

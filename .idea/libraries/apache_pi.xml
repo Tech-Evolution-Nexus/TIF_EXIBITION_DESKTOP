@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="apache pi">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-examples-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-ooxml-schemas-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-scratchpad-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-excelant-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-ooxml-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/curvesapi-1.04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/xmlbeans-2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/poi-3.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/sqljdbc42.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/library/apache pi/commons-collections4-4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

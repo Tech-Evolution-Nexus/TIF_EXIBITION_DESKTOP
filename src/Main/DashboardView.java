@@ -502,7 +502,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -679,11 +679,10 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(infoTerlarisHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -711,10 +710,10 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(20, 20, 20)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -726,13 +725,13 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30)
+                        .addGap(20, 20, 20)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
+                        .addGap(20, 20, 20)
                         .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1087,31 +1086,6 @@ public class DashboardView extends javax.swing.JPanel {
             int tahunSekarang = now.getYear();
             int randomMonth = 12; // Menggunakan 12 bulan
             ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '%2023%'");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
-//            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
-//            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
-//                System.out.println("s" + i);
-//            String date = df.format(cal.getTime());
-//            while (data.next()) {
-//                int bulanData = data.getInt("bulan");
-////                cal.set(Calendar.MONTH, i);
-////                                String date = df.format(cal.getTime());
-////                    if (bulanData == i) {
-////                        System.out.println("ap");
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
-////                    }
-//
-////                }
-////                String total_pengeluaran = data.getString("pengeluaran");
-////                String total_Penjualan = data.getString("pendapatan");
-////                String total_lababersih = data.getString("laba_bersih");
-//                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
-//                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
-//            }
 
             for (int i = 1; i <= 12; i++) {
                 cal.set(Calendar.MONTH, i - 1);
