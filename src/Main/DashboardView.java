@@ -69,12 +69,7 @@ public class DashboardView extends javax.swing.JPanel {
     public DashboardView() {
 
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
-<<<<<<< HEAD
         
-=======
-//        System.out.println(userPreferences.get("localLogin", ""));
-
->>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
         initComponents();
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -1092,6 +1087,31 @@ public class DashboardView extends javax.swing.JPanel {
             int tahunSekarang = now.getYear();
             int randomMonth = 12; // Menggunakan 12 bulan
             ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '%2023%'");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
+//            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
+//            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
+//            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
+//                System.out.println("s" + i);
+//            String date = df.format(cal.getTime());
+//            while (data.next()) {
+//                int bulanData = data.getInt("bulan");
+////                cal.set(Calendar.MONTH, i);
+////                                String date = df.format(cal.getTime());
+////                    if (bulanData == i) {
+////                        System.out.println("ap");
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+//                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+////                    }
+//
+////                }
+////                String total_pengeluaran = data.getString("pengeluaran");
+////                String total_Penjualan = data.getString("pendapatan");
+////                String total_lababersih = data.getString("laba_bersih");
+//                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
+//                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
+//            }
 
             for (int i = 1; i <= 12; i++) {
                 cal.set(Calendar.MONTH, i - 1);

@@ -3,51 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/PenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LaporanMain.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/Auth/regis.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPembelianController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Helper/Auth.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPenjualanController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Controllers/ReturnPenjualanController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LShiftView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/Auth/login.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LPenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LlababersihView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/ReturPembelianView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/App/Model/ObatModel.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Controllers/ObatController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/PembelianView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/ObatView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LPendapatanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/ReturPenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/Auth/SaldoKasAwal.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Helper/KodeGenerator.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/StokOpnameView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/App/Model/LaporanPenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LStokView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LPembelianView.java</file>
-=======
-
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/Main.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/LaporanPenjualanController.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/UserView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPenjualanView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ObatView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/ObatController.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Components/textfielddd.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/DashboardView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/chartsinglebar/blankchart/BlankPlotChart.java</file>
-
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPembelianView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Config/DB.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/StokOpnameView.java</file>
-            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/Auth/login.java</file>
-
->>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Config/DB.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Main/Main.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/PenjualanView.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LStokView.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Main/DashboardView.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/StokOpnameView.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/iReportdata/report1.jrxml</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/table/TableCustom.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/ObatController.java</file>
+            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/ReturPembelianView.java</file>
         </group>
     </open-files>
 </project-private>

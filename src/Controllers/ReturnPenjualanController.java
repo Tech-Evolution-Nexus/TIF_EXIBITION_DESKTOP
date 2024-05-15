@@ -128,11 +128,11 @@ public class ReturnPenjualanController  extends Controller {
             detailPenjualanModel.update(field, value, kondisi);
 
 
-            System.out.println(kondisiObat);
-            return;
-        //kembalikan stok ketika kondisi baik
+            // System.out.println(kondisiObat);
+            // return;
+        // kembalikan stok ketika kondisi baik
         // if (kondisiObat.equals("baik")) {
-        //     return;
+        //     continue;
         // }
         }
 
@@ -147,7 +147,7 @@ public class ReturnPenjualanController  extends Controller {
         String kodeReturn = Helper.KodeGenerator.generateKodeReturnPenjualan();
         //update transaksi penjualan
         String[] fieldReturn = { "kode_retur_penjualan", "kode_transaksi_penjualan", "alasan_retur","id_user" };
-        String[] valueReturn = { kodeReturn,kembalian, kodeTransaksi, alasan,user.getId()};
+        String[] valueReturn = { kodeReturn, kodeTransaksi, alasan,user.getId()};
         returnPenjualanModel.insert(fieldReturn, valueReturn);
 
 
@@ -155,7 +155,7 @@ public class ReturnPenjualanController  extends Controller {
         reset();
         Notification.showInfo("Berhasil melakukan pengembalian", view);
     } catch (Exception e) {
-            System.out.println(e.getMessage());
+        System.out.println(e.getMessage());
        Notification.showInfo( "Gagal melakukan return",view);
       }
     }
