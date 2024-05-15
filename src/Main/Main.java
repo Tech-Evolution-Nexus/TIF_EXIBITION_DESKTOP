@@ -11,6 +11,7 @@ import View.Auth.login;
 import Config.DB;
 import Controllers.ObatController;
 import Controllers.SatuanController;
+import Helper.Auth;
 import Helper.FormatTanggal;
 import Laporan.LaporanMain;
 import Laporan.LPembelianView;
@@ -88,12 +89,12 @@ public class Main extends javax.swing.JFrame {
         main.add(new Controllers.UserController().getView(), "User");
         main.add(new Controllers.SupplierController().getView(), "Supplier");
         main.add(new LaporanMain(), "Report");
-        main.add(new PenjualanView(), "Penjualan");
+        main.add(new Controllers.TransaksiPenjualanController().getView(), "Penjualan");
 //        main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "Pengeluaran");
         main.add(new Controllers.TransaksiPembelianController().getView(), "Pembelian");
         main.add(new ReturPembelianView(), "Retur Pembelian");
-        main.add(new ReturPenjualanView(), "Retur Penjualan");
+        main.add(new Controllers.ReturnPenjualanController().getView(), "Retur Penjualan");
         main.add(new StokOpnameView(), "Stok Opname");
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
@@ -102,16 +103,12 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
 
-        Preferences userPreferences = Preferences.userNodeForPackage(login.class);
 
-        try {
-            String datalogin = userPreferences.get("localLogin", null);
-
-            if (datalogin != null) {
-
-                JSONArray retrievedArray = new JSONArray(datalogin);
-                role = retrievedArray.getString(3);
-                username.setText("<html><div style='text-align: right;'>" + retrievedArray.getString(1) + "<br><small style='font-size:10px'>" + retrievedArray.getString(3) + "</small></div></html>");
+        Auth auth = new Auth();
+         try {
+             if (auth.check()) {
+                 role =auth.getRole();
+                 username.setText("<html><div style='text-align: right;'>" + auth.getNama() + "<br><small style='font-size:10px'>" + auth.getRole() + "</small></div></html>");
 
             } else {
                
@@ -302,15 +299,22 @@ public class Main extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
-            UIManager.put("TableHeader.height", 30);
+           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.hoverForeground", Color.white);
+            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
+            UIManager.put("TableHeader.background", new Color(58,98,215));
+            UIManager.put("TableHeader.foreground", new Color(255,255,255));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
-            UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 13)); // Adjust the value to your desired height
-            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 12));
-            UIManager.put("TextField.font", new Font("Poppins", Font.PLAIN, 12));
-            UIManager.put("Button.font", new Font("Poppins", Font.PLAIN, 12));
-            UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 12));
-            UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 12));
+            UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextField.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Button.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("ComboBox.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("PopupMenu.font", new Font("Poppins", Font.PLAIN, 16));
             UIManager.getDefaults().put("ScrollPane.border", BorderFactory.createEmptyBorder());
             UIManager.getDefaults().put("Table.border", BorderFactory.createEmptyBorder());
             UIManager.put("TabbedPane.selectedBackground", Color.white);
@@ -502,7 +506,7 @@ public class Main extends javax.swing.JFrame {
             javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
             label2.setHorizontalAlignment(SwingConstants.LEFT);
             label2.setForeground(Color.white);
-            label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+            label2.setFont(new Font("Poppins", Font.PLAIN, 16));
             panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
             panel3.setBackground(new Color(51, 85, 188));
             panel3.add(label2);

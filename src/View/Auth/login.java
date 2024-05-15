@@ -6,15 +6,21 @@ package View.Auth;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import Config.DB;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.util.prefs.Preferences;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import org.w3c.dom.events.MouseEvent;
 import java.sql.ResultSet;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.FlatClientProperties;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,6 +58,7 @@ public class login extends javax.swing.JFrame {
     public login() {
 
         initComponents();
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
         ImageIcon img = images("/Asset_login/login-anyaran.png", 380, 380);
         login_image.setIcon(img);
 
@@ -157,7 +164,7 @@ public class login extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(405, 256));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Copyright © 2023 Namaku");
+        jLabel4.setText("Copyright © 2023 SISKA");
 
         login_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -165,39 +172,39 @@ public class login extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(109, Short.MAX_VALUE)
                 .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel4)
-                .addGap(57, 57, 57))
+                .addGap(59, 59, 59))
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 529));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 570));
 
         logoappss.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logoappss.setForeground(new java.awt.Color(51, 51, 255));
-        jPanel2.add(logoappss, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 210, 70));
+        jPanel2.add(logoappss, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 210, 70));
 
-        jLabel1.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel1.setText("Welcome to ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 255));
         jLabel3.setText("SISKA");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 160, -1, -1));
 
         btn_rfid.putClientProperty(FlatClientProperties.STYLE,"arc:50");
         btn_rfid.setBackground(new java.awt.Color(0, 51, 204));
@@ -213,10 +220,11 @@ public class login extends javax.swing.JFrame {
                 btn_rfidActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_rfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 251, 34));
+        jPanel2.add(btn_rfid, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, 310, 34));
 
         password.putClientProperty(FlatClientProperties.STYLE,"arc:50; showRevealButton:true");
         password.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Password");
+        password.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         password.setMinimumSize(new java.awt.Dimension(58, 20));
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -236,7 +244,7 @@ public class login extends javax.swing.JFrame {
                 passwordKeyPressed(evt);
             }
         });
-        jPanel2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 250, 34));
+        jPanel2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, 310, 34));
 
         exit.setToolTipText("Exit\n");
         exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -245,7 +253,7 @@ public class login extends javax.swing.JFrame {
                 exitMouseClicked(evt);
             }
         });
-        jPanel2.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 40, 30));
+        jPanel2.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 40, 30));
 
         minimize.setToolTipText("Minimize");
         minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -254,9 +262,10 @@ public class login extends javax.swing.JFrame {
                 minimizeMouseClicked(evt);
             }
         });
-        jPanel2.add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 30, 30));
+        jPanel2.add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 30, 30));
 
         username.putClientProperty(FlatClientProperties.STYLE,"arc:50");
+        username.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         username.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Username");
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +277,7 @@ public class login extends javax.swing.JFrame {
                 usernameKeyTyped(evt);
             }
         });
-        jPanel2.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 250, 34));
+        jPanel2.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 310, 34));
 
         jButton1.putClientProperty(FlatClientProperties.STYLE,"arc:50");
         jButton1.setBackground(new java.awt.Color(58, 98, 215));
@@ -289,20 +298,17 @@ public class login extends javax.swing.JFrame {
                 jButton1KeyPressed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 251, 34));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 390, 310, 34));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
 
         pack();
@@ -404,32 +410,34 @@ public class login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+      
         //</editor-fold>
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
+          UIManager.setLookAndFeel(new FlatLightLaf());
+            // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.hoverForeground", Color.white);
+            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
+            UIManager.put("TableHeader.background", new Color(58,98,215));
+            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
+            UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
+            UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextField.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Button.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("ComboBox.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("PopupMenu.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.getDefaults().put("ScrollPane.border", BorderFactory.createEmptyBorder());
+            UIManager.getDefaults().put("Table.border", BorderFactory.createEmptyBorder());
+            UIManager.put("TabbedPane.selectedBackground", Color.white);
             UIManager.put("Button.arc", 15);
+            UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
+            UIManager.put("Component.arrowType", "triangle");
 
         } catch (Exception e) {
         }

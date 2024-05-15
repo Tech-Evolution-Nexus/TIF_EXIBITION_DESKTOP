@@ -7,12 +7,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class BtnAction  extends DefaultTableCellRenderer{
+private boolean withInfo;
+    public BtnAction(boolean withInfo) {
+        this.withInfo = withInfo; 
+    }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
             int row, int column) {
         Component com = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        ActionPanel satuanActionPanel = new ActionPanel();
+        ActionPanel1 satuanActionPanel = new ActionPanel1();
         if (isSelected) {
             satuanActionPanel.setBackground(com.getBackground());
         }      

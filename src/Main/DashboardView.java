@@ -42,6 +42,7 @@ import chartsinglebar.ModelChartSingel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,9 +69,9 @@ public class DashboardView extends javax.swing.JPanel {
     public DashboardView() {
 
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
-//        System.out.println(userPreferences.get("localLogin", ""));
-
+        
         initComponents();
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //        iconn.setIcon(new FlatSVGIcon("Assets/svg/svgtau.svg" ));
 //        ImageIcon MINI = images("/Assets/iconnc.png", 32, 32);
@@ -88,6 +89,7 @@ public class DashboardView extends javax.swing.JPanel {
         panelchartterlaris();
         createLineChart();
         lineChart.startAnimation();
+        
 
 //        jLabel2.setText(userPreferences.get("Username", null));
     }
@@ -118,6 +120,14 @@ public class DashboardView extends javax.swing.JPanel {
         panelchartterlaris();
         createLineChart();
         lineChart.startAnimation();
+        LocalDate tanggalSekarang = LocalDate.now();
+        LocalDate bulanKemarin = tanggalSekarang.minusMonths(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
+        String namaBulan = bulanKemarin.format(formatter);
+
+        // Menampilkan obat terlaris bulan kemarin dengan nama bulannya
+        String infoTerlarisText = "Obat Terlaris Bulan " + namaBulan ;
+        infoTerlarisHeader.setText(infoTerlarisText);
     }
 
     /**
@@ -173,7 +183,7 @@ public class DashboardView extends javax.swing.JPanel {
         panelobatterlaris = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        infoTerlarisHeader = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
         modalobat.setBackground(new java.awt.Color(255, 255, 255));
@@ -492,8 +502,8 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -504,10 +514,10 @@ public class DashboardView extends javax.swing.JPanel {
         item_panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 5));
         item_panel.setPreferredSize(new java.awt.Dimension(294, 75));
 
-        total_items.setFont(new java.awt.Font("Poppins SemiBold", 1, 18)); // NOI18N
+        total_items.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         total_items.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Total Obat");
 
@@ -517,7 +527,7 @@ public class DashboardView extends javax.swing.JPanel {
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 214, Short.MAX_VALUE))
+                .addGap(0, 195, Short.MAX_VALUE))
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -535,10 +545,10 @@ public class DashboardView extends javax.swing.JPanel {
         pendapatanperhari.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 5));
         pendapatanperhari.setPreferredSize(new java.awt.Dimension(294, 75));
 
-        pendapatan_harini.setFont(new java.awt.Font("Poppins SemiBold", 1, 18)); // NOI18N
+        pendapatan_harini.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         pendapatan_harini.setForeground(new java.awt.Color(255, 255, 255));
 
-        pendapatanLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pendapatanLabel.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         pendapatanLabel.setForeground(new java.awt.Color(255, 255, 255));
         pendapatanLabel.setText("Pendapatan Hari Ini");
 
@@ -548,7 +558,7 @@ public class DashboardView extends javax.swing.JPanel {
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatanLabel)
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addGap(0, 119, Short.MAX_VALUE))
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -568,10 +578,10 @@ public class DashboardView extends javax.swing.JPanel {
         pengeluaranperhari.setPreferredSize(new java.awt.Dimension(294, 75));
 
         pengeluaran_harini.setBackground(new java.awt.Color(102, 184, 207));
-        pengeluaran_harini.setFont(new java.awt.Font("Poppins SemiBold", 1, 18)); // NOI18N
+        pengeluaran_harini.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         pengeluaran_harini.setForeground(new java.awt.Color(255, 255, 255));
 
-        pengeluaran.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        pengeluaran.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         pengeluaran.setForeground(new java.awt.Color(255, 255, 255));
         pengeluaran.setText("Pengeluaran Hari ini");
 
@@ -581,7 +591,7 @@ public class DashboardView extends javax.swing.JPanel {
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran)
-                .addGap(0, 154, Short.MAX_VALUE))
+                .addGap(0, 118, Short.MAX_VALUE))
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -652,8 +662,8 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel4.setText("Obat Terlaris");
+        infoTerlarisHeader.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        infoTerlarisHeader.setText("Obat Terlaris");
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -668,15 +678,15 @@ public class DashboardView extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(467, 467, 467)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(infoTerlarisHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -684,7 +694,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(infoTerlarisHeader)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,10 +711,10 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(20, 20, 20)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -716,13 +726,13 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(20, 20, 20)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(20, 20, 20)
                         .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -1137,6 +1147,8 @@ public class DashboardView extends javax.swing.JPanel {
             header.putClientProperty(FlatClientProperties.STYLE, ""
                     + "font:+1;"
                     + "border:0,0,5,0");
+            header.setFont(new Font("Poppins", Font.BOLD, 16));
+            
             lineChart.setHeader(header);
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
@@ -1145,6 +1157,7 @@ public class DashboardView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chartsinglebar.Chart chart2;
     private javax.swing.JPanel chart_panel;
+    private javax.swing.JLabel infoTerlarisHeader;
     private javax.swing.JPanel item_panel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -1152,7 +1165,6 @@ public class DashboardView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

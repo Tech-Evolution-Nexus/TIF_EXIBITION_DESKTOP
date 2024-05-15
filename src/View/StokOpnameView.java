@@ -7,6 +7,8 @@ package View;
 import Components.DeleteButtonRenderer;
 import Config.DB;
 import View.Auth.login;
+import table.TableCustom;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,6 +35,8 @@ public class StokOpnameView extends javax.swing.JPanel {
      */
     public StokOpnameView() {
         initComponents();
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
 
         try {

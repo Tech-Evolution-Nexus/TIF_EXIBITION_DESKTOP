@@ -21,8 +21,8 @@ public class TableCustom {
 //        table.setSelectionBackground(new Color(123, 207, 255));
         table.getTableHeader().setReorderingAllowed(false);
         // table.getTableHeader().setDefaultRenderer(new TableHeaderCustomCellRender(table));
-        table.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 13));
-        table.setFont(new Font("Poppins", Font.PLAIN, 12));
+        table.getTableHeader().setFont(new Font("Poppins", Font.PLAIN, 16));
+        table.setFont(new Font("Poppins", Font.PLAIN, 16));
         table.setRowHeight(30);
         HoverIndex hoverRow = new HoverIndex();
         TableCellRenderer cellRender;
@@ -52,8 +52,10 @@ public class TableCustom {
         scroll.getViewport().setBackground(Color.WHITE);
         scroll.getVerticalScrollBar().setUI(new ScrollBarCustomUI());
         scroll.getHorizontalScrollBar().setUI(new ScrollBarCustomUI());
-        table.getTableHeader().setBackground(new Color(250, 250, 250));
-        
+        table.getTableHeader().setBackground(new Color(58,98,215));
+        table.getTableHeader().setForeground(new Color(250, 250, 250));
+//                table.getTableHeader().setBackground(new Color(250, 250, 250));
+
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {

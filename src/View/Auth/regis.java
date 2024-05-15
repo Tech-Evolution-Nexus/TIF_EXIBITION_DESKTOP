@@ -10,6 +10,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import Config.DB;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ public class regis extends javax.swing.JFrame {
     public regis() {
 
         initComponents();
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
         ImageIcon img = images("/Asset_login/login-anyaran.png", 280, 280);
         login_image.setIcon(img);
 

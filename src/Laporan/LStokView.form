@@ -214,15 +214,15 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="filter" alignment="0" pref="34" max="32767" attributes="0"/>
+                              <Component id="filter" alignment="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cariobat" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="cariobat" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="jButton2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="jButton4" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jButton4" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -233,7 +233,7 @@
                           </Group>
                           <Component id="nama_obat" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
