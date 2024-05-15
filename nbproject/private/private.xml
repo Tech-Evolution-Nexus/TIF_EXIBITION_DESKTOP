@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/View/PenjualanView.java</file>
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LaporanMain.java</file>
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
@@ -29,6 +30,24 @@
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/App/Model/LaporanPenjualanView.java</file>
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LStokView.java</file>
             <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP/src/Laporan/LPembelianView.java</file>
+=======
+
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/Main.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/UserView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPenjualanView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ObatView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/ObatController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Components/textfielddd.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/DashboardView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/chartsinglebar/blankchart/BlankPlotChart.java</file>
+
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPembelianView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Config/DB.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/StokOpnameView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/Auth/login.java</file>
+
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
         </group>
     </open-files>
 </project-private>

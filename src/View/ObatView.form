@@ -1205,7 +1205,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnDetail.setIcon(&quot;Assets/svg/detailIcon.svg&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnExport.setIcon(&quot;Assets/svg/barcode.svg&quot;);"/>
           </AuxValues>
         </Component>
       </SubComponents>

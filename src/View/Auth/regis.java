@@ -452,6 +452,7 @@ public class regis extends javax.swing.JFrame {
                 try {
                     ResultSet dara = DB.query("select count(*) from users where role='owner'");
                     if (dara.next()) {
+                            new regis().setVisible(true);
 
                         if (dara.getInt(1) > 0) {
                             new login().setVisible(true);

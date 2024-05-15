@@ -110,11 +110,20 @@ public class Main extends javax.swing.JFrame {
                  role =auth.getRole();
                  username.setText("<html><div style='text-align: right;'>" + auth.getNama() + "<br><small style='font-size:10px'>" + auth.getRole() + "</small></div></html>");
 
+<<<<<<< HEAD
              } else {
                  new login().setVisible(true);
              }
          } catch (Exception e) {
          }
+=======
+            } else {
+               
+                new login().setVisible(true);
+            }
+        } catch (Exception e) {
+        }
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
 
         sidebar();
 

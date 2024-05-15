@@ -8,8 +8,12 @@ import Components.textfielddd;
 
 import Config.DB;
 import View.Auth.login;
+<<<<<<< HEAD
 import table.TableCustom;
 
+=======
+import java.awt.event.KeyEvent;
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +33,7 @@ import org.json.JSONArray;
 public class ReturPembelianView extends javax.swing.JPanel {
 
     private String idusrr;
+    private int baris = 0;
 
     /**
      * Creates new form ReturPembelianView
@@ -77,8 +82,18 @@ public class ReturPembelianView extends javax.swing.JPanel {
         totalobatp = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         totalhargap = new javax.swing.JLabel();
+<<<<<<< HEAD
         jScrollPane2 = new javax.swing.JScrollPane();
         alasan = new javax.swing.JTextArea();
+=======
+        jLabel11 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        textqtyp = new javax.swing.JTextField();
+        btnubah = new javax.swing.JButton();
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +107,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -109,7 +124,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
             jTable2.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Ok");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -157,6 +172,11 @@ public class ReturPembelianView extends javax.swing.JPanel {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTable1KeyReleased(evt);
@@ -169,7 +189,6 @@ public class ReturPembelianView extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setCellEditor(new textfielddd());
             jTable1.getColumnModel().getColumn(5).setResizable(false);
             jTable1.getColumnModel().getColumn(6).setResizable(false);
             jTable1.getColumnModel().getColumn(7).setResizable(false);
@@ -188,7 +207,11 @@ public class ReturPembelianView extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+=======
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
                 .addContainerGap())
         );
 
@@ -203,9 +226,12 @@ public class ReturPembelianView extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         jButton3.setBackground(new java.awt.Color(58, 98, 215));
         jButton3.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
+=======
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
         jButton3.setText("Cari");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,10 +428,120 @@ public class ReturPembelianView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(totalobatp, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txt_tgl1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(totalobatp, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(totalhargap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))))
+        );
+
+        jButton2.setText("Simpan");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Qty Pengembalian");
+
+        textqtyp.setTransferHandler(null);
+        textqtyp.setEditable(false);
+        textqtyp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textqtypKeyTyped(evt);
+            }
+        });
+
+        btnubah.setText("Ubah");
+        btnubah.setEnabled(false);
+        btnubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnubahActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(textqtyp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnubah, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnubah, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textqtyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cari_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(totalhargap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,6 +550,15 @@ public class ReturPembelianView extends javax.swing.JPanel {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
+=======
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -458,7 +603,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
                 Object[] rowData = {no++, data.getString("kode_transaksi"), data.getString("nama_suplier"), data.getString("total_harga"), data.getString("tanggal_transaksi")};
                 model.addRow(rowData);
             }
-
+            jButton3.setEnabled(false);
         } catch (SQLException ex) {
             Logger.getLogger(StokOpnameView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -502,31 +647,41 @@ public class ReturPembelianView extends javax.swing.JPanel {
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         int row = jTable1.getSelectedRow();
         String s = jTable1.getValueAt(row, 4) == null ? "0" : jTable1.getValueAt(row, 4).toString();
-        System.out.println(s);
-//        if (Integer.parseInt(s) == 0) {
-//            jTable1.setValueAt(0, row, 4);
-//            jTable1.setValueAt(0, row, 5);
-//            jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(row, 3).toString()) * Integer.parseInt(jTable1.getValueAt(row, 6).toString()), row, 7);
-//
-//            totalhargap.setText("0");
-//            totalobatp.setText("0");
-//        } else {
-//            int t = Integer.parseInt(jTable1.getValueAt(row, 3).toString()) - Integer.parseInt(s);
-//            jTable1.setValueAt(t, row, 5);
-//            jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(row, 4).toString()) * Integer.parseInt(jTable1.getValueAt(row, 6).toString()), row, 7);
-//            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//            int d = 0;
-//            int c = 0;
-//
-//            for (int i = 0; i < model.getRowCount(); i++) {
-//                d += Integer.parseInt(jTable1.getValueAt(i, 4).toString());
-//                c += Integer.parseInt(jTable1.getValueAt(i, 7).toString());
-//
-//            }
-//            totalhargap.setText(String.valueOf(c));
-//            totalobatp.setText(String.valueOf(d));
-//
-//        }
+        System.out.println(row);
+//        System.out.println(s);
+        if (Integer.parseInt(s) == 0) {
+            jTable1.setValueAt(0, row, 4);
+            jTable1.setValueAt(0, row, 5);
+            jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(row, 3).toString()) * Integer.parseInt(jTable1.getValueAt(row, 6).toString()), row, 7);
+
+            totalhargap.setText("0");
+            totalobatp.setText("0");
+        } else {
+            int p = Integer.parseInt(jTable1.getValueAt(row, 3).toString());
+            int u = Integer.parseInt(s);
+            System.out.println(u);
+            if (u >= p) {
+                jTable1.setValueAt(p, row, 4);
+                jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(row, 3).toString()) * Integer.parseInt(jTable1.getValueAt(row, 6).toString()), row, 7);
+            } else {
+                int t = Integer.parseInt(jTable1.getValueAt(row, 3).toString()) - Integer.parseInt(s);
+
+                jTable1.setValueAt(t, row, 5);
+                jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(row, 4).toString()) * Integer.parseInt(jTable1.getValueAt(row, 6).toString()), row, 7);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                int d = 0;
+                int c = 0;
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    d += Integer.parseInt(jTable1.getValueAt(i, 4).toString());
+                    c += Integer.parseInt(jTable1.getValueAt(i, 7).toString());
+
+                }
+                totalhargap.setText(String.valueOf(c));
+                totalobatp.setText(String.valueOf(d));
+            }
+
+        }
 
     }//GEN-LAST:event_jTable1KeyReleased
 
@@ -536,7 +691,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
         try {
             if (!ket.isEmpty() || !codetrp.isEmpty() || !codetrp.isBlank()) {
                 if (Integer.parseInt(totalobatp.getText()) == 0 || Integer.parseInt(totalhargap.getText()) == 0) {
-                    JOptionPane.showMessageDialog(this, "Tidak Bisa Melakukan Pengemabalian Karna Tidak Barang Yang Di kembalikan");
+                    JOptionPane.showMessageDialog(this, "Tidak Bisa Melakukan Pengemabalian Karna Tidak Ada Barang Yang Di kembalikan");
                 } else {
                     java.sql.Connection connection = DB.getConnection();
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyykkmmss");
@@ -575,6 +730,61 @@ public class ReturPembelianView extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.getSelectedRow();
+        this.baris = row;
+        textqtyp.setEditable(true);
+        btnubah.setEnabled(true);
+        textqtyp.setText(jTable1.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnubahActionPerformed
+        String data = textqtyp.getText();
+        if (Integer.parseInt(data) == 0) {
+            jTable1.setValueAt(0, this.baris, 4);
+            jTable1.setValueAt(0, this.baris, 5);
+            jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(this.baris, 3).toString()) * Integer.parseInt(jTable1.getValueAt(this.baris, 6).toString()), this.baris, 7);
+
+            totalhargap.setText("0");
+            totalobatp.setText("0");
+        } else {
+            int q = Integer.parseInt(jTable1.getValueAt(this.baris, 3).toString());
+            if (Integer.parseInt(data) >= q) {
+                jTable1.setValueAt(q, this.baris, 4);
+                int t = Integer.parseInt(jTable1.getValueAt(this.baris, 3).toString()) - Integer.parseInt(jTable1.getValueAt(this.baris, 4).toString());
+
+                jTable1.setValueAt(t, this.baris, 5);
+            } else {
+                int t = Integer.parseInt(jTable1.getValueAt(this.baris, 3).toString()) - Integer.parseInt(jTable1.getValueAt(this.baris, 4).toString());
+                jTable1.setValueAt(data, this.baris, 4);
+                jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(this.baris, 3).toString()) - Integer.parseInt(jTable1.getValueAt(this.baris, 4).toString()), this.baris, 5);
+                jTable1.setValueAt(Integer.parseInt(jTable1.getValueAt(this.baris, 4).toString()) * Integer.parseInt(jTable1.getValueAt(this.baris, 6).toString()), this.baris, 7);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                int d = 0;
+                int c = 0;
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    d += Integer.parseInt(jTable1.getValueAt(i, 4).toString());
+                    c += Integer.parseInt(jTable1.getValueAt(i, 7).toString());
+
+                }
+                totalhargap.setText(String.valueOf(c));
+                totalobatp.setText(String.valueOf(d));
+                textqtyp.setText("");
+
+                textqtyp.setEditable(false);
+                btnubah.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_btnubahActionPerformed
+
+    private void textqtypKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textqtypKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_textqtypKeyTyped
+
     public void remove_all() {
         cari_transaksi.setEditable(true);
         cari_transaksi.setText("");
@@ -586,10 +796,15 @@ public class ReturPembelianView extends javax.swing.JPanel {
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         model.setRowCount(0);
         model2.setRowCount(0);
+        textqtyp.setText("");
+        textqtyp.setEditable(false);
+        btnubah.setEnabled(false);
+        jButton3.setEnabled(true);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea alasan;
+    private javax.swing.JButton btnubah;
     private javax.swing.JTextField cari_transaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -600,6 +815,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -614,6 +830,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JDialog modal_cari;
+    private javax.swing.JTextField textqtyp;
     private javax.swing.JLabel totalhargap;
     private javax.swing.JLabel totalobatp;
     private javax.swing.JLabel txt_harga;

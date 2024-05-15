@@ -28,8 +28,8 @@ public class textfielddd extends DefaultCellEditor {
     public textfielddd() {
         super(new JCheckBox());
         panel = new JPanel(new BorderLayout());
-        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
-        spinner = new JSpinner(spinnerModel);
+        SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0L, 0L, Integer.MAX_VALUE, 1L);
+        spinner = new JSpinner();
 
         // Attach a NumberFormatter to the JSpinner to allow only numbers
         JSpinner.NumberEditor editor = new JSpinner.NumberEditor(spinner, "#");

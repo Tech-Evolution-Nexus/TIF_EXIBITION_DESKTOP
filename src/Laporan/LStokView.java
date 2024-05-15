@@ -8,6 +8,7 @@ import Components.MonthChooserPanel;
 import Components.YearChooserPanel;
 import Config.DB;
 import Controllers.LaporanStokController;
+import Controllers.ObatController;
 import Helper.convertbulantoangka;
 import View.StokOpnameView;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -28,8 +29,21 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import table.TableCustom;
 import java.awt.Component;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -86,7 +100,6 @@ public class LStokView extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         filter = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         cariobat = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -127,7 +140,7 @@ public class LStokView extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Ok");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -210,16 +223,9 @@ public class LStokView extends javax.swing.JPanel {
 
         jLabel1.setText("Filter");
 
-        jButton1.setText("Export");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         cariobat.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"No Batch,Kode Obat,Nama Obat");
 
-        jButton2.setText("jButton1");
+        jButton2.setText("Cari");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -245,7 +251,7 @@ public class LStokView extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setText(":");
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Tampilkan");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -264,7 +270,7 @@ public class LStokView extends javax.swing.JPanel {
 
         filtertext.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
-        jButton5.setText("Export");
+        jButton5.setText("Print");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -287,7 +293,7 @@ public class LStokView extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cariobat, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,11 +316,10 @@ public class LStokView extends javax.swing.JPanel {
                                     .addComponent(nama_obat, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                                     .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(filtertext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(233, 233, 233)))
+                                .addGap(227, 227, 227)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(3, 3, 3)))
                 .addContainerGap())
         );
@@ -342,6 +347,7 @@ public class LStokView extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel7))
                         .addComponent(nama_obat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+<<<<<<< HEAD
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -355,6 +361,15 @@ public class LStokView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)))
+=======
+                    .addComponent(jButton5))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
+                    .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+>>>>>>> 95a8e7cf5e8532e9f79eab74ba6e85880735eeb7
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
@@ -404,10 +419,6 @@ public class LStokView extends javax.swing.JPanel {
         reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.export();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             modal_cari.pack();
@@ -436,7 +447,9 @@ public class LStokView extends javax.swing.JPanel {
 
 //            try {
 //
-            String dataselect = jTable2.getValueAt(rows, 1).toString();
+            String datakd = jTable2.getValueAt(rows, 1).toString();
+            String datanama = jTable2.getValueAt(rows, 2).toString();
+
 //                ResultSet data = DB.query("SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + dataselect + "'");
 //                ResultSet datal = DB.query("SELECT obat.nama_obat,satuan.nama_satuan FROM obat JOIN satuan ON obat.id_satuan = satuan.id where kode_obat = '" + dataselect + "'");
 //                if (datal.next()) {
@@ -451,9 +464,9 @@ public class LStokView extends javax.swing.JPanel {
 //                    }
 //
 //                }
-            kode_obatt = dataselect;
+            kode_obatt = datakd;
             modal_cari.dispose();
-            cariobat.setText(dataselect);
+            cariobat.setText(datanama);
 //            } catch (SQLException ex) {
 //                Logger.getLogger(StokView.class.getName()).log(Level.SEVERE, null, ex);
 //            }
@@ -464,66 +477,45 @@ public class LStokView extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (kode_obatt != null && !kode_obatt.isEmpty()) {
-    try {
-        String datafilter = filter.getSelectedItem().toString();
-        String tampilan2 = "dd-MM-yyyy";
-        SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2);
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+            try {
+                String datafilter = filter.getSelectedItem().toString();
+                String tampilan2 = "dd-MM-yyyy";
+                SimpleDateFormat fomattgl = new SimpleDateFormat(tampilan2);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
 
-        ResultSet datal = DB.query("SELECT obat.nama_obat,satuan.nama_satuan FROM obat JOIN satuan ON obat.id_satuan = satuan.id where kode_obat = '" + kode_obatt + "'");
-        if (datal.next()) {
-            nama_obat.setText(datal.getString("nama_obat"));
-            satuan.setText(datal.getString("nama_satuan"));
-        }
+                ResultSet datal = DB.query("SELECT obat.nama_obat,satuan.nama_satuan FROM obat JOIN satuan ON obat.id_satuan = satuan.id where kode_obat = '" + kode_obatt + "'");
+                if (datal.next()) {
+                    nama_obat.setText(datal.getString("nama_obat"));
+                    satuan.setText(datal.getString("nama_satuan"));
+                }
 
-        ResultSet data;
-        String query = "";
-
-        if (datafilter.equalsIgnoreCase("tanggal")) {
-            String tampilan1 = "yyyy-MM-dd";
-            SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
-            Date date1 = dateChooser.getDate();
-            Date date2 = dateChooser2.getDate();
-            String tanggalawal = tgl1.format(date1);
-            String tanggalakhir = tgl1.format(date2);
-
-            filtertext.setText(tgl2.format(date1) + " s.d " + tgl2.format(date2));
-            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND kartu_stok.tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
-        } else if (datafilter.equalsIgnoreCase("bulan")) {
-            String bulan1 = monthChooserPanel.getSelectedMonth();
-            String bulan2 = monthChooserPanel2.getSelectedMonth();
-            int tahun = yeaChooserPanel.getSelectedYear();
-            int cbulan1 = convertbulantoangka.convertToMonthNumber(bulan1);
-            int cbulan2 = convertbulantoangka.convertToMonthNumber(bulan2);
-
-            filtertext.setText(bulan1 + " " + tahun + " s.d " + bulan2 + " " + tahun);
-            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + " AND MONTH(kartu_stok.tanggal) BETWEEN " + cbulan1 + " AND " + cbulan2 + ";";
-        } else if (datafilter.equalsIgnoreCase("tahun")) {
-            int tahun = yeaChooserPanel.getSelectedYear();
-            filtertext.setText(String.valueOf(tahun));
-            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + ";";
+                ResultSet data;
+                String query = "";
+                query = fileterselect(filter.getSelectedIndex());
+                data = DB.query(query);
+                while (data.next()) {
+                    Object[] rowData = {fomattgl.format(data.getDate("tanggal")), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
+                    model.addRow(rowData);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LStokView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            filtertext.setText("Semua");
-            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "'";
+            JOptionPane.showMessageDialog(null, "Kolom pencarian Harus Di Isi / Kode Obat tidak ditemukan Harap Pilih Terlebih Dahulu");
         }
-
-        data = DB.query(query);
-        while (data.next()) {
-            Object[] rowData = {tgl2.format(data.getDate("tanggal")), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
-            model.addRow(rowData);
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(LStokView.class.getName()).log(Level.SEVERE, null, ex);
-    }
-} else {
-    JOptionPane.showMessageDialog(this, "Kolom pencarian Harus Di Isi");
-}
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        if (kode_obatt != null && !kode_obatt.isEmpty()) {
+            int selecti = filter.getSelectedIndex();
+
+            String sql = fileterselect(selecti);
+            print(sql, selecti);
+        } else {
+            JOptionPane.showMessageDialog(null, "Kolom pencarian Harus Di Isi / Kode Obat tidak ditemukan Harap Pilih Terlebih Dahulu");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public void reset() {
@@ -582,12 +574,138 @@ public class LStokView extends javax.swing.JPanel {
         jPanel2.add(Box.createHorizontalStrut(10));
     }
 
+    private void print(String sqlQuery, int select) {
+        try {
+            String tampilan2 = "dd-MM-yyyy";
+            SimpleDateFormat fomattgl = new SimpleDateFormat(tampilan2);
+            // Compile JRXML file
+//                String sqlQuery = "Select * from obat where kode_obat = '" + idObat + "'";
+            String pathi = "src/iReportdata/report1.jrxml";
+            JasperDesign jasperDesign = JRXmlLoader.load(pathi);
+
+            // Membuat objek JRDesignQuery
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sqlQuery);
+
+            // Mengaitkan JRDesignQuery dengan JasperDesign
+            jasperDesign.setQuery(newQuery);
+
+            // Langkah 3: Mengisi data ke laporan JasperReports
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("kd_obat", kode_obatt);
+            switch (select) {
+                case 0:
+                    parameters.put("periode", "semua");
+
+                    break;
+                case 1:
+                    Date date1 = dateChooser.getDate();
+                    Date date2 = dateChooser2.getDate();
+                    parameters.put("periode", fomattgl.format(date1) + " s.d " + fomattgl.format(date2));
+                    break;
+                case 2:
+                    String bulan1 = monthChooserPanel.getSelectedMonth();
+                    String bulan2 = monthChooserPanel2.getSelectedMonth();
+                    int tahun = yeaChooserPanel.getSelectedYear();
+                    parameters.put("periode", bulan1 + " " + tahun + " s.d " + bulan2 + " " + tahun);
+
+                    break;
+                case 3:
+                    parameters.put("periode", yeaChooserPanel.getSelectedYear());
+
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            // Mengisi laporan dengan data dari database
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy_HH-mm-ss");
+//            String tanggalWaktu = dateFormat.format(new Date());
+            // Mengisi laporan dengan data dari database
+
+            // Menampilkan laporan dengan JasperViewer
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException ex) {
+            Logger.getLogger(LShiftView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private String fileterselect(int datafilter) {
+        String tampilan2 = "dd-MM-yyyy";
+        SimpleDateFormat fomattgl = new SimpleDateFormat(tampilan2);
+        String query = "SELECT kartu_stok.no_kartu_stok,kartu_stok.kode_obat,data_obat.nama_obat,data_obat.satuan,kartu_stok.no_batch,kartu_stok.kode_supplier,supplier.nama_suplier,kartu_stok.tanggal ,kartu_stok.qty_awal ,kartu_stok.qty_masuk ,kartu_stok.qty_keluar ,kartu_stok.qty_akhir FROM kartu_stok JOIN data_obat on kartu_stok.kode_obat = data_obat.kode_obat LEFT JOIN supplier on kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "'";
+//        int tahun = yeaChooserPanel.getSelectedYear();
+
+        switch (datafilter) {
+            case 0:
+                filtertext.setText("Semua");
+                return query;
+
+            case 1:
+                String tampilan1 = "yyyy-MM-dd";
+                SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+                Date date1 = dateChooser.getDate();
+                Date date2 = dateChooser2.getDate();
+                String tanggalawal = tgl1.format(date1);
+                String tanggalakhir = tgl1.format(date2);
+
+                filtertext.setText(fomattgl.format(date1) + " s.d " + fomattgl.format(date2));
+                return query + "AND kartu_stok.tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+
+            case 2:
+                String bulan1 = monthChooserPanel.getSelectedMonth();
+                String bulan2 = monthChooserPanel2.getSelectedMonth();
+                int tahun = yeaChooserPanel.getSelectedYear();
+                int cbulan1 = convertbulantoangka.convertToMonthNumber(bulan1);
+                int cbulan2 = convertbulantoangka.convertToMonthNumber(bulan2);
+
+                filtertext.setText(bulan1 + " " + tahun + " s.d " + bulan2 + " " + tahun);
+                return query + "AND YEAR(kartu_stok.tanggal) = " + tahun + " AND MONTH(kartu_stok.tanggal) BETWEEN " + cbulan1 + " AND " + cbulan2 + ";";
+
+            case 3:
+
+                filtertext.setText(String.valueOf(yeaChooserPanel.getSelectedYear()));
+                return query + "AND YEAR(kartu_stok.tanggal) = " + yeaChooserPanel.getSelectedYear() + ";";
+
+            default:
+                throw new AssertionError();
+        }
+//        if (datafilter.equalsIgnoreCase("tanggal")) {
+//            String tampilan1 = "yyyy-MM-dd";
+//            SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+//            Date date1 = dateChooser.getDate();
+//            Date date2 = dateChooser2.getDate();
+//            String tanggalawal = tgl1.format(date1);
+//            String tanggalakhir = tgl1.format(date2);
+//
+//            filtertext.setText(tgl2.format(date1) + " s.d " + tgl2.format(date2));
+//            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND kartu_stok.tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+//        } else if (datafilter.equalsIgnoreCase("bulan")) {
+//            String bulan1 = monthChooserPanel.getSelectedMonth();
+//            String bulan2 = monthChooserPanel2.getSelectedMonth();
+//            int tahun = yeaChooserPanel.getSelectedYear();
+//            int cbulan1 = convertbulantoangka.convertToMonthNumber(bulan1);
+//            int cbulan2 = convertbulantoangka.convertToMonthNumber(bulan2);
+//
+//            filtertext.setText(bulan1 + " " + tahun + " s.d " + bulan2 + " " + tahun);
+//            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + " AND MONTH(kartu_stok.tanggal) BETWEEN " + cbulan1 + " AND " + cbulan2 + ";";
+//        } else if (datafilter.equalsIgnoreCase("tahun")) {
+//            int tahun = yeaChooserPanel.getSelectedYear();
+//            filtertext.setText(String.valueOf(tahun));
+//            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' AND YEAR(kartu_stok.tanggal) = " + tahun + ";";
+//        } else {
+//            filtertext.setText("Semua");
+//            query = "SELECT kartu_stok.tanggal,kartu_stok.no_kartu_stok,supplier.nama_suplier,kartu_stok.qty_awal,kartu_stok.qty_masuk,kartu_stok.qty_keluar,kartu_stok.qty_akhir FROM kartu_stok JOIN obat ON kartu_stok.kode_obat = obat.kode_obat JOIN supplier ON kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "'";
+//        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cariobat;
     private javax.swing.JComboBox<String> filter;
     private javax.swing.JLabel filtertext;
     private javax.swing.JDialog form;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

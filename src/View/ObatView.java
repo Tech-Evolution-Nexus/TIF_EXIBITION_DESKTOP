@@ -689,7 +689,7 @@ public class ObatView extends javax.swing.JPanel {
 
         btnExport.setBackground(new java.awt.Color(0, 153, 255));
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnDetail.setIcon("Assets/svg/detailIcon.svg");
+        btnExport.setIcon("Assets/svg/barcode.svg");
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportActionPerformed(evt);
