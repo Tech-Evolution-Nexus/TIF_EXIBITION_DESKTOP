@@ -236,7 +236,7 @@ public class TransaksiPembelianController {
             String insertDetailQuery = "INSERT INTO detail_pembelian(kode_transaksi,no_batch, harga, qty, subtotal) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement insertDetailStatement = connection.prepareStatement(insertDetailQuery);
 
-            String insertStokQuery = "INSERT INTO batch_obat(no_batch,kode_obat, kode_suplier, jumlah_obat, harga_beli, tanggal_kadaluarsa,tanggal_masuk) VALUES (?,?, ?, ?, ?, ?,curdate())";
+            String insertStokQuery = "INSERT INTO detail_obat(no_batch,kode_obat, kode_suplier, jumlah_obat, harga_beli, tanggal_kadaluarsa,tanggal_masuk) VALUES (?,?, ?, ?, ?, ?,curdate())";
             PreparedStatement insertStokStatement = connection.prepareStatement(insertStokQuery);
 
             String updateObatQuery = "UPDATE obat SET jumlah_obat = jumlah_obat + ? WHERE kode_obat = ?";
@@ -251,7 +251,7 @@ public class TransaksiPembelianController {
                 String tambahStok = view.getTable().getValueAt(i, 5) != null ? view.getTable().getValueAt(i, 5).toString() : "";
                 String tglKadaluarsa = view.getTable().getValueAt(i, 6) != null ? view.getTable().getValueAt(i, 6).toString() : "";
 //                    ResultSet ceknobatch = modeldetailobat.where("no_batch", "=", nobatch).get();
-                ResultSet s = DB.query("SELECT * FROM batch_obat WHERE no_batch = '" + nobatch + "'");
+                ResultSet s = DB.query("SELECT * FROM detail_obat WHERE no_batch = '" + nobatch + "'");
                 if (s.next()) {
                     JOptionPane.showMessageDialog(view.getTable(), "No Batch Obat Sudah Ada");
                     System.out.println("sdddddd");

@@ -85,7 +85,24 @@ public class ObatController extends Controller {
         view.getBtnSatuan().addActionListener(e -> listSatuan());
         view.getBtnDetail().addActionListener(e -> detail());
         view.getBtnExport().addActionListener(e -> exportbarcode());
+        view.getMinStok().addKeyListener(new KeyAdapter() {
 
+            public void keyTyped(KeyEvent evt) {
+                char character = evt.getKeyChar();
+                if (!Character.isDigit(character)||Character.isWhitespace(character)) {
+                    evt.consume();
+                }
+            }
+        });
+        view.getTotal().addKeyListener(new KeyAdapter() {
+
+            public void keyTyped(KeyEvent evt) {
+                char character = evt.getKeyChar();
+                if (!Character.isDigit(character)||Character.isWhitespace(character)) {
+                    evt.consume();
+                }
+            }
+        });
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tampilData(false);
@@ -119,7 +136,7 @@ public class ObatController extends Controller {
         };
 
         view.getListSatuan().getColumnModel().getColumn(5).setCellRenderer(new BtnAction(false));
-        view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event,false));
+        view.getListSatuan().getColumnModel().getColumn(5).setCellEditor(new BtnEditor(event, false));
         view.getListSatuan().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -139,7 +156,7 @@ public class ObatController extends Controller {
 
     public void tampilData(boolean cari) {
         try {
-            System.out.println("test");
+
             String kunci = view.getSearch().getText();
             ResultSet data = DB.query("SELECT * FROM data_obat   order by tanggal_dibuat desc,jumlah_obat desc");
             if (cari) {
@@ -152,15 +169,15 @@ public class ObatController extends Controller {
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = { no, data.getString("kode_obat"),
-                data.getString("nama_obat"),
-                data.getString("jumlah_obat"),
-                data.getString("satuan"),
-                data.getString("nama_kategori"),
-                data.getString("kandungan"),
-                Currency.format(data.getInt("harga")),
-                data.getInt("min_stok")
-            };
+                Object[] dataArray = {no, data.getString("kode_obat"),
+                    data.getString("nama_obat"),
+                    data.getString("jumlah_obat"),
+                    data.getString("satuan"),
+                    data.getString("nama_kategori"),
+                    data.getString("kandungan"),
+                    Currency.format(data.getInt("harga")),
+                    data.getInt("min_stok")
+                };
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
@@ -182,7 +199,7 @@ public class ObatController extends Controller {
             clearDialog();
             view.getForm().setTitle("Tambah Obat");
             ResultSet kategoriData = DB.query("SELECT * from kategori");
-            // addSatuan(null, 0, 1);
+//             addSatuan(null, 0, 1);
             view.getKategori().removeAllItems();
             while (kategoriData.next()) {
                 view.getKategori().addItem(kategoriData.getString("nama_kategori"));
@@ -190,6 +207,7 @@ public class ObatController extends Controller {
 
             showForm();
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -206,7 +224,7 @@ public class ObatController extends Controller {
             }
             String id = view.getTable().getValueAt(view.getTable().getSelectedRow(), 1).toString();
             ResultSet transaksiData = DB.query("SELECT count(*) as count from detail_pembelian where kode_obat= '" + id + "'");
-            
+
             if (transaksiData != null) {
                 Notification.showInfo(Notification.DATA_IN_USE_ERROR, view.getTable());
                 return;
@@ -255,7 +273,7 @@ public class ObatController extends Controller {
 
                 }
                 String namaSatuan = view.getListSatuan().getValueAt(0, 0).toString();
-                
+
                 ResultSet dataKategori = kategoriModel.select("id").where("nama_kategori", "=", kategori).get();
 
                 ResultSet dataSatuan = satuanModel.select("id").where("nama_satuan", "=", namaSatuan).get();
@@ -264,11 +282,16 @@ public class ObatController extends Controller {
                 String idSatuanObat = dataSatuan.getString("id");
                 String idKategori = dataKategori.getString("id");
                 DB.query2("DELETE FROM jenis_penjualan where kode_obat = '" + kodeObat + "'");
-                // DB.query2("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + idSatuan + "','" + idKategori
-                //         + "','" + kandungan + "')");
-                String[] fieldsObat = {"kode_obat","nama_obat","id_kategori","id_satuan","min_stok","kandungan"};
-                String[] valuesObat = {kodeObat,namaObat,idSatuanObat,idKategori,min_stok,kandungan}; 
-                model.insert(fieldsObat, valuesObat);
+                String[] fieldsObat = {"kode_obat", "nama_obat", "id_kategori", "id_satuan", "min_stok", "kandungan"};
+                String[] valuesObat = {kodeObat, namaObat, idSatuanObat, idKategori, min_stok, kandungan};
+                if (idEdit.equals("")) {
+//                    System.out.println("sd");
+                    model.insert(fieldsObat, valuesObat);
+
+                } else {
+                    model.update(fieldsObat, valuesObat, "kode_obat = '" + idEdit + "'");
+
+                }
                 for (int i = 0; i < view.getListSatuan().getRowCount(); i++) {
                     namaSatuan = view.getListSatuan().getValueAt(i, 0).toString();
                     String total = view.getListSatuan().getValueAt(i, 1).toString();
@@ -276,9 +299,9 @@ public class ObatController extends Controller {
                     String margin = view.getListSatuan().getValueAt(i, 4).toString();
                     String marginHarga = null;
                     String marginPersen = null;
-                    if(marginType.equals("Margin Harga")){
-                        marginHarga=margin;
-                    }else{
+                    if (marginType.equals("Margin Harga")) {
+                        marginHarga = margin;
+                    } else {
                         marginPersen = margin;
                     }
                     dataSatuan = satuanModel.select("id").where("nama_satuan", "=", namaSatuan).get();
@@ -287,8 +310,9 @@ public class ObatController extends Controller {
                     String[] column = {"kode_obat", "total", "margin_harga", "margin_persen", "id_satuan"};
                     String[] values = {kodeObat, total, marginHarga, marginPersen, idSatuan};
                     jenisPenjualanModel.insert(column, values);
-
                 }
+                // DB.query2("CALL simpanDataObat('" + kodeObat + "','" + namaObat + "','" + idSatuan + "','" + idKategori
+                //         + "','" + kandungan + "')");
 
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
                 tampilData(false);
@@ -312,54 +336,64 @@ public class ObatController extends Controller {
             }
             int row = view.getTable().getSelectedRow();
             String idObat = view.getTable().getValueAt(row, 1).toString();
-            String namaObat = view.getTable().getValueAt(row, 2).toString();
-            String kandungan = view.getTable().getValueAt(row, 6).toString();
-            view.getNamaObat().setText(namaObat);
-            view.getKandungan().setText(kandungan);
-            view.getTitleForm().setText("Ubah Obat");
-            status = 2;
-            idEdit = idObat;
+            ResultSet obatData = DB.query("SELECT * from obat where kode_obat = '" + idObat + "'");
+            if (obatData.next()) {
 
-            ResultSet kategoriData = DB.query("SELECT * from kategori");
-            view.getKategori().removeAllItems();
-            while (kategoriData.next()) {
-                view.getKategori().addItem(kategoriData.getString("nama_kategori"));
-                String namaKategori = view.getTable().getValueAt(row, 5).toString();
-                boolean cekNamaKategori = namaKategori.equals(kategoriData.getString("nama_kategori"));
-                if (cekNamaKategori) {
-                    view.getKategori().setSelectedItem(namaKategori);
+                String namaObat = obatData.getString("nama_obat");
+                String kandungan = obatData.getString("kandungan");
+                String minstok = obatData.getString("min_stok");
+
+                view.getNamaObat().setText(namaObat);
+                view.getKandungan().setText(kandungan);
+                view.getMinStok().setText(minstok);
+
+                view.getTitleForm().setText("Ubah Obat");
+                status = 2;
+                idEdit = idObat;
+
+                ResultSet kategoriData = DB.query("SELECT * from kategori");
+                view.getKategori().removeAllItems();
+                while (kategoriData.next()) {
+                    view.getKategori().addItem(kategoriData.getString("nama_kategori"));
+                    String namaKategori = view.getTable().getValueAt(row, 5).toString();
+                    boolean cekNamaKategori = namaKategori.equals(kategoriData.getString("nama_kategori"));
+                    if (cekNamaKategori) {
+                        view.getKategori().setSelectedItem(namaKategori);
+                    }
                 }
-            }
-            ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
-            DefaultTableModel model = (DefaultTableModel) view.getListSatuan().getModel();
-            model.setRowCount(0);
-            String namaSatuanPertama = "";
-            while (satuanData.next()) {
-                if (namaSatuanPertama.equals("")) {
-                    namaSatuanPertama = satuanData.getString("satuan");
-                }
-                String margin = "";
-                String marginType = "";
-                if (satuanData.getString("margin_harga").equals("") ||
-                 satuanData.getString("margin_harga") == null) {
-                    margin = satuanData.getString("margin_persen");
-                    marginType = "Margin Persentase";
-                } else {
-                    margin = satuanData.getString("margin_harga");
-                    marginType = "Margin Harga";
-                }
-                Object[] data = { satuanData.getString("satuan"),
+                ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
+                DefaultTableModel model = (DefaultTableModel) view.getListSatuan().getModel();
+                model.setRowCount(0);
+                String namaSatuanPertama = "";
+                while (satuanData.next()) {
+                    if (namaSatuanPertama.equals("")) {
+                        namaSatuanPertama = satuanData.getString("satuan");
+                    }
+                    String margin = "";
+                    String marginType = "";
+                    if (satuanData.getString("margin_harga").equals("")
+                            || satuanData.getString("margin_harga") == null) {
+                        margin = satuanData.getString("margin_persen");
+                        marginType = "Margin Persentase";
+                    } else {
+                        margin = satuanData.getString("margin_harga");
+                        marginType = "Margin Harga";
+                    }
+                    Object[] data = {satuanData.getString("satuan"),
                         satuanData.getString("total"),
                         namaSatuanPertama,
                         marginType,
-                       margin};
-                model.addRow(data);
-                // addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"));
-            }
+                        margin};
+                    model.addRow(data);
+                    // addSatuan(satuanData.getString("id_bentuk_sediaan"), satuanData.getInt("harga"), satuanData.getInt("total"));
+                }
 
-            showForm();
+                showForm();
+            } else {
+                JOptionPane.showMessageDialog(null, "Tidak Ditemukan Kode Obat");
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(view.getTable(), "Sistem error " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Sistem error " + e.getMessage());
 
         }
     }
@@ -394,7 +428,7 @@ public class ObatController extends Controller {
 
             model = (DefaultTableModel) view.getStokTable().getModel();
             ResultSet stokData = DB.query(
-                    "SELECT * from batch_obat join supplier on batch_obat.kode_suplier = supplier.kode_suplier where kode_obat='"
+                    "SELECT * from detail_obat join supplier on detail_obat.kode_suplier = supplier.kode_suplier where kode_obat='"
                     + idObat + "' order by tanggal_masuk desc");
             model.setRowCount(0);
             while (stokData.next()) {
