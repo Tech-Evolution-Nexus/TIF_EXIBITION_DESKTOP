@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.table.DefaultTableCellRenderer;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -68,6 +69,15 @@ public class LStokView extends javax.swing.JPanel {
      */
     public LStokView() {
         initComponents();
+        
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            if(i < 3){
+                continue;
+            }
+            DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+            center.setHorizontalAlignment(JLabel.CENTER);
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(center);
+        }
 //        controller = new LaporanStokController(jTable1, form);
 //        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 //        controller.tampilData();
@@ -347,7 +357,7 @@ public class LStokView extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel7))
                         .addComponent(nama_obat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton5))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)

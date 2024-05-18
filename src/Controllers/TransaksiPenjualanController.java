@@ -162,9 +162,10 @@ public class TransaksiPenjualanController  extends Controller{
                 String satuanTable = view.getTable().getValueAt(row, 2).toString();
                 //jika ditemukan kode obat dan satuan yg sama maka tambahkan stok dan update total harga
                 if (namaObatTable.equals(namaObat) && satuanTable.equals(satuan) && !isEdit) {
+                    dataDitemukan=true;
                     qty += Integer.parseInt(view.getTable().getValueAt(row, 4).toString()); 
                     totalHarga = harga * qty;
-                    
+             
                     view.getTable().setValueAt(qty,row, 4);
                     view.getTable().setValueAt(Helper.Currency.format(totalHarga),row, 5);
                     break;

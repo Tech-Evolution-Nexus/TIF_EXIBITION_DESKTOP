@@ -340,8 +340,7 @@ public class ObatController extends Controller {
                 }
                 String margin = "";
                 String marginType = "";
-                if (satuanData.getString("margin_harga").equals("") ||
-                 satuanData.getString("margin_harga") == null) {
+                if (satuanData.getString("margin_harga") == null) {
                     margin = satuanData.getString("margin_persen");
                     marginType = "Margin Persentase";
                 } else {

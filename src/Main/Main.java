@@ -147,7 +147,6 @@ public class Main extends javax.swing.JFrame {
         dialog.setBounds(new java.awt.Rectangle(100, 82, 300, 300));
         dialog.setUndecorated(true);
         dialog.setType(java.awt.Window.Type.POPUP);
-        dialog.getContentPane().setLayout(new java.awt.BorderLayout());
 
         dialog2.setBackground(new java.awt.Color(58, 98, 215));
         dialog2.setBorder(null);
@@ -226,9 +225,9 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                .addGap(268, 268, 268)
-                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(338, 338, 338)
+                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
