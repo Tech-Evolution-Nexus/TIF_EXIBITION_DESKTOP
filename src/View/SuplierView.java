@@ -63,7 +63,7 @@ public class SuplierView extends javax.swing.JPanel {
         titleForm.setForeground(new java.awt.Color(58, 98, 215));
         titleForm.setText("Tambah Pemasok Baru");
 
-        namaPemasok.setPlaceholder("Masukkan Nama Kategori");
+        namaPemasok.setPlaceholder("Masukkan Nama Pemasok");
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Nama Pemasok*");

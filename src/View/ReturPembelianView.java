@@ -86,17 +86,17 @@ public class ReturPembelianView extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Transaksi", "Nama Supplier", "Total Harga", "Tanggal Transaksi"
+                "No", "Kode Transaksi", "Nama Supplier", "Cara Pembayaran", "Total Harga", "Tanggal Transaksi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -111,6 +111,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
             jTable2.getColumnModel().getColumn(2).setResizable(false);
             jTable2.getColumnModel().getColumn(3).setResizable(false);
             jTable2.getColumnModel().getColumn(4).setResizable(false);
+            jTable2.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jButton4.setText("Ok");
@@ -262,9 +263,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, 0))
+                            .addComponent(jLabel2)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(textqtyp, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +303,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Pembayaran");
+        jLabel12.setText("Cara Pembayaran");
 
         jLabel14.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -360,7 +359,6 @@ public class ReturPembelianView extends javax.swing.JPanel {
         alasan.setWrapStyleWord(true);
         jScrollPane2.setViewportView(alasan);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(58, 98, 215));
         jButton2.setText("Simpan");
@@ -425,7 +423,6 @@ public class ReturPembelianView extends javax.swing.JPanel {
             .addGroup(customPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
                 .addGroup(customPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customPanel1Layout.createSequentialGroup()
                         .addGroup(customPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -455,7 +452,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
                     .addComponent(totalobatp, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalhargap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                 .addGap(123, 123, 123)
                 .addGroup(customPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -473,8 +470,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
-                .addComponent(customPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(customPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,7 +496,7 @@ public class ReturPembelianView extends javax.swing.JPanel {
             ResultSet data = DB.query("SELECT kode_transaksi,nama_suplier,total_harga,tanggal_transaksi from transaksi_pembelian JOIN supplier ON transaksi_pembelian.kode_suplier = supplier.kode_suplier where transaksi_pembelian.kode_transaksi LIKE '%" + cari + "%'or supplier.nama_suplier LIKE '%" + cari + "%'");
             int no = 1;
             while (data.next()) {
-                Object[] rowData = {no++, data.getString("kode_transaksi"), data.getString("nama_suplier"), data.getString("total_harga"), data.getString("tanggal_transaksi")};
+                Object[] rowData = {no++, data.getString("kode_transaksi"), data.getString("nama_suplier"),data.getString("cara_pembayaran"), data.getString("total_harga"), data.getString("tanggal_transaksi")};
                 model.addRow(rowData);
             }
             jButton3.setEnabled(false);
@@ -547,7 +543,6 @@ public class ReturPembelianView extends javax.swing.JPanel {
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         int row = jTable1.getSelectedRow();
         String s = jTable1.getValueAt(row, 4) == null ? "0" : jTable1.getValueAt(row, 4).toString();
-        System.out.println(row);
 //        System.out.println(s);
         if (Integer.parseInt(s) == 0) {
             jTable1.setValueAt(0, row, 4);
@@ -670,11 +665,12 @@ public class ReturPembelianView extends javax.swing.JPanel {
                 }
                 totalhargap.setText(String.valueOf(c));
                 totalobatp.setText(String.valueOf(d));
-                textqtyp.setText("");
+                
+            }
+            textqtyp.setText("");
 
                 textqtyp.setEditable(false);
                 btnubah.setEnabled(false);
-            }
         }
     }//GEN-LAST:event_btnubahActionPerformed
 

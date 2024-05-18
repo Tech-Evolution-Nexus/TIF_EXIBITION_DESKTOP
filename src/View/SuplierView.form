@@ -103,7 +103,7 @@
             </Component>
             <Component class="Components.CustomField" name="namaPemasok">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="namaPemasok.setPlaceholder(&quot;Masukkan Nama Kategori&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="namaPemasok.setPlaceholder(&quot;Masukkan Nama Pemasok&quot;);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">

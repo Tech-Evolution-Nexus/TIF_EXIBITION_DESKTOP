@@ -83,14 +83,14 @@ public class Main extends javax.swing.JFrame {
         main.setLayout(cardLayout);
 
         main.add(new Controllers.ObatController().getView(), "obat");
-
+//
         main.add(new SatuanController().getView(), "satuan");
         main.add(new Controllers.KategoriController().getView(), "Category");
         main.add(new Controllers.UserController().getView(), "User");
         main.add(new Controllers.SupplierController().getView(), "Supplier");
         main.add(new LaporanMain(), "Report");
         main.add(new Controllers.TransaksiPenjualanController().getView(), "Penjualan");
-//        main.add(new View.PembelianView(), "pembelian");
+        main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "Pengeluaran");
         main.add(new Controllers.TransaksiPembelianController().getView(), "Pembelian");
         main.add(new ReturPembelianView(), "Retur Pembelian");
