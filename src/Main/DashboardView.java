@@ -406,7 +406,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -428,11 +428,11 @@ public class DashboardView extends javax.swing.JPanel {
         notif_panel.setLayout(notif_panelLayout);
         notif_panelLayout.setHorizontalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(notif_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(notif_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(notif_exp)
+                .addContainerGap())
         );
         notif_panelLayout.setVerticalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +471,7 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -494,16 +494,21 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(notif_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(notif_stok)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(notif_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notif_stok)
                 .addContainerGap())
         );
 
@@ -527,7 +532,7 @@ public class DashboardView extends javax.swing.JPanel {
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 195, Short.MAX_VALUE))
+                .addGap(0, 209, Short.MAX_VALUE))
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -558,7 +563,7 @@ public class DashboardView extends javax.swing.JPanel {
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatanLabel)
-                .addGap(0, 119, Short.MAX_VALUE))
+                .addGap(0, 144, Short.MAX_VALUE))
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -591,7 +596,7 @@ public class DashboardView extends javax.swing.JPanel {
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran)
-                .addGap(0, 118, Short.MAX_VALUE))
+                .addGap(0, 140, Short.MAX_VALUE))
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -680,7 +685,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -726,14 +731,14 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
-                        .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -772,7 +777,7 @@ public class DashboardView extends javax.swing.JPanel {
             DefaultTableModel tabelData = (DefaultTableModel) tablekadaluarsa.getModel();
             tabelData.setRowCount(0);
 
-            ResultSet data = DB.query("SELECT nama_obat, batch_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM batch_obat JOIN data_obat ON data_obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
+            ResultSet data = DB.query("SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
             int no = 1;
 
             while (data.next()) {
@@ -800,7 +805,7 @@ public class DashboardView extends javax.swing.JPanel {
             DefaultTableModel tabelData = (DefaultTableModel) tabelstok.getModel();
             tabelData.setRowCount(0);
 
-            ResultSet data = DB.query("SELECT obat.nama_obat,batch_obat.jumlah_obat FROM `batch_obat` JOIN obat ON obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat <= 10; ");
+            ResultSet data = DB.query("SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= 10; ");
             int no = 1;
 
             while (data.next()) {
@@ -887,7 +892,7 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void ntf_stok() {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
-        ResultSet data = DB.query("SELECT obat.nama_obat,batch_obat.jumlah_obat FROM `batch_obat` JOIN obat ON obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat <= 10; ");
+        ResultSet data = DB.query("SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= 10; ");
         String pesan = "";
         try {
             while (data.next()) {
@@ -915,7 +920,7 @@ public class DashboardView extends javax.swing.JPanel {
 //        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         int yPos = 20;
         LocalDate date = LocalDate.now();
-        ResultSet data = DB.query("SELECT nama_obat, batch_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM batch_obat JOIN data_obat ON data_obat.kode_obat = batch_obat.kode_obat WHERE batch_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
+        ResultSet data = DB.query("SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
         String pesan = "";
         try {
             while (data.next()) {
