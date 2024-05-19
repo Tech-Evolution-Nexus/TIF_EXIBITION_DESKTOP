@@ -149,7 +149,7 @@ public class LPendapatanView extends javax.swing.JPanel {
 
         jLabel1.setText("Pilih Periode ");
 
-        periode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua", "Hari", "Bulan", "Tahun" }));
+        periode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bulan", "Rentan Hari", "Tahun" }));
         periode.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 periodeItemStateChanged(evt);
