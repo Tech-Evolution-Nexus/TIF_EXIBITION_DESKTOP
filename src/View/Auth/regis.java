@@ -29,7 +29,7 @@ public class regis extends javax.swing.JFrame {
     public regis() {
 
         initComponents();
-        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
         ImageIcon img = images("/Asset_login/login-anyaran.png", 280, 280);
         login_image.setIcon(img);
 
@@ -65,7 +65,7 @@ public class regis extends javax.swing.JFrame {
         btn_regis = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
         nama_lengkap = new javax.swing.JTextField();
-        noktp = new javax.swing.JTextField();
+        nohp = new javax.swing.JTextField();
         alamat = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,16 +209,16 @@ public class regis extends javax.swing.JFrame {
             }
         });
 
-        noktp.putClientProperty(FlatClientProperties.STYLE,"arc:50");
-        noktp.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"No KTP");
-        noktp.addActionListener(new java.awt.event.ActionListener() {
+        nohp.putClientProperty(FlatClientProperties.STYLE,"arc:50");
+        nohp.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"No hp");
+        nohp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                noktpActionPerformed(evt);
+                nohpActionPerformed(evt);
             }
         });
-        noktp.addKeyListener(new java.awt.event.KeyAdapter() {
+        nohp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                noktpKeyTyped(evt);
+                nohpKeyTyped(evt);
             }
         });
 
@@ -248,7 +248,7 @@ public class regis extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(noktp)
+                                            .addComponent(nohp)
                                             .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +289,7 @@ public class regis extends javax.swing.JFrame {
                     .addComponent(nama_lengkap, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noktp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nohp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,22 +342,27 @@ public class regis extends javax.swing.JFrame {
     private void btn_regisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regisActionPerformed
         try {
             String usernameTxt = username.getText();
-            String notktpTxt = noktp.getText();
+            String nohpTxt = nohp.getText();
             String fullnameTxt = nama_lengkap.getText();
             String alamatTxt = alamat.getText();
             String passTxt = password.getText();
 
             ResultSet data = DB.query("SELECT * from users where username =  '" + usernameTxt + "'");
             if (!data.next()) {
-//                DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password) values ('"+notktpTxt+"')");
-                int hasil = DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password,role) values ('" + notktpTxt + "', '" + fullnameTxt + "', '" + alamatTxt + "', '" + usernameTxt + "', '" + passTxt + "','owner')");
-                if (hasil > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Data Berhasil Ditambahkan");
-                    this.dispose();
-                    new login().setVisible(true);
+                if (!nohpTxt.matches("(^\\+62|0)(\\d{8,15})$")) {
+                    JOptionPane.showMessageDialog(null, "Nomor telepon tidak valid ");
                 } else {
-                    JOptionPane.showMessageDialog(rootPane, "Data Gagal Ditambahkan");
+                    DB.query2("INSERT INTO users (no_ktp, nama, alamat, username, password) values ('" + nohpTxt + "')");
+                    int hasil = DB.query2("INSERT INTO users (no_hp, nama, alamat, username, password,role) values ('" + nohpTxt + "', '" + fullnameTxt + "', '" + alamatTxt + "', '" + usernameTxt + "', '" + passTxt + "','owner')");
+                    if (hasil > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Data Berhasil Ditambahkan");
+                        this.dispose();
+                        new login().setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Data Gagal Ditambahkan");
+                    }
                 }
+//                
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Username sudah terdaftar!");
             }
@@ -394,16 +399,16 @@ public class regis extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nama_lengkapKeyTyped
 
-    private void noktpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noktpActionPerformed
+    private void nohpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nohpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_noktpActionPerformed
+    }//GEN-LAST:event_nohpActionPerformed
 
-    private void noktpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noktpKeyTyped
+    private void nohpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nohpKeyTyped
         char character = evt.getKeyChar();
-        if (!Character.isDigit(character) || noktp.getText().length() >= 16 || Character.isWhitespace(character)) {
+        if (!Character.isDigit(character) || nohp.getText().length() >= 16 || Character.isWhitespace(character)) {
             evt.consume();
         }
-    }//GEN-LAST:event_noktpKeyTyped
+    }//GEN-LAST:event_nohpKeyTyped
 
     private void alamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamatActionPerformed
         // TODO add your handling code here:
@@ -452,7 +457,6 @@ public class regis extends javax.swing.JFrame {
                 try {
                     ResultSet dara = DB.query("select count(*) from users where role='owner'");
                     if (dara.next()) {
-                            new regis().setVisible(true);
 
                         if (dara.getInt(1) > 0) {
                             new login().setVisible(true);
@@ -484,7 +488,7 @@ public class regis extends javax.swing.JFrame {
     private javax.swing.JLabel logoappss;
     private javax.swing.JLabel minimize;
     private javax.swing.JTextField nama_lengkap;
-    private javax.swing.JTextField noktp;
+    private javax.swing.JTextField nohp;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
