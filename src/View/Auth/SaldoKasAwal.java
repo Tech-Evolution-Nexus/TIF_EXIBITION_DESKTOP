@@ -6,12 +6,18 @@ package View.Auth;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
+
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import Config.DB;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -34,7 +40,8 @@ public class SaldoKasAwal extends javax.swing.JFrame {
     public SaldoKasAwal() {
         initComponents();
        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
-       
+               this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
+
 
         try {
             String datalogin = userPreferences.get("localLogin", null);
@@ -91,7 +98,7 @@ public class SaldoKasAwal extends javax.swing.JFrame {
                 inputkasKeyTyped(evt);
             }
         });
-        jPanel1.add(inputkas, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 197, 450, 60));
+        jPanel1.add(inputkas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 450, 60));
 
         jButton1.putClientProperty(FlatClientProperties.STYLE,"arc:550");
         jButton1.setBackground(new java.awt.Color(66, 133, 244));
@@ -103,17 +110,17 @@ public class SaldoKasAwal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 275, 450, 60));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 450, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("SALDO KAS AWAL");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 147, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Sebelum lanjut masukkan saldo kas awal");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 353, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
 
         logout_saldoo.setIcon(new FlatSVGIcon("Asset_login/logout_saldo.svg"));
         logout_saldoo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,17 +129,17 @@ public class SaldoKasAwal extends javax.swing.JFrame {
                 logout_saldooMouseClicked(evt);
             }
         });
-        jPanel1.add(logout_saldoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 50, 50));
+        jPanel1.add(logout_saldoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
         );
 
         pack();
@@ -179,30 +186,34 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SaldoKasAwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SaldoKasAwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SaldoKasAwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SaldoKasAwal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        try {
+       try {
             UIManager.setLookAndFeel(new FlatLightLaf());
-            UIManager.put("Button.arc", 900);
-            UIManager.put("TextComponent.arc", 900);
+            // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.hoverForeground", Color.white);
+            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
+            UIManager.put("TableHeader.background", new Color(58,98,215));
+            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
+            UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
+            UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextField.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Button.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("ComboBox.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("PopupMenu.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.getDefaults().put("ScrollPane.border", BorderFactory.createEmptyBorder());
+            UIManager.getDefaults().put("Table.border", BorderFactory.createEmptyBorder());
+            UIManager.put("TabbedPane.selectedBackground", Color.white);
+            UIManager.put("Button.arc", 15);
+            UIManager.put("Component.arc", 15);
+            UIManager.put("TextComponent.arc", 15);
+            UIManager.put("Component.arrowType", "triangle");
+            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
+
         } catch (Exception e) {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {

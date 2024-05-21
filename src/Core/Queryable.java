@@ -11,6 +11,7 @@ public interface Queryable {
     Queryable orWhere(String field, String operator, Object value);
     Queryable orderBy(String field, String direction);
     Queryable groupBy(String field);
+    Queryable groupByAnd(String field);
     ResultSet get() throws SQLException;
     int update( String[] fields, Object[] values, String condition) throws SQLException ;
     int insert( String[] fields, Object[] values) throws SQLException ;

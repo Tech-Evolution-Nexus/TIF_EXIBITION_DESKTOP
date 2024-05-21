@@ -52,6 +52,11 @@ public class QueryBuilder implements Queryable {
         query.append(" GROUP BY ").append(field);
         return this;
     }
+    @Override
+    public Queryable groupByAnd(String field) {
+        query.append(" ,").append(field);
+        return this;
+    }
 
     @Override
     public ResultSet get() throws SQLException {
@@ -120,7 +125,7 @@ public class QueryBuilder implements Queryable {
         return rowsAffected;
     }
     
-    public int update( String[] fields, Object[] values, String condition) throws SQLException {
+    public int update(String[] fields, Object[] values, String condition) throws SQLException {
         if (fields.length != values.length) {
             throw new IllegalArgumentException("Jumlah kolom dan nilai harus sama");
         }
@@ -142,12 +147,27 @@ public class QueryBuilder implements Queryable {
         for (int i = 0; i < values.length; i++) {
             pstmt.setObject(i + 1, values[i]);
         }
-System.out.println(query);
         int rowsAffected = pstmt.executeUpdate();
         pstmt.close();
         initQuery();
 
         return rowsAffected;
+    }
+    
+    public int count() {
+        try {
+        int size = 0;
+        Statement stmt = connection.createStatement();
+        String queryStr = query.toString();
+        initQuery();
+        ResultSet data = stmt.executeQuery(queryStr);
+        while (data.next()) {
+            size++;
+        }
+        return size;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public int delete(String condition) throws SQLException {

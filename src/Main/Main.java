@@ -27,6 +27,10 @@ import View.StokOpnameView;
 import View.UserView;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+
+import App.Model.DetailObatModel;
+import App.Model.ObatModel;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -41,6 +45,8 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.prefs.Preferences;
+
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -110,9 +116,20 @@ public class Main extends javax.swing.JFrame {
                  role =auth.getRole();
                  username.setText("<html><div style='text-align: right;'>" + auth.getNama() + "<br><small style='font-size:10px'>" + auth.getRole() + "</small></div></html>");
 
-            } else {
-               
-                new login().setVisible(true);
+             } else {
+                 new login().setVisible(true);
+             }
+
+
+             //mengecek tanggal kadaluarsa obat
+             ResultSet data = DB.query("SELECT * FROM detail_obat WHERE tanggal_kadaluarsa < NOW() AND status_kadaluarsa = 0");
+            while (data.next()) {
+                String noBatch = data.getString("no_batch");
+                String kodeObat = data.getString("kode_obat");
+                int jumlahObat = data.getInt("jumlah_obat");
+                
+                DB.query2("UPDATE detail_obat SET status_kadaluarsa = 1 WHERE no_batch = '" + noBatch + "'");
+                DB.query2("UPDATE obat SET jumlah_obat = jumlah_obat - " + jumlahObat + " WHERE kode_obat = '" + kodeObat + "'");
             }
         } catch (Exception e) {
         }

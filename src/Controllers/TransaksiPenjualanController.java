@@ -52,6 +52,7 @@ public class TransaksiPenjualanController  extends Controller{
    
     private PenjualanView view = new PenjualanView();
     private ObatModel obatModel= new ObatModel();
+
     private TransaksiPenjualanModel transaksiPenjualanModel= new TransaksiPenjualanModel();
     private DetailPenjualanModel detailPenjualanModel= new DetailPenjualanModel();
     private int hargaTotal = 0;
@@ -206,7 +207,7 @@ public class TransaksiPenjualanController  extends Controller{
                 return;
             }
             Auth user = new Auth();
-            String kodeTrx = Helper.KodeGenerator.generateKodeTransaksi();
+            String kodeTrx = Helper.KodeGenerator.generateKodeTransaksiPenjualan();
             
             String[] fieldTrx = { "kode_transaksi", "id_user", "total_harga", "pembayaran", "kembalian" };
             String[] valueTrx = { kodeTrx, user.getId(), String.valueOf(hargaTotal), String.valueOf(pembayaran),String.valueOf(kembalian) };
@@ -223,9 +224,7 @@ public class TransaksiPenjualanController  extends Controller{
                 jenisObat.next();
                 String qtyTotal = String.valueOf(Integer.parseInt(qty) * jenisObat.getInt("total"));
                 String idSatuan = jenisObat.getString("id_satuan");
-                String[] field = { "kode_transaksi", "kode_obat", "harga", "qty", "subtotal","id_satuan" };
-                String[] value = { kodeTrx, kodeObat, harga, qtyTotal, subtotal ,idSatuan};
-                detailPenjualanModel.insert(field, value);
+                
                 ResultSet detailObat = DB.query("SELECT * from data_stok_obat where kode_obat = '" + kodeObat + "' AND status_kadaluarsa = 0 order by tanggal_masuk asc");
                 int qtySisa = Integer.parseInt(qtyTotal);
 
@@ -233,12 +232,30 @@ public class TransaksiPenjualanController  extends Controller{
                 while (detailObat.next()) {
 
                     if (detailObat.getInt("jumlah_obat") >= qtySisa) {
-                        DB.query2("UPDATE detail_obat set jumlah_obat = jumlah_obat - " + String.valueOf(qtySisa) + " where no_batch  = '" + detailObat.getString("id") + "'");
+                        DB.query2("UPDATE detail_obat set jumlah_obat = jumlah_obat - " + String.valueOf(qtySisa)
+                                + " where no_batch  = '" + detailObat.getString("id") + "'");
+                        String[] field = { "kode_transaksi", "kode_obat", "harga", "qty", "subtotal", "id_satuan",
+                                "no_batch" };  
+                        String qtyObat = String.valueOf(qtySisa);
+                        int subTotalObt = qtySisa * Integer.parseInt(harga); 
+                        String subTotalObat = String.valueOf(subTotalObt);
+                    String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat ,idSatuan, detailObat.getString("id")};
+                    detailPenjualanModel.insert(field, value);
                         break;
                     } else {
                         qtySisa = qtySisa - detailObat.getInt("jumlah_obat");
-                        DB.query2("UPDATE detail_obat set jumlah_obat = jumlah_obat-jumlah_obat   where no_batch  = '" + detailObat.getString("id") + "'");
-                    };
+                        DB.query2("UPDATE detail_obat set jumlah_obat = 0   where no_batch  = '"
+                                + detailObat.getString("id") + "'");
+                        String[] field = { "kode_transaksi", "kode_obat", "harga", "qty", "subtotal", "id_satuan",
+                                "no_batch" };  
+                        String qtyObat = String.valueOf(qtySisa);
+                        int subTotalObt = qtySisa * Integer.parseInt(harga); 
+                        String subTotalObat = String.valueOf(subTotalObt);
+                    String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat ,idSatuan, detailObat.getString("id")};
+                    detailPenjualanModel.insert(field, value);
+                    }
+                
+                    
                 }
             }
             

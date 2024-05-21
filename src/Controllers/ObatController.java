@@ -72,6 +72,8 @@ public class ObatController extends Controller {
     private SatuanModel satuanModel = new SatuanModel();
 
     public ObatController() {
+        // System.out.println(KodeGenerator.generateKodeObat()  ); 
+      
         view.getSearch().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 tampilData(true);
@@ -328,6 +330,7 @@ public class ObatController extends Controller {
 
     public void editData() {
         try {
+
             resetSatuanForm();
             clearDialog();
             if (view.getTable().getSelectedRow() < 0) {

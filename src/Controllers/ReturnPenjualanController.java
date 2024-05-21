@@ -72,7 +72,12 @@ public class ReturnPenjualanController  extends Controller {
         view.getTanggal().setText(Helper.FormatTanggal.format(dataTransaksi.getTimestamp("tanggal_transaksi")));
 
 
-        ResultSet dataDetail =detailPenjualanViewModel.where("kode_transaksi","=",kodeTransaksi).get();
+        ResultSet dataDetail = detailPenjualanViewModel
+        .select("sum(qty) as qty","sum(subtotal) as subtotal ")
+        .where("kode_transaksi", "=", kodeTransaksi)
+        .groupBy("id_satuan")
+        .groupByAnd("kode_obat")
+        .get();
         DefaultTableModel modelTable = (DefaultTableModel) view.getTable().getModel();
         modelTable.setRowCount(0);
         //memasukkan ke table

@@ -412,8 +412,8 @@ public class login extends javax.swing.JFrame {
     public static void main(String args[]) {
       
         //</editor-fold>
-        try {
-          UIManager.setLookAndFeel(new FlatLightLaf());
+       try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
            UIManager.put("TableHeader.height", 40);
             UIManager.put("TableHeader.hoverForeground", Color.white);
@@ -438,6 +438,7 @@ public class login extends javax.swing.JFrame {
             UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
             UIManager.put("Component.arrowType", "triangle");
+            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
 
         } catch (Exception e) {
         }

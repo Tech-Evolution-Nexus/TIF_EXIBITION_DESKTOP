@@ -4,7 +4,11 @@
  */
 package View.Auth;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -427,27 +431,33 @@ public class regis extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(regis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(regis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(regis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(regis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        try {
+         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
+            // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
+           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.hoverForeground", Color.white);
+            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
+            UIManager.put("TableHeader.background", new Color(58,98,215));
+            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
+            UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
+            UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextField.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Button.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("TextArea.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("LookAndFeel.defaultFontName", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("Label.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("ComboBox.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.put("PopupMenu.font", new Font("Poppins", Font.PLAIN, 16));
+            UIManager.getDefaults().put("ScrollPane.border", BorderFactory.createEmptyBorder());
+            UIManager.getDefaults().put("Table.border", BorderFactory.createEmptyBorder());
+            UIManager.put("TabbedPane.selectedBackground", Color.white);
             UIManager.put("Button.arc", 15);
+            UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
+            UIManager.put("Component.arrowType", "triangle");
+            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
 
         } catch (Exception e) {
         }
