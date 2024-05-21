@@ -45,7 +45,7 @@ public class LaporanPendapatanController {
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_pendapatan ORDER BY tanggal  DESC ");
+            ResultSet data = DB.query("SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') order by DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') desc; ");
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
@@ -58,8 +58,8 @@ public class LaporanPendapatanController {
 
                 Object[] dataTable = {
                     no,
-                    data.getString("pendapatan"),
-                    data.getString("tanggal"),
+                    data.getString(1),
+                    data.getString(2),
                 };
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
@@ -137,12 +137,11 @@ public class LaporanPendapatanController {
         try {
             String sql = "";
             switch (index) {
-                case 0 -> sql = "SELECT * FROM laporan_pendapatan order by tanggal desc";
+                case 0 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') order by DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') desc; ";
                 case 1 ->{
-                    sql = "SELECT * FROM laporan_pendapatan where tanggal BETWEEN '"+ranges+"' AND '"+rangef+"' order by tanggal desc";
+                    sql = "SELECT SUM(`transaksi_penjualan`.`total_harga`) AS `pendapatan`, DATE_FORMAT(`transaksi_penjualan`.`tanggal_transaksi`, '%Y-%m-%d') AS `tanggal` FROM `apotek_3`.`transaksi_penjualan` WHERE `transaksi_penjualan`.`tanggal_transaksi` BETWEEN '"+ranges+"' AND '"+rangef+"' GROUP BY DATE_FORMAT(`transaksi_penjualan`.`tanggal_transaksi`, '%Y-%m-%d') ORDER BY `tanggal`";
                 }
-                case 2 -> sql = "SELECT SUM(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y-%m') AS tanggal FROM laporan_pendapatan GROUP BY DATE_FORMAT(tanggal, '%Y-%m'),DATE_FORMAT(tanggal, '%Y') order by DATE_FORMAT(tanggal, '%Y-%m'),DATE_FORMAT(tanggal, '%Y') desc; ";
-                case 3 -> sql = "SELECT SUM(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y') AS tahun FROM laporan_pendapatan GROUP BY DATE_FORMAT(tanggal, '%Y') ORDER BY tahun DESC; ";
+                case 2 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y') AS tahun FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y') ORDER BY tahun DESC; ";
                 default -> {
                 }
             }
@@ -162,8 +161,8 @@ public class LaporanPendapatanController {
 
                Object[] dataTable = {
                     no,
-                    data.getString("pendapatan"),
-                    data.getString("tanggal"),
+                    data.getString(1),
+                    data.getString(2),
                 };
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);

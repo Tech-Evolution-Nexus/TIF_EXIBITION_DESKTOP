@@ -59,7 +59,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="noktp" max="32767" attributes="0"/>
+                                              <Component id="nohp" max="32767" attributes="0"/>
                                               <Component id="username" pref="202" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="noktp" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="nohp" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="alamat" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -313,14 +313,14 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="nama_lengkap.putClientProperty(FlatClientProperties.STYLE,&quot;arc:50&quot;);"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="noktp">
+        <Component class="javax.swing.JTextField" name="nohp">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noktpActionPerformed"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="noktpKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nohpActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nohpKeyTyped"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="noktp.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,&quot;No KTP&quot;);"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="noktp.putClientProperty(FlatClientProperties.STYLE,&quot;arc:50&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="nohp.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,&quot;No hp&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="nohp.putClientProperty(FlatClientProperties.STYLE,&quot;arc:50&quot;);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="alamat">

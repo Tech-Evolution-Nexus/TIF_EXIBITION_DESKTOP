@@ -206,11 +206,10 @@
         <Component class="javax.swing.JComboBox" name="periode">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Semua"/>
-                <StringItem index="1" value="Hari"/>
-                <StringItem index="2" value="Bulan"/>
-                <StringItem index="3" value="Tahun"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Bulan"/>
+                <StringItem index="1" value="Rentan Hari"/>
+                <StringItem index="2" value="Tahun"/>
               </StringArray>
             </Property>
           </Properties>
