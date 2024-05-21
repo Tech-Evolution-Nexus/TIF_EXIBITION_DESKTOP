@@ -69,7 +69,7 @@ public class UserController  extends Controller {
             userList.clear();
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no, data.getString("no_hp"), data.getString("nama"), data.getString("alamat"), data.getString("username"), data.getString("role")};
+                Object[] dataTable = {no,  data.getString("nama"), data.getString("alamat"), data.getString("username"),data.getString("no_hp"), data.getString("role")};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
                 userList.add(new Object[]{data.getInt("id"), data.getString("no_hp"), data.getString("nama"), data.getString("username"), data.getString("password"), data.getString("alamat"), data.getString("role")});

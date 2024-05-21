@@ -33,7 +33,13 @@
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e8" green="e2" red="de" type="rgb"/>
+          <Color blue="e6" green="84" red="62" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Poppins" size="16" style="0"/>
         </Property>
       </Properties>
 
@@ -51,16 +57,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="penjualan3" pref="883" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="penjualan3" alignment="0" pref="903" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="penjualan3" alignment="0" pref="590" max="32767" attributes="0"/>
+                  <Component id="penjualan3" alignment="0" pref="554" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -81,11 +83,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="pembelianView1" max="32767" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="pembelianView1" alignment="0" pref="903" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -115,12 +113,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pendapatanView1" alignment="0" pref="883" max="32767" attributes="0"/>
+                  <Component id="pendapatanView1" alignment="0" pref="903" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pendapatanView1" alignment="0" pref="590" max="32767" attributes="0"/>
+                  <Component id="pendapatanView1" alignment="0" pref="554" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -141,17 +139,22 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="stokView1" alignment="0" pref="883" max="32767" attributes="0"/>
+                  <Component id="stokView1" alignment="0" pref="903" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="stokView1" alignment="0" pref="590" max="32767" attributes="0"/>
+                  <Component id="stokView1" alignment="0" pref="554" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
             <Component class="Laporan.LStokView" name="stokView1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e4" green="94" red="78" type="rgb"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -182,12 +185,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lababersihView2" alignment="0" pref="883" max="32767" attributes="0"/>
+                      <Component id="lababersihView2" alignment="0" pref="903" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lababersihView2" alignment="0" pref="590" max="32767" attributes="0"/>
+                      <Component id="lababersihView2" alignment="0" pref="554" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -210,15 +213,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="shiftView1" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="shiftView1" alignment="0" pref="903" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="shiftView1" alignment="0" pref="590" max="32767" attributes="0"/>
+                  <Component id="shiftView1" alignment="0" pref="554" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

@@ -66,10 +66,11 @@ public class ObatView extends javax.swing.JPanel {
         detail =  new Components.CustomDialog();
         ;
         jPanel6 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        detailKandungan = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        titleForm1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        satuanTable = new Components.CustomTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        stokTable = new Components.CustomTable();
         jLabel15 = new javax.swing.JLabel();
         detailKategori = new javax.swing.JLabel();
         detailNama = new javax.swing.JLabel();
@@ -78,13 +79,10 @@ public class ObatView extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         detailSatuan = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        satuanTable = new Components.CustomTable();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        stokTable = new Components.CustomTable();
-        titleForm1 = new javax.swing.JLabel();
+        detailKandungan = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        titleForm2 = new javax.swing.JLabel();
+        titleForm3 = new javax.swing.JLabel();
         baseLayer = new javax.swing.JPanel();
         search = new Components.CustomField();
         btnHapus = new Components.ButtonIcon();
@@ -100,31 +98,34 @@ public class ObatView extends javax.swing.JPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         jPanel4.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
 
-        titleForm.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        titleForm.setFont(new java.awt.Font("Poppins", 1, 25)); // NOI18N
+        titleForm.setForeground(new java.awt.Color(0, 0, 0));
         titleForm.setText("Tambah Obat Baru");
 
         namaObat.setPlaceholder("Masukkan Nama Obat");
+        namaObat.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Nama Obat");
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Kategori Obat");
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Kandungan");
 
         kandungan.setPlaceholder("Masukkan Kandungan obat");
+        kandungan.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Poppins SemiBold", 0, 19)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Informasi Obat");
 
         btnSimpan.setIcon("Assets/svg/saveIcon.svg");
@@ -138,12 +139,15 @@ public class ObatView extends javax.swing.JPanel {
             }
         });
 
+        kategori.setForeground(new java.awt.Color(0, 0, 0));
         kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel18.setBackground(new java.awt.Color(0, 0, 0));
         jLabel18.setFont(new java.awt.Font("Poppins SemiBold", 0, 19)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Satuan obat");
+
+        jScrollPane5.setForeground(new java.awt.Color(0, 0, 0));
 
         listSatuan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,43 +192,49 @@ public class ObatView extends javax.swing.JPanel {
         });
 
         satuan.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        satuan.setForeground(new java.awt.Color(0, 0, 0));
         satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         total.setPlaceholder("Total");
+        total.setForeground(new java.awt.Color(0, 0, 0));
 
         margin.setPlaceholder("Margin");
+        margin.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Minimal Stok");
 
         minStok.setPlaceholder("Minimal Stok");
+        minStok.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel20.setBackground(new java.awt.Color(0, 0, 0));
         jLabel20.setFont(new java.awt.Font("Poppins SemiBold", 0, 19)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("List Satuan Obat");
 
         jLabel11.setBackground(new java.awt.Color(0, 0, 0));
         jLabel11.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Total Satuan Terkecil");
 
         jLabel12.setBackground(new java.awt.Color(0, 0, 0));
         jLabel12.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Satuan ");
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Margin Harga");
 
         marginStatus.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        marginStatus.setForeground(new java.awt.Color(0, 0, 0));
         marginStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Margin Persentase", "Margin Harga" }));
 
-        jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
+        jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setAlignmentX(2.0F);
         jSeparator1.setAlignmentY(2.0F);
@@ -238,37 +248,38 @@ public class ObatView extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(namaObat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(kandungan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(kategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(minStok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))))
-                        .addGap(11, 11, 11)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(satuan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(total, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(marginStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(margin, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(minStok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(8, 8, 8)))
+                            .addComponent(namaObat, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kandungan, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(marginStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(margin, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+                                .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(satuan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titleForm, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,103 +360,9 @@ public class ObatView extends javax.swing.JPanel {
         jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         jPanel6.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
 
-        jTabbedPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        detailKandungan.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        detailKandungan.setForeground(new java.awt.Color(102, 102, 102));
-        detailKandungan.setText("Nama Obat*");
-
-        jLabel16.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel16.setText("Kandungan Obat");
-
-        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel15.setText("Kategori Obat");
-
-        detailKategori.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        detailKategori.setForeground(new java.awt.Color(102, 102, 102));
-        detailKategori.setText("Nama Obat*");
-
-        detailNama.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        detailNama.setForeground(new java.awt.Color(102, 102, 102));
-        detailNama.setText("Nama Obat*");
-
-        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Nama Obat");
-
-        detailKodeObat.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        detailKodeObat.setForeground(new java.awt.Color(102, 102, 102));
-        detailKodeObat.setText("Nama Obat*");
-
-        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel17.setText("Kode Obat");
-
-        detailSatuan.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        detailSatuan.setForeground(new java.awt.Color(102, 102, 102));
-        detailSatuan.setText("Nama Obat*");
-
-        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("Satuan Obat");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailKodeObat, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(detailNama, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(detailKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailKandungan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(detailNama))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(detailKodeObat)
-                            .addComponent(detailKategori))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(detailKandungan))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(detailSatuan)))
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Informasi Obat", jPanel1);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        titleForm1.setFont(new java.awt.Font("Poppins", 1, 25)); // NOI18N
+        titleForm1.setForeground(new java.awt.Color(0, 0, 0));
+        titleForm1.setText("Rincian Informasi Obat");
 
         satuanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -473,27 +390,6 @@ public class ObatView extends javax.swing.JPanel {
             satuanTable.getColumnModel().getColumn(1).setResizable(false);
             satuanTable.getColumnModel().getColumn(2).setResizable(false);
         }
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Satuan Obat", jPanel2);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         stokTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -530,48 +426,123 @@ public class ObatView extends javax.swing.JPanel {
             stokTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jLabel15.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Kategori Obat");
 
-        jTabbedPane1.addTab("Stok obat", jPanel3);
+        detailKategori.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        detailKategori.setForeground(new java.awt.Color(0, 0, 0));
+        detailKategori.setText("Nama Obat*");
 
-        titleForm1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
-        titleForm1.setText("Informasi Obat");
+        detailNama.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        detailNama.setForeground(new java.awt.Color(0, 0, 0));
+        detailNama.setText("Nama Obat*");
+
+        jLabel14.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Nama Obat");
+
+        detailKodeObat.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        detailKodeObat.setForeground(new java.awt.Color(0, 0, 0));
+        detailKodeObat.setText("Nama Obat*");
+
+        jLabel17.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Kode Obat");
+
+        detailSatuan.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        detailSatuan.setForeground(new java.awt.Color(0, 0, 0));
+        detailSatuan.setText("Nama Obat*");
+
+        jLabel19.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Satuan Obat");
+
+        detailKandungan.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        detailKandungan.setForeground(new java.awt.Color(0, 0, 0));
+        detailKandungan.setText("Nama Obat*");
+
+        jLabel16.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Kandungan Obat");
+
+        titleForm2.setFont(new java.awt.Font("Poppins SemiBold", 0, 16)); // NOI18N
+        titleForm2.setForeground(new java.awt.Color(0, 0, 0));
+        titleForm2.setText("Rincian Informasi Satuan Obat");
+
+        titleForm3.setFont(new java.awt.Font("Poppins SemiBold", 0, 16)); // NOI18N
+        titleForm3.setText("Rincian Informasi Stok Obat");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(titleForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(detailSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(detailKodeObat, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(100, 100, 100)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(detailNama, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(detailKandungan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(100, 100, 100)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(detailKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(titleForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(titleForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titleForm3, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 293, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addContainerGap()
                 .addComponent(titleForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(detailNama))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(detailKodeObat)
+                            .addComponent(detailKategori))))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(detailKandungan))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(detailSatuan)))
+                .addGap(41, 41, 41)
+                .addComponent(titleForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(titleForm3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail.getContentPane());
@@ -674,8 +645,7 @@ public class ObatView extends javax.swing.JPanel {
             table.getColumnModel().getColumn(1).setMinWidth(180);
             table.getColumnModel().getColumn(1).setMaxWidth(180);
             table.getColumnModel().getColumn(2).setResizable(false);
-            table.getColumnModel().getColumn(3).setMinWidth(50);
-            table.getColumnModel().getColumn(3).setMaxWidth(50);
+            table.getColumnModel().getColumn(3).setResizable(false);
             table.getColumnModel().getColumn(4).setResizable(false);
             table.getColumnModel().getColumn(5).setResizable(false);
             table.getColumnModel().getColumn(6).setResizable(false);
@@ -837,9 +807,6 @@ public class ObatView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -848,7 +815,6 @@ public class ObatView extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private Components.CustomField kandungan;
     private javax.swing.JComboBox<String> kategori;
     private javax.swing.JTable listSatuan;
@@ -863,6 +829,8 @@ public class ObatView extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JLabel titleForm;
     private javax.swing.JLabel titleForm1;
+    private javax.swing.JLabel titleForm2;
+    private javax.swing.JLabel titleForm3;
     private Components.CustomField total;
     // End of variables declaration//GEN-END:variables
 

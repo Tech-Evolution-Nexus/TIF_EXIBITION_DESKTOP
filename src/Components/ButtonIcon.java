@@ -6,6 +6,7 @@ package Components;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Dimension;
+import java.awt.FontMetrics;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -15,13 +16,14 @@ import javax.swing.JLabel;
  */
 public class ButtonIcon extends JButton {
 
+  
+
     public ButtonIcon() {
         setBorderPainted(false);
         setHorizontal(false);
-    }
+            }
 
     public void setIcon(String path) {
-
         setIcon(new FlatSVGIcon(path));
     }
 
