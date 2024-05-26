@@ -60,6 +60,7 @@ public class ReturnPenjualanController  extends Controller {
     private void cariTransaksi() {
        try {
          String kodeTransaksi = view.getKodeTransaksi().getText();
+           System.out.println(kodeTransaksi);
         if (kodeTransaksi.equals("")) {
             Notification.showInfo("Silahkan masukkan kode transaksi terlebih dahulu", view);
             return;
@@ -210,6 +211,7 @@ public class ReturnPenjualanController  extends Controller {
 
     private void event() {
         view.getKodeTransaksi().addActionListener(e->cariTransaksi());
+                view.getBtnCari().addActionListener(e -> cariTransaksi());
         view.getBtnSimpan().addActionListener(e -> simpanReturn());
         
         KondisiEditor kondisiEditor = new KondisiEditor();

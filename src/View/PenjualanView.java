@@ -401,14 +401,14 @@ public class PenjualanView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Kode Obat", "Nama Obat", "Satuan", "Harga Jual", "Qty", "Subtotal", "Aksi"
+                "Kode Obat", "Nama Obat", "Satuan", "Harga Jual", "Qty", "Tuslah", "Subtotal", "Aksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -443,10 +443,12 @@ public class PenjualanView extends javax.swing.JPanel {
             table.getColumnModel().getColumn(3).setMaxWidth(150);
             table.getColumnModel().getColumn(4).setMinWidth(80);
             table.getColumnModel().getColumn(4).setMaxWidth(80);
-            table.getColumnModel().getColumn(5).setMinWidth(100);
-            table.getColumnModel().getColumn(5).setMaxWidth(150);
+            table.getColumnModel().getColumn(5).setMinWidth(130);
+            table.getColumnModel().getColumn(5).setMaxWidth(130);
             table.getColumnModel().getColumn(6).setMinWidth(100);
-            table.getColumnModel().getColumn(6).setMaxWidth(100);
+            table.getColumnModel().getColumn(6).setMaxWidth(180);
+            table.getColumnModel().getColumn(7).setMinWidth(100);
+            table.getColumnModel().getColumn(7).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -456,7 +458,7 @@ public class PenjualanView extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,7 +477,7 @@ public class PenjualanView extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1215, Short.MAX_VALUE)
                     .addGroup(baseLayerLayout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );

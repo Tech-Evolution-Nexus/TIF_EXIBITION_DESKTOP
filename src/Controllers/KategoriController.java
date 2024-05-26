@@ -1,4 +1,4 @@
- package Controllers;
+package Controllers;
 
 import Config.DB;
 import Core.Controller;
@@ -14,39 +14,69 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import App.Model.KategoriModel;
+import java.util.regex.Pattern;
 
-public class KategoriController  extends Controller{
+public class KategoriController extends Controller {
 
     private int idEdit;
     //status 1 untuk tambah 2 untuk edit
-    private KategoriView view= new KategoriView();
-    private KategoriModel model= new KategoriModel();
+    private KategoriView view = new KategoriView();
+    private KategoriModel model = new KategoriModel();
 
     private ArrayList<Object[]> kategoriList = new ArrayList<>();
 
-    
     public KategoriController() {
         view.getSearchObat().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-               tampilData(true);
+                tampilData(true);
             }
         });
         tampilData(false);
-        view.getBtnUbah().addActionListener(e->editData());
-        view.getBtnHapus().addActionListener(e->hapusData());
-        view.getBtnTambah().addActionListener(e->tambahData());
+        view.getBtnUbah().addActionListener(e -> editData());
+        view.getBtnHapus().addActionListener(e -> hapusData());
+        view.getBtnTambah().addActionListener(e -> tambahData());
         view.getBtnSimpan().addActionListener(e -> simpanData());
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
-        public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-            tampilData(false);        }
-        public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-        }
-        public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-        }
-    });
-        
-    }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tampilData(false);
+            }
 
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        view.getTxttuslah().addKeyListener(new KeyAdapter() {
+            private final Pattern decimalPattern = Pattern.compile("\\d*\\.?\\d*");
+
+            public void KeyTyped(KeyEvent e) {
+                String txtselect = view.getSelectbentuktuslah().getSelectedItem().toString();
+                char c = e.getKeyChar();
+                String text =view.getTxttuslah().getText();
+                if (txtselect.equals("persen")) {
+                    // Cek panjang input untuk maksimal 4 karakter
+                    if (text.length() >= 4) {
+                        e.consume(); // Membatasi panjang input maksimal 4 karakter
+                    } // Cek apakah karakter adalah digit atau titik desimal
+                    else if (!Character.isDigit(c) && c != '.' && c != KeyEvent.VK_BACK_SPACE) {
+                        e.consume(); // Hanya mengizinkan angka dan titik desimal
+                    } // Cek apakah sudah ada titik desimal
+                    else if (c == '.' && text.contains(".")) {
+                        e.consume(); // Mencegah lebih dari satu titik desimal
+                    } // Cek apakah nilai berada dalam rentang 0.1 hingga 100
+                    else if (!text.isEmpty() && text.charAt(0) == '.' || text.equals("0")) {
+                        e.consume(); // Mencegah angka invalid
+                    }
+                } else {
+                    if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE) {
+                        e.consume();
+                    }
+                }
+            }
+        });
+
+    }
 
     public void tampilData(boolean cari) {
         try {
@@ -54,7 +84,7 @@ public class KategoriController  extends Controller{
             // mengambil data dari table kategori       ''
             ResultSet data = model.orderBy("id", "desc").get();
             if (cari) {
-                data = model.where("nama_kategori", "like", "%" + kunci + "%").orderBy("id", "desc").get(); 
+                data = model.where("nama_kategori", "like", "%" + kunci + "%").orderBy("id", "desc").get();
             }
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
@@ -63,10 +93,10 @@ public class KategoriController  extends Controller{
             kategoriList.clear();
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                Object[] dataTable = {no, data.getString("nama_kategori")};
+                Object[] dataTable = {no, data.getString("nama_kategori"), data.getString("tuslah"), data.getString("tipe")};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
-                kategoriList.add(new Object[]{data.getInt("id"), data.getString("nama_kategori")});
+                kategoriList.add(new Object[]{data.getInt("id"), data.getString("nama_kategori"), data.getString("tuslah"), data.getString("tipe")});
                 no++;
             }
         } catch (Exception e) {
@@ -82,44 +112,55 @@ public class KategoriController  extends Controller{
 
     public void hapusData() {
         try {
-            int row =  view.getTable().getSelectedRow();
+            int row = view.getTable().getSelectedRow();
             if (row < 0) {
-                Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, view.getTable());
+                Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, null);
                 return;
             }
-            if (!Notification.showConfirmDelete(view.getTable()))return;
+            if (!Notification.showConfirmDelete(null)) {
+                return;
+            }
             int id = (int) kategoriList.get(row)[0];
             ResultSet data = DB.query("SELECT * from kategori");
             data.next();
             model.delete(" id = '" + id + "'");
             Notification.showSuccess(Notification.DATA_DELETED_SUCCESS, view.getTable());
             tampilData(false);
-        } catch (SQLException e) {     
-             if ( e.getErrorCode() == 1451) {
-                 Notification.showError(Notification.DATA_IN_USE_ERROR , view.getTable());
-                 return;
-             }
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 1451) {
+                Notification.showError(Notification.DATA_IN_USE_ERROR, view.getTable());
+                return;
+            }
             Notification.showError(Notification.SERVER_ERROR + e.getMessage(), view.getTable());
         }
     }
 
-    
-
     public void simpanData() {
-        String namaKategori =view.getNamaKategori().getText();
+        String namaKategori = view.getNamaKategori().getText();
+        String tuslah = view.getTxttuslah().getText();
+        String bentuk = view.getSelectbentuktuslah().getSelectedItem().toString();
+
         try {
-            ResultSet namaExist = model.where("nama_kategori","=",namaKategori).andWhere("id", "<>",idEdit).get();
+            ResultSet namaExist = model.where("nama_kategori", "=", namaKategori).andWhere("id", "<>", idEdit).get();
             if (namaExist.next()) {
                 Notification.showError("Nama kategori sudah ada", view.getForm());
             } else if (namaKategori.equals("")) {
                 Notification.showError(Notification.EMPTY_VALUE, view.getForm());
             } else {
-                 String[] fields= {"nama_kategori"};
-                String[] values= {namaKategori};
+                String[] fields = {"nama_kategori", "tuslah", "tipe"};
+                String[] values;
+                if (tuslah.isEmpty()) {
+                    values = new String[]{namaKategori, "0", bentuk};
+                } else {
+                    values = new String[]{namaKategori, tuslah, bentuk};
+                }
 
-                if(idEdit==0)model.insert(fields, values);
-                else model.update(fields, values, " id = '" + idEdit + "'");
-                
+                if (idEdit == 0) {
+                    model.insert(fields, values);
+                } else {
+                    model.update(fields, values, " id = '" + idEdit + "'");
+                }
+
                 Notification.showSuccess(Notification.DATA_ADDED_SUCCESS, view.getForm());
                 idEdit = 0;
                 view.getForm().dispose();
@@ -141,10 +182,17 @@ public class KategoriController  extends Controller{
         view.getFormTitle().setText("Ubah Kategori");
         idEdit = (int) kategoriList.get(row)[0];
         String name = view.getTable().getValueAt(row, 1).toString();
+        String tuslah = view.getTable().getValueAt(row, 2).toString();
+        String tipe = view.getTable().getValueAt(row, 3).toString();
+
         view.getNamaKategori().setText(name);
+        view.getTxttuslah().setText(tuslah);
+        view.getSelectbentuktuslah().setSelectedItem(tipe);
+
         showForm();
 
     }
+
     public void tambahData() {
         view.getFormTitle().setText("Tambah Kategori");
         view.getNamaKategori().setText("");

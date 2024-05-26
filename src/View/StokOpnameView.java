@@ -18,6 +18,8 @@ import com.formdev.flatlaf.FlatClientProperties;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
 import org.json.JSONArray;
@@ -48,7 +50,7 @@ public class StokOpnameView extends javax.swing.JPanel {
                 JSONArray retrievedArray = new JSONArray(datalogin);
 
                 iduser = Integer.parseInt(retrievedArray.getString(0));
-                System.out.println(iduser);
+//                System.out.println(iduser);
             }
         } catch (Exception e) {
         }
@@ -199,11 +201,9 @@ public class StokOpnameView extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cari");
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Stok Aktual");
 
         jButton1.setBackground(new java.awt.Color(58, 98, 215));
@@ -222,7 +222,6 @@ public class StokOpnameView extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Keterangan");
 
         jButton2.putClientProperty(FlatClientProperties.STYLE, "arc:20");
@@ -245,6 +244,7 @@ public class StokOpnameView extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(0, 204, 0));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("Ubah");
+        jButton3.setEnabled(false);
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -407,6 +407,8 @@ public class StokOpnameView extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.removeRow(index);
         } else {
+            jButton3.setEnabled(true);
+
             textfield_stokaktual.setEditable(true);
             textfield_keterangan.setEditable(true);
             int row = jTable1.getSelectedRow();
@@ -442,12 +444,19 @@ public class StokOpnameView extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        if (textfield_stokaktual.getText() != null || !" ".equals(textfield_stokaktual.getText()) && (textfield_keterangan.getText() != null || !" ".equals(textfield_stokaktual.getText()))) {
-            jTable1.setValueAt(textfield_stokaktual.getText(), jTable1.getSelectedRow(), 5);
-            jTable1.setValueAt(textfield_keterangan.getText(), jTable1.getSelectedRow(), 6);
+        try {
+            System.out.println(textfield_stokaktual.getText());
+            System.out.println(textfield_keterangan.getText());
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Colom Harus Di Isi");
+            if (!textfield_stokaktual.getText().equals("") && !textfield_keterangan.getText().equals("")) {
+                jTable1.setValueAt(textfield_stokaktual.getText(), jTable1.getSelectedRow(), 5);
+                jTable1.setValueAt(textfield_keterangan.getText(), jTable1.getSelectedRow(), 6);
+                jButton3.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Colom Harus Di Isi");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jButton3MouseClicked
 
@@ -465,16 +474,23 @@ public class StokOpnameView extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         if (model.getRowCount() > 0) {
             try {
+                Map<String, Integer> actualStockMap = new HashMap<>();
                 String kodeopname = "OPN-" + formattedDate;
                 PreparedStatement insertDetailStokOpnameStatement = connection.prepareStatement("INSERT INTO detail_stok_opname(kode_opname,no_batch,stok_sistem,stok_aktual,satuan_obat,keterangan) VALUES(?,?,?,?,?,?)");
                 PreparedStatement updatebatchobatStatement = connection.prepareStatement("UPDATE detail_obat set jumlah_obat = ? WHERE no_batch=?");
+                PreparedStatement updateobatStatement = connection.prepareStatement("UPDATE obat set jumlah_obat = ? WHERE kode_obat=?");
+
                 for (int i = 0; i < model.getRowCount(); i++) {
                     try {
                         String nobatch = model.getValueAt(i, 1) != null ? model.getValueAt(i, 1).toString() : "";
-                        String stok_sistem = model.getValueAt(i, 4)!= null ? model.getValueAt(i, 4).toString() : "";
-                        String stok_aktual = model.getValueAt(i, 5)!= null ? model.getValueAt(i, 5).toString() : "";
+                        String kode_obat = model.getValueAt(i, 2) != null ? model.getValueAt(i, 2).toString() : "";
+                        String stok_sistem = model.getValueAt(i, 4) != null ? model.getValueAt(i, 4).toString() : "";
+                        String stok_aktual = model.getValueAt(i, 5) != null ? model.getValueAt(i, 5).toString() : "";
                         String keterangan = model.getValueAt(i, 6) != null ? model.getValueAt(i, 6).toString() : "";
                         if (!stok_aktual.isEmpty() && !keterangan.isEmpty()) {
+                            // Sum stok_aktual for each kode_obat
+
+                            actualStockMap.put(kode_obat, actualStockMap.getOrDefault(kode_obat, 0) + Integer.parseInt(stok_aktual));
                             ResultSet satuan_obat = DB.query("SELECT id_satuan FROM obat where kode_obat = '" + model.getValueAt(i, 2).toString() + "'");
                             if (satuan_obat.next()) {
                                 insertDetailStokOpnameStatement.setString(1, kodeopname);
@@ -497,14 +513,24 @@ public class StokOpnameView extends javax.swing.JPanel {
                         Logger.getLogger(StokOpnameView.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+
+                // Update obat with summed stok_aktual values
+                for (Map.Entry<String, Integer> entry : actualStockMap.entrySet()) {
+                    updateobatStatement.setInt(1, entry.getValue());
+                    updateobatStatement.setString(2, entry.getKey());
+                    updateobatStatement.addBatch();
+                }
                 PreparedStatement insertStokOpname = connection.prepareStatement("INSERT INTO stok_opname(kode_opname,id_user) VALUES (?,?)");
 
                 insertStokOpname.setString(1, kodeopname);
-                insertStokOpname.setInt(2, iduser);
+                insertStokOpname.setInt(2, iduser); 
                 insertStokOpname.addBatch();
+
                 insertStokOpname.executeBatch();
                 insertDetailStokOpnameStatement.executeBatch();
                 updatebatchobatStatement.executeBatch();
+                updateobatStatement.executeBatch();
+                
                 JOptionPane.showMessageDialog(this, "Stok Opname Berhasil Ditambah");
                 resetAll();
 
@@ -512,7 +538,7 @@ public class StokOpnameView extends javax.swing.JPanel {
                 Logger.getLogger(StokOpnameView.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null,"Silahkan pilih obat terlebih dahulu");
+            JOptionPane.showMessageDialog(null, "Silahkan pilih obat terlebih dahulu");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -557,7 +583,7 @@ public class StokOpnameView extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textfield_stokaktualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textfield_stokaktualKeyTyped
-       char character = evt.getKeyChar();
+        char character = evt.getKeyChar();
         if (!Character.isDigit(character) || textfield_stokaktual.getText().length() >= 4 || Character.isWhitespace(character)) {
             evt.consume();
         }
