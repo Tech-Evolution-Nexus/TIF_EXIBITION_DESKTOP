@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="154" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
-	<property name="ireport.zoom" value="3.4522712143931256"/>
+	<property name="ireport.zoom" value="2.8531167061100238"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="266"/>
+	<property name="ireport.y" value="116"/>
 	<subDataset name="New Dataset 1" uuid="50e9c4e1-6bd7-438e-bf7a-25a89045a39c">
 		<queryString language="SQL">
 			<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
@@ -62,7 +62,7 @@
 	<field name="subtotal" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tuslah" class="java.lang.Double">
+	<field name="tuslah" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="total_harga" class="java.lang.Integer">
@@ -107,7 +107,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="29" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="11" width="80" height="11" uuid="8640e247-1f23-4c55-a307-3871cfc2bb47"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -139,69 +139,52 @@
 			<line>
 				<reportElement x="0" y="44" width="124" height="1" uuid="2f1f5aee-021e-4ac2-9ae0-731b4cad9706"/>
 			</line>
-			<staticText>
-				<reportElement x="76" y="19" width="11" height="11" uuid="bd7291ec-6b2a-4d0d-a153-ee6d40e93c8a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="13" y="19" width="8" height="11" uuid="1f167c93-0a01-444b-8400-34c3879261ff"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[X]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="87" height="19" uuid="0100ef5d-5471-4d7a-8e91-396013a6df67"/>
+				<reportElement x="0" y="1" width="87" height="19" uuid="0100ef5d-5471-4d7a-8e91-396013a6df67"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama_obat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="19" width="13" height="11" uuid="ef443714-cf42-4337-90be-614fd7449a46"/>
+				<reportElement x="0" y="20" width="24" height="11" uuid="ef443714-cf42-4337-90be-614fd7449a46"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qty}+" X"]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="32" y="19" width="37" height="11" uuid="b9d5ccbc-faa0-42dc-88a8-ecddfb9c8d8a"/>
+			<textField pattern="#,##0">
+				<reportElement x="24" y="20" width="51" height="11" uuid="b9d5ccbc-faa0-42dc-88a8-ecddfb9c8d8a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rp."+$F{harga}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="87" y="19" width="37" height="11" uuid="8ee327a6-bfbb-4aa7-ba82-a043543a7b8d"/>
+			<textField pattern="#,##0">
+				<reportElement x="87" y="20" width="37" height="11" uuid="8ee327a6-bfbb-4aa7-ba82-a043543a7b8d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rp."+$F{subtotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="21" y="19" width="11" height="11" uuid="25d503bf-8191-493e-a7e9-029c69ac5735"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="32" y="30" width="44" height="11" uuid="c83df2fa-9ab1-4109-9850-4c0a5d1b2f86"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tuslah}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="30" width="30" height="11" uuid="db8d28c0-5a53-4972-85cf-aad9bbc4242d"/>
+				<reportElement x="0" y="31" width="30" height="11" uuid="db8d28c0-5a53-4972-85cf-aad9bbc4242d">
+					<printWhenExpression><![CDATA[$F{tuslah}.equals("0") ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Tuslah :]]></text>
 			</staticText>
+			<textField pattern="">
+				<reportElement x="32" y="31" width="92" height="11" uuid="8cf82e14-4272-4166-843c-b1a5f9be8970">
+					<printWhenExpression><![CDATA[$F{tuslah}.equals("0") ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{tuslah}.contains(".") ? $F{tuslah}+"%"  : "Rp." + $F{tuslah} )]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -248,21 +231,21 @@
 				</textElement>
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="87" y="0" width="37" height="11" uuid="f4ed2e4e-f682-4170-b2b1-f71b741476e7"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_harga}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="87" y="13" width="37" height="11" uuid="a304d0c9-8f42-4b27-8782-709b5b1fd2b7"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pembayaran}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="87" y="26" width="37" height="11" uuid="33738c03-efc9-4dd8-97b4-54790b9d864c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>

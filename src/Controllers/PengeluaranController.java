@@ -36,7 +36,7 @@ import org.json.JSONException;
  *
  * @author Muhammad Nor Kholit
  */
-public class PengeluaranController  {
+public class PengeluaranController {
 
     private ArrayList<Integer> id = new ArrayList<>();
     private int idEdit;
@@ -93,14 +93,12 @@ public class PengeluaranController  {
         }
     }
 
-    
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    
     public void hapusData(Object[] object) {
         try {
             int row = (int) object[0];
@@ -156,7 +154,6 @@ public class PengeluaranController  {
         }
     }
 
-    
     public void simpanData(Object[] object) {
         JTextField ktpField = (JTextField) object[0];
         JTextField namaUserField = (JTextField) object[1];
@@ -222,7 +219,6 @@ public class PengeluaranController  {
         form.setVisible(true);
     }
 
-    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -298,6 +294,7 @@ public class PengeluaranController  {
 
             txt_ket.setText("");
             txt_harga.setText("");
+            totharga.setText("");
             String defaulttgl = formatTujuan.format(new Date());
             datechoser.setDate(formatTujuan.parse(defaulttgl));
         } catch (ParseException ex) {
@@ -343,7 +340,9 @@ public class PengeluaranController  {
                 JOptionPane.showMessageDialog(form, "Data Berhasil Ditambahkan");
                 DefaultTableModel model = (DefaultTableModel) tbl_pengeluaran.getModel();
                 model.setRowCount(0);
-
+                form.dispose();
+                totharga.setText("");
+                clearr();
             } catch (JSONException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -372,6 +371,7 @@ public class PengeluaranController  {
         try {
             txt_ket.setText("");
             txt_harga.setText("");
+//            totharga.setText("");
             DateFormat formatTujuan = new SimpleDateFormat("dd-MM-yyyy");
             String defaulttgl = formatTujuan.format(new Date());
             datechoser.setDate(formatTujuan.parse(defaulttgl));

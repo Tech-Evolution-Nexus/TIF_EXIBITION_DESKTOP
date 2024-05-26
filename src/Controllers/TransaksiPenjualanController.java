@@ -274,16 +274,16 @@ public class TransaksiPenjualanController extends Controller {
                 String harga = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 3).toString()));
                 String qty = view.getTable().getValueAt(i, 4).toString();
                 String subtotal = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 6).toString()));
-                
+
                 String tuslah = view.getTable().getValueAt(i, 5) == null ? "0" : view.getTable().getValueAt(i, 5).toString();
 
                 if (tuslah.contains("%")) {
-    
+
                     tuslah = tuslah.replace("%", "");
                 } else if (tuslah.contains("Rp.")) {
-                 
+
                     try {
-                     
+
                         long value = Helper.Currency.deformat(tuslah);
                         tuslah = String.valueOf(value);
                     } catch (NumberFormatException e) {
@@ -337,7 +337,12 @@ public class TransaksiPenjualanController extends Controller {
 
             try {
                 String sqlQuery = "SELECT * FROM printerview where kode_transaksi = '" + kodeTrx + "'";
-                String path = "src/iReportdata/printpenjualan.jrxml";
+                String path = null;
+                if (new Auth().getUkurankertas().equals("58")) {
+                    path = "src/iReportdata/printpenjualan.jrxml";
+                } else {
+                    path = "src/iReportdata/printpenjualana80.jrxml";
+                }
                 JasperDesign jasperDesign = JRXmlLoader.load(path);
 
                 // Membuat objek JRDesignQuery
