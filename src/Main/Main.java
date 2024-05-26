@@ -166,6 +166,13 @@ public class Main extends javax.swing.JFrame {
 
         dialog = new javax.swing.JDialog();
         dialog2 = new javax.swing.JPopupMenu();
+        settingmodal = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        selectkertas = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -184,6 +191,85 @@ public class Main extends javax.swing.JFrame {
         dialog2.setBackground(new java.awt.Color(58, 98, 215));
         dialog2.setBorder(null);
         dialog2.setBorderPainted(false);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel5.setBackground(new java.awt.Color(58, 98, 215));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SETTINGS");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Ukuran Kertas Thermal Printer");
+
+        selectkertas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "80MM", "58MM" }));
+
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(selectkertas, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 223, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectkertas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout settingmodalLayout = new javax.swing.GroupLayout(settingmodal.getContentPane());
+        settingmodal.getContentPane().setLayout(settingmodalLayout);
+        settingmodalLayout.setHorizontalGroup(
+            settingmodalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        settingmodalLayout.setVerticalGroup(
+            settingmodalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -334,6 +420,14 @@ public class Main extends javax.swing.JFrame {
 //        editshift();
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        new Auth().setUkurankertas(selectkertas.getSelectedItem().toString());
+        settingmodal.dispose();
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -381,12 +475,19 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog dialog;
     private javax.swing.JPopupMenu dialog2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel main;
     private javax.swing.JPanel menu_bar;
     private javax.swing.JLabel pageName;
+    private javax.swing.JComboBox<String> selectkertas;
+    private javax.swing.JDialog settingmodal;
     private javax.swing.JLabel tanggal;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
@@ -405,7 +506,7 @@ public class Main extends javax.swing.JFrame {
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
         {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
         {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "Pengeluaran", "Data Pengeluaran", kosong},
-        {"icf_user.svg", "icn_user.svg", "Stok Opname", "Stok Opname", kosong},};
+        {"opname.svg", "opname.svg", "Stok Opname", "Stok Opname", kosong},};
 
     private Object[][] menu_list_data_kasir = {
         {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},
@@ -582,21 +683,39 @@ public class Main extends javax.swing.JFrame {
         javax.swing.JPanel panel2 = new javax.swing.JPanel();
         panel2.setBackground(new Color(51, 85, 188));
         panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
-        panel2.setPreferredSize(new Dimension(200, 43));
+        panel2.setPreferredSize(new Dimension(200, 86));
 //                    panel2.setSize(200, 100);
         panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
         javax.swing.JLabel label2 = new javax.swing.JLabel("Logout");
+        javax.swing.JLabel label3 = new javax.swing.JLabel("Setting");
+
         javax.swing.JLabel labelicon = new javax.swing.JLabel();
+        javax.swing.JLabel labelicon1 = new javax.swing.JLabel();
 
         javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+        javax.swing.JPanel panel4 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+
         labelicon.setIcon(new FlatSVGIcon("Assets/svg/logout.svg"));
+        labelicon1.setIcon(new FlatSVGIcon("Assets/svg/settings.svg"));
+
         label2.setHorizontalAlignment(SwingConstants.LEFT);
         label2.setForeground(Color.white);
+        label3.setHorizontalAlignment(SwingConstants.LEFT);
+        label3.setForeground(Color.white);
         label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+        label3.setFont(new Font("Poppins", Font.PLAIN, 13));
+
         panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
         panel3.setBackground(new Color(51, 85, 188));
+        panel4.setBorder(new EmptyBorder(0, 10, 5, 10));
+        panel4.setBackground(new Color(51, 85, 188));
+
         panel3.add(labelicon);
+        panel4.add(labelicon1);
+
         panel3.add(label2);
+        panel4.add(label3);
+        panel2.add(panel4);
         panel2.add(panel3);
 
         dialog2.add(panel2);
@@ -605,6 +724,23 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 editshift();
+            }
+        });
+        panel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                settingmodal.setVisible(true);
+                settingmodal.pack();
+                settingmodal.setLocationRelativeTo(null);
+                if (new Auth().getUkurankertas().equals("58")) {
+                    selectkertas.setSelectedIndex(1);
+                  
+
+                } else {
+                    selectkertas.setSelectedIndex(0);
+                  
+
+                };
             }
         });
 

@@ -10,6 +10,7 @@ import java.util.prefs.BackingStoreException;
 import org.json.JSONArray;
 
 public class Auth {
+
     private String id;
     private String rfid;
     private String noHp;
@@ -18,68 +19,79 @@ public class Auth {
     private String username;
     private String password;
     private String role;
+    private String ukurankertas;
+
     private boolean status;
 
-   
-    public  Auth() {
+    public Auth() {
         try {
-              Preferences userPreferences = Preferences.userNodeForPackage(login.class);
-        String datalogin = userPreferences.get("localLogin", null);
-        if (datalogin != null) {
+            Preferences userPreferences = Preferences.userNodeForPackage(login.class);
+            String datalogin = userPreferences.get("localLogin", null);
+            String s = userPreferences.get("sesionsetingg", null);
+            if (datalogin != null) {
                 JSONArray user = new JSONArray(datalogin);
                 // Mengambil nilai dari objek jsonArray dan mengatur nilai properti
                 id = user.getString(0);
                 nama = user.getString(1);
                 username = user.getString(2);
                 role = user.getString(3);
+                ukurankertas = s;
                 status = true;
             } else {
                 status = false;
             }
         } catch (Exception e) {
         }
-        
-        
-       
-       
+
+    }
+
+    public String getUkurankertas() {
+        return ukurankertas;
+    }
+
+    public void setUkurankertas(String ukurankertas) {
+        Preferences userPreferences = Preferences.userNodeForPackage(login.class);
+        userPreferences.put("sesionsetingg", ukurankertas);
+        this.ukurankertas = ukurankertas;
     }
 
     public boolean check() {
         return status;
     }
-    
+
     public String getId() {
         return id;
     }
-    
+
     public String getRfid() {
         return rfid;
     }
-    
+
     public String getNoHp() {
         return noHp;
     }
-    
+
     public String getNama() {
         return nama;
     }
-    
+
     public String getAlamat() {
         return alamat;
     }
-    
+
     public String getUsername() {
         return username;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
+
     public String getRole() {
         return role;
     }
-    public void Clear(){
+
+    public void Clear() {
         try {
             Preferences userPreferences = Preferences.userNodeForPackage(login.class);
             userPreferences.clear();

@@ -9,6 +9,7 @@ package Controllers;
  * @author Muhammad Nor Kholit
  */
 import Config.DB;
+import Helper.Auth;
 import Helper.Currency;
 import Helper.FormatTanggal;
 import Laporan.LPenjualanView;
@@ -46,7 +47,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LaporanPenjualanController{
+public class LaporanPenjualanController {
 
     ArrayList<String> datat = new ArrayList<>();
     private int idEdit;
@@ -82,7 +83,6 @@ public class LaporanPenjualanController{
 
     }
 
-   
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -129,14 +129,12 @@ public class LaporanPenjualanController{
         }
     }
 
-   
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-   
     public void hapusData(Object[] object) {
         try {
             int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
@@ -193,7 +191,6 @@ public class LaporanPenjualanController{
         }
     }
 
-   
     public void simpanData(Object[] object) {
         JTextField namaKategoriField = (JTextField) object[0];
         String namaKategori = namaKategoriField.getText();
@@ -238,7 +235,6 @@ public class LaporanPenjualanController{
         form.setVisible(true);
     }
 
-   
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -394,8 +390,13 @@ public class LaporanPenjualanController{
 
         String kodeTrx = table.getValueAt(table.getSelectedRow(), 1).toString();
         try {
-            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = '"+kodeTrx+"'";
-            String path = "src/iReportdata/printpenjualan.jrxml";
+            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = '" + kodeTrx + "'";
+            String path=null;
+            if (new Auth().getUkurankertas().equals("58")) {
+                path = "src/iReportdata/printpenjualan.jrxml";
+            } else {
+               path = "src/iReportdata/printpenjualana80.jrxml";
+            }
             JasperDesign jasperDesign = JRXmlLoader.load(path);
 
             // Membuat objek JRDesignQuery
@@ -414,7 +415,7 @@ public class LaporanPenjualanController{
             // Menampilkan laporan (opsional)
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
             viewer.setVisible(true);
-            
+
         } catch (JRException ex) {
             Logger.getLogger(View.PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
         }
