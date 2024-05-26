@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
-	<property name="ireport.zoom" value="4.177248169415681"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="154" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
+	<property name="ireport.zoom" value="3.4522712143931256"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="303"/>
+	<property name="ireport.y" value="266"/>
 	<subDataset name="New Dataset 1" uuid="50e9c4e1-6bd7-438e-bf7a-25a89045a39c">
 		<queryString language="SQL">
 			<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
@@ -39,7 +39,7 @@
 		</field>
 	</subDataset>
 	<queryString>
-		<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
+		<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000010']]>
 	</queryString>
 	<field name="kode_transaksi" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -60,6 +60,9 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="subtotal" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tuslah" class="java.lang.Double">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="total_harga" class="java.lang.Integer">
@@ -91,7 +94,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="34" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="124" height="34" uuid="b9648585-0a20-4acc-bcd1-84fa81bfef62">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
@@ -132,9 +135,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="36" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="32" width="124" height="1" uuid="2f1f5aee-021e-4ac2-9ae0-731b4cad9706"/>
+				<reportElement x="0" y="44" width="124" height="1" uuid="2f1f5aee-021e-4ac2-9ae0-731b4cad9706"/>
 			</line>
 			<staticText>
 				<reportElement x="76" y="19" width="11" height="11" uuid="bd7291ec-6b2a-4d0d-a153-ee6d40e93c8a"/>
@@ -185,6 +188,20 @@
 				</textElement>
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="32" y="30" width="44" height="11" uuid="c83df2fa-9ab1-4109-9850-4c0a5d1b2f86"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tuslah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="30" height="11" uuid="db8d28c0-5a53-4972-85cf-aad9bbc4242d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tuslah :]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
@@ -197,14 +214,14 @@
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="13" width="48" height="11" uuid="4d779331-f291-4093-8c44-135f9c298f8c"/>
+				<reportElement x="0" y="13" width="64" height="11" uuid="4d779331-f291-4093-8c44-135f9c298f8c"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Bayar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="26" width="48" height="11" uuid="5e042699-43f3-4b13-98be-13ae2597b6a6"/>
+				<reportElement x="0" y="26" width="64" height="11" uuid="5e042699-43f3-4b13-98be-13ae2597b6a6"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -255,15 +272,14 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="47" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="1" width="124" height="46" uuid="fdea9567-a4e7-45cf-a48e-5836acfbbbb0"/>
+				<reportElement x="0" y="1" width="124" height="25" uuid="fdea9567-a4e7-45cf-a48e-5836acfbbbb0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Terima Kasih Atas Kunjungan Anda Semoga Sehat Selalu 
-Konsultasikan Obatmu Bersama Kami
-Di 085333345520]]></text>
+]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="124" height="1" uuid="b0f3e0c9-94c2-4b58-bb34-588b3f198bed"/>

@@ -1,12 +1,19 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
 
+import Components.CustomField;
+import java.awt.event.KeyEvent;
+import java.util.regex.Pattern;
+import javax.swing.JComboBox;
+import javax.swing.SwingUtilities;
 import table.TableCustom;
 
 public class KategoriView extends javax.swing.JPanel {
+
+    private final Pattern decimalPattern = Pattern.compile("\\d*\\.?\\d*");
 
     public KategoriView() {
         initComponents();
@@ -27,6 +34,10 @@ public class KategoriView extends javax.swing.JPanel {
         btnSimpan = new Components.ButtonIcon();
         jPanel1 = new javax.swing.JPanel();
         formTitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txttuslah = new Components.CustomField();
+        jLabel4 = new javax.swing.JLabel();
+        selectbentuktuslah = new javax.swing.JComboBox<>();
         baseLayer = new javax.swing.JPanel();
         search = new Components.CustomField();
         btnUbah = new Components.ButtonIcon();
@@ -41,7 +52,7 @@ public class KategoriView extends javax.swing.JPanel {
         namaKategori.setPlaceholder("Masukkan Nama Kategori");
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jLabel2.setText("Nama Obat");
+        jLabel2.setText("Nama Kategori");
 
         btnSimpan.setBackground(new java.awt.Color(58, 98, 215));
         btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,7 +66,7 @@ public class KategoriView extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         formTitle.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        formTitle.setText("Tambah Data Obat Baru");
+        formTitle.setText("Tambah Data Kategori");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,31 +82,62 @@ public class KategoriView extends javax.swing.JPanel {
             .addComponent(formTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
         );
 
+        jLabel3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel3.setText("Tuslah(Optional)");
+
+        txttuslah.setPlaceholder("Masukkan Tuslah");
+        txttuslah.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttuslahKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel4.setText("Bentuk Tuslah(Optional)");
+
+        selectbentuktuslah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "bulat", "persen" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txttuslah, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .addComponent(selectbentuktuslah, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(namaKategori, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txttuslah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selectbentuktuslah, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form.getContentPane());
@@ -163,20 +205,20 @@ public class KategoriView extends javax.swing.JPanel {
         table.setAutoCreateRowSorter(true);
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No", "Nama Kategori"
+                "No", "Nama Kategori", "Tuslah", "Tipe"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -285,6 +327,12 @@ public class KategoriView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void txttuslahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttuslahKeyTyped
+
+        
+
+    }//GEN-LAST:event_txttuslahKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel baseLayer;
@@ -295,13 +343,17 @@ public class KategoriView extends javax.swing.JPanel {
     private javax.swing.JDialog form;
     private javax.swing.JLabel formTitle;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private Components.CustomField namaKategori;
     private Components.CustomField search;
+    private javax.swing.JComboBox<String> selectbentuktuslah;
     private javax.swing.JTable table;
+    private Components.CustomField txttuslah;
     // End of variables declaration//GEN-END:variables
 
     public Components.ButtonIcon getBtnHapus() {
@@ -310,6 +362,14 @@ public class KategoriView extends javax.swing.JPanel {
 
     public void setBtnHapus(Components.ButtonIcon btnHapus) {
         this.btnHapus = btnHapus;
+    }
+
+    public JComboBox<String> getSelectbentuktuslah() {
+        return selectbentuktuslah;
+    }
+
+    public CustomField getTxttuslah() {
+        return txttuslah;
     }
 
     public Components.ButtonIcon getBtnSimpan() {

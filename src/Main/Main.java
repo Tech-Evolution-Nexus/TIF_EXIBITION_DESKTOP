@@ -83,10 +83,15 @@ public class Main extends javax.swing.JFrame {
         // Hitung ukuran JFrame
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
+        int screenWidth = (int) screenSize.getWidth();
+        int screenHeight = (int) screenSize.getHeight();
+        // Tentukan ukuran jendela aplikasi
+
         setSize(width, height);
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
+//setPreferredSize(new Dimension(10000,720));
 
         main.add(new Controllers.ObatController().getView(), "obat");
 //
@@ -96,7 +101,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new Controllers.SupplierController().getView(), "Supplier");
         main.add(new LaporanMain(), "Report");
         main.add(new Controllers.TransaksiPenjualanController().getView(), "Penjualan");
-        main.add(new View.PembelianView(), "pembelian");
+//        main.add(new View.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "Pengeluaran");
         main.add(new Controllers.TransaksiPembelianController().getView(), "Pembelian");
         main.add(new ReturPembelianView(), "Retur Pembelian");
@@ -105,29 +110,40 @@ public class Main extends javax.swing.JFrame {
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
         cardLayout.show(main, "Home");
-        setExtendedState((Main.MAXIMIZED_BOTH));
+//        setExtendedState((Main.MAXIMIZED_BOTH));0
+        if (screenWidth > 1366 && screenHeight >= 768) {
+
+            setPreferredSize(new Dimension(1366, 768));
+            pack();
+        } else {
+
+            setExtendedState(JFrame.MAXIMIZED_BOTH);
+        }
+//setPreferredSize(new Dimension(1500, 1000));
+//    pack();
+//    setLocationRelativeTo(null);
+//    setVisible(true);
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
 
         Auth auth = new Auth();
-        
-         try {
-             if (auth.check()) {
-                 role =auth.getRole();
-                 username.setText("<html><div style='text-align: right;'>" + auth.getNama() + "<br><small style='font-size:10px'>" + auth.getRole() + "</small></div></html>");
 
-             } else {
-                 new login().setVisible(true);
-             }
+        try {
+            if (auth.check()) {
+                role = auth.getRole();
+                username.setText("<html><div style='text-align: right;'>" + auth.getNama() + "<br><small style='font-size:10px'>" + auth.getRole() + "</small></div></html>");
 
+            } else {
+                new login().setVisible(true);
+            }
 
-             //mengecek tanggal kadaluarsa obat
-             ResultSet data = DB.query("SELECT * FROM detail_obat WHERE tanggal_kadaluarsa < NOW() AND status_kadaluarsa = 0");
+            //mengecek tanggal kadaluarsa obat
+            ResultSet data = DB.query("SELECT * FROM detail_obat WHERE tanggal_kadaluarsa < NOW() AND status_kadaluarsa = 0");
             while (data.next()) {
                 String noBatch = data.getString("no_batch");
                 String kodeObat = data.getString("kode_obat");
                 int jumlahObat = data.getInt("jumlah_obat");
-                
+
                 DB.query2("UPDATE detail_obat SET status_kadaluarsa = 1 WHERE no_batch = '" + noBatch + "'");
                 DB.query2("UPDATE obat SET jumlah_obat = jumlah_obat - " + jumlahObat + " WHERE kode_obat = '" + kodeObat + "'");
             }
@@ -240,6 +256,7 @@ public class Main extends javax.swing.JFrame {
         pageName.setText("Dashboard");
 
         tanggal.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        tanggal.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         tanggal.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -250,7 +267,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(pageName, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -321,15 +338,15 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
-           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.height", 40);
             UIManager.put("TableHeader.hoverForeground", Color.white);
-            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
-            UIManager.put("TableHeader.background", new Color(58,98,215));
-            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("TableHeader.hoverBackground", new Color(58, 98, 215));
+            UIManager.put("TableHeader.background", new Color(58, 98, 215));
+            UIManager.put("TableHeader.foreground", new Color(255, 255, 255));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
@@ -348,7 +365,7 @@ public class Main extends javax.swing.JFrame {
             UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
             UIManager.put("Component.arrowType", "triangle");
-            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
+            UIManager.put("TabbedPane.selectedBackground", new Color(58, 98, 215));
 
         } catch (Exception e) {
         }
@@ -375,7 +392,7 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Object[][] childObat = {{"obat", "Data Obat"}, {"satuan", "Data Satuan Obat"}};
-    private Object[][] childTransaksi = {{"Pembelian", "Transaksi Pembelian"}, {"Retur Pembelian","Retur Pembelian"},{"Penjualan", "Transaksi Penjualan"},{"Retur Penjualan","Retur Penjualan"}};
+    private Object[][] childTransaksi = {{"Pembelian", "Transaksi Pembelian"}, {"Retur Pembelian", "Retur Pembelian"}, {"Penjualan", "Transaksi Penjualan"}, {"Retur Penjualan", "Retur Penjualan"}};
     private Object[][] childTransaksi2 = {{"Penjualan", "Transaksi Penjualan"}};
     private Object[][] kosong = {};
 //    private 
@@ -617,8 +634,8 @@ public class Main extends javax.swing.JFrame {
                     if (p.next()) {
                         int hasil = saldowal + p.getInt("total_harga");
                         DB.query2("UPDATE shift SET saldo_akhir_kas = '" + hasil + "',waktu_tutup = curtime(),total_penjualan = '" + p.getString("total_penjualan") + "',total_pembayaran = '" + p.getString("total_harga") + "' WHERE  id = '" + idshift + "';");
-                               Auth auth = new Auth();
-                               auth.Clear();
+                        Auth auth = new Auth();
+                        auth.Clear();
                         dispose();
                         new login().setVisible(true);
                     }
