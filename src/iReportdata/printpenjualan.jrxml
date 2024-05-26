@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
-	<property name="ireport.zoom" value="1.4641000000000095"/>
+	<property name="ireport.zoom" value="4.177248169415681"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="303"/>
+	<subDataset name="New Dataset 1" uuid="50e9c4e1-6bd7-438e-bf7a-25a89045a39c">
+		<queryString language="SQL">
+			<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
+		</queryString>
+		<field name="kode_transaksi" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="username" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="tanggal_transaksi" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="nama_obat" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="qty" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="harga" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="subtotal" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="total_harga" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="pembayaran" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="kembalian" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
 	<queryString>
-		<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRXJ_081223165828']]>
+		<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
 	</queryString>
 	<field name="kode_transaksi" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -18,13 +53,13 @@
 	<field name="nama_obat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="qty" class="java.lang.Integer">
+	<field name="qty" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="harga" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="subtotal" class="java.lang.Integer">
+	<field name="subtotal" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="total_harga" class="java.lang.Integer">
@@ -109,7 +144,7 @@
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="8" y="19" width="8" height="11" uuid="1f167c93-0a01-444b-8400-34c3879261ff"/>
+				<reportElement x="13" y="19" width="8" height="11" uuid="1f167c93-0a01-444b-8400-34c3879261ff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -123,14 +158,14 @@
 				<textFieldExpression><![CDATA[$F{nama_obat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="19" width="8" height="11" uuid="ef443714-cf42-4337-90be-614fd7449a46"/>
+				<reportElement x="0" y="19" width="13" height="11" uuid="ef443714-cf42-4337-90be-614fd7449a46"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="27" y="19" width="37" height="11" uuid="b9d5ccbc-faa0-42dc-88a8-ecddfb9c8d8a"/>
+				<reportElement x="32" y="19" width="37" height="11" uuid="b9d5ccbc-faa0-42dc-88a8-ecddfb9c8d8a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -144,7 +179,7 @@
 				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="19" width="11" height="11" uuid="25d503bf-8191-493e-a7e9-029c69ac5735"/>
+				<reportElement x="21" y="19" width="11" height="11" uuid="25d503bf-8191-493e-a7e9-029c69ac5735"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>

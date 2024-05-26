@@ -265,7 +265,7 @@ public class LaporanPenjualanController{
             value_kem.setText(Currency.format(Integer.parseInt(kembali.trim())));
 
 //            System.out.println("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
-            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
+            ResultSet DBSetup = DB.query("SELECT max(nama_obat) as nama_obat,max(harga) as harga,sum(qty) as qty,sum(subtotal) as subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat  where kode_transaksi='" + kodeTrx + "' GROUP BY obat.kode_obat,detail_penjualan.id_satuan");
 //            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
 
             DefaultTableModel table1 = (DefaultTableModel) TBLdetail_1.getModel();

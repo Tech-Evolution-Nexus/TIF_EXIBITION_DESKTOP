@@ -79,6 +79,8 @@ public class ObatController extends Controller {
                 tampilData(true);
             }
         });
+
+        
         tampilData(false);
         view.getBtnUbah().addActionListener(e -> editData());
         view.getBtnHapus().addActionListener(e -> hapusData());
@@ -125,6 +127,9 @@ public class ObatController extends Controller {
                 String total = view.getListSatuan().getValueAt(row, 1).toString();
                 String marginHarga = view.getListSatuan().getValueAt(row, 4).toString();
                 String marginType = view.getListSatuan().getValueAt(row, 3).toString();
+                if (row==0) {
+                    view.getTotal().setEnabled(false);
+                }
                 view.getSatuan().setSelectedItem(satuan);
                 view.getTotal().setText(total);
                 view.getMargin().setText(marginHarga);
@@ -133,6 +138,10 @@ public class ObatController extends Controller {
 
             @Override
             public void onDelete(int row) {
+                if (row==0) {
+                    JOptionPane.showMessageDialog(view.getForm(),"Tidak dapat menghapus satuan terkecil" );
+                    return;
+                }
                 ((DefaultTableModel) view.getListSatuan().getModel()).removeRow(row);
             }
         };
@@ -206,7 +215,10 @@ public class ObatController extends Controller {
             while (kategoriData.next()) {
                 view.getKategori().addItem(kategoriData.getString("nama_kategori"));
             }
-
+        if (view.getListSatuan().getRowCount() ==0) {
+            view.getTotal().setEnabled(false);
+            view.getTotal().setText("1");
+        };
             showForm();
         } catch (Exception e) {
             System.out.println(e);
@@ -479,6 +491,7 @@ public class ObatController extends Controller {
             satuanIndexEdit = -1;
         }
         resetSatuanForm();
+        
 
     }
 
@@ -573,6 +586,7 @@ public class ObatController extends Controller {
         view.getSatuan().setSelectedItem("");
         view.getTotal().setText("");
         view.getMargin().setText("");
+        view.getTotal().setEnabled(true);
     }
 
     public void clearDialog() {

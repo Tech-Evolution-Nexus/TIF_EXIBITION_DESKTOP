@@ -10,9 +10,9 @@ import Core.Model;
  *
  * @author Muhammad Nor Kholit
  */
-public class DetailPenjualanModel extends Model {
+public class DetailReturnPenjualanModel extends Model {
     
-    public DetailPenjualanModel() {
-        super("detail_penjualan");
+    public DetailReturnPenjualanModel() {
+        super("detail_retur_penjualan");
     }
     }

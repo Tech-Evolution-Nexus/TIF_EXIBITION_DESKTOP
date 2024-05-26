@@ -77,9 +77,9 @@ public class UserController extends Controller {
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
                 if (data.getString("rfid") == null) {
-                    userList.add(new Object[]{no, data.getString("nama"), data.getString("username"), data.getString("alamat"), data.getString("no_hp"), "", data.getString("role"), data.getString("password")});
+                    userList.add(new Object[]{data.getInt("id"), data.getString("nama"), data.getString("username"), data.getString("alamat"), data.getString("no_hp"), "", data.getString("role"), data.getString("password")});
                 } else {
-                    userList.add(new Object[]{no, data.getString("nama"), data.getString("username"), data.getString("alamat"), data.getString("no_hp"), data.getString("rfid"), data.getString("role"), data.getString("password")});
+                    userList.add(new Object[]{data.getInt("id"), data.getString("nama"), data.getString("username"), data.getString("alamat"), data.getString("no_hp"), data.getString("rfid"), data.getString("role"), data.getString("password")});
                 }
                 no++;
             }
@@ -118,12 +118,7 @@ public class UserController extends Controller {
             }
 
             int id = (int) userList.get(row)[0];
-            ResultSet dataUserTrx = DB.query("SELECT count(*) as count from transaksi_penjualan where id_user='" + id + "'");
-            dataUserTrx.next();
-            if (dataUserTrx.getInt("count") > 0) {
-                JOptionPane.showMessageDialog(view.getTable(), "Data user gagal dihapus, Data sedang digunakan");
-                return;
-            }
+           
             model.delete("id='" + id + "'");
             JOptionPane.showMessageDialog(view.getTable(), "Data Berhasil Di Hapus");
 

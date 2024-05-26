@@ -10,6 +10,7 @@ import Helper.Notification;
 import View.ReturPenjualanView;
 
 import java.awt.Component;
+import java.awt.Insets;
 import java.sql.ResultSet;
 
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import App.Model.DetailPenjualanModel;
 import App.Model.DetailPenjualanViewModel;
+import App.Model.DetailReturnPenjualanModel;
 import App.Model.LaporanPenjualanView;
 import App.Model.ReturnPenjualanModel;
 import App.Model.TransaksiPenjualanModel;
@@ -24,9 +26,14 @@ import Config.DB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 
@@ -42,6 +49,7 @@ public class ReturnPenjualanController  extends Controller {
     private DetailPenjualanModel detailPenjualanModel= new DetailPenjualanModel();
     private TransaksiPenjualanModel transaksiPenjualanModel= new TransaksiPenjualanModel();
     private ReturnPenjualanModel returnPenjualanModel = new ReturnPenjualanModel();
+    private DetailReturnPenjualanModel detailReturnPenjualanModel = new DetailReturnPenjualanModel();
 
     
     public ReturnPenjualanController() {
@@ -73,23 +81,25 @@ public class ReturnPenjualanController  extends Controller {
 
 
         ResultSet dataDetail = detailPenjualanViewModel
-        .select("sum(qty) as qty","sum(subtotal) as subtotal ")
         .where("kode_transaksi", "=", kodeTransaksi)
-        .groupBy("id_satuan")
-        .groupByAnd("kode_obat")
         .get();
         DefaultTableModel modelTable = (DefaultTableModel) view.getTable().getModel();
         modelTable.setRowCount(0);
         //memasukkan ke table
         while (dataDetail.next()) {
+            
             String kdObat = dataDetail.getString("kode_obat");
+            String noBatch = dataDetail.getString("no_batch");
             String namaObat = dataDetail.getString("nama_obat");
             String harga = Helper.Currency.format(dataDetail.getInt("harga"));
             String namaSatuan = dataDetail.getString("nama_satuan");
             String subTotal = Helper.Currency.format(dataDetail.getInt("subtotal"));
             String qty = dataDetail.getString("qty");
-
-            Object[] data = { kdObat, namaObat, namaSatuan,harga, qty,0, subTotal };
+            ResultSet jenisObat = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE kode_obat = '" + kdObat
+                    + "' AND satuan  = '" + namaSatuan + "'");
+            jenisObat.next();
+            qty = String.valueOf(Integer.parseInt(qty) / jenisObat.getInt("total"));
+            Object[] data = { kdObat,noBatch, namaObat, namaSatuan,harga, qty,0, subTotal };
             modelTable.addRow(data);
         }
 
@@ -106,54 +116,68 @@ public class ReturnPenjualanController  extends Controller {
       try {
         int rowCount = view.getTable().getRowCount();
         String kodeTransaksi = view.getKode_transaksi().getText();
-        String totalHarga  = String.valueOf(Helper.Currency.deformat(view.getTotalHarga().getText()));
+        int totalHarga  = 0;
         String pembayaran  = String.valueOf(Helper.Currency.deformat(view.getPembayaran().getText()));
         String kembalian  =String.valueOf(Helper.Currency.deformat( view.getKembalian().getText()));
         String alasan  =view.getAlasan().getText();
         Auth user = new Auth();
-
-        //update detail penjualan
-        for (int i = 0; i < rowCount; i++) {
-            Object kondisiObat = view.getTable().getValueAt(i, 7);
-            String kodeObat = view.getTable().getValueAt(i, 0).toString();
-            String satuan = view.getTable().getValueAt(i, 2).toString();
-            String harga = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 3).toString()));
-            String qty = view.getTable().getValueAt(i, 4).toString();
-            String subtotal = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 6).toString()));
-
-            ResultSet jenisObat = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE kode_obat = '" + kodeObat
-                    + "' AND satuan  = '" + satuan + "'");
-            jenisObat.next();
-            String qtyTotal = String.valueOf(Integer.parseInt(qty) * jenisObat.getInt("total"));
-            String idSatuan = jenisObat.getString("id_satuan");
-            String[] field = {  "harga", "qty", "subtotal" };
-            String[] value = {  harga, qtyTotal, subtotal };
-            String kondisi = "kode_obat = '" + kodeObat + "' AND kode_transaksi = '" + kodeTransaksi
-                    + "' AND id_satuan = " + idSatuan;
-            detailPenjualanModel.update(field, value, kondisi);
-
-
-            // System.out.println(kondisiObat);
-            // return;
-        // kembalikan stok ketika kondisi baik
-        // if (kondisiObat.equals("baik")) {
-        //     continue;
-        // }
-        }
-
-        //update transaksi penjualan
-        String[] field = { "kembalian", "total_harga", "pembayaran" };
-        String[] value = { kembalian, totalHarga, pembayaran };
-        String kondisi = "kode_transaksi = '" + kodeTransaksi + "'";
-        transaksiPenjualanModel.update(field, value, kondisi);
-
-
 
         String kodeReturn = Helper.KodeGenerator.generateKodeReturnPenjualan();
         //update transaksi penjualan
         String[] fieldReturn = { "kode_retur_penjualan", "kode_transaksi_penjualan", "alasan_retur","id_user" };
         String[] valueReturn = { kodeReturn, kodeTransaksi, alasan,user.getId()};
         returnPenjualanModel.insert(fieldReturn, valueReturn);
+
+        //update detail penjualan
+        for (int i = 0; i < rowCount; i++) {
+            Object kondisiObat = view.getTable().getValueAt(i, 8);
+            String kodeObat = view.getTable().getValueAt(i, 0).toString();
+            String noBatch = view.getTable().getValueAt(i, 1).toString();
+            String satuan = view.getTable().getValueAt(i, 3).toString();
+            String harga = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 4).toString()));
+            String qty = view.getTable().getValueAt(i, 5).toString();
+            String qtyKembali = view.getTable().getValueAt(i, 6).toString();
+            String subtotal = String.valueOf(Helper.Currency.deformat(view.getTable().getValueAt(i, 7).toString()));
+            totalHarga += Integer.parseInt(subtotal);
+            String selisih = String.valueOf(Integer.parseInt(qty)*Integer.parseInt(harga) - Integer.parseInt(subtotal));
+            ResultSet jenisObat = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE kode_obat = '" + kodeObat
+                    + "' AND satuan  = '" + satuan + "'");
+            jenisObat.next();
+            if (qtyKembali.equals("0")) {
+                continue;
+            }
+            int qtyFix = Integer.parseInt(qty) - Integer.parseInt(qtyKembali);
+            String qtyTotal = String.valueOf(qtyFix * jenisObat.getInt("total"));
+            String idSatuan = jenisObat.getString("id_satuan");
+            String[] field = { "harga", "qty", "subtotal" };
+            String[] value = { harga, qtyTotal, subtotal };
+            String kondisi = "kode_obat = '" + kodeObat + "' AND kode_transaksi = '" + kodeTransaksi
+                    + "' AND id_satuan = " + idSatuan + " AND no_batch = '" + noBatch + "'";
+            System.out.println("qty total "+qtyTotal+" qty fix "+qty + "qty kmbali"+qtyKembali+"query"+kondisi);
+
+            // kembalikan stok ketika kondisi baik
+             String[] fieldReturnDetail = { "kode_return_penjualan","kode_obat","qty_sebelum_retur","qty_retur","selisih","harga","subtotal"	
+ };
+             String[] valueReturnDetail = { kodeReturn, kodeObat, qty,qtyKembali,selisih,harga,subtotal};
+        detailReturnPenjualanModel.insert(fieldReturnDetail, valueReturnDetail);
+            //update qty detail penjualan
+                            detailPenjualanModel.update(field, value, kondisi);
+
+            if (kondisiObat.equals("Baik")) {
+                continue;
+            }
+        }
+
+        
+        //update transaksi penjualan
+        String[] field = { "kembalian", "total_harga", "pembayaran" };
+        String[] value = { kembalian, String.valueOf(totalHarga), pembayaran };
+        String kondisi = "kode_transaksi = '" + kodeTransaksi + "'";
+        transaksiPenjualanModel.update(field, value, kondisi);
+
+
+
+        
 
 
 
@@ -190,8 +214,8 @@ public class ReturnPenjualanController  extends Controller {
         
         KondisiEditor kondisiEditor = new KondisiEditor();
         KondisiRenderer kondisiRenderer = new KondisiRenderer();
-        view.getTable().getColumnModel().getColumn(7).setCellEditor(kondisiEditor);
-        view.getTable().getColumnModel().getColumn(7).setCellRenderer(kondisiRenderer);
+        view.getTable().getColumnModel().getColumn(8).setCellEditor(kondisiEditor);
+        view.getTable().getColumnModel().getColumn(8).setCellRenderer(kondisiRenderer);
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 reset();
@@ -217,6 +241,7 @@ class KondisiEditor extends DefaultCellEditor {
                 fireEditingStopped(); 
             }
         });
+         ((JComponent)input.getEditor().getEditorComponent()).setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
     
     @Override
@@ -235,7 +260,8 @@ class KondisiRenderer extends DefaultTableCellRenderer {
      private JComboBox input;
 
      public KondisiRenderer() {
-         input = new JComboBox(new Object[] { "Pilih Kondisi","Baik", "Rusak", "Kadaluarsa" });
+         input = new JComboBox(new Object[] { "Baik", "Rusak", "Kadaluarsa" });
+         ((JComponent)input.getEditor().getEditorComponent()).setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
      }
     
       @Override
@@ -245,7 +271,7 @@ class KondisiRenderer extends DefaultTableCellRenderer {
         if (value != null) {
             input.setSelectedItem(value);
         } else {
-             input.setSelectedItem("baik");
+             input.setSelectedItem("Baik");
         }
 
         return input;

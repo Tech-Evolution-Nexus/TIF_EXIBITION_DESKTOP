@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.util.prefs.Preferences;
 
 import View.Auth.login;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
 import org.json.JSONArray;
 
 public class Auth {
@@ -75,5 +78,13 @@ public class Auth {
     
     public String getRole() {
         return role;
+    }
+    public void Clear(){
+        try {
+            Preferences userPreferences = Preferences.userNodeForPackage(login.class);
+            userPreferences.clear();
+        } catch (BackingStoreException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

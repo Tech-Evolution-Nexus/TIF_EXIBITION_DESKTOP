@@ -75,7 +75,9 @@ public class SatuanController  extends Controller{
     public void tambahData() {
         view.getNamaSatuan().setText("");
         view.getKeterangan().setText("");
+        view.getTitleForm().setText("Tambah satuan");
         showForm();
+
     }
 
     public void simpanData() {
@@ -116,9 +118,10 @@ public class SatuanController  extends Controller{
     public void editData() {
         int row = view.getTable().getSelectedRow();
         if (row < 0) {
-            Notification.showInfo( "Tidak ada baris yang dipilih",view.getTable());
+            Notification.showInfo("Tidak ada baris yang dipilih", view.getTable());
             return;
         }
+        view.getTitleForm().setText("Ubah satuan");
         String namaFromTable = view.getTable().getValueAt(row, 1).toString();
         String keteranganFromTable = view.getTable().getValueAt(row, 2).toString();
         //set value ke text field

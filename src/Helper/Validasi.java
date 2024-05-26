@@ -26,6 +26,7 @@ public class Validasi {
             if (numericString.length() > String.valueOf(maxValue).length()) {
                 throw new NumberFormatException("Input string is too large.");
             }
+            System.out.println(numericString+"ini numerik");
             return Long.parseLong(numericString);
         } catch (Exception e) {
             System.out.println(e.getMessage());

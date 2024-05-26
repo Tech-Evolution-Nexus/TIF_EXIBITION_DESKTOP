@@ -133,13 +133,13 @@ public class LaporanPendapatanController {
     public void updateData(Object[] object) {
     }
 
-    public void filterPeriode(int index,LocalDate ranges,LocalDate rangef) {
+   public void filterPeriode(int index,LocalDate ranges,LocalDate rangef) {
         try {
             String sql = "";
             switch (index) {
                 case 0 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') order by DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') desc; ";
                 case 1 ->{
-                    sql = "SELECT SUM(`transaksi_penjualan`.`total_harga`) AS `pendapatan`, DATE_FORMAT(`transaksi_penjualan`.`tanggal_transaksi`, '%Y-%m-%d') AS `tanggal` FROM `apotek_3`.`transaksi_penjualan` WHERE `transaksi_penjualan`.`tanggal_transaksi` BETWEEN '"+ranges+"' AND '"+rangef+"' GROUP BY DATE_FORMAT(`transaksi_penjualan`.`tanggal_transaksi`, '%Y-%m-%d') ORDER BY `tanggal`";
+                    sql = "SELECT SUM(transaksi_penjualan.total_harga) AS pendapatan, DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') AS tanggal FROM apotek_3.transaksi_penjualan WHERE transaksi_penjualan.tanggal_transaksi BETWEEN '"+ranges+"' AND '"+rangef+"' GROUP BY DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') ORDER BY tanggal";
                 }
                 case 2 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y') AS tahun FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y') ORDER BY tahun DESC; ";
                 default -> {

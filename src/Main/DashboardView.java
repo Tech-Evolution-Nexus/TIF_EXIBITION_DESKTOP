@@ -69,18 +69,18 @@ public class DashboardView extends javax.swing.JPanel {
     public DashboardView() {
 
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
-        
+
         initComponents();
-        
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//        iconn.setIcon(new FlatSVGIcon("Assets/svg/svgtau.svg" ));
-//        ImageIcon MINI = images("/Assets/iconnc.png", 32, 32);
-//        iconn.setIcon(MINI);
+        //        iconn.setIcon(new FlatSVGIcon("Assets/svg/svgtau.svg" ));
+        //        ImageIcon MINI = images("/Assets/iconnc.png", 32, 32);
+        //        iconn.setIcon(MINI);
         // Hitung ukuran JFrame
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
         setSize(width, height);
-//        chart();
+        //        chart();
         ntf_stok();
         ntf_exp();
         items();
@@ -89,9 +89,8 @@ public class DashboardView extends javax.swing.JPanel {
         panelchartterlaris();
         createLineChart();
         lineChart.startAnimation();
-        
 
-//        jLabel2.setText(userPreferences.get("Username", null));
+        //        jLabel2.setText(userPreferences.get("Username", null));
     }
 
     private ImageIcon images(String path, int WIDTH, int HEIGHT) {
@@ -111,7 +110,7 @@ public class DashboardView extends javax.swing.JPanel {
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
         setSize(width, height);
-        chart();
+        //        chart();
         ntf_stok();
         ntf_exp();
         items();
@@ -126,7 +125,7 @@ public class DashboardView extends javax.swing.JPanel {
         String namaBulan = bulanKemarin.format(formatter);
 
         // Menampilkan obat terlaris bulan kemarin dengan nama bulannya
-        String infoTerlarisText = "Obat Terlaris Bulan " + namaBulan ;
+        String infoTerlarisText = "Obat Terlaris Bulan " + namaBulan;
         infoTerlarisHeader.setText(infoTerlarisText);
     }
 
@@ -194,19 +193,18 @@ public class DashboardView extends javax.swing.JPanel {
         jLabel5.setText("List Obat Terlaris");
 
         tableobat.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "No", "Nama Obat", "Keuntungan"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+                },
+                new String[] {
+                        "No", "Nama Obat", "Keuntungan"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         tableobat.setGridColor(new java.awt.Color(60, 63, 65));
@@ -224,29 +222,29 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433,
+                                        Short.MAX_VALUE)));
 
         javax.swing.GroupLayout modalobatLayout = new javax.swing.GroupLayout(modalobat.getContentPane());
         modalobat.getContentPane().setLayout(modalobatLayout);
         modalobatLayout.setHorizontalGroup(
-            modalobatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalobatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         modalobatLayout.setVerticalGroup(
-            modalobatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalobatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         modalkadaluarsa.setModal(true);
 
@@ -255,19 +253,18 @@ public class DashboardView extends javax.swing.JPanel {
         jLabel6.setText("List Obat Akan Kadaluarsa Dan Kadaluarsa");
 
         tablekadaluarsa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "No", "Nama Obat", "Qty", "Tanggal Kadaluarsa", "Keterangan"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                },
+                new String[] {
+                        "No", "Nama Obat", "Qty", "Tanggal Kadaluarsa", "Keterangan"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         tablekadaluarsa.setShowGrid(true);
@@ -285,29 +282,29 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
-        );
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE));
         jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
-        );
+                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 433,
+                                        Short.MAX_VALUE)));
 
         javax.swing.GroupLayout modalkadaluarsaLayout = new javax.swing.GroupLayout(modalkadaluarsa.getContentPane());
         modalkadaluarsa.getContentPane().setLayout(modalkadaluarsaLayout);
         modalkadaluarsaLayout.setHorizontalGroup(
-            modalkadaluarsaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalkadaluarsaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         modalkadaluarsaLayout.setVerticalGroup(
-            modalkadaluarsaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalkadaluarsaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         modalstok.setModal(true);
 
@@ -316,19 +313,18 @@ public class DashboardView extends javax.swing.JPanel {
         jLabel7.setText("List Stok Obat Akan Habis Dan Habis");
 
         tabelstok.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "No", "Nama Obat", "Stok", "Keterangan"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                },
+                new String[] {
+                        "No", "Nama Obat", "Stok", "Keterangan"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         tabelstok.setShowGrid(true);
@@ -346,37 +342,39 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
-        );
+                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE));
         jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
-        );
+                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433,
+                                        Short.MAX_VALUE)));
 
         javax.swing.GroupLayout modalstokLayout = new javax.swing.GroupLayout(modalstok.getContentPane());
         modalstok.getContentPane().setLayout(modalstokLayout);
         modalstokLayout.setHorizontalGroup(
-            modalstokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalstokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         modalstokLayout.setVerticalGroup(
-            modalstokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                modalstokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         setPreferredSize(new java.awt.Dimension(1221, 406));
         addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 formAncestorAdded(evt);
             }
+
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
+
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
@@ -401,20 +399,19 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()));
         jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton4)
-                .addComponent(jLabel1))
-        );
+                jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton4)
+                                .addComponent(jLabel1)));
 
         notif_exp.setBackground(new java.awt.Color(51, 51, 51));
         notif_exp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -426,21 +423,21 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout notif_panelLayout = new javax.swing.GroupLayout(notif_panel);
         notif_panel.setLayout(notif_panelLayout);
         notif_panelLayout.setHorizontalGroup(
-            notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(notif_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(notif_exp)
-                .addContainerGap())
-        );
+                notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(notif_panelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(notif_exp)
+                                .addContainerGap()));
         notif_panelLayout.setVerticalGroup(
-            notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notif_panelLayout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif_exp)
-                .addContainerGap())
-        );
+                notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(notif_panelLayout.createSequentialGroup()
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(notif_exp)
+                                .addContainerGap()));
 
         chart_panel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         chart_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -466,20 +463,20 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()));
         jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel2)
-                .addComponent(jButton1))
-        );
+                jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jButton1)));
 
         notif_stok.setHorizontalScrollBar(null);
 
@@ -492,24 +489,24 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(notif_stok)))
-                .addContainerGap())
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(notif_stok)))
+                                .addContainerGap()));
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif_stok)
-                .addContainerGap())
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(notif_stok)
+                                .addContainerGap()));
 
         jPanel4.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -528,21 +525,21 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout item_panelLayout = new javax.swing.GroupLayout(item_panel);
         item_panel.setLayout(item_panelLayout);
         item_panelLayout.setHorizontalGroup(
-            item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(item_panelLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 195, Short.MAX_VALUE))
-            .addGroup(item_panelLayout.createSequentialGroup()
-                .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(item_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 195, Short.MAX_VALUE))
+                        .addGroup(item_panelLayout.createSequentialGroup()
+                                .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()));
         item_panelLayout.setVerticalGroup(
-            item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(item_panelLayout.createSequentialGroup()
-                .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3))
-        );
+                item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(item_panelLayout.createSequentialGroup()
+                                .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 18,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)));
 
         pendapatanperhari.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         pendapatanperhari.setBackground(new java.awt.Color(109, 207, 102));
@@ -559,22 +556,22 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout pendapatanperhariLayout = new javax.swing.GroupLayout(pendapatanperhari);
         pendapatanperhari.setLayout(pendapatanperhariLayout);
         pendapatanperhariLayout.setHorizontalGroup(
-            pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pendapatanperhariLayout.createSequentialGroup()
-                .addComponent(pendapatanLabel)
-                .addGap(0, 119, Short.MAX_VALUE))
-            .addGroup(pendapatanperhariLayout.createSequentialGroup()
-                .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pendapatanperhariLayout.createSequentialGroup()
+                                .addComponent(pendapatanLabel)
+                                .addGap(0, 119, Short.MAX_VALUE))
+                        .addGroup(pendapatanperhariLayout.createSequentialGroup()
+                                .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()));
         pendapatanperhariLayout.setVerticalGroup(
-            pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pendapatanperhariLayout.createSequentialGroup()
-                .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pendapatanLabel)
-                .addContainerGap())
-        );
+                pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pendapatanperhariLayout.createSequentialGroup()
+                                .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 18,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pendapatanLabel)
+                                .addContainerGap()));
 
         pengeluaranperhari.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         pengeluaranperhari.setBackground(new java.awt.Color(215, 9, 83));
@@ -592,50 +589,61 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout pengeluaranperhariLayout = new javax.swing.GroupLayout(pengeluaranperhari);
         pengeluaranperhari.setLayout(pengeluaranperhariLayout);
         pengeluaranperhariLayout.setHorizontalGroup(
-            pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pengeluaranperhariLayout.createSequentialGroup()
-                .addComponent(pengeluaran)
-                .addGap(0, 118, Short.MAX_VALUE))
-            .addGroup(pengeluaranperhariLayout.createSequentialGroup()
-                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+                pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pengeluaranperhariLayout.createSequentialGroup()
+                                .addComponent(pengeluaran)
+                                .addGap(0, 118, Short.MAX_VALUE))
+                        .addGroup(pengeluaranperhariLayout.createSequentialGroup()
+                                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()));
         pengeluaranperhariLayout.setVerticalGroup(
-            pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pengeluaranperhariLayout.createSequentialGroup()
-                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pengeluaran)
-                .addContainerGap())
-        );
+                pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pengeluaranperhariLayout.createSequentialGroup()
+                                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 18,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pengeluaran)
+                                .addContainerGap()));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(item_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(pengeluaranperhari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel4Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        jPanel4Layout.createSequentialGroup()
+                                                                .addContainerGap()
+                                                                .addComponent(item_panel,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                                        .addGap(12, 12, 12)
+                                                        .addComponent(pengeluaranperhari,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(12, Short.MAX_VALUE)));
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(item_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pengeluaranperhari, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(item_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pengeluaranperhari, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         jPanel5.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -652,19 +660,20 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout panelobatterlarisLayout = new javax.swing.GroupLayout(panelobatterlaris);
         panelobatterlaris.setLayout(panelobatterlarisLayout);
         panelobatterlarisLayout.setHorizontalGroup(
-            panelobatterlarisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelobatterlarisLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-        );
+                panelobatterlarisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                panelobatterlarisLayout.createSequentialGroup()
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)));
         panelobatterlarisLayout.setVerticalGroup(
-            panelobatterlarisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelobatterlarisLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                panelobatterlarisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelobatterlarisLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()));
 
         infoTerlarisHeader.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         infoTerlarisHeader.setText("Obat Terlaris");
@@ -679,67 +688,84 @@ public class DashboardView extends javax.swing.JPanel {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(infoTerlarisHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 206,
+                                                        Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(infoTerlarisHeader,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 255,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                        113, Short.MAX_VALUE)
+                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap()));
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(infoTerlarisHeader)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(infoTerlarisHeader)
+                                        .addComponent(jButton3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                                .addContainerGap()));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20)
+                                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(20, 20, 20)
+                                                .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 162,
+                                                        Short.MAX_VALUE)))
+                                .addContainerGap()));
     }// </editor-fold>//GEN-END:initComponents
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
@@ -751,12 +777,14 @@ public class DashboardView extends javax.swing.JPanel {
         try {
             DefaultTableModel tabelData = (DefaultTableModel) tableobat.getModel();
             tabelData.setRowCount(0);
-            ResultSet data = DB.query("SELECT obatterlaris.kode_obat,obat.nama_obat,total_penjualan FROM `obatterlaris` JOIN obat ON obat.kode_obat= obatterlaris.kode_obat limit 15");
+            ResultSet data = DB.query(
+                    "SELECT obatterlaris.kode_obat,obat.nama_obat,total_penjualan FROM `obatterlaris` JOIN obat ON obat.kode_obat= obatterlaris.kode_obat limit 15");
             int no = 1;
 
             while (data.next()) {
 
-                Object[] dataArray = {"#" + no, data.getString("nama_obat"), Currency.format(data.getInt("total_penjualan"))};
+                Object[] dataArray = { "#" + no, data.getString("nama_obat"),
+                        Currency.format(data.getInt("total_penjualan")) };
                 tabelData.addRow(dataArray);
                 no++;
 
@@ -764,7 +792,7 @@ public class DashboardView extends javax.swing.JPanel {
             modalobat.pack();
             modalobat.setLocationRelativeTo(null);
             modalobat.setVisible(true);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -776,7 +804,8 @@ public class DashboardView extends javax.swing.JPanel {
             DefaultTableModel tabelData = (DefaultTableModel) tablekadaluarsa.getModel();
             tabelData.setRowCount(0);
 
-            ResultSet data = DB.query("SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
+            ResultSet data = DB.query(
+                    "SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC; ");
             int no = 1;
 
             while (data.next()) {
@@ -784,7 +813,8 @@ public class DashboardView extends javax.swing.JPanel {
                 if (data.getInt("status") == 2) {
                     keteranagan = "Akan Kadaluarsa";
                 }
-                Object[] dataArray = {no, data.getString("nama_obat"), data.getInt("jumlah_obat"),data.getDate("tanggal_kadaluarsa"), keteranagan};
+                Object[] dataArray = { no, data.getString("nama_obat"), data.getInt("jumlah_obat"),
+                        data.getDate("tanggal_kadaluarsa"), keteranagan };
                 tabelData.addRow(dataArray);
                 no++;
 
@@ -792,7 +822,7 @@ public class DashboardView extends javax.swing.JPanel {
             modalkadaluarsa.pack();
             modalkadaluarsa.setLocationRelativeTo(null);
             modalkadaluarsa.setVisible(true);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -804,7 +834,8 @@ public class DashboardView extends javax.swing.JPanel {
             DefaultTableModel tabelData = (DefaultTableModel) tabelstok.getModel();
             tabelData.setRowCount(0);
 
-            ResultSet data = DB.query("SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= 10; ");
+            ResultSet data = DB.query(
+                    "SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= 10; ");
             int no = 1;
 
             while (data.next()) {
@@ -815,11 +846,12 @@ public class DashboardView extends javax.swing.JPanel {
                 } else {
                     pesan = "Akan Habis";
                 }
-                Object[] dataArray = {"#" + no, data.getString("nama_obat"), jumlahObat, pesan};
+                Object[] dataArray = { "#" + no, data.getString("nama_obat"), jumlahObat, pesan };
                 tabelData.addRow(dataArray);
                 no++;
 
             }
+
             modalstok.pack();
             modalstok.setLocationRelativeTo(null);
             modalstok.setVisible(true);
@@ -828,17 +860,21 @@ public class DashboardView extends javax.swing.JPanel {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
     private void chart() {
         try {
             List<ModelChart> dataPengeluaran = new ArrayList<>();
             java.sql.Connection connection = DB.getConnection();
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             LocalDate now = LocalDate.now();
             int tahunSekarang = now.getYear();
-//            tahunn.setText(String.valueOf(tahunSekarang));
-//            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
-            ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '" + tahunSekarang + "%'");
-//            ResultSet data = DB.query("SELECT * FROM datachart");
+            //            tahunn.setText(String.valueOf(tahunSekarang));
+            //            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
+            ResultSet data = statement.executeQuery(
+                    "SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '"
+                            + tahunSekarang + "%'");
+            //            ResultSet data = DB.query("SELECT * FROM datachart");
             for (int bulan = 1; bulan <= 12; bulan++) {
                 String namaBulan = konversiintbln.getMonth(bulan);
                 int pengeluaran = 0;
@@ -854,12 +890,12 @@ public class DashboardView extends javax.swing.JPanel {
                         String total_lababersih = data.getString("laba_bersih");
 
                         // Cek dan atur nilai ke 0 jika null
-//                        if (total_pengeluaran == null) {
-//                            total_pengeluaran = "0";
-//                        }
-//                        if (total_Penjualan == null) {
-//                            total_Penjualan = "0";
-//                        }
+                        //                        if (total_pengeluaran == null) {
+                        //                            total_pengeluaran = "0";
+                        //                        }
+                        //                        if (total_Penjualan == null) {
+                        //                            total_Penjualan = "0";
+                        //                        }
                         // Tambahkan ke total untuk bulan saat ini
                         pengeluaran += Integer.parseInt(total_pengeluaran);
                         penjualan += Integer.parseInt(total_Penjualan);
@@ -867,22 +903,22 @@ public class DashboardView extends javax.swing.JPanel {
                     }
                 }
 
-                ModelChart s = new ModelChart(namaBulan, new double[]{penjualan, pengeluaran, laba_bersih});
+                ModelChart s = new ModelChart(namaBulan, new double[] { penjualan, pengeluaran, laba_bersih });
                 dataPengeluaran.add(s);
 
                 data.beforeFirst();
             }
 
-// Tambahkan data ke dalam lineChart
-//            chart1.addLegend("Pendapatan", Color.blue);
-//            chart1.addLegend("Pengeluaran", Color.MAGENTA);
-//            chart1.addLegend("Laba Bersih", Color.ORANGE);
-//
-//            for (ModelChart d : dataPengeluaran) {
-//                chart1.addData(d);
-//            }
-//
-//            chart1.start();
+            // Tambahkan data ke dalam lineChart
+            //            chart1.addLegend("Pendapatan", Color.blue);
+            //            chart1.addLegend("Pengeluaran", Color.MAGENTA);
+            //            chart1.addLegend("Laba Bersih", Color.ORANGE);
+            //
+            //            for (ModelChart d : dataPengeluaran) {
+            //                chart1.addData(d);
+            //            }
+            //
+            //            chart1.start();
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -891,17 +927,19 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void ntf_stok() {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
-        ResultSet data = DB.query("SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= min_stok; ");
+        ResultSet data = DB.query(
+                "SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= min_stok; ");
         String pesan = "";
         try {
             while (data.next()) {
                 String namaObat = data.getString("nama_obat");
                 int jumlahObat = data.getInt("jumlah_obat");
-//                System.out.println(jumlahObat);
+                //                System.out.println(jumlahObat);
                 if (jumlahObat == 0) {
                     pesan = "<html>Stok Obat " + namaObat + " <font color='red'>Telah Habis</font> </html>";
                 } else {
-                    pesan = "<html>Stok Obat " + namaObat + " <font color='orange'>Akan Segera Habis Tersisa</font> " + jumlahObat + "</html>";
+                    pesan = "<html>Stok Obat " + namaObat + " <font color='orange'>Akan Segera Habis Tersisa</font> "
+                            + jumlahObat + "</html>";
                 }
                 JLabel LABEL = new JLabel(pesan);
                 LABEL.setMaximumSize(new Dimension(300, 40));
@@ -916,40 +954,43 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void ntf_exp() {
         notif_exp.getVerticalScrollBar().setUnitIncrement(16);
-//        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+        //        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         int yPos = 20;
         LocalDate date = LocalDate.now();
-        ResultSet data = DB.query("SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
+        ResultSet data = DB.query(
+                "SELECT nama_obat, detail_obat.jumlah_obat,satuan, tanggal_kadaluarsa, CASE WHEN tanggal_kadaluarsa <= CURRENT_DATE THEN 1 ELSE 2 END AS status FROM detail_obat JOIN data_obat ON data_obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat > 0 AND( tanggal_kadaluarsa <= CURRENT_DATE OR tanggal_kadaluarsa > CURRENT_DATE )AND tanggal_kadaluarsa < CURRENT_DATE + INTERVAL 7 DAY ORDER BY tanggal_kadaluarsa DESC limit 10; ");
         String pesan = "";
         try {
             while (data.next()) {
                 String namaObat = data.getString("nama_obat");
                 String jumlahObat = data.getString("jumlah_obat");
-//                pesan = "Obat " + namaObat + " telah kadaluarsa sebanyak " + jumlahObat;
+                //                pesan = "Obat " + namaObat + " telah kadaluarsa sebanyak " + jumlahObat;
                 LocalDate tanggalKadaluarsa = data.getDate("tanggal_kadaluarsa").toLocalDate();
                 long selisihHari = ChronoUnit.DAYS.between(tanggalKadaluarsa, LocalDate.now());
-//                pesan = "<html>Obat " + namaObat + " telah kadaluarsa sebanyak " + jumlahObat + "</html>";
-                pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + " <font color='red'>telah kadaluarsa </font> </p> </html>";
+                //                pesan = "<html>Obat " + namaObat + " telah kadaluarsa sebanyak " + jumlahObat + "</html>";
+                pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat
+                        + " <font color='red'>telah kadaluarsa </font> </p> </html>";
                 if (data.getInt("status") == 2) {
-                    pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat + "  <font color='orange'>akan segera kadaluarsa </font>  </p></html>";
+                    pesan = "<html><p>" + jumlahObat + "" + " " + data.getString("satuan") + "  obat " + namaObat
+                            + "  <font color='orange'>akan segera kadaluarsa </font>  </p></html>";
 
                 }
                 JPanel jp = new JPanel();
                 jp.setBackground(Color.white);
-                jp.setMaximumSize(new Dimension(300, 40));
+                jp.setMaximumSize(new Dimension(300, 60));
                 jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
                 jp.setBorder(new EmptyBorder(2, 2, 2, 2));
                 JLabel label = new JLabel(pesan);
-//                label.setMaximumSize(new Dimension(300, 40));
+                //                label.setMaximumSize(new Dimension(300, 40));
                 label.setFont(new Font("Poppins semibold", Font.PLAIN, 14));
                 jp.add(label);
 
-//                label.setBounds(0, yPos, 300, 30); // Atur koordinat dan ukuran label
-//                jPanel1.add(label);
+                //                label.setBounds(0, yPos, 300, 30); // Atur koordinat dan ukuran label
+                //                jPanel1.add(label);
                 String pesantgl;
                 if (selisihHari != 0) {
                     pesantgl = "Tgl Exp : " + FormatTanggal.formatDate(java.sql.Date.valueOf(tanggalKadaluarsa));
-//                    +selisihHari + " Yang Lalu";
+                    //                    +selisihHari + " Yang Lalu";
                 } else {
                     pesantgl = "hari ini";
                 }
@@ -969,7 +1010,7 @@ public class DashboardView extends javax.swing.JPanel {
 
     private void panelchartterlaris() {
         ResultSet data = DB.query("SELECT * FROM `obatterlaris` limit 10;");
-//        notif_stok.getVerticalScrollBar().setUnitIncrement(16);
+        //        notif_stok.getVerticalScrollBar().setUnitIncrement(16);
 
         int i = 1;
         try {
@@ -1013,7 +1054,9 @@ public class DashboardView extends javax.swing.JPanel {
     private void pendapatan1hari() {
         //Pendapatan Per Hari
         LocalDate date = LocalDate.now();
-        ResultSet data = DB.query("SELECT SUM(total_harga) as total FROM transaksi_penjualan WHERE DATE(tanggal_transaksi) = '" + date + "'");
+        ResultSet data = DB
+                .query("SELECT SUM(total_harga) as total FROM transaksi_penjualan WHERE DATE(tanggal_transaksi) = '"
+                        + date + "'");
         String pesan = "";
         try {
             if (data.next()) {
@@ -1043,12 +1086,14 @@ public class DashboardView extends javax.swing.JPanel {
         //Pendapatan Per Hari
         LocalDate date = LocalDate.now();
         int monthNow = date.getMonthValue();
-        ResultSet data = DB.query("SELECT SUM(total_pengeluaran) as total FROM pengeluaran WHERE MONTH(tanggal_pengeluaran) = '" + monthNow + "'");
+        ResultSet data = DB
+                .query("SELECT SUM(total_pengeluaran) as total FROM pengeluaran WHERE MONTH(tanggal_pengeluaran) = '"
+                        + monthNow + "'");
         String pesan = "";
-        String[] monthName = {"Januari", "Februari",
-            "Maret", "April", "Mei", "Juni", "Juli",
-            "Agustus", "September", "Oktober", "November",
-            "Desember"};
+        String[] monthName = { "Januari", "Februari",
+                "Maret", "April", "Mei", "Juni", "Juli",
+                "Agustus", "September", "Oktober", "November",
+                "Desember" };
 
         Calendar cal = Calendar.getInstance();
         String month = monthName[cal.get(Calendar.MONTH)];
@@ -1073,12 +1118,13 @@ public class DashboardView extends javax.swing.JPanel {
         lineChart.setChartType(LineChart.ChartType.LINE);
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,#FFFFFF,,20");
-//        chart_panel.setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
+        //        chart_panel.setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
         lineChart.setBackground(Color.white);
         chart_panel.add(lineChart);
         createLineChartData();
     }
 
+ 
     private void createLineChartData() {
         try {
             DefaultCategoryDataset<String, String> categoryDataset = new DefaultCategoryDataset<>();
@@ -1086,36 +1132,40 @@ public class DashboardView extends javax.swing.JPanel {
             SimpleDateFormat df = new SimpleDateFormat("MMM"); // Mengubah format tanggal menjadi bulan dan tahun saja
             Random ran = new Random();
             java.sql.Connection connection = DB.getConnection();
-            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             LocalDate now = LocalDate.now();
             int tahunSekarang = now.getYear();
             int randomMonth = 12; // Menggunakan 12 bulan
-            ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '%2023%'");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
-//            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
-//            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
-//            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
-//                System.out.println("s" + i);
-//            String date = df.format(cal.getTime());
-//            while (data.next()) {
-//                int bulanData = data.getInt("bulan");
-////                cal.set(Calendar.MONTH, i);
-////                                String date = df.format(cal.getTime());
-////                    if (bulanData == i) {
-////                        System.out.println("ap");
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
-//                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
-////                    }
-//
-////                }
-////                String total_pengeluaran = data.getString("pengeluaran");
-////                String total_Penjualan = data.getString("pendapatan");
-////                String total_lababersih = data.getString("laba_bersih");
-//                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
-//                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
-//            }
+            ResultSet data = statement.executeQuery(
+                    "SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun,2) as bulan FROM chartview  WHERE LEFT(bulan_tahun,4) ="
+                            + tahunSekarang);
+
+            //            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
+            //            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
+            //            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
+            //            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
+            //            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
+            //                System.out.println("s" + i);
+            //            String date = df.format(cal.getTime());
+            //            while (data.next()) {
+            //                int bulanData = data.getInt("bulan");
+            ////                cal.set(Calendar.MONTH, i);
+            ////                                String date = df.format(cal.getTime());
+            ////                    if (bulanData == i) {
+            ////                        System.out.println("ap");
+            //                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
+            //                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+            //                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+            ////                    }
+            //
+            ////                }
+            ////                String total_pengeluaran = data.getString("pengeluaran");
+            ////                String total_Penjualan = data.getString("pendapatan");
+            ////                String total_lababersih = data.getString("laba_bersih");
+            //                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
+            //                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
+            //            }
 
             for (int i = 1; i <= 12; i++) {
                 cal.set(Calendar.MONTH, i - 1);
@@ -1144,20 +1194,113 @@ public class DashboardView extends javax.swing.JPanel {
             lineChart.setLegendRenderer(new ChartLegendRenderer());
 
             lineChart.setCategoryDataset(categoryDataset);
-            lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"), Color.decode("#34d399"));
+            lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"),
+                    Color.decode("#34d399"));
 
-//            tahunn.setText(String.valueOf(tahunSekarang));
+            //            tahunn.setText(String.valueOf(tahunSekarang));
             JLabel header = new JLabel("Laporan Tahun " + String.valueOf(tahunSekarang));
             header.putClientProperty(FlatClientProperties.STYLE, ""
                     + "font:+1;"
                     + "border:0,0,5,0");
             header.setFont(new Font("Poppins", Font.BOLD, 16));
-            
+
             lineChart.setHeader(header);
         } catch (SQLException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    //     private void createLineChart() {
+    //         lineChart = new LineChart();
+    //         lineChart.setChartType(LineChart.ChartType.LINE);
+    //         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
+    //                 + "border:5,5,5,5,#FFFFFF,,20");
+    // //        chart_panel.setLayout(new MigLayout("wrap,fill,gap 10", "fill"));
+    //         lineChart.setBackground(Color.white);
+    //         chart_panel.add(lineChart);
+    //         createLineChartData();
+    //     }
+
+    //     private void createLineChartData() {
+    //         try {
+    //             DefaultCategoryDataset<String, String> categoryDataset = new DefaultCategoryDataset<>();
+    //             Calendar cal = Calendar.getInstance();
+    //             SimpleDateFormat df = new SimpleDateFormat("MMM"); // Mengubah format tanggal menjadi bulan dan tahun saja
+    //             Random ran = new Random();
+    //             java.sql.Connection connection = DB.getConnection();
+    //             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+    //             LocalDate now = LocalDate.now();
+    //             int tahunSekarang = now.getYear();
+    //             int randomMonth = 12; // Menggunakan 12 bulan
+    //             ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '%2023%'");
+    // //            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", "jan");
+    // //            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", "jan");
+    // //            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", "jan");
+    // //            for (int i = 1; i <= randomMonth; i++) { // Menggunakan konstanta bulan dari JANUARI (0) sampai DESEMBER (11)
+    // //            cal.set(Calendar.MONTH, i); // Mengatur bulan pada kalendar
+    // //                System.out.println("s" + i);
+    // //            String date = df.format(cal.getTime());
+    // //            while (data.next()) {
+    // //                int bulanData = data.getInt("bulan");
+    // ////                cal.set(Calendar.MONTH, i);
+    // ////                                String date = df.format(cal.getTime());
+    // ////                    if (bulanData == i) {
+    // ////                        System.out.println("ap");
+    // //                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pemasukan", date);
+    // //                        categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+    // //                        categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+    // ////                    }
+    // //
+    // ////                }
+    // ////                String total_pengeluaran = data.getString("pengeluaran");
+    // ////                String total_Penjualan = data.getString("pendapatan");
+    // ////                String total_lababersih = data.getString("laba_bersih");
+    // //                int[] monthlyData = {Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("pengeluaran")), Integer.valueOf(data.getString("laba_bersih"))};
+    // //                monthlyDataMap.put(data.getInt("bulan"), monthlyData);
+    // //            }
+
+    //             for (int i = 1; i <= 12; i++) {
+    //                 cal.set(Calendar.MONTH, i - 1);
+    //                 String date = df.format(cal.getTime());
+    //                 boolean found = false;
+    //                 while (data.next()) {
+    //                     int month = data.getInt("bulan");
+    //                     if (month == i) {
+    //                         categoryDataset.addValue(Integer.valueOf(data.getString("pendapatan")), "Pendapatan", date);
+    //                         categoryDataset.addValue(Integer.valueOf(data.getString("pengeluaran")), "Pengeluaran", date);
+    //                         categoryDataset.addValue(Integer.valueOf(data.getString("laba_bersih")), "Laba Bersih", date);
+    //                         found = true;
+    //                         break;
+    //                     }
+    //                 }
+    //                 if (!found) {
+    //                     categoryDataset.addValue(0, "Pendapatan", date);
+    //                     categoryDataset.addValue(0, "Pengeluaran", date);
+    //                     categoryDataset.addValue(0, "Laba Bersih", date);
+    //                 }
+    //                 data.beforeFirst(); // reset result set to beginning
+    //             }
+    //             /**
+    //              * Remove the control of legend spacing
+    //              */
+    //             lineChart.setLegendRenderer(new ChartLegendRenderer());
+
+    //             lineChart.setCategoryDataset(categoryDataset);
+    //             lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"), Color.decode("#34d399"));
+
+    // //            tahunn.setText(String.valueOf(tahunSekarang));
+    //             JLabel header = new JLabel("Laporan Tahun " + String.valueOf(tahunSekarang));
+    //             header.putClientProperty(FlatClientProperties.STYLE, ""
+    //                     + "font:+1;"
+    //                     + "border:0,0,5,0");
+    //             header.setFont(new Font("Poppins", Font.BOLD, 16));
+
+    //             lineChart.setHeader(header);
+    //         } catch (SQLException ex) {
+    //             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
+    //         }
+    //     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chartsinglebar.Chart chart2;
     private javax.swing.JPanel chart_panel;

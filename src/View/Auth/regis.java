@@ -14,6 +14,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
 import Config.DB;
+import Helper.Auth;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -82,7 +83,7 @@ public class regis extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(405, 256));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Copyright © 2023 Namaku");
+        jLabel4.setText("Copyright © 2023 SISKA");
 
         login_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -108,18 +109,16 @@ public class regis extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 29, Short.MAX_VALUE)
-                .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +127,9 @@ public class regis extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(minimize, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(login_image, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(85, 85, 85)
                 .addComponent(jLabel4)
                 .addGap(32, 32, 32))
         );
@@ -246,42 +245,36 @@ public class regis extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nohp)
-                                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nama_lengkap)
-                                            .addComponent(alamat)))
-                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(146, 146, 146)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(88, 88, 88)
-                                        .addComponent(btn_regis, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 95, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nohp)
+                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(alamat, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                    .addComponent(nama_lengkap)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(btn_regis, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(110, 110, 110)
-                        .addComponent(logoappss, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(logoappss, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(logoappss, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,6 +344,18 @@ public class regis extends javax.swing.JFrame {
             String alamatTxt = alamat.getText();
             String passTxt = password.getText();
 
+            if (usernameTxt.equals("") || nohpTxt.equals("") || fullnameTxt.equals("") || alamatTxt.equals("") || passTxt.equals("")) {
+                JOptionPane.showMessageDialog(null, "Field tidak boleh kosong");
+                return;
+            }
+            if (passTxt.length() < 8) {
+                JOptionPane.showMessageDialog(null, "Password minimal 8 karakter");
+                return;
+            }
+            if (nohpTxt.length() < 12) {
+                JOptionPane.showMessageDialog(null, "Nomor telepon minimal 8 karakter");
+                return;
+            }
             ResultSet data = DB.query("SELECT * from users where username =  '" + usernameTxt + "'");
             if (!data.next()) {
                 if (!nohpTxt.matches("(^\\+62|0)(\\d{8,15})$")) {
@@ -431,14 +436,14 @@ public class regis extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-         try {
+        try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
-           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.height", 40);
             UIManager.put("TableHeader.hoverForeground", Color.white);
-            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
-            UIManager.put("TableHeader.background", new Color(58,98,215));
-            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("TableHeader.hoverBackground", new Color(58, 98, 215));
+            UIManager.put("TableHeader.background", new Color(58, 98, 215));
+            UIManager.put("TableHeader.foreground", new Color(255, 255, 255));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
@@ -457,16 +462,21 @@ public class regis extends javax.swing.JFrame {
             UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
             UIManager.put("Component.arrowType", "triangle");
-            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
+            UIManager.put("TabbedPane.selectedBackground", new Color(58, 98, 215));
 
         } catch (Exception e) {
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    ResultSet dara = DB.query("select count(*) from users where role='owner'");
-                    if (dara.next()) {
+                Auth auth = new Auth();
+                if (auth.check()) {
+                new Main.Main().setVisible(true);
+
+                } else {
+                     try {
+                        ResultSet dara = DB.query("select count(*) from users where role='owner'");
+                        if (dara.next()) {
 
                         if (dara.getInt(1) > 0) {
                             new login().setVisible(true);
@@ -474,15 +484,15 @@ public class regis extends javax.swing.JFrame {
 
                         } else {
                             new regis().setVisible(true);
-
                         }
-
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(regis.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(regis.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        });
+        }
+        );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -101,8 +101,11 @@ public class TransaksiPenjualanController  extends Controller{
                 }
                 
                 if (stok > 0) {
-                    Object[] data = { datas.getString("kode_obat"), datas.getString("nama_obat"),
-                            datas.getString("harga"), datas.getString("satuan"), stok };
+                    String harga = Helper.Currency.format(datas.getInt("harga"));
+                    Object[] data = {
+                        datas.getString("kode_obat"), datas.getString("nama_obat"),
+                            harga, datas.getString("satuan"),
+                            stok };
                     model.addRow(data);
                 }
             }
@@ -120,9 +123,14 @@ public class TransaksiPenjualanController  extends Controller{
        int rowSelect = view.getTableCari().getSelectedRow();
        int columnCount = view.getTableCari().getColumnCount();
        String[] arrData = new String[columnCount];
-        for (int i = 0; i < columnCount; i++) {
-            String value = view.getTableCari().getValueAt(rowSelect, i).toString();
-            arrData[i] = value;
+       for (int i = 0; i < columnCount; i++) {
+           if (i == 2) {
+                String value =String.valueOf( Helper.Currency.deformat(view.getTableCari().getValueAt(rowSelect, i).toString()));
+                arrData[i] = value;
+           } else {
+                String value = view.getTableCari().getValueAt(rowSelect, i).toString();
+                arrData[i] = value;
+            }
         }
         
         //arrData index info
@@ -203,7 +211,7 @@ public class TransaksiPenjualanController  extends Controller{
                 return;
             }
             if (view.getTable().getRowCount() == 0) {
-                Notification.showInfo("Silahkan masukkan barang yang akan di beli", view.getTable());
+                Notification.showInfo("Silahkan masukkan obat yang akan di jual", view.getTable());
                 return;
             }
             Auth user = new Auth();
@@ -227,7 +235,6 @@ public class TransaksiPenjualanController  extends Controller{
                 
                 ResultSet detailObat = DB.query("SELECT * from data_stok_obat where kode_obat = '" + kodeObat + "' AND status_kadaluarsa = 0 order by tanggal_masuk asc");
                 int qtySisa = Integer.parseInt(qtyTotal);
-
                 //mengurangi qty dengan metode fifo 
                 while (detailObat.next()) {
 
@@ -239,23 +246,28 @@ public class TransaksiPenjualanController  extends Controller{
                         String qtyObat = String.valueOf(qtySisa);
                         int subTotalObt = qtySisa * Integer.parseInt(harga); 
                         String subTotalObat = String.valueOf(subTotalObt);
-                    String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat ,idSatuan, detailObat.getString("id")};
-                    detailPenjualanModel.insert(field, value);
+                        String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat, idSatuan,
+                        detailObat.getString("id") };
+                       
+                        detailPenjualanModel.insert(field, value);
                         break;
                     } else {
-                        qtySisa = qtySisa - detailObat.getInt("jumlah_obat");
+                        
                         DB.query2("UPDATE detail_obat set jumlah_obat = 0   where no_batch  = '"
                                 + detailObat.getString("id") + "'");
                         String[] field = { "kode_transaksi", "kode_obat", "harga", "qty", "subtotal", "id_satuan",
                                 "no_batch" };  
-                        String qtyObat = String.valueOf(qtySisa);
-                        int subTotalObt = qtySisa * Integer.parseInt(harga); 
+                        String qtyObat = String.valueOf(detailObat.getInt("jumlah_obat"));
+
+                        
+                        int subTotalObt = Integer.parseInt(qtyObat) * Integer.parseInt(harga); 
                         String subTotalObat = String.valueOf(subTotalObt);
-                    String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat ,idSatuan, detailObat.getString("id")};
-                    detailPenjualanModel.insert(field, value);
+                        String[] value = { kodeTrx, kodeObat, harga, qtyObat, subTotalObat ,idSatuan, detailObat.getString("id")};
+                        detailPenjualanModel.insert(field, value);
+                        qtySisa = qtySisa - detailObat.getInt("jumlah_obat");
                     }
                 
-                    
+                
                 }
             }
             

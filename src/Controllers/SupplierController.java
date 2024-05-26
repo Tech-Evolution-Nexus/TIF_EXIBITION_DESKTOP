@@ -111,13 +111,15 @@ public class SupplierController  extends Controller{
         try {
             ResultSet checkNoTlp = model.where("nomor_telepon", "=", notlp).andWhere("kode_suplier", "<>", idEdit).get();
            ResultSet cekNamaSuplier = model.where("nama_suplier", "=", namaSuplier).andWhere("kode_suplier", "<>", idEdit).get();
-            if (cekNamaSuplier.next()) {
+            if (namaSuplier.equals("") || alamat.equals("") || notlp.equals("")) {
+                Notification.showError(Notification.EMPTY_VALUE, view.getForm());
+
+            } else if (cekNamaSuplier.next()) {
                 Notification.showError("Nama suplier sudah ada", view.getForm());
             }else if (checkNoTlp.next()) {
                 Notification.showError("No telepon sudah ada", view.getForm());
-            }  else if (namaSuplier.equals("") || alamat.equals("") || notlp.equals("")) {
-                Notification.showError(Notification.EMPTY_VALUE, view.getForm());
-
+            } else if (!notlp.matches("(0\\d{11,13})")) {
+                Notification.showError("Nomor telepon tidak valid ", view.getForm());
             } else {
                 String kodeSp = codeTRX;
                 String[] fields= {"kode_suplier","nama_suplier","alamat","nomor_telepon"};

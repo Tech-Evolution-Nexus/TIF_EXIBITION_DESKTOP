@@ -109,8 +109,8 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
 
-
         Auth auth = new Auth();
+        
          try {
              if (auth.check()) {
                  role =auth.getRole();
@@ -170,6 +170,12 @@ public class Main extends javax.swing.JFrame {
         dialog2.setBorderPainted(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel4.setForeground(new java.awt.Color(245, 246, 250));
 
@@ -307,6 +313,10 @@ public class Main extends javax.swing.JFrame {
         showLogout();
     }//GEN-LAST:event_usernameMouseClicked
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+//        editshift();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -372,7 +382,7 @@ public class Main extends javax.swing.JFrame {
     private Object[][] menu_list_data_owner = {
         {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},
         {"icf_obat.svg", "icn_obat.svg", "<html> Medicine <b>&#8595;</b> </html>", "Data Obat", childObat},
-        {"icf_supplier.svg", "icn_supplier.svg", "Supplier", "Data Suplier", kosong},
+        {"icf_supplier.svg", "icn_supplier.svg", "Supplier", "Data Supplier", kosong},
         {"icf_kategori.svg", "icn_kategori.svg", "Category", "Data Categori", kosong},
         {"icf_trx.svg", "icn_trx.svg", "<html>Transaction <b>&#8595;</b></html>", "Transaksi", childTransaksi},
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
@@ -607,13 +617,15 @@ public class Main extends javax.swing.JFrame {
                     if (p.next()) {
                         int hasil = saldowal + p.getInt("total_harga");
                         DB.query2("UPDATE shift SET saldo_akhir_kas = '" + hasil + "',waktu_tutup = curtime(),total_penjualan = '" + p.getString("total_penjualan") + "',total_pembayaran = '" + p.getString("total_harga") + "' WHERE  id = '" + idshift + "';");
+                               Auth auth = new Auth();
+                               auth.Clear();
                         dispose();
                         new login().setVisible(true);
                     }
 
                 } else {
                     System.out.println("t");
-                    dispose();
+//                    dispose();
                     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
                 }
             }
