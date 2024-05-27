@@ -522,6 +522,7 @@
             </Component>
             <Component class="Components.CustomField" name="cariObat">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cariObatActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cariObatKeyReleased"/>
               </Events>
               <AuxValues>

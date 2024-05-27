@@ -171,7 +171,7 @@ public class ObatController extends Controller {
             String kunci = view.getSearch().getText();
             ResultSet data = DB.query("SELECT * FROM data_obat   order by tanggal_dibuat desc,jumlah_obat desc");
             if (cari) {
-                data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%' OR kode_obat LIKE '%" + kunci + "%' OR kandungan LIKE '%" + kunci + "%'  order by tanggal_dibuat desc,jumlah_obat desc");
+                data = DB.query("SELECT * FROM data_obat where data_obat.nama_obat like '%" + kunci + "%' OR kode_obat LIKE '%" + kunci + "%' OR kandungan LIKE '%" + kunci + "%'  order by tanggal_dibuat  desc");
 
             }
             DefaultTableModel tabelData = (DefaultTableModel) view.getTable().getModel();

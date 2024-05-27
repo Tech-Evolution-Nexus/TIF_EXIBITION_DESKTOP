@@ -110,13 +110,10 @@ public class Main extends javax.swing.JFrame {
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
         cardLayout.show(main, "Home");
-//        setExtendedState((Main.MAXIMIZED_BOTH));0
         if (screenWidth > 1366 && screenHeight >= 768) {
-
             setPreferredSize(new Dimension(1366, 768));
             pack();
         } else {
-
             setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
 //setPreferredSize(new Dimension(1500, 1000));

@@ -293,6 +293,11 @@ public class PenjualanView extends javax.swing.JPanel {
         });
 
         cariObat.setPlaceholder("Kode Obat / nama obat");
+        cariObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariObatActionPerformed(evt);
+            }
+        });
         cariObat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cariObatKeyReleased(evt);
@@ -557,6 +562,10 @@ public class PenjualanView extends javax.swing.JPanel {
       requestFocusInWindow();
         cariObat.requestFocus();
     }//GEN-LAST:event_formAncestorAdded
+
+    private void cariObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariObatActionPerformed
+        System.out.println("tesss3");
+    }//GEN-LAST:event_cariObatActionPerformed
 
     public void reset() {
 
