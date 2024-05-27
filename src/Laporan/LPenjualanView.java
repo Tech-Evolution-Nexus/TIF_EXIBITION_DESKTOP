@@ -76,11 +76,11 @@ public class LPenjualanView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "No", "Nama Obat", "Harga", "Jumlah Obat", "Subtotal"
+                "No", "Nama Obat", "Harga", "Jumlah Obat", "Tuslah", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -101,31 +101,28 @@ public class LPenjualanView extends javax.swing.JPanel {
             TBLdetail_1.getColumnModel().getColumn(3).setMinWidth(120);
             TBLdetail_1.getColumnModel().getColumn(3).setPreferredWidth(120);
             TBLdetail_1.getColumnModel().getColumn(3).setMaxWidth(120);
-            TBLdetail_1.getColumnModel().getColumn(4).setMinWidth(150);
-            TBLdetail_1.getColumnModel().getColumn(4).setPreferredWidth(100);
-            TBLdetail_1.getColumnModel().getColumn(4).setMaxWidth(150);
+            TBLdetail_1.getColumnModel().getColumn(4).setMinWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(4).setMaxWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(5).setMinWidth(150);
+            TBLdetail_1.getColumnModel().getColumn(5).setPreferredWidth(100);
+            TBLdetail_1.getColumnModel().getColumn(5).setMaxWidth(150);
         }
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Kode Transaksi");
 
         txtkodetransaksi.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
-        txtkodetransaksi.setForeground(new java.awt.Color(0, 0, 0));
         txtkodetransaksi.setText("TRS00001");
 
         tgltrx.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
-        tgltrx.setForeground(new java.awt.Color(0, 0, 0));
         tgltrx.setText("20-23-2002");
 
         jLabel17.setBackground(new java.awt.Color(0, 0, 0));
         jLabel17.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Total Obat");
 
         value_tot_obat.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
-        value_tot_obat.setForeground(new java.awt.Color(0, 0, 0));
         value_tot_obat.setText("0");
 
         jLabel19.setBackground(new java.awt.Color(0, 0, 0));
@@ -201,7 +198,6 @@ public class LPenjualanView extends javax.swing.JPanel {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Poppins", 1, 19)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Detail Transaksi Penjualan");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);

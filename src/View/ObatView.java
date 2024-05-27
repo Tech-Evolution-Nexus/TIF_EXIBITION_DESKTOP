@@ -743,8 +743,6 @@ public class ObatView extends javax.swing.JPanel {
     }//GEN-LAST:event_searchKeyReleased
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
-          
-        
     }//GEN-LAST:event_formAncestorAdded
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed

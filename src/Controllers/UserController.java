@@ -163,9 +163,18 @@ public class UserController extends Controller {
                         DB.query2("INSERT INTO users (no_hp,nama,alamat,username,password,role,rfid)Values ('" + notlp + "','" + nama + "','" + alamat + "','" + username + "','" + password + "','" + role + "','" + rfid + "')");
                     }
                 } else {
-                    DB.query2("UPDATE users SET no_hp = '" + notlp + "', nama = '" + nama + "', alamat = '" + alamat + "', username = '" + username + "', password = '" + password + "', role = '" + role + "' WHERE id = '" + idEdit + "'");
-                    status = 1;
-                    idEdit = -1;
+
+                     if (!rfid.isEmpty()) {
+                         DB.query2("UPDATE users SET rfid='" + rfid + "', no_hp = '" + notlp + "', nama = '" + nama + "', alamat = '"
+                                 + alamat + "', username = '" + username + "', password = '" + password + "', role = '"
+                                 + role + "' WHERE id = '" + idEdit + "'");
+                     } else {
+                         DB.query2("UPDATE users SET no_hp = '" + notlp + "', nama = '" + nama + "', alamat = '"
+                                 + alamat + "', username = '" + username + "', password = '" + password + "', role = '"
+                                 + role + "' WHERE id = '" + idEdit + "'");
+                     }
+                     status = 1;
+                         idEdit = -1;
                 }
                 JOptionPane.showMessageDialog(view.getForm(), "Data Berhasil Di Simpan");
 
