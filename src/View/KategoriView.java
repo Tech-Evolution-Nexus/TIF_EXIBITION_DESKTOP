@@ -96,6 +96,11 @@ public class KategoriView extends javax.swing.JPanel {
         jLabel4.setText("Bentuk Tuslah(Optional)");
 
         selectbentuktuslah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "bulat", "persen" }));
+        selectbentuktuslah.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectbentuktuslahItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -332,6 +337,11 @@ public class KategoriView extends javax.swing.JPanel {
         
 
     }//GEN-LAST:event_txttuslahKeyTyped
+
+    private void selectbentuktuslahItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectbentuktuslahItemStateChanged
+     
+        txttuslah.setText("");
+    }//GEN-LAST:event_selectbentuktuslahItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

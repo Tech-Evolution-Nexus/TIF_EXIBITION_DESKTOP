@@ -11,6 +11,7 @@ package Controllers;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
+import Helper.Notification;
 import Laporan.LPembelianView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.io.FileOutputStream;
@@ -65,7 +66,6 @@ public class LaporanPembelianController {
         this.jdata4 = (JCalendarComboBox) com[7];
     }
 
-    
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -105,14 +105,12 @@ public class LaporanPembelianController {
         }
     }
 
-    
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-    
     public void hapusData(Object[] object) {
         try {
             int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
@@ -169,7 +167,6 @@ public class LaporanPembelianController {
         }
     }
 
-    
     public void simpanData(Object[] object) {
         JTextField namaKategoriField = (JTextField) object[0];
         String namaKategori = namaKategoriField.getText();
@@ -214,7 +211,6 @@ public class LaporanPembelianController {
         form.setVisible(true);
     }
 
-    
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -259,6 +255,11 @@ public class LaporanPembelianController {
     }
 
     public void detail() {
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            Notification.showError(Notification.NO_DATA_SELECTED_INFO, null);
+            return;
+        }
         try {
             int no = 1;
             String Kodetrx1 = table.getValueAt(table.getSelectedRow(), 1).toString();
@@ -286,14 +287,15 @@ public class LaporanPembelianController {
                 no++;
             }
             //
-            
-               form.pack();
+
+            form.pack();
             form.setLocationRelativeTo(null);
             form.setVisible(true);
         } catch (Exception e) {
             Logger.getLogger(LPembelianView.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
     public void export() {
         try {
             // Koneksi ke database

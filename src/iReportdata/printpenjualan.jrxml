@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="164" pageHeight="283" whenNoDataType="AllSectionsNoDetail" columnWidth="154" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="ac2d1a46-718c-4856-a7ac-1da5c74f49c2">
 	<property name="ireport.zoom" value="2.8531167061100238"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="116"/>
+	<property name="ireport.y" value="115"/>
 	<subDataset name="New Dataset 1" uuid="50e9c4e1-6bd7-438e-bf7a-25a89045a39c">
 		<queryString language="SQL">
 			<![CDATA[SELECT * FROM `printerview`  where kode_transaksi='TRJ0000001']]>
@@ -183,7 +183,7 @@
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[( $F{tuslah}.contains(".") ? $F{tuslah}+"%"  : "Rp." + $F{tuslah} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[( $F{tuslah}.toString().contains(".") ? $F{tuslah} + "%" : "Rp." + $F{tuslah} )]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

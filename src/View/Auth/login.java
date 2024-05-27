@@ -392,6 +392,8 @@ public class login extends javax.swing.JFrame {
                 String[] dataArray = {query.getString("id"), query.getString("nama"), query.getString("username"), query.getString("role")};
                 JSONArray jsonArray = new JSONArray(dataArray);
                 userPreferences.put("localLogin", jsonArray.toString());
+                userPreferences.put("sesionsetingg", "58");
+
                 modalrfid.setVisible(false);
                 dispose();
                 new SaldoKasAwal().setVisible(true);
@@ -494,7 +496,7 @@ public class login extends javax.swing.JFrame {
                         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
                         String[] dataArray = {login.getString("id"), login.getString("nama"), login.getString("username"), login.getString("role")};
                         JSONArray jsonArray = new JSONArray(dataArray);
-                        
+
                         userPreferences.put("localLogin", jsonArray.toString());
                         userPreferences.put("sesionsetingg", "58");
                         dispose();
