@@ -43,9 +43,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="35" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="187" height="32" uuid="f64ddf8e-cdf0-4131-803f-dfc03c9d83ea">
+				<reportElement x="0" y="0" width="187" height="17" uuid="f64ddf8e-cdf0-4131-803f-dfc03c9d83ea">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -56,9 +56,9 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="34" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="187" height="34" uuid="e744c6ab-8790-4d32-94c1-c4875e00d37d">
+				<reportElement x="0" y="0" width="187" height="19" uuid="e744c6ab-8790-4d32-94c1-c4875e00d37d">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -69,7 +69,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<textField>
 				<reportElement x="101" y="0" width="86" height="22" uuid="34885232-dd63-496f-a9ca-051ef907ce52"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -92,78 +92,61 @@
 				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="27" width="187" height="1" uuid="dbed8ef9-3ec9-4c8b-aafa-a9f782d537d9"/>
+				<reportElement x="0" y="26" width="187" height="1" uuid="dbed8ef9-3ec9-4c8b-aafa-a9f782d537d9"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="45" splitType="Stretch">
-			<staticText>
-				<reportElement x="20" y="19" width="8" height="11" uuid="c118826d-eea4-4ec6-9f38-da842aaef8f7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[X]]></text>
-			</staticText>
+		<band height="46" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="43" width="187" height="1" uuid="e0ea45eb-0ecf-4a00-bb91-9cf2022a5f9e"/>
+			</line>
 			<textField>
-				<reportElement x="39" y="30" width="62" height="11" uuid="58008a70-83d2-4c7c-8d28-b2db33460761"/>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{tuslah}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="19" width="20" height="11" uuid="5525c066-fdd3-4826-9840-d94c67190518"/>
+				<reportElement x="0" y="19" width="24" height="11" uuid="d6d683e6-2faf-477f-a02c-4dc372b7f32f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qty}+" X"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="30" width="30" height="11" uuid="d2c9a3b3-01fc-4c1b-befd-6cabfbabf1aa"/>
+				<reportElement x="0" y="30" width="30" height="11" uuid="93dd5f81-c2d3-4485-8134-5a2b615ae244">
+					<printWhenExpression><![CDATA[$F{tuslah}.equals("0") ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Tuslah :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="135" y="19" width="52" height="11" uuid="f8099506-2e82-427b-98a6-8224fe16a3a4"/>
+			<textField pattern="#,##0">
+				<reportElement x="111" y="19" width="76" height="11" uuid="ca854fe3-cc29-4257-b58e-c5ebf1f73bae"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rp."+$F{subtotal}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="28" y="19" width="11" height="11" uuid="5f86c5d4-b2f0-4edd-8390-f388d6c93bc3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+			<textField pattern="">
+				<reportElement x="32" y="30" width="69" height="11" uuid="bf7e1afc-211a-4ac4-8e13-c65e95ef988e">
+					<printWhenExpression><![CDATA[$F{tuslah}.equals("0") ? Boolean.FALSE : Boolean.TRUE]]></printWhenExpression>
+				</reportElement>
+				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="39" y="19" width="62" height="11" uuid="f9e43b2d-eba4-4e6c-88b6-6c4a90f689da"/>
+				<textFieldExpression><![CDATA[( $F{tuslah}.toString().contains(".") ? $F{tuslah} + "%" : "Rp." + $F{tuslah} )]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="24" y="19" width="77" height="11" uuid="0ec73fe3-1321-4e72-8f16-1e082b7882ba"/>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Rp."+$F{harga}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="123" y="19" width="11" height="11" uuid="b00ec413-3036-4236-84bd-af37853c4499"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="0" y="0" width="101" height="19" uuid="87c0516e-01af-480a-8c41-563375e33337"/>
+				<reportElement x="0" y="0" width="101" height="19" uuid="71dc653b-346e-4e72-9824-cf791b787c11"/>
 				<textElement>
 					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama_obat}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="43" width="187" height="1" uuid="e0ea45eb-0ecf-4a00-bb91-9cf2022a5f9e"/>
-			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -175,14 +158,14 @@
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="135" y="27" width="52" height="11" uuid="ce20a0c3-cac7-4310-bd43-9923379a8bbc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kembalian}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="135" y="1" width="52" height="11" uuid="d0118860-1855-4eea-9505-8ff496d8fcdc"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
@@ -210,7 +193,7 @@
 				</textElement>
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0">
 				<reportElement x="135" y="14" width="52" height="11" uuid="a6492b2f-3095-413f-9992-56f7c4d423fd"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>

@@ -47,19 +47,20 @@ public class KategoriController extends Controller {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        view.getTxttuslah().addKeyListener(new KeyAdapter() {
+        view.getTxttuslah().addKeyListener(new java.awt.event.KeyAdapter() {
+
             private final Pattern decimalPattern = Pattern.compile("\\d*\\.?\\d*");
 
-            public void KeyTyped(KeyEvent e) {
+            public void keyTyped(java.awt.event.KeyEvent e) {
                 String txtselect = view.getSelectbentuktuslah().getSelectedItem().toString();
                 char c = e.getKeyChar();
-                String text =view.getTxttuslah().getText();
-                if (txtselect.equals("persen")) {
-                    // Cek panjang input untuk maksimal 4 karakter
-                    if (text.length() >= 4) {
-                        e.consume(); // Membatasi panjang input maksimal 4 karakter
-                    } // Cek apakah karakter adalah digit atau titik desimal
-                    else if (!Character.isDigit(c) && c != '.' && c != KeyEvent.VK_BACK_SPACE) {
+                String text = view.getTxttuslah().getText();
+                double value = Double.parseDouble(text + c);
+
+                if (txtselect.equals(
+                        "persen")) {
+                    // Cek apakah karakter adalah digit atau titik desimal
+                    if (!Character.isDigit(c) && c != '.' && c != KeyEvent.VK_BACK_SPACE) {
                         e.consume(); // Hanya mengizinkan angka dan titik desimal
                     } // Cek apakah sudah ada titik desimal
                     else if (c == '.' && text.contains(".")) {
@@ -74,7 +75,8 @@ public class KategoriController extends Controller {
                     }
                 }
             }
-        });
+        }
+        );
 
     }
 
@@ -139,13 +141,18 @@ public class KategoriController extends Controller {
         String namaKategori = view.getNamaKategori().getText();
         String tuslah = view.getTxttuslah().getText();
         String bentuk = view.getSelectbentuktuslah().getSelectedItem().toString();
-
         try {
             ResultSet namaExist = model.where("nama_kategori", "=", namaKategori).andWhere("id", "<>", idEdit).get();
             if (namaExist.next()) {
                 Notification.showError("Nama kategori sudah ada", view.getForm());
-            } else if (namaKategori.equals("")) {
+            } else if (namaKategori.equals("") || tuslah.equals("")) {
                 Notification.showError(Notification.EMPTY_VALUE, view.getForm());
+            } else if (bentuk.equals("persen")) {
+                double value = Double.parseDouble(tuslah);
+
+                if (value < 0 || value > 100) {
+                    Notification.showError("Hanya Bisa 0-100", view.getForm());
+                }
             } else {
                 String[] fields = {"nama_kategori", "tuslah", "tipe"};
                 String[] values;

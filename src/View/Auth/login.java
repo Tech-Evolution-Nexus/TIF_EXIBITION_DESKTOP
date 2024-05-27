@@ -58,7 +58,7 @@ public class login extends javax.swing.JFrame {
     public login() {
 
         initComponents();
-        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
         ImageIcon img = images("/Asset_login/login-anyaran.png", 380, 380);
         login_image.setIcon(img);
 
@@ -332,7 +332,6 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFocusLost
 
     private void btn_rfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rfidActionPerformed
-
         modalrfid.pack();
         modalrfid.setLocationRelativeTo(null);
         modalrfid.setVisible(true);
@@ -384,7 +383,7 @@ public class login extends javax.swing.JFrame {
     private void txtrfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrfidActionPerformed
         try {
             if (txtrfid.getText().isEmpty()) {
-                                modalrfid.dispose();
+                modalrfid.dispose();
                 JOptionPane.showMessageDialog(this, "User Belum Terdaftar");
             }
             ResultSet query = DB.query("SELECT * FROM users WHERE rfid = '" + txtrfid.getText() + "'");
@@ -393,11 +392,13 @@ public class login extends javax.swing.JFrame {
                 String[] dataArray = {query.getString("id"), query.getString("nama"), query.getString("username"), query.getString("role")};
                 JSONArray jsonArray = new JSONArray(dataArray);
                 userPreferences.put("localLogin", jsonArray.toString());
+                userPreferences.put("sesionsetingg", "58");
+
                 modalrfid.setVisible(false);
                 dispose();
                 new SaldoKasAwal().setVisible(true);
             } else {
-                                                modalrfid.dispose();
+                modalrfid.dispose();
 
                 JOptionPane.showMessageDialog(this, "User Belum Terdaftar");
 
@@ -414,16 +415,16 @@ public class login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-      
+
         //</editor-fold>
-       try {
+        try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
-           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.height", 40);
             UIManager.put("TableHeader.hoverForeground", Color.white);
-            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
-            UIManager.put("TableHeader.background", new Color(58,98,215));
-            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("TableHeader.hoverBackground", new Color(58, 98, 215));
+            UIManager.put("TableHeader.background", new Color(58, 98, 215));
+            UIManager.put("TableHeader.foreground", new Color(255, 255, 255));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
@@ -442,7 +443,7 @@ public class login extends javax.swing.JFrame {
             UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
             UIManager.put("Component.arrowType", "triangle");
-            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
+            UIManager.put("TabbedPane.selectedBackground", new Color(58, 98, 215));
 
         } catch (Exception e) {
         }
@@ -495,7 +496,9 @@ public class login extends javax.swing.JFrame {
                         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
                         String[] dataArray = {login.getString("id"), login.getString("nama"), login.getString("username"), login.getString("role")};
                         JSONArray jsonArray = new JSONArray(dataArray);
+
                         userPreferences.put("localLogin", jsonArray.toString());
+                        userPreferences.put("sesionsetingg", "58");
                         dispose();
                         new SaldoKasAwal().setVisible(true);
                     } else {

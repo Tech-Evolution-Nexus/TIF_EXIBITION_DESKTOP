@@ -4,19 +4,25 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/iReportdata/printpenjualan.jrxml</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/Main.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/PenjualanView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/LaporanPenjualanController.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ReturPenjualanView.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/ObatView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/PengeluaranView.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/TransaksiPembelianController.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Main/DashboardView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/iReportdata/printpenjualana80.jrxml</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Helper/Auth.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Config/DB.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/StokOpnameView.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/PembelianView.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/PengeluaranController.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/ReturnPenjualanController.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/KategoriView.java</file>
             <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/Controllers/KategoriController.java</file>
+            <file>file:/D:/New%20folder%20-%20Copy/TIF_EXIBITION_DESKTOP%20-%20Copy%20-%20Copy/src/View/Auth/login.java</file>
         </group>
     </open-files>
 </project-private>

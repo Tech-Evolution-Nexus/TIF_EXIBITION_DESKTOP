@@ -9,8 +9,10 @@ package Controllers;
  * @author Muhammad Nor Kholit
  */
 import Config.DB;
+import Helper.Auth;
 import Helper.Currency;
 import Helper.FormatTanggal;
+import Helper.Notification;
 import Laporan.LPenjualanView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.io.FileOutputStream;
@@ -46,7 +48,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LaporanPenjualanController{
+public class LaporanPenjualanController {
 
     ArrayList<String> datat = new ArrayList<>();
     private int idEdit;
@@ -82,7 +84,6 @@ public class LaporanPenjualanController{
 
     }
 
-   
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -129,14 +130,12 @@ public class LaporanPenjualanController{
         }
     }
 
-   
     public void tambahData(Object[] object) {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
     }
 
-   
     public void hapusData(Object[] object) {
         try {
             int confirm = JOptionPane.showConfirmDialog(table, "Yakin menghapus data?");
@@ -193,7 +192,6 @@ public class LaporanPenjualanController{
         }
     }
 
-   
     public void simpanData(Object[] object) {
         JTextField namaKategoriField = (JTextField) object[0];
         String namaKategori = namaKategoriField.getText();
@@ -238,12 +236,16 @@ public class LaporanPenjualanController{
         form.setVisible(true);
     }
 
-   
     public void updateData(Object[] object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void showDetail() {
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            Notification.showError(Notification.NO_DATA_SELECTED_INFO, null);
+            return;
+        }
         try {
             int no = 1;
             String kodeTrx = table.getValueAt(table.getSelectedRow(), 1).toString();
@@ -265,18 +267,26 @@ public class LaporanPenjualanController{
             value_kem.setText(Currency.format(Integer.parseInt(kembali.trim())));
 
 //            System.out.println("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
-            ResultSet DBSetup = DB.query("SELECT max(nama_obat) as nama_obat,max(harga) as harga,sum(qty) as qty,sum(subtotal) as subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat  where kode_transaksi='" + kodeTrx + "' GROUP BY obat.kode_obat,detail_penjualan.id_satuan");
+            ResultSet DBSetup = DB.query("SELECT max(nama_obat) as nama_obat,max(harga) as harga,sum(qty) as qty,MAX(tuslah) AS tuslah,sum(subtotal) as subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat  where kode_transaksi='" + kodeTrx + "' GROUP BY obat.kode_obat,detail_penjualan.id_satuan");
 //            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
 
             DefaultTableModel table1 = (DefaultTableModel) TBLdetail_1.getModel();
             table1.setRowCount(0);
             while (DBSetup.next()) {
-                System.out.println(DBSetup.getString("qty"));
+                String tuslah = "";
+                if (DBSetup.getString("tuslah").equals("0")) {
+                    tuslah = "";
+                } else if (DBSetup.getString("tuslah").contains(".")) {
+                    tuslah = DBSetup.getString("tuslah") + "%";
+                } else {
+                    tuslah = Currency.format(DBSetup.getInt("tuslah"));
+                }
                 Object[] data = {
                     no++,
                     DBSetup.getString("nama_obat"),
                     Currency.format(DBSetup.getInt("harga")),
                     DBSetup.getString("qty"),
+                    tuslah,
                     Currency.format(DBSetup.getInt("subtotal"))
 
                 };
@@ -391,11 +401,20 @@ public class LaporanPenjualanController{
     }
 
     public void Printer() {
-
+        int row = table.getSelectedRow();
+        if (row < 0) {
+            Notification.showError(Notification.NO_DATA_SELECTED_INFO, null);
+            return;
+        }
         String kodeTrx = table.getValueAt(table.getSelectedRow(), 1).toString();
         try {
-            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = '"+kodeTrx+"'";
-            String path = "src/iReportdata/printpenjualan.jrxml";
+            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = '" + kodeTrx + "'";
+            String path = null;
+            if (new Auth().getUkurankertas().equals("58")) {
+                path = "src/iReportdata/printpenjualan.jrxml";
+            } else {
+                path = "src/iReportdata/printpenjualana80.jrxml";
+            }
             JasperDesign jasperDesign = JRXmlLoader.load(path);
 
             // Membuat objek JRDesignQuery
@@ -414,8 +433,9 @@ public class LaporanPenjualanController{
             // Menampilkan laporan (opsional)
             JasperViewer viewer = new JasperViewer(jasperPrint, false);
             viewer.setVisible(true);
-            
+
         } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, ex);
             Logger.getLogger(View.PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
