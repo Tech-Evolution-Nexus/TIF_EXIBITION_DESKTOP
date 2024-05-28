@@ -162,7 +162,7 @@ public class SuplierView extends javax.swing.JPanel {
             }
         });
 
-        search.setPlaceholder("Cari User");
+        search.setPlaceholder("Cari Supplier");
         search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchKeyReleased(evt);

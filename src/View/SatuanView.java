@@ -53,13 +53,10 @@ public class SatuanView extends javax.swing.JPanel {
         panel.setBackground(new java.awt.Color(255, 255, 255));
 
         titleForm.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        titleForm.setForeground(new java.awt.Color(0, 0, 0));
         titleForm.setText("Tambah Data Satuan");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nama Satuan*");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Keterangan");
 
         namaSatuan.setPlaceholder("Masukkan Nama Satuan");
@@ -157,7 +154,7 @@ public class SatuanView extends javax.swing.JPanel {
             }
         });
 
-        search.setPlaceholder("Cari Satuan obat  ");
+        search.setPlaceholder("Cari Satuan obat");
         search.setIcon("Assets/svg/searchIcon.svg");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
