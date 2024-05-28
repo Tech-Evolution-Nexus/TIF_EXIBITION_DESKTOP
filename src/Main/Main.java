@@ -30,6 +30,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 
 import App.Model.DetailObatModel;
 import App.Model.ObatModel;
+import Helper.Notification;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -171,6 +172,26 @@ public class Main extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         selectkertas = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        kastutupmodal = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtkas = new javax.swing.JLabel();
+        txttrxtunai = new javax.swing.JLabel();
+        txtharapan = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1s = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtselisih = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -267,6 +288,182 @@ public class Main extends javax.swing.JFrame {
         settingmodalLayout.setVerticalGroup(
             settingmodalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Informasi Tutup Kasir");
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setText("Total Kas");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel5.setText("Total Transaksi Tunai");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setText("Jumlah Tunai Yang Di Harapkan");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel10.setText("Penerimaan Sistem");
+
+        txtkas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtkas.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        txtkas.setText("Total Kas");
+
+        txttrxtunai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txttrxtunai.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        txttrxtunai.setText("t");
+
+        txtharapan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtharapan.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        txtharapan.setText("Total Kas");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtkas, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txttrxtunai, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtharapan, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtkas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txttrxtunai))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtharapan))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel11.setText("Penerimaan Aktual Di Kasir");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setText("Jumlah Tunai Di kasir");
+
+        jTextField1s.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1sKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1sKeyTyped(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Penerimaan Aktual - Penerimaan sistem ");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setText("Selisih");
+
+        txtselisih.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtselisih.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField1s)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtselisih, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1s, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtselisih, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addGap(17, 17, 17))
+        );
+
+        jButton2.setText("Tutup Kasir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout kastutupmodalLayout = new javax.swing.GroupLayout(kastutupmodal.getContentPane());
+        kastutupmodal.getContentPane().setLayout(kastutupmodalLayout);
+        kastutupmodalLayout.setHorizontalGroup(
+            kastutupmodalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kastutupmodalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        kastutupmodalLayout.setVerticalGroup(
+            kastutupmodalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kastutupmodalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -427,6 +624,29 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        editshift();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1sKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1sKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != evt.VK_BACK_SPACE) {
+            evt.consume(); // Hanya mengizinkan angka dan titik desimal
+        }
+//else {
+//           
+//        }
+    }//GEN-LAST:event_jTextField1sKeyTyped
+
+    private void jTextField1sKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1sKeyReleased
+        int bayar = (int) (Helper.Validasi.getNumeric(jTextField1s.getText()));
+        if ((bayar) < 0) {
+            bayar = 0;
+        }
+        int s = (int) Helper.Currency.deformat(txtharapan.getText()) - bayar;
+        txtselisih.setText(String.valueOf(Helper.Currency.format(s)));
+    }//GEN-LAST:event_jTextField1sKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -475,19 +695,39 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog dialog;
     private javax.swing.JPopupMenu dialog2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1s;
+    private javax.swing.JDialog kastutupmodal;
     private javax.swing.JPanel main;
     private javax.swing.JPanel menu_bar;
     private javax.swing.JLabel pageName;
     private javax.swing.JComboBox<String> selectkertas;
     private javax.swing.JDialog settingmodal;
     private javax.swing.JLabel tanggal;
+    private javax.swing.JLabel txtharapan;
+    private javax.swing.JLabel txtkas;
+    private javax.swing.JLabel txtselisih;
+    private javax.swing.JLabel txttrxtunai;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 
@@ -722,7 +962,7 @@ public class Main extends javax.swing.JFrame {
         panel3.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                editshift();
+                openmodal();
             }
         });
         panel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -742,45 +982,83 @@ public class Main extends javax.swing.JFrame {
         dialog2.show(username, username.getWidth(), username.getHeight() + 5);
     }
 
-    private void editshift() {
-        try {
-            int idshift = 0;
-            int saldowal = 0;
-            String tanggal_dibuat = "";
-            Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+    private void openmodal() {
+        int idshift = 0;
+        int saldowal = 0;
+        String tanggal_dibuat = "";
+        kastutupmodal.pack();
+        kastutupmodal.setLocationRelativeTo(null);
+        kastutupmodal.setVisible(true);
+        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
 
-            String datalogin = userPreferences.get("datashift", null);
+        String datalogin = userPreferences.get("datashift", null);
 
-            if (datalogin != null) {
+        if (datalogin != null) {
+            try {
                 JSONArray retrievedArray = new JSONArray(datalogin);
                 idshift = retrievedArray.getInt(0);
                 saldowal = retrievedArray.getInt(1);
                 tanggal_dibuat = retrievedArray.getString(2);
-                int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda ingin keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION);
-                if (confirmed == JOptionPane.YES_OPTION) {
-                    // Aksi yang ingin dilakukan sebelum keluar
-                    System.out.println("Menutup aplikasi...");
-                    ResultSet p = DB.query("SELECT COUNT(*) AS total_penjualan, COALESCE(SUM(total_harga), 0) AS total_harga FROM transaksi_penjualan WHERE tanggal_transaksi BETWEEN '" + tanggal_dibuat + "' AND now(); ");
-
-                    if (p.next()) {
-                        int hasil = saldowal + p.getInt("total_harga");
-                        DB.query2("UPDATE shift SET saldo_akhir_kas = '" + hasil + "',waktu_tutup = curtime(),total_penjualan = '" + p.getString("total_penjualan") + "',total_pembayaran = '" + p.getString("total_harga") + "' WHERE  id = '" + idshift + "';");
-                        Auth auth = new Auth();
-                        auth.Clear();
-                        dispose();
-                        new login().setVisible(true);
-                    }
-
-                } else {
-                    System.out.println("t");
-//                    dispose();
-                    setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                ResultSet p = DB.query("SELECT COUNT(*) AS total_penjualan, COALESCE(SUM(total_harga), 0) AS total_harga FROM transaksi_penjualan WHERE tanggal_transaksi BETWEEN '" + tanggal_dibuat + "' AND now(); ");
+                if (p.next()) {
+                    int hasil = saldowal + p.getInt("total_harga");
+                    txtkas.setText(Helper.Currency.format(saldowal));
+                    txttrxtunai.setText(Helper.Currency.format(p.getInt("total_harga")));
+                    txtharapan.setText(Helper.Currency.format(hasil));
                 }
+            } catch (JSONException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
 
-        } catch (JSONException | SQLException ex) {
-            System.out.println(ex);
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    private void editshift() {
+        if (jTextField1s.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Silahkan Masukan Jumlah Tunai Di Kasir");
+        } else {
+            try {
+                int idshift = 0;
+                int saldowal = 0;
+                String tanggal_dibuat = "";
+                Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+
+                String datalogin = userPreferences.get("datashift", null);
+
+                if (datalogin != null) {
+                    JSONArray retrievedArray = new JSONArray(datalogin);
+                    idshift = retrievedArray.getInt(0);
+                    saldowal = retrievedArray.getInt(1);
+                    tanggal_dibuat = retrievedArray.getString(2);
+                    int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda ingin keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION);
+                    if (confirmed == JOptionPane.YES_OPTION) {
+                        // Aksi yang ingin dilakukan sebelum keluar
+                        System.out.println("Menutup aplikasi...");
+                        ResultSet p = DB.query("SELECT COUNT(*) AS total_penjualan, COALESCE(SUM(total_harga), 0) AS total_harga FROM transaksi_penjualan WHERE tanggal_transaksi BETWEEN '" + tanggal_dibuat + "' AND now(); ");
+
+                        if (p.next()) {
+//                        int hasil = saldowal + p.getInt("total_harga");
+                            DB.query2("UPDATE shift SET saldo_akhir_kas = '" + jTextField1s.getText() + "',waktu_tutup = curtime(),total_penjualan = '" + p.getString("total_penjualan") + "',total_pembayaran_sistem = '" + Helper.Currency.deformat(txtharapan.getText()) + "' WHERE  id = '" + idshift + "';");
+                            Auth auth = new Auth();
+                            auth.Clear();
+                            dispose();
+                            kastutupmodal.dispose();
+                            new login().setVisible(true);
+                        }
+
+                    } else {
+                        System.out.println("t");
+//                    dispose();
+                        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                    }
+                }
+
+            } catch (JSONException | SQLException ex) {
+                System.out.println(ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

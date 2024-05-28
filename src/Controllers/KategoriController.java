@@ -55,8 +55,6 @@ public class KategoriController extends Controller {
                 String txtselect = view.getSelectbentuktuslah().getSelectedItem().toString();
                 char c = e.getKeyChar();
                 String text = view.getTxttuslah().getText();
-                double value = Double.parseDouble(text + c);
-
                 if (txtselect.equals(
                         "persen")) {
                     // Cek apakah karakter adalah digit atau titik desimal
@@ -145,7 +143,7 @@ public class KategoriController extends Controller {
             ResultSet namaExist = model.where("nama_kategori", "=", namaKategori).andWhere("id", "<>", idEdit).get();
             if (namaExist.next()) {
                 Notification.showError("Nama kategori sudah ada", view.getForm());
-            } else if (namaKategori.equals("") || tuslah.equals("")) {
+            } else if (namaKategori.equals("")) {
                 Notification.showError(Notification.EMPTY_VALUE, view.getForm());
             } else if (bentuk.equals("persen")) {
                 double value = Double.parseDouble(tuslah);
@@ -202,7 +200,8 @@ public class KategoriController extends Controller {
 
     public void tambahData() {
         view.getFormTitle().setText("Tambah Kategori");
-        view.getNamaKategori().setText("");
+        view.getNamaKategori().setText("");        
+        view.getTxttuslah().setText("0");
         showForm();
 
     }
