@@ -919,7 +919,7 @@ public class DashboardView extends javax.swing.JPanel {
     private void ntf_stok() {
         notif_stok.getVerticalScrollBar().setUnitIncrement(16);
         ResultSet data = DB.query(
-                "SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <= min_stok; ");
+                "SELECT obat.nama_obat,detail_obat.jumlah_obat FROM `detail_obat` JOIN obat ON obat.kode_obat = detail_obat.kode_obat WHERE detail_obat.jumlah_obat <=  obat.min_stok; ");
         String pesan = "";
         try {
             while (data.next()) {

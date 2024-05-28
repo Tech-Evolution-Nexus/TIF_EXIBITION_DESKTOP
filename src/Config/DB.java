@@ -17,7 +17,7 @@ public class DB {
 
     public static Connection con;
     public static Statement stm;
-    static String dbname = "apotek_5"; 
+    static String dbname = "apotek_6"; 
     static String user = "root";
     static String pass = "";
     static String url = "jdbc:mysql://localhost:3306/" + dbname;

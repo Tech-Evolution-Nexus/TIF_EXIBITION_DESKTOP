@@ -98,7 +98,6 @@ public class PembelianView extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         qty = new Components.CustomField();
         jLabel10 = new javax.swing.JLabel();
-        harga = new Components.CustomField();
         addList = new Components.ButtonIcon();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -107,6 +106,7 @@ public class PembelianView extends javax.swing.JPanel {
         dataObat = new javax.swing.JTextField();
         btn_batal = new Components.ButtonIcon();
         btn_harga = new Components.ButtonIcon();
+        harga = new javax.swing.JTextField();
         jPanel3 = new Components.CustomPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -164,7 +164,7 @@ public class PembelianView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Kode Obat", "Nama Obat", "Kategori Obat", "Stok", "Satuan", "Kandungan"
+                "Kode Obat", "Nama Obat", "Stok", "Kategori Obat", "Satuan", "Kandungan"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -371,9 +371,6 @@ public class PembelianView extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Poppins", 0, 16)); // NOI18N
         jLabel10.setText("Harga Satuan");
 
-        qty.setPlaceholder("Masukkan qty di beli");
-        harga.setText("Rp.0");
-
         addList.setIcon("Assets/svg/addIcon.svg");
         addList.setBackground(new java.awt.Color(58, 98, 215));
         addList.setHorizontal(true);
@@ -428,6 +425,8 @@ public class PembelianView extends javax.swing.JPanel {
             }
         });
 
+        harga.setText("jTextField1");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -446,8 +445,8 @@ public class PembelianView extends javax.swing.JPanel {
                             .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(harga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(harga))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -473,30 +472,33 @@ public class PembelianView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nobatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addComponent(datechose_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dataObat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btn_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel10))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(nobatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(datechose_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addGap(10, 10, 10)))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dataObat, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                .addComponent(harga))))
+                    .addComponent(qty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_batal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -599,7 +601,7 @@ public class PembelianView extends javax.swing.JPanel {
                             .addComponent(nofak, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(totalbayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,7 +744,7 @@ public class PembelianView extends javax.swing.JPanel {
     private javax.swing.JTextField dataObat;
     private Components.CustomField dataSuplier;
     private de.wannawork.jcalendar.JCalendarComboBox datechose_exp;
-    private Components.CustomField harga;
+    private javax.swing.JTextField harga;
     private javax.swing.JDialog hargaForm;
     private javax.swing.JTable hargaList;
     private javax.swing.JLabel jLabel1;
@@ -807,7 +809,7 @@ public class PembelianView extends javax.swing.JPanel {
         return datechose_exp;
     }
 
-    public CustomField getHarga() {
+    public JTextField getHarga() {
         return harga;
     }
 
