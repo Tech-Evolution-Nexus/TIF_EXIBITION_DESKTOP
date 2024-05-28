@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import Config.DB;
+import Helper.Auth;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 
@@ -39,22 +40,22 @@ public class SaldoKasAwal extends javax.swing.JFrame {
 
     public SaldoKasAwal() {
         initComponents();
-       Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
-               this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(),30, 30));
-
-
+        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        
         try {
             String datalogin = userPreferences.get("localLogin", null);
 
             if (datalogin != null) {
 
                 JSONArray retrievedArray = new JSONArray(datalogin);
-                id = Integer.parseInt(retrievedArray.getString(0));         
+                id = Integer.parseInt(retrievedArray.getString(0));
             } else {
                 new login().setVisible(true);
             }
         } catch (Exception e) {
         }
+        inputkas.setTransferHandler(null);
 
     }
 
@@ -147,12 +148,11 @@ public class SaldoKasAwal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       addsaoldo();
+        addsaoldo();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void inputkasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputkasKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
             addsaoldo();
         }
     }//GEN-LAST:event_inputkasKeyPressed
@@ -173,6 +173,8 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         Preferences userPreferences = Preferences.userNodeForPackage(login.class);
         userPreferences.put("nama_user", "");
         userPreferences.putInt("id_user", 0);
+        Auth auth = new Auth();
+        auth.Clear();
         dispose();
         new login().setVisible(true);
     }//GEN-LAST:event_logout_saldooMouseClicked
@@ -186,14 +188,14 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-       try {
+        try {
             UIManager.setLookAndFeel(new FlatLightLaf());
             // UIManager.put("Table.selectionBackground", new Color(55, 98, 216));
-           UIManager.put("TableHeader.height", 40);
+            UIManager.put("TableHeader.height", 40);
             UIManager.put("TableHeader.hoverForeground", Color.white);
-            UIManager.put("TableHeader.hoverBackground", new Color(58,98,215));
-            UIManager.put("TableHeader.background", new Color(58,98,215));
-            UIManager.put("TableHeader.foreground", new Color(255,255,255));
+            UIManager.put("TableHeader.hoverBackground", new Color(58, 98, 215));
+            UIManager.put("TableHeader.background", new Color(58, 98, 215));
+            UIManager.put("TableHeader.foreground", new Color(255, 255, 255));
             UIManager.put("Table.setSelectionForeground", new Color(255, 255, 255));
             UIManager.put("Table.rowHeight", 30); // Adjust the value to your desired height
             UIManager.put("Table.font", new Font("Poppins", Font.PLAIN, 16)); // Adjust the value to your desired height
@@ -212,7 +214,7 @@ public class SaldoKasAwal extends javax.swing.JFrame {
             UIManager.put("Component.arc", 15);
             UIManager.put("TextComponent.arc", 15);
             UIManager.put("Component.arrowType", "triangle");
-            UIManager.put("TabbedPane.selectedBackground", new Color(58,98,215));
+            UIManager.put("TabbedPane.selectedBackground", new Color(58, 98, 215));
 
         } catch (Exception e) {
         }
@@ -223,8 +225,8 @@ public class SaldoKasAwal extends javax.swing.JFrame {
         });
     }
 
-    private void addsaoldo(){
-         Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
+    private void addsaoldo() {
+        Preferences userPreferences = Preferences.userNodeForPackage(SaldoKasAwal.class);
 
         if (inputkas.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Saldo Awal tidak boleh Kosong!");
@@ -239,11 +241,11 @@ public class SaldoKasAwal extends javax.swing.JFrame {
 
                 int jumlah = DB.query2("INSERT INTO shift(id_user, saldo_awal_kas, waktu_buka) VALUES (" + id + ",'" + inputkastxt + "', NOW())");
                 ResultSet p = DB.query("select id,tanggal_dibuat from shift order by id desc limit 1");
-              
+
                 if (p.next()) {
-                     System.out.println(p.getString("tanggal_dibuat"));
+                    System.out.println(p.getString("tanggal_dibuat"));
                     String[] dataArray = {p.getString("id"), inputkastxt, p.getString("tanggal_dibuat")};
-                   
+
                     JSONArray jsonArray = new JSONArray(dataArray);
                     userPreferences.put("datashift", jsonArray.toString());
                     System.out.println("Saldo berhasil ditambahkan.");

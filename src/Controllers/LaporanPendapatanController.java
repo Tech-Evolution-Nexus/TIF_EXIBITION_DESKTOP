@@ -31,7 +31,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class LaporanPendapatanController {
 
-
     private JTable table;
     private JDialog form;
     private ArrayList<Object[]> penjualanList = new ArrayList<>();
@@ -41,7 +40,6 @@ public class LaporanPendapatanController {
         this.form = form;
     }
 
-   
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
@@ -59,8 +57,7 @@ public class LaporanPendapatanController {
                 Object[] dataTable = {
                     no,
                     data.getString(1),
-                    data.getString(2),
-                };
+                    data.getString(2),};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
 
@@ -72,76 +69,17 @@ public class LaporanPendapatanController {
         }
     }
 
-   
-    public void tambahData(Object[] object) {
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
-    }
-
-   
-    public void hapusData(Object[] object) {
-
-    }
-
-    public void cariData(String kunci) {
-        try {
-            // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_penjualan ");
-            int no = 1;
-            // menggunakan DefaultTableModel supaya bisa menambahkan data
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
-            tables.fireTableDataChanged();
-            tables.setRowCount(0);
-            int[] arrayId = new int[10];
-            penjualanList.clear();
-            while (data.next()) {
-                //  menyimpan data dalam bentuk array
-                Object[] dataTable = {
-                    no,
-                    data.getString("kode_transaksi"),
-                    data.getString("nama_pengguna"),
-                    data.getString("total_obat"),
-                    Currency.format(data.getInt("total_harga")),
-                    data.getString("tanggal_transaksi")
-
-                };
-                //  memasukkan data kepada tabel
-                tables.addRow(dataTable);
-                penjualanList.add(new Object[]{data.getString("kode_transaksi"),
-                    data.getString("total_obat"),
-                    data.getString("total_harga"),
-                    data.getDate("tanggal_transaksi"),
-                    data.getTimestamp("nama_pengguna")});
-                no++;
-            }
-        } catch (Exception e) {
-            System.out.println("error dari method tampil data " + e.getMessage());
-        }
-    }
-
-   
-    public void simpanData(Object[] object) {
-
-    }
-
-    public void editData(Object[] rowTable) {
-
-    }
-
-   
-    public void updateData(Object[] object) {
-    }
-
-   public void filterPeriode(int index,LocalDate ranges,LocalDate rangef) {
+    public void filterPeriode(int index, LocalDate ranges, LocalDate rangef) {
         try {
             String sql = "";
             switch (index) {
-                case 0 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') order by DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') desc; ";
-                case 1 ->{
-                    sql = "SELECT SUM(transaksi_penjualan.total_harga) AS pendapatan, DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') AS tanggal FROM apotek_3.transaksi_penjualan WHERE transaksi_penjualan.tanggal_transaksi BETWEEN '"+ranges+"' AND '"+rangef+"' GROUP BY DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') ORDER BY tanggal";
+                case 0 ->
+                    sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') order by DATE_FORMAT(tanggal_transaksi, '%Y-%m'),DATE_FORMAT(tanggal_transaksi, '%Y') desc; ";
+                case 1 -> {
+                    sql = "SELECT SUM(transaksi_penjualan.total_harga) AS pendapatan, DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') AS tanggal FROM apotek_3.transaksi_penjualan WHERE transaksi_penjualan.tanggal_transaksi BETWEEN '" + ranges + "' AND '" + rangef + "' GROUP BY DATE_FORMAT(transaksi_penjualan.tanggal_transaksi, '%Y-%m-%d') ORDER BY tanggal";
                 }
-                case 2 -> sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y') AS tahun FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y') ORDER BY tahun DESC; ";
+                case 2 ->
+                    sql = "SELECT SUM(total_harga) AS pendapatan, DATE_FORMAT(tanggal_transaksi, '%Y') AS tahun FROM transaksi_penjualan GROUP BY DATE_FORMAT(tanggal_transaksi, '%Y') ORDER BY tahun DESC; ";
                 default -> {
                 }
             }
@@ -157,13 +95,11 @@ public class LaporanPendapatanController {
 
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                
 
-               Object[] dataTable = {
+                Object[] dataTable = {
                     no,
                     data.getString(1),
-                    data.getString(2),
-                };
+                    data.getString(2),};
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
 
@@ -173,6 +109,7 @@ public class LaporanPendapatanController {
             System.out.println("eror" + e.getMessage());
         }
     }
+
     public void export() {
         try {
             // Koneksi ke database

@@ -117,10 +117,10 @@ public class SatuanController  extends Controller{
    
     public void editData() {
         int row = view.getTable().getSelectedRow();
-        if (row < 0) {
-            Notification.showInfo("Tidak ada baris yang dipilih", view.getTable());
-            return;
-        }
+         if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
+                return;
+            }
         view.getTitleForm().setText("Ubah satuan");
         String namaFromTable = view.getTable().getValueAt(row, 1).toString();
         String keteranganFromTable = view.getTable().getValueAt(row, 2).toString();
@@ -134,12 +134,12 @@ public class SatuanController  extends Controller{
     public void hapusData() {
         try {
             int row = view.getTable().getSelectedRow();
-            boolean confirm = Notification.showConfirmDelete(view.getTable());
-            if (confirm) {
+             if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
                 return;
             }
-            if (row < 0) {
-                Notification.showInfo( "Tidak ada baris yang dipilih",view.getTable());
+            boolean confirm = Notification.showConfirmDelete(view.getTable());
+            if (confirm) {
                 return;
             }
             int id = (int) satuanList.get(row)[0];
