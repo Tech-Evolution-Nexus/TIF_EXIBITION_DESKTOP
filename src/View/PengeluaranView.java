@@ -4,9 +4,20 @@
  */
 package View;
 
+import Config.DB;
+import Helper.Currency;
+import Helper.FormatTanggal;
+import Laporan.LPenjualanView;
 import View.Auth.login;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import table.TableCustom;
 import java.util.prefs.Preferences;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,7 +40,7 @@ public class PengeluaranView extends javax.swing.JPanel {
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
         TableCustom.apply(jScrollPane2, TableCustom.TableType.MULTI_LINE);
 
-        searchObat.setIcon("Assets/svg/searchIcon.svg");
+//        searchObat.setIcon("Assets/svg/searchIcon.svg");
     }
 
     @SuppressWarnings("unchecked")
@@ -58,11 +69,13 @@ public class PengeluaranView extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_pengeluaran = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        searchObat = new Components.CustomField();
         buttonIcon3 = new Components.ButtonIcon();
         jPanel3 = new Components.CustomPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        jdate1 = new de.wannawork.jcalendar.JCalendarComboBox();
+        jdate2 = new de.wannawork.jcalendar.JCalendarComboBox();
+        jButton1 = new javax.swing.JButton();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -282,13 +295,6 @@ public class PengeluaranView extends javax.swing.JPanel {
             }
         });
 
-        searchObat.setPlaceholder("Cari User");
-        searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchObatKeyReleased(evt);
-            }
-        });
-
         buttonIcon3.setBackground(new java.awt.Color(58, 98, 215));
         buttonIcon3.setForeground(new java.awt.Color(255, 255, 255));
         buttonIcon3.setText("Tambah Pengeluaran");
@@ -360,13 +366,25 @@ public class PengeluaranView extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -376,9 +394,12 @@ public class PengeluaranView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jdate2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addComponent(jdate1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -394,10 +415,6 @@ public class PengeluaranView extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void searchObatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchObatKeyReleased
-        controller.cariData(searchObat.getText());
-    }//GEN-LAST:event_searchObatKeyReleased
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
 //        formName.setText("Tambah User Baru");
@@ -444,6 +461,43 @@ controller.txt_hargaKeyTyped(evt);
        reset();
     }//GEN-LAST:event_btn_simpanActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String tampilan1 = "yyyy-MM-dd";
+        SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+        Date date1 = jdate1.getDate(); // Ganti jdata1 dengan objek Date yang dimiliki
+        Date date2 = jdate2.getDate(); // Ganti jdata2 dengan objek Date yang dimiliki
+
+        String tanggalawal = tgl1.format(date1);
+        String tanggalakhir = tgl1.format(date2);
+
+        // Konversi string tanggal ke objek LocalDate
+        LocalDate awal = LocalDate.parse(tanggalawal);
+        LocalDate akhir = LocalDate.parse(tanggalakhir);
+        if (!awal.isBefore(akhir)) {
+            LocalDate temp = awal;
+            awal = akhir;
+            akhir = temp;
+        }
+
+        try {
+            int No = 1;
+            ResultSet data = DB.query("SELECT nama,total_pengeluaran,keterangan,tanggal_pengeluaran,pengeluaran.id FROM pengeluaran join users on  pengeluaran.id_user =users.id WHERE DATE(tanggal_pengeluaran) BETWEEN '" + awal + "' AND '" + akhir + " ' ");
+            DefaultTableModel tables = (DefaultTableModel) table.getModel();
+            tables.setRowCount(0);
+            int no = 1;
+            while (data.next()) {
+                Object[] dataTable = {no, data.getString("nama"), Currency.format(data.getInt("total_pengeluaran")), data.getString("keterangan"), FormatTanggal.formatDate(data.getDate("tanggal_pengeluaran"))};
+                tables.addRow(dataTable);
+                no++;
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(LPenjualanView.class
+                    .getName()).log(Level.SEVERE, null, e);
+        }
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void totalfn() {
      controller.totalfn();
 
@@ -467,6 +521,7 @@ controller.txt_hargaKeyTyped(evt);
     private javax.swing.JButton btn_tambah;
     private Components.ButtonIcon buttonIcon3;
     private de.wannawork.jcalendar.JCalendarComboBox datechoser;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -479,7 +534,8 @@ controller.txt_hargaKeyTyped(evt);
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private Components.CustomField searchObat;
+    private de.wannawork.jcalendar.JCalendarComboBox jdate1;
+    private de.wannawork.jcalendar.JCalendarComboBox jdate2;
     private javax.swing.JTable table;
     private javax.swing.JTable tbl_pengeluaran;
     private javax.swing.JLabel totharga;

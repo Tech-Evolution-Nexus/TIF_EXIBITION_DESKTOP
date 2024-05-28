@@ -310,15 +310,15 @@ public class Main extends javax.swing.JFrame {
 
         txtkas.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtkas.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        txtkas.setText("Total Kas");
+        txtkas.setText("Rp.0");
 
         txttrxtunai.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txttrxtunai.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        txttrxtunai.setText("t");
+        txttrxtunai.setText("Rp.0");
 
         txtharapan.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtharapan.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        txtharapan.setText("Total Kas");
+        txtharapan.setText("Rp.0");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -392,6 +392,7 @@ public class Main extends javax.swing.JFrame {
 
         txtselisih.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtselisih.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtselisih.setText("Rp.0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);

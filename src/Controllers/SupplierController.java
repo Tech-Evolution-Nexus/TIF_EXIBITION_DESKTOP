@@ -148,8 +148,8 @@ public class SupplierController  extends Controller{
             view.getTitleForm().setText("Ubah  Suplier ");
 
             int row = view.getTable().getSelectedRow();
-            if (row < 0) {
-                Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, view.getTable());
+             if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
                 return;
             }
             String kodeSp = view.getTable().getValueAt(row, 1).toString();
@@ -172,16 +172,16 @@ public class SupplierController  extends Controller{
     
     private void hapusData() {
         try {
+             if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
+                return;
+            }
             boolean confirm = Notification.showConfirmDelete(view.getTable());
             if (!confirm) {
                 return;
             }
             int row = view.getTable().getSelectedRow();
-            if (row < 0) {
-                Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, view.getTable());
-                return;
-
-            }
+           
             String id = suplierList.get(row)[0].toString();
             ResultSet transaksiData = DB.query("SELECT count(*) as count from transaksi_pembelian where kode_suplier = '" + id + "'");
             transaksiData.next();

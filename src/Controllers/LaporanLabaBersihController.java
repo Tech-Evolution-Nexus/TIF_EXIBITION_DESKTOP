@@ -71,68 +71,6 @@ public class LaporanLabaBersihController {
             System.out.println("error " + e.getMessage());
         }
     }
-
-    
-    public void tambahData(Object[] object) {
-        form.pack();
-        form.setLocationRelativeTo(null);
-        form.setVisible(true);
-    }
-
-    
-    public void hapusData(Object[] object) {
-
-    }
-
-    public void cariData(String kunci) {
-        try {
-            // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_penjualan ");
-            int no = 1;
-            // menggunakan DefaultTableModel supaya bisa menambahkan data
-            DefaultTableModel tables = (DefaultTableModel) table.getModel();
-            tables.fireTableDataChanged();
-            tables.setRowCount(0);
-            int[] arrayId = new int[10];
-            penjualanList.clear();
-            while (data.next()) {
-                //  menyimpan data dalam bentuk array
-                Object[] dataTable = {
-                    no,
-                    data.getString("kode_transaksi"),
-                    data.getString("nama_pengguna"),
-                    data.getString("total_obat"),
-                    Currency.format(data.getInt("total_harga")),
-                    data.getString("tanggal_transaksi")
-
-                };
-                //  memasukkan data kepada tabel
-                tables.addRow(dataTable);
-                penjualanList.add(new Object[]{data.getString("kode_transaksi"),
-                    data.getString("total_obat"),
-                    data.getString("total_harga"),
-                    data.getDate("tanggal_transaksi"),
-                    data.getTimestamp("nama_pengguna")});
-                no++;
-            }
-        } catch (Exception e) {
-            System.out.println("error dari method tampil data " + e.getMessage());
-        }
-    }
-
-    
-    public void simpanData(Object[] object) {
-
-    }
-
-    public void editData(Object[] rowTable) {
-
-    }
-
-    
-    public void updateData(Object[] object) {
-    }
-
     public void filterPeriode(Object[] component) {
         try {
 
@@ -142,7 +80,7 @@ public class LaporanLabaBersihController {
             if (index == 0) {
                 sql = "SELECT * FROM laporan   order by bulan_tahun desc";
             } else if (index == 1) {
-                sql = "SELECT SUM(pendapatan) AS pendapatan,SUM(pengeluaran) AS pengeluaran,SUM(laba_bersih) AS laba_bersih,LEFT(bulan_tahun, 4) as bulan_tahun FROM `laporan` GROUP by bulan_tahun";
+                sql = "SELECT SUM(pendapatan) AS pendapatan,SUM(pengeluaran) AS pengeluaran,SUM(laba_bersih) AS laba_bersih,right(bulan_tahun, 4) as bulan_tahun FROM `laporan` GROUP by bulan_tahun";
             } 
 
             ResultSet data = DB.query(sql);

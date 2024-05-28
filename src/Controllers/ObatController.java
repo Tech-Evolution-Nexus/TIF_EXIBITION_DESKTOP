@@ -228,8 +228,8 @@ public class ObatController extends Controller {
     public void hapusData() {
         try {
 
-            if (view.getTable().getSelectedRow() < 0) {
-                Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, view.getTable());
+             if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
                 return;
             }
             if (!Notification.showConfirmDelete(view.getTable())) {
@@ -414,7 +414,8 @@ public class ObatController extends Controller {
 
     public void detail() {
         try {
-            if (view.getTable().getSelectedRow() < 0) {
+             if (view.getTable().getSelectedRow() < 0) {
+                Notification.showError(Notification.NO_DATA_SELECTED_INFO, view.getForm());
                 return;
             }
             clearDialog();
