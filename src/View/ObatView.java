@@ -5,6 +5,7 @@
 package View;
 
 import Components.ButtonIcon;
+import Helper.Auth;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import javax.swing.table.TableColumn;
 import table.TableCustom;
@@ -24,6 +25,13 @@ public class ObatView extends javax.swing.JPanel {
         TableCustom.apply(jScrollPane5, TableCustom.TableType.MULTI_LINE);
         TableCustom.apply(jScrollPane7, TableCustom.TableType.MULTI_LINE);
         TableCustom.apply(jScrollPane2, TableCustom.TableType.MULTI_LINE);
+        
+        Auth auth = new Auth();
+        if (auth.getRole().equals("kasir")) {
+            btnUbah.setEnabled(false);
+            btnHapus.setEnabled(false);
+            btnTambah.setEnabled(false);
+        }
         
     }
 

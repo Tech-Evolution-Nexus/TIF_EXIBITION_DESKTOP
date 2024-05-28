@@ -8,6 +8,7 @@ import View.Auth.login;
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
+import Helper.Notification;
 import View.PengeluaranView;
 import de.wannawork.jcalendar.JCalendarComboBox;
 import java.sql.PreparedStatement;
@@ -97,6 +98,12 @@ public class PengeluaranController {
         form.pack();
         form.setLocationRelativeTo(null);
         form.setVisible(true);
+        DefaultTableModel rw = (DefaultTableModel) tbl_pengeluaran.getModel();
+        rw.setRowCount(0);
+        txt_harga.setText("");
+        txt_ket.setText("");
+        totharga.setText("");
+
     }
 
     public void hapusData(Object[] object) {
@@ -280,6 +287,10 @@ public class PengeluaranController {
 
     public void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {
         int row = tbl_pengeluaran.getSelectedRow();
+        if (row < 0) {
+            Notification.showError(Notification.NO_DATA_SELECTED_INFO, null);
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) tbl_pengeluaran.getModel();
         model.removeRow(row);
         clearr();
@@ -323,26 +334,31 @@ public class PengeluaranController {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
                 int totalDataObat = tbl_pengeluaran.getRowCount();
-                for (int i = 0; i < totalDataObat; i++) {
-                    String keterangan = tbl_pengeluaran.getValueAt(i, 0).toString();
-                    String harga = tbl_pengeluaran.getValueAt(i, 1).toString();
-                    Date tgl = null;
+                if (totalDataObat > 0) {
+                    for (int i = 0; i < totalDataObat; i++) {
+                        String keterangan = tbl_pengeluaran.getValueAt(i, 0).toString();
+                        String harga = tbl_pengeluaran.getValueAt(i, 1).toString();
+                        Date tgl = null;
 
-                    Date date = inputFormat.parse(tbl_pengeluaran.getValueAt(i, 2).toString());
-                    String formattedDate = outputFormat.format(date);
-                    insertStatement.setString(1, retrievedArray.getString(0));
-                    insertStatement.setInt(2, Integer.parseInt(harga));
-                    insertStatement.setString(3, keterangan);
-                    insertStatement.setString(4, formattedDate);
-                    insertStatement.addBatch();
+                        Date date = inputFormat.parse(tbl_pengeluaran.getValueAt(i, 2).toString());
+                        String formattedDate = outputFormat.format(date);
+                        insertStatement.setString(1, retrievedArray.getString(0));
+                        insertStatement.setInt(2, Integer.parseInt(harga));
+                        insertStatement.setString(3, keterangan);
+                        insertStatement.setString(4, formattedDate);
+                        insertStatement.addBatch();
+                    }
+                    insertStatement.executeBatch();
+                    JOptionPane.showMessageDialog(form, "Data Berhasil Ditambahkan");
+                    DefaultTableModel model = (DefaultTableModel) tbl_pengeluaran.getModel();
+                    model.setRowCount(0);
+                    form.dispose();
+                    totharga.setText("");
+                    clearr();
+                } else {
+                    JOptionPane.showMessageDialog(form, "Tabel Tidak Boleh Kosong");
                 }
-                insertStatement.executeBatch();
-                JOptionPane.showMessageDialog(form, "Data Berhasil Ditambahkan");
-                DefaultTableModel model = (DefaultTableModel) tbl_pengeluaran.getModel();
-                model.setRowCount(0);
-                form.dispose();
-                totharga.setText("");
-                clearr();
+
             } catch (JSONException ex) {
                 Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {

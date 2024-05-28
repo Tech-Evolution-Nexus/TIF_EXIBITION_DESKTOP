@@ -51,7 +51,7 @@ public class LaporanShiftController {
     public void tampilData() {
          try {
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran FROM users INNER JOIN shift ON shift.id_user=users.id order by shift.tanggal_dibuat desc");
+            ResultSet data = DB.query("SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran_sistem FROM users INNER JOIN shift ON shift.id_user=users.id order by shift.tanggal_dibuat desc");
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
@@ -69,7 +69,9 @@ public class LaporanShiftController {
                     data.getString("waktu_buka"),
                     data.getString("waktu_tutup"),
                     data.getString("total_penjualan"),
-                    data.getString("total_pembayaran")
+                    data.getString("total_pembayaran_sistem"),
+                    data.getInt("saldo_akhir_kas")-data.getInt("total_pembayaran_sistem")
+                    
                 };
 
                 //  memasukkan data kepada tabel
@@ -130,7 +132,7 @@ public class LaporanShiftController {
         }
         try {
             int no = 1;
-            ResultSet data = DB.query("SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran FROM users INNER JOIN shift ON shift.id_user=users.id WHERE shift.tanggal_dibuat BETWEEN '" + awal + "' and '" + akhir + "'");
+            ResultSet data = DB.query("SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran_sistem FROM users INNER JOIN shift ON shift.id_user=users.id WHERE shift.tanggal_dibuat BETWEEN '" + awal + "' and '" + akhir + "'");
             DefaultTableModel tabel = (DefaultTableModel) table.getModel();
             tabel.setRowCount(0);
             while (data.next()) {
@@ -142,7 +144,8 @@ public class LaporanShiftController {
                     data.getString("waktu_buka"),
                     data.getString("waktu_tutup"),
                     data.getString("total_penjualan"),
-                    data.getString("total_pembayaran")
+                    data.getString("total_pembayaran_sistem"),
+                    data.getInt("saldo_akhir_kas")-data.getInt("total_pembayaran_sistem")
                 };
                 tabel.addRow(dataTable);
                 no++;
@@ -157,7 +160,7 @@ public class LaporanShiftController {
 
             java.sql.Connection connection = DB.getConnection();
             // Query
-            String sql = "SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran ,shift.tanggal_dibuat FROM users INNER JOIN shift ON shift.id_user=users.id order by shift.tanggal_dibuat desc";
+            String sql = "SELECT users.nama,shift.saldo_awal_kas,shift.saldo_akhir_kas,shift.waktu_buka,shift.waktu_tutup,shift.total_penjualan,shift.total_pembayaran_sistem ,shift.tanggal_dibuat FROM users INNER JOIN shift ON shift.id_user=users.id order by shift.tanggal_dibuat desc";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
