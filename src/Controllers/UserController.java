@@ -112,8 +112,7 @@ public class UserController extends Controller {
                 return;
 
             }
-            int confirm = JOptionPane.showConfirmDialog(view.getTable(), "Yakin menghapus data?");
-            if (confirm != 0) {
+            if (!Notification.showConfirmDelete(null)) {
                 return;
             }
 

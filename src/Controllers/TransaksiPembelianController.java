@@ -255,8 +255,6 @@ event();
                     data.next();
                     String idSatuan = data.getString("id_satuan");
                     DB.query2("UPDATE jenis_penjualan set harga = '"+Helper.Currency.deformat(row[1].toString())+"' where kode_obat = '"+kodeObat+"' AND id_satuan = '"+idSatuan+"'");
-                    System.out.println("Jenis");
-                    System.out.println("UPDATE jenis_penjualan set harga = '"+Helper.Currency.deformat(row[1].toString())+"' where kode_obat = '"+kodeObat+"' AND id_satuan = '"+idSatuan+"'");
                 }
             }
             for (Map.Entry<String, Object[]> entry : uniqueDataMap.entrySet()) {

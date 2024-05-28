@@ -52,6 +52,7 @@ import net.miginfocom.swing.MigLayout;
 import raven.chart.ChartLegendRenderer;
 import raven.chart.data.category.DefaultCategoryDataset;
 import raven.chart.line.LineChart;
+import table.TableCustom;
 
 /**
  *
@@ -89,6 +90,10 @@ public class DashboardView extends javax.swing.JPanel {
         panelchartterlaris();
         createLineChart();
         lineChart.startAnimation();
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane3, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane4, TableCustom.TableType.MULTI_LINE);
+
 
         //        jLabel2.setText(userPreferences.get("Username", null));
     }
@@ -127,6 +132,10 @@ public class DashboardView extends javax.swing.JPanel {
         // Menampilkan obat terlaris bulan kemarin dengan nama bulannya
         String infoTerlarisText = "Obat Terlaris Bulan " + namaBulan;
         infoTerlarisHeader.setText(infoTerlarisText);
+        
+        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane3, TableCustom.TableType.MULTI_LINE);
+        TableCustom.apply(jScrollPane4, TableCustom.TableType.MULTI_LINE);
     }
 
     /**
@@ -188,7 +197,7 @@ public class DashboardView extends javax.swing.JPanel {
         modalobat.setBackground(new java.awt.Color(255, 255, 255));
         modalobat.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("List Obat Terlaris");
 
@@ -230,10 +239,10 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout modalobatLayout = new javax.swing.GroupLayout(modalobat.getContentPane());
@@ -249,7 +258,7 @@ public class DashboardView extends javax.swing.JPanel {
 
         modalkadaluarsa.setModal(true);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("List Obat Akan Kadaluarsa Dan Kadaluarsa");
 
@@ -285,16 +294,19 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout modalkadaluarsaLayout = new javax.swing.GroupLayout(modalkadaluarsa.getContentPane());
@@ -310,7 +322,7 @@ public class DashboardView extends javax.swing.JPanel {
 
         modalstok.setModal(true);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("List Stok Obat Akan Habis Dan Habis");
 
@@ -346,16 +358,20 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 928, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane4)
+                .addGap(21, 21, 21))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout modalstokLayout = new javax.swing.GroupLayout(modalstok.getContentPane());
@@ -530,7 +546,7 @@ public class DashboardView extends javax.swing.JPanel {
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(jLabel3)
-                .addGap(0, 209, Short.MAX_VALUE))
+                .addGap(0, 195, Short.MAX_VALUE))
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addComponent(total_items, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -561,7 +577,7 @@ public class DashboardView extends javax.swing.JPanel {
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatanLabel)
-                .addGap(0, 144, Short.MAX_VALUE))
+                .addGap(0, 119, Short.MAX_VALUE))
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
                 .addComponent(pendapatan_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -594,7 +610,7 @@ public class DashboardView extends javax.swing.JPanel {
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran)
-                .addGap(0, 140, Short.MAX_VALUE))
+                .addGap(0, 118, Short.MAX_VALUE))
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -682,7 +698,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -701,7 +717,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelobatterlaris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chart2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(chart2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

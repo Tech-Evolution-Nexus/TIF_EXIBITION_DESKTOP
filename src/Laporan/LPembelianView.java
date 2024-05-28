@@ -37,7 +37,7 @@ public class LPembelianView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        form = new javax.swing.JDialog();
+        form = new Components.CustomDialog();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBLdetail_2 = new javax.swing.JTable();
@@ -266,7 +266,7 @@ public class LPembelianView extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Transaksi", "Nama Pemasok", "Total Barang Dibeli", "Total Harga", "Tanggal Transaksi"
+                "No", "No Faktur", "Nama Pemasok", "Total Barang Dibeli", "Total Harga", "Tanggal Transaksi"
             }
         ) {
             Class[] types = new Class [] {
@@ -343,9 +343,7 @@ public class LPembelianView extends javax.swing.JPanel {
                                 .addComponent(jdata4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnfilter2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(174, 174, 174)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
