@@ -56,7 +56,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="19" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="187" height="19" uuid="e744c6ab-8790-4d32-94c1-c4875e00d37d">
 					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
@@ -71,21 +71,21 @@
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<textField>
-				<reportElement x="101" y="0" width="86" height="22" uuid="34885232-dd63-496f-a9ca-051ef907ce52"/>
+				<reportElement x="101" y="1" width="86" height="22" uuid="34885232-dd63-496f-a9ca-051ef907ce52"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[""+$F{tanggal_transaksi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="80" height="11" uuid="9b80067f-5da8-4f2b-b7c5-61cc8bcadf04"/>
+				<reportElement x="0" y="1" width="80" height="11" uuid="9b80067f-5da8-4f2b-b7c5-61cc8bcadf04"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kode_transaksi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="11" width="80" height="11" uuid="7d31d391-aafb-4527-bdc5-de3213f80cfb"/>
+				<reportElement x="0" y="12" width="80" height="11" uuid="7d31d391-aafb-4527-bdc5-de3213f80cfb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>

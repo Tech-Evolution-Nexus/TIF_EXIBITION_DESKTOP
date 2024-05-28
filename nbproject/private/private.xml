@@ -3,44 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LPembelianView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/LaporanPembelianController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LaporanMain.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/App/Model/DetailReturnPenjualanModel.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/App/Model/SuplierModel.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/ReturPenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/PembelianView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/KategoriView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/ObatView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/UserView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/Auth/regis.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Main/DashboardView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/ObatController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/Auth/login.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LStokView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/PengeluaranView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/SupplierController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/Auth/SaldoKasAwal.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/StokOpnameView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/App/Model/TransaksiPenjualanModel.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/table/TableCustom.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Config/DB.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Components/CustomDialog.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Components/ButtonIcon.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/ReturnPenjualanController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/KategoriController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/SuplierView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/ReturPembelianView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/TransaksiPenjualanController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/TransaksiPembelianController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Helper/Notification.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Main/Main.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/View/PenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Controllers/UserController.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LPendapatanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Laporan/LPenjualanView.java</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/Assets/ic_header/opname.svg</file>
-            <file>file:/D:/MY%20PROJECT/ON%20GOING/TIF_EXIBITION_DESKTOP%20das/src/App/Model/TransaksiPembelianModel.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/View/Auth/regis.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/View/PenjualanView.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPembelianController.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/View/ReturPenjualanView.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/Config/DB.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/View/PembelianView.java</file>
+            <file>file:/E:/s/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPembelianController.java</file>
         </group>
     </open-files>
 </project-private>
