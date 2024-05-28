@@ -140,6 +140,7 @@ public class Main extends javax.swing.JFrame {
                 String noBatch = data.getString("no_batch");
                 String kodeObat = data.getString("kode_obat");
                 int jumlahObat = data.getInt("jumlah_obat");
+                System.out.println("UPDATE obat SET jumlah_obat = jumlah_obat - " + jumlahObat + " WHERE kode_obat = '" + kodeObat + "'");
 
                 DB.query2("UPDATE detail_obat SET status_kadaluarsa = 1 WHERE no_batch = '" + noBatch + "'");
                 DB.query2("UPDATE obat SET jumlah_obat = jumlah_obat - " + jumlahObat + " WHERE kode_obat = '" + kodeObat + "'");
@@ -270,6 +271,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(0, 0));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

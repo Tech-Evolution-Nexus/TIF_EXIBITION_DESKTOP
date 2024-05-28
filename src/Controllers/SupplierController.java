@@ -58,9 +58,9 @@ public class SupplierController  extends Controller{
         try {
             String kunci = view.getSearch().getText();
             // mengambil data dari table kategori       
-            ResultSet data = model.orderBy("nama_suplier", "asc").get();
+            ResultSet data = model.orderBy("kode_suplier", "desc").get();
             if (cari) {
-                data = model.where("nama_suplier","like","%"+kunci+"%").orderBy("nama_suplier", "asc").get();
+                data = model.where("nama_suplier","like","%"+kunci+"%").orderBy("kode_suplier", "desc").get();
             }
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
@@ -121,15 +121,13 @@ public class SupplierController  extends Controller{
             } else if (!notlp.matches("(0\\d{11,13})")) {
                 Notification.showError("Nomor telepon tidak valid ", view.getForm());
             } else {
-                String kodeSp = codeTRX;
-                String[] fields= {"kode_suplier","nama_suplier","alamat","nomor_telepon"};
-                String[] values= {codeTRX,namaSuplier,alamat,notlp};
+                String[] fields= {"nama_suplier","alamat","nomor_telepon"};
+                String[] values= {namaSuplier,alamat,notlp};
                 if (status == 1) {
                     model.insert( fields, values);
                 } else {
                     model.update(fields, values, " kode_suplier = '" + idEdit + "'");
                     status = 1;
-                    kodeSp = idEdit;
                     idEdit = "";
                 }
               
