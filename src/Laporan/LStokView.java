@@ -147,7 +147,16 @@ public class LStokView extends javax.swing.JPanel {
             new String [] {
                 "No", "Kode Obat", "Nama Obat", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable2);
 
         jButton3.setText("Ok");
@@ -280,7 +289,7 @@ public class LStokView extends javax.swing.JPanel {
 
         filtertext.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
-        jButton5.setText("Print");
+        jButton5.setText("Export");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -420,7 +429,7 @@ public class LStokView extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
             model.setRowCount(0);
             String cari = cariobat.getText();
-            ResultSet data = DB.query("SELECT kode_obat,nama_obat from obat where nama_obat LIKE '%" + cari + "%'or kode_obat LIKE '%" + cari + "%'");
+            ResultSet data = DB.query("SELECT kode_obat,nama_obat from obat where nama_obat LIKE '%" + cari + "%'or kode_obat LIKE '%" + cari + "%' ORDER BY kode_obat ASC" );
             int no = 1;
             while (data.next()) {
                 Object[] rowData = {no++, data.getString("kode_obat"), data.getString("nama_obat")};
@@ -488,7 +497,7 @@ public class LStokView extends javax.swing.JPanel {
                 query = fileterselect(filter.getSelectedIndex());
                 data = DB.query(query);
                 while (data.next()) {
-                    Object[] rowData = {fomattgl.format(data.getDate("tanggal")), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
+                    Object[] rowData = {data.getTimestamp("tanggal"), data.getString("no_kartu_stok"), data.getString("nama_suplier"), data.getString("qty_awal"), data.getString("qty_masuk"), data.getString("qty_keluar"), data.getString("qty_akhir")};
                     model.addRow(rowData);
                 }
             } catch (SQLException ex) {
@@ -586,6 +595,7 @@ public class LStokView extends javax.swing.JPanel {
             // Langkah 3: Mengisi data ke laporan JasperReports
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             Map<String, Object> parameters = new HashMap<>();
+            System.out.println(kode_obatt);
             parameters.put("kd_obat", kode_obatt);
             switch (select) {
                 case 0:
@@ -628,7 +638,7 @@ public class LStokView extends javax.swing.JPanel {
     private String fileterselect(int datafilter) {
         String tampilan2 = "dd-MM-yyyy";
         SimpleDateFormat fomattgl = new SimpleDateFormat(tampilan2);
-        String query = "SELECT kartu_stok.no_kartu_stok,kartu_stok.kode_obat,data_obat.nama_obat,data_obat.satuan,kartu_stok.no_batch,kartu_stok.kode_supplier,supplier.nama_suplier,kartu_stok.tanggal ,kartu_stok.qty_awal ,kartu_stok.qty_masuk ,kartu_stok.qty_keluar ,kartu_stok.qty_akhir FROM kartu_stok JOIN data_obat on kartu_stok.kode_obat = data_obat.kode_obat LEFT JOIN supplier on kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "'";
+        String query = "SELECT kartu_stok.no_kartu_stok,kartu_stok.kode_obat,data_obat.nama_obat,data_obat.satuan,kartu_stok.no_batch,kartu_stok.kode_supplier,supplier.nama_suplier,kartu_stok.tanggal ,kartu_stok.qty_awal ,kartu_stok.qty_masuk ,kartu_stok.qty_keluar ,kartu_stok.qty_akhir FROM kartu_stok JOIN data_obat on kartu_stok.kode_obat = data_obat.kode_obat LEFT JOIN supplier on kartu_stok.kode_supplier = supplier.kode_suplier WHERE kartu_stok.kode_obat = '" + kode_obatt + "' order by tanggal asc";
 //        int tahun = yeaChooserPanel.getSelectedYear();
 
         switch (datafilter) {
