@@ -323,7 +323,7 @@ event();
             total += Integer.parseInt(view.getTable().getValueAt(i, 4).toString())*Integer.parseInt(view.getTable().getValueAt(i, 5).toString());
         }
 
-        view.getTotalbayar().setText("Rp. " + total);
+        view.getTotalbayar().setText(Helper.Currency.format(total));
     }
 
     public void setTable() throws SQLException {

@@ -112,7 +112,7 @@ public class Main extends javax.swing.JFrame {
         pageName.setText("Dashboard");
         cardLayout.show(main, "Home");
         if (screenWidth > 1366 && screenHeight >= 768) {
-            setPreferredSize(new Dimension(1366, 768));
+            setPreferredSize(new Dimension(1366+100, 768+100));
             pack();
         } else {
             setExtendedState(JFrame.MAXIMIZED_BOTH);

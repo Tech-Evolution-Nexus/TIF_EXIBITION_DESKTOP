@@ -139,7 +139,7 @@ public class SatuanController  extends Controller{
                 return;
             }
             boolean confirm = Notification.showConfirmDelete(view.getTable());
-            if (confirm) {
+            if (!confirm) {
                 return;
             }
             int id = (int) satuanList.get(row)[0];

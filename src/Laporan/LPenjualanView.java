@@ -99,13 +99,13 @@ public class LPenjualanView extends javax.swing.JPanel {
             TBLdetail_1.getColumnModel().getColumn(2).setPreferredWidth(100);
             TBLdetail_1.getColumnModel().getColumn(2).setMaxWidth(100);
             TBLdetail_1.getColumnModel().getColumn(3).setMinWidth(120);
-            TBLdetail_1.getColumnModel().getColumn(3).setPreferredWidth(120);
-            TBLdetail_1.getColumnModel().getColumn(3).setMaxWidth(120);
+            TBLdetail_1.getColumnModel().getColumn(3).setPreferredWidth(140);
+            TBLdetail_1.getColumnModel().getColumn(3).setMaxWidth(150);
             TBLdetail_1.getColumnModel().getColumn(4).setMinWidth(120);
             TBLdetail_1.getColumnModel().getColumn(4).setMaxWidth(120);
-            TBLdetail_1.getColumnModel().getColumn(5).setMinWidth(150);
+            TBLdetail_1.getColumnModel().getColumn(5).setMinWidth(190);
             TBLdetail_1.getColumnModel().getColumn(5).setPreferredWidth(100);
-            TBLdetail_1.getColumnModel().getColumn(5).setMaxWidth(150);
+            TBLdetail_1.getColumnModel().getColumn(5).setMaxWidth(190);
         }
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));

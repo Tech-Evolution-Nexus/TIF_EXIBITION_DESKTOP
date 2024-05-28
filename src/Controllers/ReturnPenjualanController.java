@@ -16,10 +16,12 @@ import java.sql.ResultSet;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import App.Model.DetailObatModel;
 import App.Model.DetailPenjualanModel;
 import App.Model.DetailPenjualanViewModel;
 import App.Model.DetailReturnPenjualanModel;
 import App.Model.LaporanPenjualanView;
+import App.Model.ObatModel;
 import App.Model.ReturnPenjualanModel;
 import App.Model.TransaksiPenjualanModel;
 import Config.DB;
@@ -50,6 +52,8 @@ public class ReturnPenjualanController  extends Controller {
     private TransaksiPenjualanModel transaksiPenjualanModel= new TransaksiPenjualanModel();
     private ReturnPenjualanModel returnPenjualanModel = new ReturnPenjualanModel();
     private DetailReturnPenjualanModel detailReturnPenjualanModel = new DetailReturnPenjualanModel();
+    private ObatModel obatModel = new ObatModel();
+    private DetailObatModel detaiObatModel = new DetailObatModel();
 
     
     public ReturnPenjualanController() {
@@ -154,17 +158,19 @@ public class ReturnPenjualanController  extends Controller {
             String[] value = { harga, qtyTotal, subtotal };
             String kondisi = "kode_obat = '" + kodeObat + "' AND kode_transaksi = '" + kodeTransaksi
                     + "' AND id_satuan = " + idSatuan + " AND no_batch = '" + noBatch + "'";
-            System.out.println("qty total "+qtyTotal+" qty fix "+qty + "qty kmbali"+qtyKembali+"query"+kondisi);
 
             // kembalikan stok ketika kondisi baik
              String[] fieldReturnDetail = { "kode_return_penjualan","kode_obat","qty_sebelum_retur","qty_retur","selisih","harga","subtotal"	
  };
              String[] valueReturnDetail = { kodeReturn, kodeObat, qty,qtyKembali,selisih,harga,subtotal};
-        detailReturnPenjualanModel.insert(fieldReturnDetail, valueReturnDetail);
+            detailReturnPenjualanModel.insert(fieldReturnDetail, valueReturnDetail);
             //update qty detail penjualan
-                            detailPenjualanModel.update(field, value, kondisi);
+            detailPenjualanModel.update(field, value, kondisi);
 
             if (kondisiObat.equals("Baik")) {
+                //update ke detail obat
+                DB.query2("UPDATE detail_obat set jumlah_obat = jumlah_obat + "+qtyKembali+" where no_batch= '"+noBatch+"'");
+                DB.query2("UPDATE obat set jumlah_obat = jumlah_obat + "+qtyKembali+" where kode_obat= '"+kodeObat+"'");
                 continue;
             }
         }

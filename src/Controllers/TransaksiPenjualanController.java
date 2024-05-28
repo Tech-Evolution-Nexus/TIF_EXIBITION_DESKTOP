@@ -302,32 +302,33 @@ public class TransaksiPenjualanController extends Controller {
                 String qtyTotal = String.valueOf(Integer.parseInt(qty) * jenisObat.getInt("total"));
                 String idSatuan = jenisObat.getString("id_satuan");
 
-                ResultSet detailObat = DB.query("SELECT * from data_stok_obat where kode_obat = '" + kodeObat + "' AND status_kadaluarsa = 0 order by tanggal_masuk asc");
+                ResultSet detailObat = DB.query("SELECT * from data_stok_obat where kode_obat = '" + kodeObat + "' AND status_kadaluarsa = 0  AND jumlah_obat > 0 order by tanggal_masuk asc");
                 int qtySisa = Integer.parseInt(qtyTotal);
                 //mengurangi qty dengan metode fifo 
                 while (detailObat.next()) {
+                    String idStok = detailObat.getString("id");
                     if (detailObat.getInt("jumlah_obat") >= qtySisa) {
                         DB.query2("UPDATE detail_obat set jumlah_obat = jumlah_obat - " + String.valueOf(qtySisa)
-                                + " where no_batch  = '" + detailObat.getString("id") + "'");
+                                + " where no_batch  = '" +idStok + "'");
                         String[] field = {"kode_transaksi", "kode_obat", "harga", "qty", "subtotal", "id_satuan", "no_batch", "tuslah"};
                         String qtyObat = String.valueOf(qtySisa);
                         int subTotalObt = qtySisa * Integer.parseInt(harga);
                         String subTotalObat = String.valueOf(subTotalObt);
-                        String[] value = {kodeTrx, kodeObat, harga, qtyObat, subTotalObat, idSatuan, detailObat.getString("id"), tuslah};
+                        String[] value = {kodeTrx, kodeObat, harga, qtyObat, subTotalObat, idSatuan,idStok, tuslah};
 
                         detailPenjualanModel.insert(field, value);
                         break;
                     } else {
 
                         DB.query2("UPDATE detail_obat set jumlah_obat = 0   where no_batch  = '"
-                                + detailObat.getString("id") + "'");
+                                +idStok + "'");
                         String[] field = {"kode_transaksi", "kode_obat", "harga", "qty", "subtotal", "id_satuan", "no_batch", "tuslah"};
                         String qtyObat = String.valueOf(detailObat.getInt("jumlah_obat"));
 
                         int subTotalObt = Integer.parseInt(qtyObat) * Integer.parseInt(harga);
                         String subTotalObat = String.valueOf(subTotalObt);
 
-                        String[] value = {kodeTrx, kodeObat, harga, qtyObat, subTotalObat, idSatuan, detailObat.getString("id"), tuslah,};
+                        String[] value = {kodeTrx, kodeObat, harga, qtyObat, subTotalObat, idSatuan,idStok, tuslah,};
                         detailPenjualanModel.insert(field, value);
                         qtySisa = qtySisa - detailObat.getInt("jumlah_obat");
                     }

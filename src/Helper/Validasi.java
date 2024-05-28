@@ -4,6 +4,10 @@
  */
 package Helper;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Muhammad Nor Kholit
@@ -32,5 +36,18 @@ public class Validasi {
             System.out.println(e.getMessage());
             return 0;
         }
+    }
+
+
+    public static void inputOnlyNumber(JTextField input) {
+         input.addKeyListener(new KeyAdapter() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            char c = e.getKeyChar();
+            if (!Character.isDigit(c)) {
+                e.consume(); // Discard the character
+            }
+        }
+    });
     }
 }

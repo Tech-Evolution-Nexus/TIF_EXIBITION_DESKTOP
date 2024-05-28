@@ -121,11 +121,13 @@ public class SupplierController  extends Controller{
             } else if (!notlp.matches("(0\\d{11,13})")) {
                 Notification.showError("Nomor telepon tidak valid ", view.getForm());
             } else {
-                String[] fields= {"nama_suplier","alamat","nomor_telepon"};
-                String[] values= {namaSuplier,alamat,notlp};
                 if (status == 1) {
+                    String[] fields= {"kode_suplier","nama_suplier","alamat","nomor_telepon"};
+                    String[] values= {codeTRX,namaSuplier,alamat,notlp};
                     model.insert( fields, values);
                 } else {
+                    String[] fields= {"nama_suplier","alamat","nomor_telepon"};
+                    String[] values= {namaSuplier,alamat,notlp};
                     model.update(fields, values, " kode_suplier = '" + idEdit + "'");
                     status = 1;
                     idEdit = "";
