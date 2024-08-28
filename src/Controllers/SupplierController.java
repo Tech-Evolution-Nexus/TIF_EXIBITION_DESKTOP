@@ -43,6 +43,15 @@ public class SupplierController  extends Controller{
         view.getBtnHapus().addActionListener(e->hapusData());
         view.getBtnTambah().addActionListener(e->tambahData());
         view.getBtnSimpan().addActionListener(e -> simpanData());
+         view.getNo_telepon().addKeyListener(new KeyAdapter() {
+
+            public void keyTyped(KeyEvent evt) {
+                char character = evt.getKeyChar();
+                if (!Character.isDigit(character)||Character.isWhitespace(character)) {
+                    evt.consume();
+                }
+            }
+        });
         view.getBaseLayer().addAncestorListener(new javax.swing.event.AncestorListener() {
         public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             tampilData(false);        }

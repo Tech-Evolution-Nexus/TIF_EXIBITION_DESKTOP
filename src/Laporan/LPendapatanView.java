@@ -203,7 +203,7 @@ public class LPendapatanView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
-//        reset();
+         controller.tampilData();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
     private void btnexport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexport1ActionPerformed
