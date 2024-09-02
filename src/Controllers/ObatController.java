@@ -132,7 +132,8 @@ public class ObatController extends Controller {
                 view.getTotal().setText("1");
             }
             ;
-//            showForm();
+            showForm();
+            
         } catch (Exception e) {
             System.out.println(e);
         }

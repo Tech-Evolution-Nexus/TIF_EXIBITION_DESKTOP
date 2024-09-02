@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Template s/Classes/Class.java to edit this template
  */
 package Config;
 
@@ -17,9 +17,9 @@ public class DB {
 
     public static Connection con;
     public static Statement stm;
-    static String dbname = "apotek_7"; 
-    static String user = "root";
-    static String pass = "";
+    static String dbname = "apotik_3"; 
+    static String user = "admin";
+    static String pass = "101010";
     static String url = "jdbc:mysql://localhost:3306/" + dbname;
 
     public static void DBSetup() {

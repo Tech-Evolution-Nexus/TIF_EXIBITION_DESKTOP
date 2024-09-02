@@ -72,7 +72,7 @@ public class TransaksiPenjualanController extends Controller {
             DefaultTableModel model = (DefaultTableModel) view.getTableCari().getModel();
 
             ResultSet datas = DB.query("SELECT * FROM `data_jenis_penjualan` WHERE nama_obat like '%" + kunci
-                    + "%' OR kode_obat  like '%" + kunci + "%'");
+                    + "%' OR kode_obat  like '%" + kunci + "%'  OR no_batch like '%"+kunci+"%'");
             model.setRowCount(0);
             while (datas.next()) {
                 ResultSet obat = obatModel.where("kode_obat", "=", datas.getString("kode_obat")).get();
